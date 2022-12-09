@@ -1,0 +1,706 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		17545D332942F0BD003E3724 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17545D322942F0BD003E3724 /* CustomTextField.swift */; };
+		17545D362942FA05003E3724 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17545D352942FA05003E3724 /* AppTheme.swift */; };
+		17545D392942FB2B003E3724 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17545D382942FB2B003E3724 /* Extensions.swift */; };
+		17545D3C2943025F003E3724 /* CustomModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17545D3B2943025F003E3724 /* CustomModifiers.swift */; };
+		17545D3E294308CD003E3724 /* OtpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17545D3D294308CD003E3724 /* OtpView.swift */; };
+		177B40BB2941EBAF00EDF0F0 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177B40BA2941EBAF00EDF0F0 /* LaunchView.swift */; };
+		177B40BF2941FB8E00EDF0F0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177B40BE2941FB8E00EDF0F0 /* LoginView.swift */; };
+		17A585E32935FF2B00365D71 /* FutalaLakeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A585E22935FF2B00365D71 /* FutalaLakeApp.swift */; };
+		17A585E52935FF2B00365D71 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A585E42935FF2B00365D71 /* ContentView.swift */; };
+		17A585E72935FF2D00365D71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17A585E62935FF2D00365D71 /* Assets.xcassets */; };
+		17A585EA2935FF2D00365D71 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17A585E92935FF2D00365D71 /* Preview Assets.xcassets */; };
+		17A585F42935FF2D00365D71 /* FutalaLakeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A585F32935FF2D00365D71 /* FutalaLakeTests.swift */; };
+		17A585FE2935FF2D00365D71 /* FutalaLakeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A585FD2935FF2D00365D71 /* FutalaLakeUITests.swift */; };
+		17A586002935FF2D00365D71 /* FutalaLakeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A585FF2935FF2D00365D71 /* FutalaLakeUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		17A585F02935FF2D00365D71 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17A585D72935FF2B00365D71 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 17A585DE2935FF2B00365D71;
+			remoteInfo = FutalaLake;
+		};
+		17A585FA2935FF2D00365D71 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17A585D72935FF2B00365D71 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 17A585DE2935FF2B00365D71;
+			remoteInfo = FutalaLake;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		17545D322942F0BD003E3724 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		17545D352942FA05003E3724 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		17545D382942FB2B003E3724 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		17545D3B2943025F003E3724 /* CustomModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModifiers.swift; sourceTree = "<group>"; };
+		17545D3D294308CD003E3724 /* OtpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpView.swift; sourceTree = "<group>"; };
+		177B40BA2941EBAF00EDF0F0 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
+		177B40BE2941FB8E00EDF0F0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		17A585DF2935FF2B00365D71 /* FutalaLake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FutalaLake.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		17A585E22935FF2B00365D71 /* FutalaLakeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutalaLakeApp.swift; sourceTree = "<group>"; };
+		17A585E42935FF2B00365D71 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		17A585E62935FF2D00365D71 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		17A585E92935FF2D00365D71 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		17A585EF2935FF2D00365D71 /* FutalaLakeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FutalaLakeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		17A585F32935FF2D00365D71 /* FutalaLakeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutalaLakeTests.swift; sourceTree = "<group>"; };
+		17A585F92935FF2D00365D71 /* FutalaLakeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FutalaLakeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		17A585FD2935FF2D00365D71 /* FutalaLakeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutalaLakeUITests.swift; sourceTree = "<group>"; };
+		17A585FF2935FF2D00365D71 /* FutalaLakeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutalaLakeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		17A585DC2935FF2B00365D71 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		17A585EC2935FF2D00365D71 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		17A585F62935FF2D00365D71 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		17545D302942EFF5003E3724 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				17545D3A29430246003E3724 /* Modifiers */,
+				17545D342942F9EC003E3724 /* Theme */,
+				17545D312942F007003E3724 /* View */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		17545D312942F007003E3724 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				17545D322942F0BD003E3724 /* CustomTextField.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		17545D342942F9EC003E3724 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				17545D352942FA05003E3724 /* AppTheme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		17545D372942FB10003E3724 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				17545D382942FB2B003E3724 /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		17545D3A29430246003E3724 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				17545D3B2943025F003E3724 /* CustomModifiers.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		177B40BC2941FB4900EDF0F0 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				177B40BD2941FB4F00EDF0F0 /* View */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		177B40BD2941FB4F00EDF0F0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				177B40BE2941FB8E00EDF0F0 /* LoginView.swift */,
+				17545D3D294308CD003E3724 /* OtpView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		17A585D62935FF2B00365D71 = {
+			isa = PBXGroup;
+			children = (
+				17A585E12935FF2B00365D71 /* FutalaLake */,
+				17A585F22935FF2D00365D71 /* FutalaLakeTests */,
+				17A585FC2935FF2D00365D71 /* FutalaLakeUITests */,
+				17A585E02935FF2B00365D71 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		17A585E02935FF2B00365D71 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				17A585DF2935FF2B00365D71 /* FutalaLake.app */,
+				17A585EF2935FF2D00365D71 /* FutalaLakeTests.xctest */,
+				17A585F92935FF2D00365D71 /* FutalaLakeUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		17A585E12935FF2B00365D71 /* FutalaLake */ = {
+			isa = PBXGroup;
+			children = (
+				17545D372942FB10003E3724 /* Extensions */,
+				17545D302942EFF5003E3724 /* Utils */,
+				177B40BC2941FB4900EDF0F0 /* Auth */,
+				17A586102936007100365D71 /* GettingStarted */,
+				17A5860F2935FF9B00365D71 /* Services */,
+				17A5860E2935FF8E00365D71 /* Resources */,
+				17A5860D2935FF7D00365D71 /* Assets */,
+				17A5860C2935FF7300365D71 /* Manager */,
+				17A585E22935FF2B00365D71 /* FutalaLakeApp.swift */,
+				17A585E42935FF2B00365D71 /* ContentView.swift */,
+				17A585E82935FF2D00365D71 /* Preview Content */,
+				177B40BA2941EBAF00EDF0F0 /* LaunchView.swift */,
+			);
+			path = FutalaLake;
+			sourceTree = "<group>";
+		};
+		17A585E82935FF2D00365D71 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				17A585E92935FF2D00365D71 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		17A585F22935FF2D00365D71 /* FutalaLakeTests */ = {
+			isa = PBXGroup;
+			children = (
+				17A585F32935FF2D00365D71 /* FutalaLakeTests.swift */,
+			);
+			path = FutalaLakeTests;
+			sourceTree = "<group>";
+		};
+		17A585FC2935FF2D00365D71 /* FutalaLakeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				17A585FD2935FF2D00365D71 /* FutalaLakeUITests.swift */,
+				17A585FF2935FF2D00365D71 /* FutalaLakeUITestsLaunchTests.swift */,
+			);
+			path = FutalaLakeUITests;
+			sourceTree = "<group>";
+		};
+		17A5860C2935FF7300365D71 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		17A5860D2935FF7D00365D71 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				17A585E62935FF2D00365D71 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		17A5860E2935FF8E00365D71 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		17A5860F2935FF9B00365D71 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		17A586102936007100365D71 /* GettingStarted */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = GettingStarted;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		17A585DE2935FF2B00365D71 /* FutalaLake */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 17A586032935FF2D00365D71 /* Build configuration list for PBXNativeTarget "FutalaLake" */;
+			buildPhases = (
+				17A585DB2935FF2B00365D71 /* Sources */,
+				17A585DC2935FF2B00365D71 /* Frameworks */,
+				17A585DD2935FF2B00365D71 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FutalaLake;
+			productName = FutalaLake;
+			productReference = 17A585DF2935FF2B00365D71 /* FutalaLake.app */;
+			productType = "com.apple.product-type.application";
+		};
+		17A585EE2935FF2D00365D71 /* FutalaLakeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 17A586062935FF2D00365D71 /* Build configuration list for PBXNativeTarget "FutalaLakeTests" */;
+			buildPhases = (
+				17A585EB2935FF2D00365D71 /* Sources */,
+				17A585EC2935FF2D00365D71 /* Frameworks */,
+				17A585ED2935FF2D00365D71 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				17A585F12935FF2D00365D71 /* PBXTargetDependency */,
+			);
+			name = FutalaLakeTests;
+			productName = FutalaLakeTests;
+			productReference = 17A585EF2935FF2D00365D71 /* FutalaLakeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		17A585F82935FF2D00365D71 /* FutalaLakeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 17A586092935FF2D00365D71 /* Build configuration list for PBXNativeTarget "FutalaLakeUITests" */;
+			buildPhases = (
+				17A585F52935FF2D00365D71 /* Sources */,
+				17A585F62935FF2D00365D71 /* Frameworks */,
+				17A585F72935FF2D00365D71 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				17A585FB2935FF2D00365D71 /* PBXTargetDependency */,
+			);
+			name = FutalaLakeUITests;
+			productName = FutalaLakeUITests;
+			productReference = 17A585F92935FF2D00365D71 /* FutalaLakeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		17A585D72935FF2B00365D71 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1410;
+				LastUpgradeCheck = 1410;
+				TargetAttributes = {
+					17A585DE2935FF2B00365D71 = {
+						CreatedOnToolsVersion = 14.1;
+					};
+					17A585EE2935FF2D00365D71 = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = 17A585DE2935FF2B00365D71;
+					};
+					17A585F82935FF2D00365D71 = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = 17A585DE2935FF2B00365D71;
+					};
+				};
+			};
+			buildConfigurationList = 17A585DA2935FF2B00365D71 /* Build configuration list for PBXProject "FutalaLake" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 17A585D62935FF2B00365D71;
+			productRefGroup = 17A585E02935FF2B00365D71 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				17A585DE2935FF2B00365D71 /* FutalaLake */,
+				17A585EE2935FF2D00365D71 /* FutalaLakeTests */,
+				17A585F82935FF2D00365D71 /* FutalaLakeUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		17A585DD2935FF2B00365D71 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17A585EA2935FF2D00365D71 /* Preview Assets.xcassets in Resources */,
+				17A585E72935FF2D00365D71 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		17A585ED2935FF2D00365D71 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		17A585F72935FF2D00365D71 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		17A585DB2935FF2B00365D71 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17A585E52935FF2B00365D71 /* ContentView.swift in Sources */,
+				177B40BB2941EBAF00EDF0F0 /* LaunchView.swift in Sources */,
+				17545D3E294308CD003E3724 /* OtpView.swift in Sources */,
+				177B40BF2941FB8E00EDF0F0 /* LoginView.swift in Sources */,
+				17545D362942FA05003E3724 /* AppTheme.swift in Sources */,
+				17A585E32935FF2B00365D71 /* FutalaLakeApp.swift in Sources */,
+				17545D3C2943025F003E3724 /* CustomModifiers.swift in Sources */,
+				17545D332942F0BD003E3724 /* CustomTextField.swift in Sources */,
+				17545D392942FB2B003E3724 /* Extensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		17A585EB2935FF2D00365D71 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17A585F42935FF2D00365D71 /* FutalaLakeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		17A585F52935FF2D00365D71 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17A586002935FF2D00365D71 /* FutalaLakeUITestsLaunchTests.swift in Sources */,
+				17A585FE2935FF2D00365D71 /* FutalaLakeUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		17A585F12935FF2D00365D71 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 17A585DE2935FF2B00365D71 /* FutalaLake */;
+			targetProxy = 17A585F02935FF2D00365D71 /* PBXContainerItemProxy */;
+		};
+		17A585FB2935FF2D00365D71 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 17A585DE2935FF2B00365D71 /* FutalaLake */;
+			targetProxy = 17A585FA2935FF2D00365D71 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		17A586012935FF2D00365D71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		17A586022935FF2D00365D71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		17A586042935FF2D00365D71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"FutalaLake/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = test.FutalaLake;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		17A586052935FF2D00365D71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"FutalaLake/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = test.FutalaLake;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		17A586072935FF2D00365D71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = test.FutalaLakeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FutalaLake.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FutalaLake";
+			};
+			name = Debug;
+		};
+		17A586082935FF2D00365D71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = test.FutalaLakeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FutalaLake.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FutalaLake";
+			};
+			name = Release;
+		};
+		17A5860A2935FF2D00365D71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = test.FutalaLakeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FutalaLake;
+			};
+			name = Debug;
+		};
+		17A5860B2935FF2D00365D71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = test.FutalaLakeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FutalaLake;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		17A585DA2935FF2B00365D71 /* Build configuration list for PBXProject "FutalaLake" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				17A586012935FF2D00365D71 /* Debug */,
+				17A586022935FF2D00365D71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		17A586032935FF2D00365D71 /* Build configuration list for PBXNativeTarget "FutalaLake" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				17A586042935FF2D00365D71 /* Debug */,
+				17A586052935FF2D00365D71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		17A586062935FF2D00365D71 /* Build configuration list for PBXNativeTarget "FutalaLakeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				17A586072935FF2D00365D71 /* Debug */,
+				17A586082935FF2D00365D71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		17A586092935FF2D00365D71 /* Build configuration list for PBXNativeTarget "FutalaLakeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				17A5860A2935FF2D00365D71 /* Debug */,
+				17A5860B2935FF2D00365D71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 17A585D72935FF2B00365D71 /* Project object */;
+}
