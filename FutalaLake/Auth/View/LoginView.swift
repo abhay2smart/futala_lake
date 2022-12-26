@@ -92,19 +92,22 @@ struct LoginView: View {
                     }
                     
                 }.padding(20)
-                    
-                Button {
-                    //
+                   
+                
+                NavigationLink {
+                    OtpView()
                 } label: {
                     Text("Enter")
                 }
                 .modifier(CustomButtonModifiers())
 
                 Spacer()
-                Spacer()
+                
             }
+            .navigationTitle("") // remove the text for back button on next screen
             
         }
+        
     }
 }
 

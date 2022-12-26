@@ -91,18 +91,31 @@ struct OtpView: View {
                                 .padding(.leading, -40)
                     }
                     
+                }.padding(.horizontal, 20)
+                
+                
+                Button {
+                    //
+                } label: {
+                    Text("Resend OTP")
+                                .underline()
+                                .font(.system(size: 18, weight: .medium, design: .default))
+                                .foregroundColor(.black)
                 }.padding(20)
+
                     
                 Button {
                     //
                 } label: {
-                    Text("Enter")
+                    Text("Login")
                 }
                 .modifier(CustomButtonModifiers())
 
                 Spacer()
                 Spacer()
             }
+            
+            //.navigationBarBackButtonHidden(true)
             
         }
     }

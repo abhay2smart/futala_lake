@@ -12,8 +12,15 @@
 		17545D392942FB2B003E3724 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17545D382942FB2B003E3724 /* Extensions.swift */; };
 		17545D3C2943025F003E3724 /* CustomModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17545D3B2943025F003E3724 /* CustomModifiers.swift */; };
 		17545D3E294308CD003E3724 /* OtpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17545D3D294308CD003E3724 /* OtpView.swift */; };
+		17545D412943371A003E3724 /* UpcomingEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17545D402943371A003E3724 /* UpcomingEventsView.swift */; };
+		17545D4429433829003E3724 /* UpcomingEventCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17545D4329433829003E3724 /* UpcomingEventCellView.swift */; };
 		177B40BB2941EBAF00EDF0F0 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177B40BA2941EBAF00EDF0F0 /* LaunchView.swift */; };
 		177B40BF2941FB8E00EDF0F0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177B40BE2941FB8E00EDF0F0 /* LoginView.swift */; };
+		17831DC72955BCFA005C36D0 /* TopNavItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17831DC62955BCFA005C36D0 /* TopNavItemView.swift */; };
+		17831DCA2955BDA5005C36D0 /* bottombar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17831DC92955BDA5005C36D0 /* bottombar.xcassets */; };
+		17831DD02955C551005C36D0 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17831DCF2955C551005C36D0 /* ProfileView.swift */; };
+		17831DD32955C56B005C36D0 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17831DD22955C56B005C36D0 /* SettingView.swift */; };
+		17831DD62955C585005C36D0 /* TransanctionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17831DD52955C585005C36D0 /* TransanctionView.swift */; };
 		17A585E32935FF2B00365D71 /* FutalaLakeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A585E22935FF2B00365D71 /* FutalaLakeApp.swift */; };
 		17A585E52935FF2B00365D71 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A585E42935FF2B00365D71 /* ContentView.swift */; };
 		17A585E72935FF2D00365D71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17A585E62935FF2D00365D71 /* Assets.xcassets */; };
@@ -21,6 +28,8 @@
 		17A585F42935FF2D00365D71 /* FutalaLakeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A585F32935FF2D00365D71 /* FutalaLakeTests.swift */; };
 		17A585FE2935FF2D00365D71 /* FutalaLakeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A585FD2935FF2D00365D71 /* FutalaLakeUITests.swift */; };
 		17A586002935FF2D00365D71 /* FutalaLakeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A585FF2935FF2D00365D71 /* FutalaLakeUITestsLaunchTests.swift */; };
+		17BD37892954134700DA2FE9 /* TabContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BD37882954134700DA2FE9 /* TabContainerView.swift */; };
+		17DDFC1129530F1500D7A5C9 /* UpcomcommingbookingStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DDFC1029530F1500D7A5C9 /* UpcomcommingbookingStatusCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,8 +55,15 @@
 		17545D382942FB2B003E3724 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		17545D3B2943025F003E3724 /* CustomModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModifiers.swift; sourceTree = "<group>"; };
 		17545D3D294308CD003E3724 /* OtpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpView.swift; sourceTree = "<group>"; };
+		17545D402943371A003E3724 /* UpcomingEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventsView.swift; sourceTree = "<group>"; };
+		17545D4329433829003E3724 /* UpcomingEventCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventCellView.swift; sourceTree = "<group>"; };
 		177B40BA2941EBAF00EDF0F0 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		177B40BE2941FB8E00EDF0F0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		17831DC62955BCFA005C36D0 /* TopNavItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopNavItemView.swift; sourceTree = "<group>"; };
+		17831DC92955BDA5005C36D0 /* bottombar.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = bottombar.xcassets; sourceTree = "<group>"; };
+		17831DCF2955C551005C36D0 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		17831DD22955C56B005C36D0 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		17831DD52955C585005C36D0 /* TransanctionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransanctionView.swift; sourceTree = "<group>"; };
 		17A585DF2935FF2B00365D71 /* FutalaLake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FutalaLake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17A585E22935FF2B00365D71 /* FutalaLakeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutalaLakeApp.swift; sourceTree = "<group>"; };
 		17A585E42935FF2B00365D71 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -58,6 +74,8 @@
 		17A585F92935FF2D00365D71 /* FutalaLakeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FutalaLakeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		17A585FD2935FF2D00365D71 /* FutalaLakeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutalaLakeUITests.swift; sourceTree = "<group>"; };
 		17A585FF2935FF2D00365D71 /* FutalaLakeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutalaLakeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		17BD37882954134700DA2FE9 /* TabContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContainerView.swift; sourceTree = "<group>"; };
+		17DDFC1029530F1500D7A5C9 /* UpcomcommingbookingStatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomcommingbookingStatusCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +145,24 @@
 			path = Modifiers;
 			sourceTree = "<group>";
 		};
+		17545D3F29433700003E3724 /* UpcomingEvents */ = {
+			isa = PBXGroup;
+			children = (
+				17545D4229433805003E3724 /* Cells */,
+				17545D402943371A003E3724 /* UpcomingEventsView.swift */,
+			);
+			path = UpcomingEvents;
+			sourceTree = "<group>";
+		};
+		17545D4229433805003E3724 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				17545D4329433829003E3724 /* UpcomingEventCellView.swift */,
+				17DDFC1029530F1500D7A5C9 /* UpcomcommingbookingStatusCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		177B40BC2941FB4900EDF0F0 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +176,78 @@
 			children = (
 				177B40BE2941FB8E00EDF0F0 /* LoginView.swift */,
 				17545D3D294308CD003E3724 /* OtpView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		17831DC42955BCDA005C36D0 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				17831DC52955BCE0005C36D0 /* View */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		17831DC52955BCE0005C36D0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				17831DC62955BCFA005C36D0 /* TopNavItemView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		17831DC82955BD7A005C36D0 /* Bottombaricons */ = {
+			isa = PBXGroup;
+			children = (
+				17831DC92955BDA5005C36D0 /* bottombar.xcassets */,
+			);
+			path = Bottombaricons;
+			sourceTree = "<group>";
+		};
+		17831DCB2955C4BF005C36D0 /* Transanctions */ = {
+			isa = PBXGroup;
+			children = (
+				17831DD42955C570005C36D0 /* View */,
+			);
+			path = Transanctions;
+			sourceTree = "<group>";
+		};
+		17831DCC2955C4CB005C36D0 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				17831DD12955C55A005C36D0 /* VIew */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		17831DCD2955C533005C36D0 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				17831DCE2955C53F005C36D0 /* View */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		17831DCE2955C53F005C36D0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				17831DCF2955C551005C36D0 /* ProfileView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		17831DD12955C55A005C36D0 /* VIew */ = {
+			isa = PBXGroup;
+			children = (
+				17831DD22955C56B005C36D0 /* SettingView.swift */,
+			);
+			path = VIew;
+			sourceTree = "<group>";
+		};
+		17831DD42955C570005C36D0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				17831DD52955C585005C36D0 /* TransanctionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -167,6 +275,12 @@
 		17A585E12935FF2B00365D71 /* FutalaLake */ = {
 			isa = PBXGroup;
 			children = (
+				17831DCD2955C533005C36D0 /* Profile */,
+				17831DCC2955C4CB005C36D0 /* Settings */,
+				17831DCB2955C4BF005C36D0 /* Transanctions */,
+				17831DC42955BCDA005C36D0 /* Shared */,
+				17BD37872954132F00DA2FE9 /* Home */,
+				17545D3F29433700003E3724 /* UpcomingEvents */,
 				17545D372942FB10003E3724 /* Extensions */,
 				17545D302942EFF5003E3724 /* Utils */,
 				177B40BC2941FB4900EDF0F0 /* Auth */,
@@ -218,6 +332,7 @@
 		17A5860D2935FF7D00365D71 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				17831DC82955BD7A005C36D0 /* Bottombaricons */,
 				17A585E62935FF2D00365D71 /* Assets.xcassets */,
 			);
 			path = Assets;
@@ -242,6 +357,14 @@
 			children = (
 			);
 			path = GettingStarted;
+			sourceTree = "<group>";
+		};
+		17BD37872954132F00DA2FE9 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				17BD37882954134700DA2FE9 /* TabContainerView.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,6 +471,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17831DCA2955BDA5005C36D0 /* bottombar.xcassets in Resources */,
 				17A585EA2935FF2D00365D71 /* Preview Assets.xcassets in Resources */,
 				17A585E72935FF2D00365D71 /* Assets.xcassets in Resources */,
 			);
@@ -375,14 +499,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				17A585E52935FF2B00365D71 /* ContentView.swift in Sources */,
+				17DDFC1129530F1500D7A5C9 /* UpcomcommingbookingStatusCell.swift in Sources */,
 				177B40BB2941EBAF00EDF0F0 /* LaunchView.swift in Sources */,
 				17545D3E294308CD003E3724 /* OtpView.swift in Sources */,
 				177B40BF2941FB8E00EDF0F0 /* LoginView.swift in Sources */,
+				17831DD62955C585005C36D0 /* TransanctionView.swift in Sources */,
+				17831DD32955C56B005C36D0 /* SettingView.swift in Sources */,
 				17545D362942FA05003E3724 /* AppTheme.swift in Sources */,
 				17A585E32935FF2B00365D71 /* FutalaLakeApp.swift in Sources */,
+				17831DD02955C551005C36D0 /* ProfileView.swift in Sources */,
 				17545D3C2943025F003E3724 /* CustomModifiers.swift in Sources */,
 				17545D332942F0BD003E3724 /* CustomTextField.swift in Sources */,
+				17831DC72955BCFA005C36D0 /* TopNavItemView.swift in Sources */,
+				17BD37892954134700DA2FE9 /* TabContainerView.swift in Sources */,
 				17545D392942FB2B003E3724 /* Extensions.swift in Sources */,
+				17545D4429433829003E3724 /* UpcomingEventCellView.swift in Sources */,
+				17545D412943371A003E3724 /* UpcomingEventsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

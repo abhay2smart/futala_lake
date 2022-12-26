@@ -9,6 +9,8 @@ import UIKit
 import SwiftUI
 
 struct AppTheme {
-    static let appThemeBlue = Color(UIColor.init(hexString: "#0000FF"))
-    static let appThemeOrange = Color(UIColor.init(hexString: "#FFA500"))
+    static let appThemeBlue = Color(UIColor.init(hexString: "#0C0C40"))
+    static let appThemeOrange = Color(UIColor.init(hexString: "#F47F22"))
+    static let appThemeRed = Color(UIColor.init(hexString: "#F42222"))
+    
 }

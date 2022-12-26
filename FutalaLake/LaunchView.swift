@@ -24,10 +24,10 @@ struct LaunchView: View {
                     //.foregroundColor(.red)
             }
         }
-        .background(
-                Image(systemName: "house")
-                    .resizable()
-                )
+//        .background(
+//                Image(systemName: "house")
+//                    .resizable()
+//                )
         
     }
 }
