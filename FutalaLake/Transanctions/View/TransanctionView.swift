@@ -9,7 +9,37 @@ import SwiftUI
 
 struct TransanctionView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView {
+            VStack {
+                BookingHistoryCellView()
+                    .padding(.horizontal, 15)
+                    .padding(.vertical, 0)
+                
+                BookingHistoryCellView()
+                    .padding(.horizontal, 15)
+                    .padding(.vertical, 0)
+                BookingHistoryCellView()
+                    .padding(.horizontal, 15)
+                    .padding(.vertical, 0)
+                
+                BookingHistoryCellView()
+                    .padding(.horizontal, 15)
+                    .padding(.vertical, 0)
+                
+                BookingHistoryCellView()
+                    .padding(.horizontal, 15)
+                    .padding(.vertical, 0)
+                BookingHistoryCellView()
+                    .padding(.horizontal, 15)
+                    .padding(.vertical, 0)
+            }.padding(.top, 20)
+            
+            
+            
+            
+            
+        }
+        
     }
 }
 

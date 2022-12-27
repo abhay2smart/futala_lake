@@ -30,6 +30,7 @@
 		17A586002935FF2D00365D71 /* FutalaLakeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A585FF2935FF2D00365D71 /* FutalaLakeUITestsLaunchTests.swift */; };
 		17BD37892954134700DA2FE9 /* TabContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BD37882954134700DA2FE9 /* TabContainerView.swift */; };
 		17DDFC1129530F1500D7A5C9 /* UpcomcommingbookingStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DDFC1029530F1500D7A5C9 /* UpcomcommingbookingStatusCell.swift */; };
+		17FC7F972959BF5F0066D67B /* BookingHistoryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC7F962959BF5F0066D67B /* BookingHistoryCellView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 		17A585FF2935FF2D00365D71 /* FutalaLakeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutalaLakeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		17BD37882954134700DA2FE9 /* TabContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContainerView.swift; sourceTree = "<group>"; };
 		17DDFC1029530F1500D7A5C9 /* UpcomcommingbookingStatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomcommingbookingStatusCell.swift; sourceTree = "<group>"; };
+		17FC7F962959BF5F0066D67B /* BookingHistoryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingHistoryCellView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +209,7 @@
 		17831DCB2955C4BF005C36D0 /* Transanctions */ = {
 			isa = PBXGroup;
 			children = (
+				17FC7F952959BF490066D67B /* Cell */,
 				17831DD42955C570005C36D0 /* View */,
 			);
 			path = Transanctions;
@@ -367,6 +370,14 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		17FC7F952959BF490066D67B /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				17FC7F962959BF5F0066D67B /* BookingHistoryCellView.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -510,6 +521,7 @@
 				17831DD02955C551005C36D0 /* ProfileView.swift in Sources */,
 				17545D3C2943025F003E3724 /* CustomModifiers.swift in Sources */,
 				17545D332942F0BD003E3724 /* CustomTextField.swift in Sources */,
+				17FC7F972959BF5F0066D67B /* BookingHistoryCellView.swift in Sources */,
 				17831DC72955BCFA005C36D0 /* TopNavItemView.swift in Sources */,
 				17BD37892954134700DA2FE9 /* TabContainerView.swift in Sources */,
 				17545D392942FB2B003E3724 /* Extensions.swift in Sources */,

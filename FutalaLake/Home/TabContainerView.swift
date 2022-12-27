@@ -56,6 +56,7 @@ struct TabContainerView: View {
                 }
         
         //.navigationBar(backgroundColor: .red, titleColor: .white)
+        .navigationBarBackButtonHidden(true)
     }
         
         

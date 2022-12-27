@@ -11,9 +11,12 @@ struct OtpView: View {
     @State var mobileNumber:String = ""
     var body: some View {
         ZStack {
-            Image("launch_background")
-                .resizable()
+//            Image("launch_background")
+//                .resizable()
+//                .edgesIgnoringSafeArea(.all)
+            AppTheme.appThemeSkyBlue
                 .edgesIgnoringSafeArea(.all)
+            
             VStack {
                 VStack(spacing: 4) {
                     Text("Welcome to")
@@ -58,8 +61,8 @@ struct OtpView: View {
                     HStack(spacing: 0) {
                         HStack {
                             Image("mobile")
-                                .resizable()
-                                .frame(width: 25, height: 25)
+                                //.resizable()
+                                //.frame(width: 25, height: 25)
                                 .padding(.trailing, 25)
                         }
                         .frame(height: 45)
@@ -103,19 +106,17 @@ struct OtpView: View {
                                 .foregroundColor(.black)
                 }.padding(20)
 
-                    
-                Button {
-                    //
+                
+                NavigationLink {
+                    TabContainerView()
                 } label: {
                     Text("Login")
                 }
                 .modifier(CustomButtonModifiers())
 
                 Spacer()
-                Spacer()
+                
             }
-            
-            //.navigationBarBackButtonHidden(true)
             
         }
     }
