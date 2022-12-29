@@ -9,31 +9,55 @@ import SwiftUI
 
 struct ContentView: View {
     @State var isActive:Bool = false
+    @State var isBasicScreenPassed = false
     var body: some View {
-        
-        return NavigationView {
-            ZStack {
-                if self.isActive {
-                    LoginView()
-                    //TabContainerView()
+        ZStack {
+            if isActive {
+                if isBasicScreenPassed {
+                    TabContainerView()
                 } else {
-                    LaunchView()
-                }
-            }
-            .navigationBarTitleDisplayMode(.inline)
-            
-            .navigationBar(backgroundColor: AppTheme.appThemeBlue, titleColor: .white)
-            
-
-            .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    withAnimation {
-                        self.isActive = true
+                    NavigationView {
+                        LoginView(isLogggedIn: $isBasicScreenPassed)
                     }
                 }
+            } else {
+                LaunchView()
             }
-            
-        }.accentColor(.white) // back button color
+        }.onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                withAnimation {
+                    self.isActive = true
+                }
+            }
+        }
+        
+        
+        
+        
+        
+//        return NavigationView {
+//            ZStack {
+//                if self.isActive {
+//                    LoginView()
+//                    //TabContainerView()
+//                } else {
+//                    LaunchView()
+//                }
+//            }
+//            .navigationBarTitleDisplayMode(.inline)
+//
+//            .navigationBar(backgroundColor: AppTheme.appThemeBlue, titleColor: .white)
+//
+//
+//            .onAppear {
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//                    withAnimation {
+//                        self.isActive = true
+//                    }
+//                }
+//            }
+//
+//        }.accentColor(.white) // back button color
         
     }
 }

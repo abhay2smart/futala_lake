@@ -23,47 +23,97 @@ struct TabContainerView: View {
                 }
             
             SettingView()
-            .tabItem {
-                Text("Setting")
-                Image("settings")
-            }
+                .tabItem {
+                    Text("Setting")
+                    Image("settings")
+                }
             
             
             ProfileView()
-            .tabItem {
-                Text("Profile")
-                Image("user")
-            }
+                .tabItem {
+                    Text("Profile")
+                    Image("user")
+                }
         }
-        
-        .toolbar { 
+        // top navbar
+        .toolbar {
             ToolbarItem(placement: .principal) {
                 TopNavItemView()
             }
             
         }
-        .accentColor(Color.white) // text color
+        // top nav bar
+        .navigationBarColor(backgroundColor: AppTheme.appThemeBlue, titleColor: .white)
+        .navigationBarTitleDisplayMode(.inline)
         
         .onAppear {
-                    let appearance = UITabBarAppearance()
-                    appearance.backgroundEffect = UIBlurEffect(style: .systemUltraThinMaterial)
+            // bottom navbar config
+            let appearance = UITabBarAppearance()
+            appearance.backgroundEffect = UIBlurEffect(style: .systemUltraThinMaterial)
             appearance.backgroundColor = UIColor(AppTheme.appThemeBlue) //UIColor(Color.orange.opacity(1))
-                    
-                    // Use this appearance when scrolling behind the TabView:
-                    UITabBar.appearance().standardAppearance = appearance
-                    // Use this appearance when scrolled all the way up:
-                    UITabBar.appearance().scrollEdgeAppearance = appearance
-                }
-        
-        //.navigationBar(backgroundColor: .red, titleColor: .white)
+            
+            // Use this appearance when scrolling behind the TabView:
+            UITabBar.appearance().standardAppearance = appearance
+            // Use this appearance when scrolled all the way up:
+            UITabBar.appearance().scrollEdgeAppearance = appearance
+        }
         .navigationBarBackButtonHidden(true)
+        
     }
-        
-        
+    
+    
 }
 
 struct TabContainerView_Previews: PreviewProvider {
     static var previews: some View {
         TabContainerView()
     }
+}
+
+// for top navbar
+struct NavigationBarModifier: ViewModifier {
+    
+    var backgroundColor: UIColor?
+    var titleColor: UIColor?
+    
+    
+    init(backgroundColor: Color, titleColor: UIColor?) {
+        self.backgroundColor = UIColor(backgroundColor)
+        
+        let coloredAppearance = UINavigationBarAppearance()
+        coloredAppearance.configureWithTransparentBackground()
+        coloredAppearance.backgroundColor = UIColor(backgroundColor)
+        coloredAppearance.titleTextAttributes = [.foregroundColor: titleColor ?? .white]
+        coloredAppearance.largeTitleTextAttributes = [.foregroundColor: titleColor ?? .white]
+        coloredAppearance.shadowColor = .clear
+        
+        UINavigationBar.appearance().standardAppearance = coloredAppearance
+        UINavigationBar.appearance().compactAppearance = coloredAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
+        UINavigationBar.appearance().tintColor = titleColor
+    }
+    
+    func body(content: Content) -> some View {
+        ZStack{
+            content
+            VStack {
+                GeometryReader { geometry in
+                    Color(self.backgroundColor ?? .clear)
+                        .frame(height: geometry.safeAreaInsets.top)
+                        .edgesIgnoringSafeArea(.top)
+                    Spacer()
+                }
+            }
+        }
+    }
+}
+
+
+// for top navbar
+extension View {
+    
+    func navigationBarColor(backgroundColor: Color, titleColor: UIColor?) -> some View {
+        self.modifier(NavigationBarModifier(backgroundColor: backgroundColor, titleColor: titleColor))
+    }
+    
 }

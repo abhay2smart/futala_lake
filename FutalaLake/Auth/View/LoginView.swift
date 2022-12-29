@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     @State var mobileNumber:String = ""
+    @Binding var isLogggedIn : Bool
     var body: some View {
         ZStack {
 //            Image("launch_background")
@@ -97,7 +98,7 @@ struct LoginView: View {
                    
                 
                 NavigationLink {
-                    OtpView()
+                    OtpView(isLogggedIn: $isLogggedIn)
                 } label: {
                     Text("Enter")
                 }
@@ -115,6 +116,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        LoginView(isLogggedIn: .constant(false))
     }
 }

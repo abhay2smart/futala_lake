@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct BookingHistoryCellView: View {
+    @Binding var isCancelConfirmPreseneted: Bool
+    @Binding var isTicketInfoPreseneted: Bool
+    @Binding var isViewButtonPressed: Bool
     var body: some View {
         VStack(alignment: .leading) {
             HStack(alignment: .top, spacing: 0) {
@@ -50,7 +53,7 @@ struct BookingHistoryCellView: View {
             HStack {
                 Spacer()
                 Button {
-                    //
+                    isViewButtonPressed = true
                 } label: {
                     Text("View")
                 }
@@ -62,6 +65,8 @@ struct BookingHistoryCellView: View {
                 
                 Button {
                     //
+                    isCancelConfirmPreseneted = true
+                    //isTicketInfoPreseneted = true
                 } label: {
                     Text("Cancel")
                 }
@@ -91,6 +96,6 @@ struct BookingHistoryCellView: View {
 
 struct BookingHistoryCellView_Previews: PreviewProvider {
     static var previews: some View {
-        BookingHistoryCellView()
+        BookingHistoryCellView(isCancelConfirmPreseneted: .constant(false), isTicketInfoPreseneted: .constant(false), isViewButtonPressed: .constant(false))
     }
 }

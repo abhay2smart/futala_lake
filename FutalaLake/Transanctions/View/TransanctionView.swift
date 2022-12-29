@@ -8,37 +8,47 @@
 import SwiftUI
 
 struct TransanctionView: View {
+    @State private var isCancelConfirmPreseneted = false
+    @State private var isTicketInfoPreseneted = false
+    @State private var isTicketCancelSuccessPreseneted = false
+    @State private var isViewButtonPressed = false
     var body: some View {
-        ScrollView {
-            VStack {
-                BookingHistoryCellView()
-                    .padding(.horizontal, 15)
-                    .padding(.vertical, 0)
+        NavigationView {
+            ZStack {
+                ScrollView {
+                    VStack {
+                        BookingHistoryCellView(isCancelConfirmPreseneted: $isCancelConfirmPreseneted, isTicketInfoPreseneted: $isTicketInfoPreseneted, isViewButtonPressed: $isViewButtonPressed)
+                            .padding(.horizontal, 15)
+                            .padding(.vertical, 0)
+                        
+                        
+                        
+                    }.padding(.top, 20)
+                    
+                }
+                if isCancelConfirmPreseneted {
+                    CancelTicketConfirmAlertView(isPresented: $isCancelConfirmPreseneted, isConfirmPressed: $isTicketInfoPreseneted)
+                }
                 
-                BookingHistoryCellView()
-                    .padding(.horizontal, 15)
-                    .padding(.vertical, 0)
-                BookingHistoryCellView()
-                    .padding(.horizontal, 15)
-                    .padding(.vertical, 0)
+                else if isTicketInfoPreseneted {
+                    // ticket info
+                    CancelTicketAlertView(isTicketCancelSuccessPreseneted: $isTicketCancelSuccessPreseneted, isTicketInfoPreseneted: $isTicketInfoPreseneted)
+                }
                 
-                BookingHistoryCellView()
-                    .padding(.horizontal, 15)
-                    .padding(.vertical, 0)
+                else if isTicketCancelSuccessPreseneted {
+                    TicketCancelSuccessAlertView(isGoHomeBtnPressed: $isTicketCancelSuccessPreseneted)
+                }
+                NavigationLink(destination: BookedTicketHistoryView(), isActive: $isViewButtonPressed) {
+                    Text("")
+                }.navigationTitle("") // to remove text of back button on next screen
                 
-                BookingHistoryCellView()
-                    .padding(.horizontal, 15)
-                    .padding(.vertical, 0)
-                BookingHistoryCellView()
-                    .padding(.horizontal, 15)
-                    .padding(.vertical, 0)
-            }.padding(.top, 20)
-            
-            
-            
-            
-            
+            }
         }
+        
+//        NavigationLink(destination: BookedTicketHistoryView(), isActive: $isViewButtonPressed) {
+//        Text("")
+//        }
+        
         
     }
 }

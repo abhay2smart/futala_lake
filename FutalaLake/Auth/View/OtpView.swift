@@ -9,6 +9,7 @@ import SwiftUI
 
 struct OtpView: View {
     @State var mobileNumber:String = ""
+    @Binding var isLogggedIn : Bool
     var body: some View {
         ZStack {
 //            Image("launch_background")
@@ -124,6 +125,6 @@ struct OtpView: View {
 
 struct OtpView_Previews: PreviewProvider {
     static var previews: some View {
-        OtpView()
+        OtpView(isLogggedIn: .constant(false))
     }
 }

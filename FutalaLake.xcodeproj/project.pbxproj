@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		174F1BCF295B432D00DAC0D2 /* CancelTicketConfirmAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F1BCE295B432D00DAC0D2 /* CancelTicketConfirmAlertView.swift */; };
+		174F1BD1295BFCF800DAC0D2 /* CancelTicketAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F1BD0295BFCF800DAC0D2 /* CancelTicketAlertView.swift */; };
+		174F1BD3295C0FDA00DAC0D2 /* TicketCancelSuccessAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F1BD2295C0FDA00DAC0D2 /* TicketCancelSuccessAlertView.swift */; };
+		174F1BD5295C172100DAC0D2 /* BookedTicketHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F1BD4295C172100DAC0D2 /* BookedTicketHistoryView.swift */; };
 		17545D332942F0BD003E3724 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17545D322942F0BD003E3724 /* CustomTextField.swift */; };
 		17545D362942FA05003E3724 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17545D352942FA05003E3724 /* AppTheme.swift */; };
 		17545D392942FB2B003E3724 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17545D382942FB2B003E3724 /* Extensions.swift */; };
@@ -51,6 +55,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		174F1BCE295B432D00DAC0D2 /* CancelTicketConfirmAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelTicketConfirmAlertView.swift; sourceTree = "<group>"; };
+		174F1BD0295BFCF800DAC0D2 /* CancelTicketAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelTicketAlertView.swift; sourceTree = "<group>"; };
+		174F1BD2295C0FDA00DAC0D2 /* TicketCancelSuccessAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCancelSuccessAlertView.swift; sourceTree = "<group>"; };
+		174F1BD4295C172100DAC0D2 /* BookedTicketHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookedTicketHistoryView.swift; sourceTree = "<group>"; };
 		17545D322942F0BD003E3724 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		17545D352942FA05003E3724 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		17545D382942FB2B003E3724 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -105,6 +113,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		174F1BCD295B431400DAC0D2 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				174F1BCE295B432D00DAC0D2 /* CancelTicketConfirmAlertView.swift */,
+				174F1BD0295BFCF800DAC0D2 /* CancelTicketAlertView.swift */,
+				174F1BD2295C0FDA00DAC0D2 /* TicketCancelSuccessAlertView.swift */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
 		17545D302942EFF5003E3724 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -250,7 +268,9 @@
 		17831DD42955C570005C36D0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				174F1BCD295B431400DAC0D2 /* Alert */,
 				17831DD52955C585005C36D0 /* TransanctionView.swift */,
+				174F1BD4295C172100DAC0D2 /* BookedTicketHistoryView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -520,10 +540,14 @@
 				17A585E32935FF2B00365D71 /* FutalaLakeApp.swift in Sources */,
 				17831DD02955C551005C36D0 /* ProfileView.swift in Sources */,
 				17545D3C2943025F003E3724 /* CustomModifiers.swift in Sources */,
+				174F1BD5295C172100DAC0D2 /* BookedTicketHistoryView.swift in Sources */,
+				174F1BD1295BFCF800DAC0D2 /* CancelTicketAlertView.swift in Sources */,
 				17545D332942F0BD003E3724 /* CustomTextField.swift in Sources */,
 				17FC7F972959BF5F0066D67B /* BookingHistoryCellView.swift in Sources */,
 				17831DC72955BCFA005C36D0 /* TopNavItemView.swift in Sources */,
+				174F1BCF295B432D00DAC0D2 /* CancelTicketConfirmAlertView.swift in Sources */,
 				17BD37892954134700DA2FE9 /* TabContainerView.swift in Sources */,
+				174F1BD3295C0FDA00DAC0D2 /* TicketCancelSuccessAlertView.swift in Sources */,
 				17545D392942FB2B003E3724 /* Extensions.swift in Sources */,
 				17545D4429433829003E3724 /* UpcomingEventCellView.swift in Sources */,
 				17545D412943371A003E3724 /* UpcomingEventsView.swift in Sources */,
@@ -692,6 +716,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -720,6 +745,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
