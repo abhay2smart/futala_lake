@@ -11,6 +11,7 @@ struct TabContainerView: View {
     var body: some View {
         TabView {
             UpcomingEventsView()
+            //PayNowView()
                 .tabItem {
                     Text("Booking")
                     Image("booking")
@@ -58,10 +59,7 @@ struct TabContainerView: View {
             UITabBar.appearance().scrollEdgeAppearance = appearance
         }
         .navigationBarBackButtonHidden(true)
-        
     }
-    
-    
 }
 
 struct TabContainerView_Previews: PreviewProvider {

@@ -17,11 +17,12 @@ struct TransanctionView: View {
             ZStack {
                 ScrollView {
                     VStack {
-                        BookingHistoryCellView(isCancelConfirmPreseneted: $isCancelConfirmPreseneted, isTicketInfoPreseneted: $isTicketInfoPreseneted, isViewButtonPressed: $isViewButtonPressed)
-                            .padding(.horizontal, 15)
-                            .padding(.vertical, 0)
-                        
-                        
+                        ForEach(1..<11) { index in
+                            BookingHistoryCellView(isCancelConfirmPreseneted: $isCancelConfirmPreseneted, isTicketInfoPreseneted: $isTicketInfoPreseneted, isViewButtonPressed: $isViewButtonPressed)
+                                .padding(.horizontal, 15)
+                                .padding(.vertical, 0)
+                            
+                        }
                         
                     }.padding(.top, 20)
                     
@@ -45,9 +46,9 @@ struct TransanctionView: View {
             }
         }
         
-//        NavigationLink(destination: BookedTicketHistoryView(), isActive: $isViewButtonPressed) {
-//        Text("")
-//        }
+        //        NavigationLink(destination: BookedTicketHistoryView(), isActive: $isViewButtonPressed) {
+        //        Text("")
+        //        }
         
         
     }

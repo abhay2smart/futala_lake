@@ -22,12 +22,14 @@ struct UpcomingEventsView: View {
                             .padding(.horizontal, 15)
                             .padding(.top, 20)
                         
-                        
-                        UpcomingEventCellView()
-                        
-                        UpcomingEventCellView()
-                        
-                        UpcomingEventCellView()
+                        ForEach(1..<11) { index in
+                            NavigationLink {
+                                //
+                            } label: {
+                                UpcomingEventCellView()
+                            }
+                            
+                        }
                         
                         
                         Text("Upcoming Booking")

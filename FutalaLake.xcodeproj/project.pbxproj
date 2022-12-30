@@ -33,7 +33,9 @@
 		17A585FE2935FF2D00365D71 /* FutalaLakeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A585FD2935FF2D00365D71 /* FutalaLakeUITests.swift */; };
 		17A586002935FF2D00365D71 /* FutalaLakeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A585FF2935FF2D00365D71 /* FutalaLakeUITestsLaunchTests.swift */; };
 		17BD37892954134700DA2FE9 /* TabContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BD37882954134700DA2FE9 /* TabContainerView.swift */; };
+		17D80F23295EB20500D861FF /* CustomCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D80F22295EB20500D861FF /* CustomCalendarView.swift */; };
 		17DDFC1129530F1500D7A5C9 /* UpcomcommingbookingStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DDFC1029530F1500D7A5C9 /* UpcomcommingbookingStatusCell.swift */; };
+		17E97DD2295DACC1007FC9C0 /* PayNowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E97DD1295DACC1007FC9C0 /* PayNowView.swift */; };
 		17FC7F972959BF5F0066D67B /* BookingHistoryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC7F962959BF5F0066D67B /* BookingHistoryCellView.swift */; };
 /* End PBXBuildFile section */
 
@@ -84,7 +86,9 @@
 		17A585FD2935FF2D00365D71 /* FutalaLakeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutalaLakeUITests.swift; sourceTree = "<group>"; };
 		17A585FF2935FF2D00365D71 /* FutalaLakeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutalaLakeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		17BD37882954134700DA2FE9 /* TabContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContainerView.swift; sourceTree = "<group>"; };
+		17D80F22295EB20500D861FF /* CustomCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalendarView.swift; sourceTree = "<group>"; };
 		17DDFC1029530F1500D7A5C9 /* UpcomcommingbookingStatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomcommingbookingStatusCell.swift; sourceTree = "<group>"; };
+		17E97DD1295DACC1007FC9C0 /* PayNowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayNowView.swift; sourceTree = "<group>"; };
 		17FC7F962959BF5F0066D67B /* BookingHistoryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingHistoryCellView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -137,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				17545D322942F0BD003E3724 /* CustomTextField.swift */,
+				17D80F22295EB20500D861FF /* CustomCalendarView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -227,6 +232,7 @@
 		17831DCB2955C4BF005C36D0 /* Transanctions */ = {
 			isa = PBXGroup;
 			children = (
+				17D80F21295EB1C100D861FF /* DateTimeSelection */,
 				17FC7F952959BF490066D67B /* Cell */,
 				17831DD42955C570005C36D0 /* View */,
 			);
@@ -271,6 +277,7 @@
 				174F1BCD295B431400DAC0D2 /* Alert */,
 				17831DD52955C585005C36D0 /* TransanctionView.swift */,
 				174F1BD4295C172100DAC0D2 /* BookedTicketHistoryView.swift */,
+				17E97DD1295DACC1007FC9C0 /* PayNowView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -388,6 +395,13 @@
 				17BD37882954134700DA2FE9 /* TabContainerView.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		17D80F21295EB1C100D861FF /* DateTimeSelection */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DateTimeSelection;
 			sourceTree = "<group>";
 		};
 		17FC7F952959BF490066D67B /* Cell */ = {
@@ -536,9 +550,11 @@
 				177B40BF2941FB8E00EDF0F0 /* LoginView.swift in Sources */,
 				17831DD62955C585005C36D0 /* TransanctionView.swift in Sources */,
 				17831DD32955C56B005C36D0 /* SettingView.swift in Sources */,
+				17E97DD2295DACC1007FC9C0 /* PayNowView.swift in Sources */,
 				17545D362942FA05003E3724 /* AppTheme.swift in Sources */,
 				17A585E32935FF2B00365D71 /* FutalaLakeApp.swift in Sources */,
 				17831DD02955C551005C36D0 /* ProfileView.swift in Sources */,
+				17D80F23295EB20500D861FF /* CustomCalendarView.swift in Sources */,
 				17545D3C2943025F003E3724 /* CustomModifiers.swift in Sources */,
 				174F1BD5295C172100DAC0D2 /* BookedTicketHistoryView.swift in Sources */,
 				174F1BD1295BFCF800DAC0D2 /* CancelTicketAlertView.swift in Sources */,
