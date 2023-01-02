@@ -34,6 +34,10 @@
 		17A586002935FF2D00365D71 /* FutalaLakeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A585FF2935FF2D00365D71 /* FutalaLakeUITestsLaunchTests.swift */; };
 		17BD37892954134700DA2FE9 /* TabContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BD37882954134700DA2FE9 /* TabContainerView.swift */; };
 		17D80F23295EB20500D861FF /* CustomCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D80F22295EB20500D861FF /* CustomCalendarView.swift */; };
+		17D80F26295EB25300D861FF /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 17D80F25295EB25300D861FF /* FSCalendar */; };
+		17D80F28295EB3FC00D861FF /* DateTimeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D80F27295EB3FC00D861FF /* DateTimeSelectionView.swift */; };
+		17D80F61296296C300D861FF /* SeatSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D80F60296296C300D861FF /* SeatSelectionView.swift */; };
+		17D80F642962A8D200D861FF /* GateSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D80F632962A8D200D861FF /* GateSectionView.swift */; };
 		17DDFC1129530F1500D7A5C9 /* UpcomcommingbookingStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DDFC1029530F1500D7A5C9 /* UpcomcommingbookingStatusCell.swift */; };
 		17E97DD2295DACC1007FC9C0 /* PayNowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E97DD1295DACC1007FC9C0 /* PayNowView.swift */; };
 		17FC7F972959BF5F0066D67B /* BookingHistoryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC7F962959BF5F0066D67B /* BookingHistoryCellView.swift */; };
@@ -87,6 +91,9 @@
 		17A585FF2935FF2D00365D71 /* FutalaLakeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutalaLakeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		17BD37882954134700DA2FE9 /* TabContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContainerView.swift; sourceTree = "<group>"; };
 		17D80F22295EB20500D861FF /* CustomCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalendarView.swift; sourceTree = "<group>"; };
+		17D80F27295EB3FC00D861FF /* DateTimeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeSelectionView.swift; sourceTree = "<group>"; };
+		17D80F60296296C300D861FF /* SeatSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatSelectionView.swift; sourceTree = "<group>"; };
+		17D80F632962A8D200D861FF /* GateSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GateSectionView.swift; sourceTree = "<group>"; };
 		17DDFC1029530F1500D7A5C9 /* UpcomcommingbookingStatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomcommingbookingStatusCell.swift; sourceTree = "<group>"; };
 		17E97DD1295DACC1007FC9C0 /* PayNowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayNowView.swift; sourceTree = "<group>"; };
 		17FC7F962959BF5F0066D67B /* BookingHistoryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingHistoryCellView.swift; sourceTree = "<group>"; };
@@ -97,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17D80F26295EB25300D861FF /* FSCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,6 +181,7 @@
 		17545D3F29433700003E3724 /* UpcomingEvents */ = {
 			isa = PBXGroup;
 			children = (
+				17D80F5F296296A700D861FF /* SeatManagement */,
 				17545D4229433805003E3724 /* Cells */,
 				17545D402943371A003E3724 /* UpcomingEventsView.swift */,
 			);
@@ -229,14 +238,14 @@
 			path = Bottombaricons;
 			sourceTree = "<group>";
 		};
-		17831DCB2955C4BF005C36D0 /* Transanctions */ = {
+		17831DCB2955C4BF005C36D0 /* Booking */ = {
 			isa = PBXGroup;
 			children = (
 				17D80F21295EB1C100D861FF /* DateTimeSelection */,
 				17FC7F952959BF490066D67B /* Cell */,
 				17831DD42955C570005C36D0 /* View */,
 			);
-			path = Transanctions;
+			path = Booking;
 			sourceTree = "<group>";
 		};
 		17831DCC2955C4CB005C36D0 /* Settings */ = {
@@ -307,7 +316,7 @@
 			children = (
 				17831DCD2955C533005C36D0 /* Profile */,
 				17831DCC2955C4CB005C36D0 /* Settings */,
-				17831DCB2955C4BF005C36D0 /* Transanctions */,
+				17831DCB2955C4BF005C36D0 /* Booking */,
 				17831DC42955BCDA005C36D0 /* Shared */,
 				17BD37872954132F00DA2FE9 /* Home */,
 				17545D3F29433700003E3724 /* UpcomingEvents */,
@@ -400,8 +409,18 @@
 		17D80F21295EB1C100D861FF /* DateTimeSelection */ = {
 			isa = PBXGroup;
 			children = (
+				17D80F27295EB3FC00D861FF /* DateTimeSelectionView.swift */,
 			);
 			path = DateTimeSelection;
+			sourceTree = "<group>";
+		};
+		17D80F5F296296A700D861FF /* SeatManagement */ = {
+			isa = PBXGroup;
+			children = (
+				17D80F60296296C300D861FF /* SeatSelectionView.swift */,
+				17D80F632962A8D200D861FF /* GateSectionView.swift */,
+			);
+			path = SeatManagement;
 			sourceTree = "<group>";
 		};
 		17FC7F952959BF490066D67B /* Cell */ = {
@@ -428,6 +447,9 @@
 			dependencies = (
 			);
 			name = FutalaLake;
+			packageProductDependencies = (
+				17D80F25295EB25300D861FF /* FSCalendar */,
+			);
 			productName = FutalaLake;
 			productReference = 17A585DF2935FF2B00365D71 /* FutalaLake.app */;
 			productType = "com.apple.product-type.application";
@@ -500,6 +522,9 @@
 				Base,
 			);
 			mainGroup = 17A585D62935FF2B00365D71;
+			packageReferences = (
+				17D80F24295EB25300D861FF /* XCRemoteSwiftPackageReference "FSCalendar" */,
+			);
 			productRefGroup = 17A585E02935FF2B00365D71 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -553,7 +578,9 @@
 				17E97DD2295DACC1007FC9C0 /* PayNowView.swift in Sources */,
 				17545D362942FA05003E3724 /* AppTheme.swift in Sources */,
 				17A585E32935FF2B00365D71 /* FutalaLakeApp.swift in Sources */,
+				17D80F61296296C300D861FF /* SeatSelectionView.swift in Sources */,
 				17831DD02955C551005C36D0 /* ProfileView.swift in Sources */,
+				17D80F28295EB3FC00D861FF /* DateTimeSelectionView.swift in Sources */,
 				17D80F23295EB20500D861FF /* CustomCalendarView.swift in Sources */,
 				17545D3C2943025F003E3724 /* CustomModifiers.swift in Sources */,
 				174F1BD5295C172100DAC0D2 /* BookedTicketHistoryView.swift in Sources */,
@@ -562,6 +589,7 @@
 				17FC7F972959BF5F0066D67B /* BookingHistoryCellView.swift in Sources */,
 				17831DC72955BCFA005C36D0 /* TopNavItemView.swift in Sources */,
 				174F1BCF295B432D00DAC0D2 /* CancelTicketConfirmAlertView.swift in Sources */,
+				17D80F642962A8D200D861FF /* GateSectionView.swift in Sources */,
 				17BD37892954134700DA2FE9 /* TabContainerView.swift in Sources */,
 				174F1BD3295C0FDA00DAC0D2 /* TicketCancelSuccessAlertView.swift in Sources */,
 				17545D392942FB2B003E3724 /* Extensions.swift in Sources */,
@@ -887,6 +915,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		17D80F24295EB25300D861FF /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		17D80F25295EB25300D861FF /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 17D80F24295EB25300D861FF /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 17A585D72935FF2B00365D71 /* Project object */;
 }

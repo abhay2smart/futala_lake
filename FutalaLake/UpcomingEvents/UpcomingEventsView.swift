@@ -24,10 +24,10 @@ struct UpcomingEventsView: View {
                         
                         ForEach(1..<11) { index in
                             NavigationLink {
-                                //
+                                DateTimeSelectionView()
                             } label: {
                                 UpcomingEventCellView()
-                            }
+                            }.navigationTitle("")
                             
                         }
                         
