@@ -109,18 +109,10 @@ struct BookedTicketHistoryView: View {
                                     Toggle("A8", isOn: $visOnA8)
                                            .padding()
                                            .toggleStyle(CheckboxStyle())
-                                    
                                 }
                             }
                             
-                            
-                            
-                            
-                            
                         }.frame(maxWidth: .infinity)
-                        
-                        
-                        
                         
                         VStack(alignment: .leading, spacing: 0)  {
                             // Classic
@@ -230,9 +222,6 @@ struct BookedTicketHistoryView: View {
                             .pickerStyle(.menu)
                         }
                         
-
-                        
-                        
                     }.frame(maxWidth: .infinity)
                         .background(
                                 Rectangle()
@@ -248,8 +237,6 @@ struct BookedTicketHistoryView: View {
                         .padding(.horizontal)
                         .padding(.vertical, 8)
                 }.padding(.top, 8)
-                
-
                 
             }
             

@@ -20,7 +20,7 @@ struct CheckoutVIew: View {
                                             .foregroundColor(AppTheme.appThemeOrange)
                                             .padding(.bottom, 5)
                         HStack {
-                            Text("Show")
+                            Text("Show Date")
                             Spacer()
                             Text("11 Dec, 2022")
                         }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SeatSelectionView: View {
     @State private var gateSelection = "0"
+    @State private var showToast = false
     private let gates = ["0", "1", "2", "3", "4", "5", "6"]
     
     var body: some View {
@@ -18,7 +19,7 @@ struct SeatSelectionView: View {
             VStack {
                 HStack {
                     Text("GATE")
-                        .padding(.horizontal, 15)
+                        .padding(.leading, 23)
                         .font(.system(size: 20, weight: .medium, design: .default))
                         .foregroundColor(AppTheme.appThemeOrange)
                     
@@ -28,12 +29,12 @@ struct SeatSelectionView: View {
                             //Text($0)
                             Text("\((Int($0) ?? 0) + 1)")
                         }
+                    }.onReceive([self.gateSelection].publisher.first()) { value in
+                        showToast = true
                     }
-                    
                     .pickerStyle(.menu)
                     .background(.white)
                     .padding(.trailing)
-                    
                     
                 }.frame(width: UIScreen.main.bounds.width, height: 45)
                     .background(
@@ -129,6 +130,9 @@ struct SeatSelectionView: View {
                     Spacer()
                 }
             }
+            .toast(message: "GATE \((Int(gateSelection) ?? 0) + 1) IS SELECTED",
+                   isShowing: $showToast,
+                   duration: Toast.short)
             
         }
     }
