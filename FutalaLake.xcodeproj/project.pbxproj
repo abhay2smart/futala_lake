@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		171575072963FBE10004F2F8 /* CheckoutVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171575062963FBE10004F2F8 /* CheckoutVIew.swift */; };
 		174F1BCF295B432D00DAC0D2 /* CancelTicketConfirmAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F1BCE295B432D00DAC0D2 /* CancelTicketConfirmAlertView.swift */; };
 		174F1BD1295BFCF800DAC0D2 /* CancelTicketAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F1BD0295BFCF800DAC0D2 /* CancelTicketAlertView.swift */; };
 		174F1BD3295C0FDA00DAC0D2 /* TicketCancelSuccessAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F1BD2295C0FDA00DAC0D2 /* TicketCancelSuccessAlertView.swift */; };
@@ -61,6 +62,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		171575062963FBE10004F2F8 /* CheckoutVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutVIew.swift; sourceTree = "<group>"; };
 		174F1BCE295B432D00DAC0D2 /* CancelTicketConfirmAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelTicketConfirmAlertView.swift; sourceTree = "<group>"; };
 		174F1BD0295BFCF800DAC0D2 /* CancelTicketAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelTicketAlertView.swift; sourceTree = "<group>"; };
 		174F1BD2295C0FDA00DAC0D2 /* TicketCancelSuccessAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCancelSuccessAlertView.swift; sourceTree = "<group>"; };
@@ -125,6 +127,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		171575042963FA330004F2F8 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				17831DD42955C570005C36D0 /* View */,
+				17FC7F952959BF490066D67B /* Cell */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		171575052963FBC00004F2F8 /* Checkout */ = {
+			isa = PBXGroup;
+			children = (
+				171575062963FBE10004F2F8 /* CheckoutVIew.swift */,
+			);
+			path = Checkout;
+			sourceTree = "<group>";
+		};
+		171575082963FC310004F2F8 /* Pay */ = {
+			isa = PBXGroup;
+			children = (
+				17E97DD1295DACC1007FC9C0 /* PayNowView.swift */,
+			);
+			path = Pay;
+			sourceTree = "<group>";
+		};
 		174F1BCD295B431400DAC0D2 /* Alert */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,7 +208,7 @@
 		17545D3F29433700003E3724 /* UpcomingEvents */ = {
 			isa = PBXGroup;
 			children = (
-				17D80F5F296296A700D861FF /* SeatManagement */,
+				17D80F21295EB1C100D861FF /* DateTimeSelection */,
 				17545D4229433805003E3724 /* Cells */,
 				17545D402943371A003E3724 /* UpcomingEventsView.swift */,
 			);
@@ -241,9 +268,10 @@
 		17831DCB2955C4BF005C36D0 /* Booking */ = {
 			isa = PBXGroup;
 			children = (
-				17D80F21295EB1C100D861FF /* DateTimeSelection */,
-				17FC7F952959BF490066D67B /* Cell */,
-				17831DD42955C570005C36D0 /* View */,
+				17D80F5F296296A700D861FF /* SeatManagement */,
+				171575052963FBC00004F2F8 /* Checkout */,
+				171575082963FC310004F2F8 /* Pay */,
+				17545D3F29433700003E3724 /* UpcomingEvents */,
 			);
 			path = Booking;
 			sourceTree = "<group>";
@@ -286,7 +314,6 @@
 				174F1BCD295B431400DAC0D2 /* Alert */,
 				17831DD52955C585005C36D0 /* TransanctionView.swift */,
 				174F1BD4295C172100DAC0D2 /* BookedTicketHistoryView.swift */,
-				17E97DD1295DACC1007FC9C0 /* PayNowView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -314,12 +341,12 @@
 		17A585E12935FF2B00365D71 /* FutalaLake */ = {
 			isa = PBXGroup;
 			children = (
+				171575042963FA330004F2F8 /* History */,
 				17831DCD2955C533005C36D0 /* Profile */,
 				17831DCC2955C4CB005C36D0 /* Settings */,
 				17831DCB2955C4BF005C36D0 /* Booking */,
 				17831DC42955BCDA005C36D0 /* Shared */,
 				17BD37872954132F00DA2FE9 /* Home */,
-				17545D3F29433700003E3724 /* UpcomingEvents */,
 				17545D372942FB10003E3724 /* Extensions */,
 				17545D302942EFF5003E3724 /* Utils */,
 				177B40BC2941FB4900EDF0F0 /* Auth */,
@@ -578,6 +605,7 @@
 				17E97DD2295DACC1007FC9C0 /* PayNowView.swift in Sources */,
 				17545D362942FA05003E3724 /* AppTheme.swift in Sources */,
 				17A585E32935FF2B00365D71 /* FutalaLakeApp.swift in Sources */,
+				171575072963FBE10004F2F8 /* CheckoutVIew.swift in Sources */,
 				17D80F61296296C300D861FF /* SeatSelectionView.swift in Sources */,
 				17831DD02955C551005C36D0 /* ProfileView.swift in Sources */,
 				17D80F28295EB3FC00D861FF /* DateTimeSelectionView.swift in Sources */,

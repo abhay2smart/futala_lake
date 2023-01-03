@@ -34,15 +34,15 @@ struct GateSectionView: View {
         self.wingTitle = wingTitle
     }
     var body: some View {
-        VStack(spacing: 5) {
+        VStack(spacing: 0) {
             HStack {
                 //Spacer()
                 Text("\(wingTitle)")
-                    .multilineTextAlignment(.center)
+                    .multilineTextAlignment(.leading)
                                         .font(.system(size: 20, weight: .medium, design: .default))
                                         .foregroundColor(AppTheme.appThemeOrange)
-                                        .padding(.top, 20)
-                                        .padding(.horizontal, 20)
+                                        .padding(.top, 12)
+                                        .padding(.horizontal, 12)
                 Spacer()
             }
             
@@ -54,10 +54,11 @@ struct GateSectionView: View {
                     } label: {
                         Text("\(index + 1)")
                             .font(.system(size: 10, weight: .regular, design: .default))
+                            //.foregroundColor(buttonStatusArr[index] ? .white: .black)
                             .foregroundColor(.black)
                     }//.padding(5)
                         .frame(width: 25, height: 25)
-                        .background(buttonStatusArr[index] ? AppTheme.appThemeOrange: AppTheme.appThemeSkyBlue)
+                        .background(buttonStatusArr[index] ? AppTheme.appThemeOrange: .green)
                         .cornerRadius(3)
                 }
             }.padding(10)

@@ -138,10 +138,7 @@ struct DateTimeSelectionView: View {
             .modifier(CustomButtonModifiers())
             .padding(.top, 30)
                 .padding(.horizontal, -5)
-            
-            
-                        
-            
+                .navigationTitle("")
         }
     }
 }
