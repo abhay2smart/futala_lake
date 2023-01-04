@@ -15,7 +15,7 @@ struct TicketCancelSuccessAlertView: View {
                 .ignoresSafeArea()
                 .opacity(0.8)
             VStack(alignment: .center, spacing: 0) {
-                Image("check gif")
+                Image("check_gif")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 100, height: 100)

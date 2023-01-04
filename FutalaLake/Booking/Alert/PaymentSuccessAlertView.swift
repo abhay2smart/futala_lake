@@ -128,12 +128,15 @@ struct PaymentSuccessAlertView: View {
                 .padding()
                 
                 
-                Button {
-                    //
+                NavigationLink {
+                    QRView()
                 } label: {
                     Text("Done")
                         .modifier(CustomButtonModifiers())
-                }
+                }.navigationTitle("")
+                
+                
+                
                 
                 Spacer()
             }

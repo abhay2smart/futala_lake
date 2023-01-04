@@ -11,18 +11,19 @@ struct TopNavItemView: View {
     var body: some View {
         HStack {
             VStack {
-                Text("Futala Lake")
-                Text("Fountain Show")
+                Text("Futala Lake Fountain Show")
+                //Text("Fountain Show")
             }
             
             Spacer()
             HStack {
-                Text("+918173954048").font(.headline)
-                    .foregroundColor(.white)
+                Text("+918173954048")
                 Image(systemName: "person")
             }
         }.foregroundColor(.white)
-            .font(.system(size: 15, weight: .medium, design: .default))
+            .multilineTextAlignment(.leading)
+                                .font(.system(size: 20, weight: .medium, design: .default))
+                                .foregroundColor(.white)
     }
 }
 

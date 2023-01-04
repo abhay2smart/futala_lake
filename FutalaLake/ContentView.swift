@@ -18,7 +18,7 @@ struct ContentView: View {
                 } else {
                     NavigationView {
                         LoginView(isLogggedIn: $isBasicScreenPassed)
-                    }
+                    }.navigationViewStyle(StackNavigationViewStyle())
                 }
             } else {
                 LaunchView()

@@ -14,7 +14,7 @@ struct CheckoutVIew: View {
             VStack {
                 VStack(alignment: .leading, spacing: 5) {
                     Group {
-                        Text("Checkout")
+                        Text("Checkout Summary")
                         .multilineTextAlignment(.leading)
                                             .font(.system(size: 23, weight: .medium, design: .default))
                                             .foregroundColor(AppTheme.appThemeOrange)

@@ -11,6 +11,7 @@
 		1715750D296428990004F2F8 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1715750C296428990004F2F8 /* ToastView.swift */; };
 		173AB869296542D400B591A4 /* PaymentSuccessAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173AB868296542D400B591A4 /* PaymentSuccessAlertView.swift */; };
 		173AB86B296551B800B591A4 /* RootManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173AB86A296551B800B591A4 /* RootManager.swift */; };
+		173AB86E296589F100B591A4 /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173AB86D296589F100B591A4 /* QRView.swift */; };
 		174F1BCF295B432D00DAC0D2 /* CancelTicketConfirmAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F1BCE295B432D00DAC0D2 /* CancelTicketConfirmAlertView.swift */; };
 		174F1BD1295BFCF800DAC0D2 /* CancelTicketAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F1BD0295BFCF800DAC0D2 /* CancelTicketAlertView.swift */; };
 		174F1BD3295C0FDA00DAC0D2 /* TicketCancelSuccessAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F1BD2295C0FDA00DAC0D2 /* TicketCancelSuccessAlertView.swift */; };
@@ -69,6 +70,7 @@
 		1715750C296428990004F2F8 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		173AB868296542D400B591A4 /* PaymentSuccessAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSuccessAlertView.swift; sourceTree = "<group>"; };
 		173AB86A296551B800B591A4 /* RootManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootManager.swift; sourceTree = "<group>"; };
+		173AB86D296589F100B591A4 /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
 		174F1BCE295B432D00DAC0D2 /* CancelTicketConfirmAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelTicketConfirmAlertView.swift; sourceTree = "<group>"; };
 		174F1BD0295BFCF800DAC0D2 /* CancelTicketAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelTicketAlertView.swift; sourceTree = "<group>"; };
 		174F1BD2295C0FDA00DAC0D2 /* TicketCancelSuccessAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCancelSuccessAlertView.swift; sourceTree = "<group>"; };
@@ -164,6 +166,14 @@
 				173AB868296542D400B591A4 /* PaymentSuccessAlertView.swift */,
 			);
 			path = Alert;
+			sourceTree = "<group>";
+		};
+		173AB86C296589DA00B591A4 /* QR */ = {
+			isa = PBXGroup;
+			children = (
+				173AB86D296589F100B591A4 /* QRView.swift */,
+			);
+			path = QR;
 			sourceTree = "<group>";
 		};
 		174F1BCD295B431400DAC0D2 /* Alert */ = {
@@ -284,6 +294,7 @@
 		17831DCB2955C4BF005C36D0 /* Booking */ = {
 			isa = PBXGroup;
 			children = (
+				173AB86C296589DA00B591A4 /* QR */,
 				1715750E296431980004F2F8 /* Alert */,
 				17D80F5F296296A700D861FF /* SeatManagement */,
 				171575052963FBC00004F2F8 /* Checkout */,
@@ -617,6 +628,7 @@
 				177B40BB2941EBAF00EDF0F0 /* LaunchView.swift in Sources */,
 				17545D3E294308CD003E3724 /* OtpView.swift in Sources */,
 				177B40BF2941FB8E00EDF0F0 /* LoginView.swift in Sources */,
+				173AB86E296589F100B591A4 /* QRView.swift in Sources */,
 				17831DD62955C585005C36D0 /* TransanctionView.swift in Sources */,
 				17831DD32955C56B005C36D0 /* SettingView.swift in Sources */,
 				17E97DD2295DACC1007FC9C0 /* PayNowView.swift in Sources */,
@@ -807,7 +819,6 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -837,7 +848,6 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (

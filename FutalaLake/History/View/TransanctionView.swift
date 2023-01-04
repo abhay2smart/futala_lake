@@ -44,7 +44,7 @@ struct TransanctionView: View {
                 }.navigationTitle("") // to remove text of back button on next screen
                 
             }
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
         
         //        NavigationLink(destination: BookedTicketHistoryView(), isActive: $isViewButtonPressed) {
         //        Text("")
