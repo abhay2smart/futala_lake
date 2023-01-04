@@ -22,9 +22,6 @@ struct GateSectionView: View {
         false, false, false, false, false, false, false, false, false, false,
         false, false, false, false, false, false, false, false, false, false
     ]
-    
-    private var data: [String] = ["A", "B", "D"]
-    private var cellColors:[Color] = [.red, .blue, .yellow, .pink]
     private let adaptiveColumns = [
     
         GridItem(.adaptive(minimum: 30))
@@ -47,19 +44,17 @@ struct GateSectionView: View {
             }
             
             LazyVGrid(columns: adaptiveColumns) {
-                
                 ForEach(Array(buttonStatusArr.enumerated()), id: \.offset) { index, element in
                     Button {
                         buttonStatusArr[index].toggle()
                     } label: {
                         Text("\(index + 1)")
                             .font(.system(size: 10, weight: .regular, design: .default))
-                            //.foregroundColor(buttonStatusArr[index] ? .white: .black)
+                            .frame(width: 25, height: 25)
                             .foregroundColor(.black)
-                    }//.padding(5)
-                        .frame(width: 25, height: 25)
-                        .background(buttonStatusArr[index] ? AppTheme.appThemeOrange: .green)
-                        .cornerRadius(3)
+                    }
+                    .background(buttonStatusArr[index] ? AppTheme.appThemeOrange: .green)
+                    .cornerRadius(3)
                 }
             }.padding(10)
             Spacer()

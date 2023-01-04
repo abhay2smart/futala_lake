@@ -157,9 +157,6 @@ struct PayNowView: View {
                             .cornerRadius(8)
                             .padding(.bottom, 30)
                             
-                            
-                            
-                            
                         }.padding(.horizontal)
                     }
                     .frame(maxWidth: .infinity)
@@ -167,12 +164,14 @@ struct PayNowView: View {
                     .cornerRadius(5)
                 .padding()
                 
-                Button {
-                    //
+                
+                
+                NavigationLink {
+                    PaymentSuccessAlertView()
                 } label: {
                     Text("Pay Now")
-                }.modifier(CustomButtonModifiers())
-                    .padding(.vertical)
+                        .modifier(CustomButtonModifiers())
+                }.navigationTitle("")
                 
                 Spacer()
             }

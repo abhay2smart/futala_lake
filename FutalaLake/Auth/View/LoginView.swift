@@ -101,8 +101,9 @@ struct LoginView: View {
                     OtpView(isLogggedIn: $isLogggedIn)
                 } label: {
                     Text("Enter")
+                        .modifier(CustomButtonModifiers())
                 }
-                .modifier(CustomButtonModifiers())
+                
 
                 Spacer()
                 

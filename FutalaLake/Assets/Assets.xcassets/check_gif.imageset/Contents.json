@@ -6,10 +6,12 @@
       "scale" : "1x"
     },
     {
+      "filename" : "check gif 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "check gif 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -112,8 +112,9 @@ struct OtpView: View {
                     TabContainerView()
                 } label: {
                     Text("Login")
+                        .modifier(CustomButtonModifiers())
                 }
-                .modifier(CustomButtonModifiers())
+                
 
                 Spacer()
                 

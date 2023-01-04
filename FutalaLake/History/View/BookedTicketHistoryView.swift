@@ -247,8 +247,9 @@ struct BookedTicketHistoryView: View {
                     //
                 } label: {
                     Text("Cancel")
-                }.modifier(CustomButtonModifiers())
-                    .padding(.bottom, 60)
+                        .modifier(CustomButtonModifiers())
+                            .padding(.bottom, 60)
+                }
             }
             
             
