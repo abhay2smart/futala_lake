@@ -17,9 +17,15 @@ struct TabContainerView: View {
                     Image("booking")
                 }
             
+            ProfileView()
+                .tabItem {
+                    Text("Profile")
+                    Image("user")
+                }
+            
             TransanctionView()
                 .tabItem {
-                    Text("Transanction History")
+                    Text("History")
                     Image("trasanctions")
                 }
             
@@ -30,11 +36,7 @@ struct TabContainerView: View {
                 }
             
             
-            ProfileView()
-                .tabItem {
-                    Text("Profile")
-                    Image("user")
-                }
+            
         }
         // top navbar
         .toolbar {

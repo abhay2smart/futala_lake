@@ -23,6 +23,7 @@
 		17545D3E294308CD003E3724 /* OtpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17545D3D294308CD003E3724 /* OtpView.swift */; };
 		17545D412943371A003E3724 /* UpcomingEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17545D402943371A003E3724 /* UpcomingEventsView.swift */; };
 		17545D4429433829003E3724 /* UpcomingEventCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17545D4329433829003E3724 /* UpcomingEventCellView.swift */; };
+		176CB8DF2966D275006C71D4 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176CB8DE2966D275006C71D4 /* RadioButton.swift */; };
 		177B40BB2941EBAF00EDF0F0 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177B40BA2941EBAF00EDF0F0 /* LaunchView.swift */; };
 		177B40BF2941FB8E00EDF0F0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177B40BE2941FB8E00EDF0F0 /* LoginView.swift */; };
 		17831DC72955BCFA005C36D0 /* TopNavItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17831DC62955BCFA005C36D0 /* TopNavItemView.swift */; };
@@ -82,6 +83,7 @@
 		17545D3D294308CD003E3724 /* OtpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpView.swift; sourceTree = "<group>"; };
 		17545D402943371A003E3724 /* UpcomingEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventsView.swift; sourceTree = "<group>"; };
 		17545D4329433829003E3724 /* UpcomingEventCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventCellView.swift; sourceTree = "<group>"; };
+		176CB8DE2966D275006C71D4 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		177B40BA2941EBAF00EDF0F0 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		177B40BE2941FB8E00EDF0F0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		17831DC62955BCFA005C36D0 /* TopNavItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopNavItemView.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				17545D322942F0BD003E3724 /* CustomTextField.swift */,
 				17D80F22295EB20500D861FF /* CustomCalendarView.swift */,
 				1715750C296428990004F2F8 /* ToastView.swift */,
+				176CB8DE2966D275006C71D4 /* RadioButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -641,6 +644,7 @@
 				17D80F28295EB3FC00D861FF /* DateTimeSelectionView.swift in Sources */,
 				17D80F23295EB20500D861FF /* CustomCalendarView.swift in Sources */,
 				17545D3C2943025F003E3724 /* CustomModifiers.swift in Sources */,
+				176CB8DF2966D275006C71D4 /* RadioButton.swift in Sources */,
 				174F1BD5295C172100DAC0D2 /* BookedTicketHistoryView.swift in Sources */,
 				173AB86B296551B800B591A4 /* RootManager.swift in Sources */,
 				174F1BD1295BFCF800DAC0D2 /* CancelTicketAlertView.swift in Sources */,

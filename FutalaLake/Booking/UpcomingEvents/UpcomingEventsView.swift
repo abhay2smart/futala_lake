@@ -18,21 +18,22 @@ struct UpcomingEventsView: View {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 5) {
                         Text("Upcoming Events")
-                            .font(.system(size: 20, weight: .bold, design: .default))
+                            .font(.system(size: 18, weight: .medium, design: .default))
                             .padding(.horizontal, 15)
                             .padding(.top, 20)
                         
-                        ForEach(1..<2) { index in
+                        ForEach(1..<11) { index in
                             NavigationLink {
                                 DateTimeSelectionView()
                             } label: {
                                 UpcomingEventCellView()
                             }.navigationTitle("")
                             
-                        } 
+                        }
+                        
                         
                         Text("Upcoming Booking")
-                            .font(.system(size: 20, weight: .bold, design: .default))
+                            .font(.system(size: 18, weight: .medium, design: .default))
                             .padding(.horizontal, 15)
                             .padding(.top, 20)
                             .padding(.bottom, 10)
