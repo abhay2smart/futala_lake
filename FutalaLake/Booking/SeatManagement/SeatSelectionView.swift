@@ -125,7 +125,7 @@ struct SeatSelectionView: View {
                             .modifier(CustomButtonModifiers())
                     }.padding(.top, 10)
                         .padding(.bottom, 20)
-                        .navigationTitle("")
+                        .navigationTitle("Seat Layout")
                     
                     Spacer()
                 }
@@ -135,6 +135,21 @@ struct SeatSelectionView: View {
                    duration: Toast.short)
             
         }
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                VStack {
+                    Text("Seat layout").font(.subheadline)
+                }.foregroundColor(.white)
+            }
+        }
+        
+        .toolbar { // <2>
+            ToolbarItem(placement: .navigationBarTrailing) {
+                TopNavItemView()
+            }
+        }
+        
     }
 }
 

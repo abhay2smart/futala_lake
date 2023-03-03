@@ -241,6 +241,7 @@ struct BookedTicketHistoryView: View {
             }
             
             
+            
             VStack {
                 Spacer()
                 Button {
@@ -253,7 +254,22 @@ struct BookedTicketHistoryView: View {
             }
             
             
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    VStack {
+                        Text("Ticket History").font(.subheadline)
+                    }.foregroundColor(.white)
+                }
+            }
+            
+            .toolbar { // <2>
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    TopNavItemView()
+                }
+            }
         }
+        
         
     }
 }

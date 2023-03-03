@@ -133,7 +133,7 @@ struct PaymentSuccessAlertView: View {
                 } label: {
                     Text("Done")
                         .modifier(CustomButtonModifiers())
-                }.navigationTitle("")
+                }.navigationTitle("Success")
                 
                 
                 
@@ -141,6 +141,20 @@ struct PaymentSuccessAlertView: View {
                 Spacer()
             }
             
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    VStack {
+                        Text("Success").font(.subheadline)
+                    }.foregroundColor(.white)
+                }
+            }
+            
+            .toolbar { // <2>
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    TopNavItemView()
+                }
+            }
             
             
         }

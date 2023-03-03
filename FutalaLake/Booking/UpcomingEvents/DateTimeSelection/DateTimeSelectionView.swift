@@ -81,11 +81,26 @@ struct DateTimeSelectionView: View {
                 Text("Submit")
                     .modifier(CustomButtonModifiers())
             }
+            .navigationTitle("Calendar")
             
             .padding(.top, 30)
                 .padding(.horizontal, 13)
-                .navigationTitle("")
+                
+            
+            
+            .navigationBarTitleDisplayMode(.inline)
+            
+                    .toolbar { // <2>
+                        ToolbarItem(placement: .navigationBarTrailing) { // <3>
+                            TopNavItemView()
+                        }
+                    }
+            
+                        
         }
+        
+        
+        
     }
 }
 

@@ -143,11 +143,26 @@ struct CheckoutVIew: View {
                 } label: {
                     Text("Checkout")
                         .modifier(CustomButtonModifiers())
-                }.navigationTitle("")
+                }.navigationTitle("Checkout")
                 
                 
                 
                 Spacer()
+            }
+            
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    VStack {
+                        Text("Checkout").font(.subheadline)
+                    }.foregroundColor(.white)
+                }
+            }
+            
+            .toolbar { // <2>
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    TopNavItemView()
+                }
             }
             
             

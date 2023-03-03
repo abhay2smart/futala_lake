@@ -15,6 +15,7 @@ struct SettingView: View {
         NavigationView {
             ZStack {
                 AppTheme.appThemeSkyBlue
+                    //.ignoresSafeArea()
                 VStack(spacing: 0) {
                     VStack(spacing: -10) {
                         Group {
@@ -70,7 +71,7 @@ struct SettingView: View {
                         }.padding(20)
                         Spacer()
                     }
-                    .frame(height: 450)
+                    .frame(maxHeight: 450)
                     .padding(.vertical)
                     
                     .cornerRadius(10)
@@ -89,6 +90,20 @@ struct SettingView: View {
                     Spacer()
                 }
                 
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    VStack {
+                        Text("Setting").font(.subheadline)
+                    }.foregroundColor(.white)
+                }
+            }
+            
+            .toolbar { // <2>
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    TopNavItemView()
+                }
             }
         }.navigationViewStyle(StackNavigationViewStyle())
     }

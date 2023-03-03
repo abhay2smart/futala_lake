@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct UpcomingEventsView: View {
-    let numbers = [
-            1, 2, 5
-        ]
+    
     var body: some View {
         NavigationView {
             ZStack(alignment: .center) {
@@ -22,12 +20,12 @@ struct UpcomingEventsView: View {
                             .padding(.horizontal, 15)
                             .padding(.top, 20)
                         
-                        ForEach(1..<11) { index in
+                        ForEach(1..<2) { index in
                             NavigationLink {
                                 DateTimeSelectionView()
                             } label: {
                                 UpcomingEventCellView()
-                            }.navigationTitle("")
+                            }.navigationTitle("Booking")
                             
                         }
                         
@@ -46,7 +44,24 @@ struct UpcomingEventsView: View {
                     
                 }
             }
-        }.navigationViewStyle(StackNavigationViewStyle())
+            
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    VStack {
+                        Text("Booking").font(.subheadline)
+                    }.foregroundColor(.white)
+                }
+            }
+            
+            .toolbar { // <2>
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    TopNavItemView()
+                }
+            }
+            
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

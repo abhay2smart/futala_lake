@@ -171,7 +171,7 @@ struct PayNowView: View {
                 } label: {
                     Text("Pay Now")
                         .modifier(CustomButtonModifiers())
-                }.navigationTitle("")
+                }.navigationTitle("Payment")
                 
                 Spacer()
             }
@@ -180,17 +180,24 @@ struct PayNowView: View {
             
             
             
-//            Button {
-//                //
-//            } label: {
-//                Text("Pay Now")
-//            }.modifier(CustomButtonModifiers())
-//                .padding(.top,500)
-            
-            
             
             
             }
+        
+//        .navigationBarTitleDisplayMode(.inline)
+//        .toolbar {
+//            ToolbarItem(placement: .principal) {
+//                VStack {
+//                    Text("Success").font(.subheadline)
+//                }.foregroundColor(.white)
+//            }
+//        }
+//        
+//        .toolbar { // <2>
+//            ToolbarItem(placement: .navigationBarTrailing) {
+//                TopNavItemView()
+//            }
+//        }
         
         
             

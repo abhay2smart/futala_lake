@@ -160,6 +160,22 @@ struct ProfileView: View {
                 
                 
             }
+            
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    VStack {
+                        Text("Profile").font(.subheadline)
+                    }.foregroundColor(.white)
+                }
+            }
+            
+            .toolbar { // <2>
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    TopNavItemView()
+                }
+            }
+            
         }.navigationViewStyle(StackNavigationViewStyle())
     }
 }

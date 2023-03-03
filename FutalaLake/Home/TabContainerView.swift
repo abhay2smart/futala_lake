@@ -40,7 +40,7 @@ struct TabContainerView: View {
         }
         // top navbar
         .toolbar {
-            ToolbarItem(placement: .principal) {
+            ToolbarItem(placement: .automatic) {
                 TopNavItemView()
             }
             

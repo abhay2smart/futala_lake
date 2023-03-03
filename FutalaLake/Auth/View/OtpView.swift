@@ -8,14 +8,21 @@
 import SwiftUI
 
 struct OtpView: View {
-    @State var mobileNumber:String = ""
+    //@State var mobileNumber:String = ""
     @Binding var isLogggedIn : Bool
+    @State var otp:String
     var body: some View {
         ZStack {
 //            Image("launch_background")
 //                .resizable()
 //                .edgesIgnoringSafeArea(.all)
             AppTheme.appThemeSkyBlue
+                .edgesIgnoringSafeArea(.all)
+                .overlay(alignment: .topTrailing) {
+                    Image("login_top_img")
+                    
+                        .padding([.trailing], -20)
+                }
                 .edgesIgnoringSafeArea(.all)
             
             VStack {
@@ -27,32 +34,16 @@ struct OtpView: View {
                         .font(.system(size: 30, weight: .heavy, design: .default))
                         //.foregroundColor(.red)
                 }
+                .foregroundColor(.white)
                 .padding(.top, 30)
                 Spacer()
                 
-                HStack {
-                    // buttons
+                
+                    Text("OTP").padding(.vertical, 20)
+                        .font(.system(size: 20, weight: .medium, design: .default))
+                        .foregroundColor(Color.black)
                     
-                    Button {
-                        print("Login button pressed")
-                    } label: {
-                        Text("Login")
-                    }
-
-                    
-                    
-                    Text("/")
-                    
-                    Button {
-                        print("Register button pressed")
-                    } label: {
-                        Text("Register")
-                    }
-                   
-                    
-                }.padding(.bottom, 0)
-                    .font(.system(size: 20, weight: .medium, design: .default))
-                    .foregroundColor(Color.black)
+                
                 
                 
                 VStack(alignment: .leading) {
@@ -74,7 +65,8 @@ struct OtpView: View {
                         .clipShape(Capsule())
                         
                         
-                        TextField("2468", text: $mobileNumber)
+                        TextField("3456", text: $otp)
+                            .keyboardType(.numberPad)
                             .frame(height: 45)
                                 .textFieldStyle(PlainTextFieldStyle())
                                 .padding([.horizontal], 25)
@@ -108,12 +100,20 @@ struct OtpView: View {
                 }.padding(20)
 
                 
-                NavigationLink {
-                    TabContainerView()
+//                NavigationLink {
+//                    TabContainerView()
+//                } label: {
+//                    Text("Login")
+//                        .modifier(CustomButtonModifiers())
+//                }
+                
+                Button {
+                    isLogggedIn = true
                 } label: {
-                    Text("Login")
+                    Text("SUBMIT")
                         .modifier(CustomButtonModifiers())
                 }
+
                 
 
                 Spacer()
@@ -126,6 +126,6 @@ struct OtpView: View {
 
 struct OtpView_Previews: PreviewProvider {
     static var previews: some View {
-        OtpView(isLogggedIn: .constant(false))
+        OtpView(isLogggedIn: .constant(false), otp: "")
     }
 }

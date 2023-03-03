@@ -10,15 +10,15 @@ import SwiftUI
 struct TopNavItemView: View {
     var body: some View {
         HStack {
-            VStack {
-                Text("Futala Lake")
-                Text("Fountain Show")
-            }
+//            VStack {
+//                Text("Futala Lake")
+//                Text("Fountain Show")
+//            }
             
             Spacer()
             HStack {
-                Text("+918173954048").font(.headline)
-                    .foregroundColor(.white)
+                //Text("+918173954048").font(.headline)
+                    //.foregroundColor(.white)
                 Image(systemName: "person")
             }
         }.foregroundColor(.white)

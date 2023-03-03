@@ -41,15 +41,26 @@ struct TransanctionView: View {
                 }
                 NavigationLink(destination: BookedTicketHistoryView(), isActive: $isViewButtonPressed) {
                     Text("")
-                }.navigationTitle("") // to remove text of back button on next screen
+                }.navigationTitle("History") // to change the text on back button on next screen
                 
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    VStack {
+                        Text("History").font(.subheadline)
+                    }.foregroundColor(.white)
+                }
+            }
+            
+            .toolbar { // <2>
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    TopNavItemView()
+                }
             }
         }.navigationViewStyle(StackNavigationViewStyle())
         
-        //        NavigationLink(destination: BookedTicketHistoryView(), isActive: $isViewButtonPressed) {
-        //        Text("")
-        //        }
-        
+            
         
     }
 }
