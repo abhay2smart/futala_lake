@@ -11,6 +11,7 @@ struct SettingView: View {
     @State private var isWhatsappNoticationOn: Bool = false
     @State private var isLocationOn: Bool = false
     @State private var isSavePaymentModeOn: Bool = false
+    @EnvironmentObject var session: SessionManager
     var body: some View {
         NavigationView {
             ZStack {
@@ -49,21 +50,25 @@ struct SettingView: View {
                             
                             Divider()
                             
-                            Button {
-                                //<#code#>
-                            } label: {
-                                HStack {
-                                    Text("Sign out")
-                                        .foregroundColor(.black)
-                                    Spacer()
+                            
+                            HStack {
+                                Text("Sign out")
+                                    .foregroundColor(.black)
+                                Spacer()
+                                
+                                Button {
+                                    print("Sign out button pressed")
+                                    session.signout()
+                                    
+                                } label: {
                                     Image("power")
                                         .resizable()
+                                        .frame(width: 30, height: 30)
                                         .scaledToFit()
                                         .padding(.trailing)
-                                    
                                 }
-                            }.frame(height: 20)
-                                .padding(.vertical, -10)
+                                
+                            }.padding(.vertical, -10)
                             
                             Spacer()
                             //

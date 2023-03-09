@@ -13,5 +13,6 @@ struct Constants {
     
     struct API {
         static let sendOTP = "mobile/user/sendMobileVerificationRedisOTP"
+        static let showsByDays = "mobile/bookTicket/getShowsByDay"
     }
 }

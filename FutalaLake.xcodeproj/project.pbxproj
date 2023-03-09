@@ -36,6 +36,9 @@
 		17831DD02955C551005C36D0 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17831DCF2955C551005C36D0 /* ProfileView.swift */; };
 		17831DD32955C56B005C36D0 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17831DD22955C56B005C36D0 /* SettingView.swift */; };
 		17831DD62955C585005C36D0 /* TransanctionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17831DD52955C585005C36D0 /* TransanctionView.swift */; };
+		179E088929B5E0B500AA4541 /* DateTimeSelectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179E088829B5E0B500AA4541 /* DateTimeSelectionModel.swift */; };
+		179E088C29B5E51D00AA4541 /* DateTimeSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179E088B29B5E51D00AA4541 /* DateTimeSelectionViewModel.swift */; };
+		179E088F29B5F26300AA4541 /* GetTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179E088E29B5F26300AA4541 /* GetTokenModel.swift */; };
 		17A585E32935FF2B00365D71 /* FutalaLakeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A585E22935FF2B00365D71 /* FutalaLakeApp.swift */; };
 		17A585E52935FF2B00365D71 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A585E42935FF2B00365D71 /* ContentView.swift */; };
 		17A585E72935FF2D00365D71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17A585E62935FF2D00365D71 /* Assets.xcassets */; };
@@ -52,6 +55,8 @@
 		17DFCA3429ACB62F005E5DE5 /* LoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DFCA3329ACB62F005E5DE5 /* LoginVM.swift */; };
 		17DFCA3629ACB6C0005E5DE5 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DFCA3529ACB6C0005E5DE5 /* CustomError.swift */; };
 		17E97DD2295DACC1007FC9C0 /* PayNowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E97DD1295DACC1007FC9C0 /* PayNowView.swift */; };
+		17F5134D29B1C5A3004A7833 /* OTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F5134C29B1C5A3004A7833 /* OTPViewModel.swift */; };
+		17F5135029B1E606004A7833 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F5134F29B1E606004A7833 /* SessionManager.swift */; };
 		17FC7F972959BF5F0066D67B /* BookingHistoryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC7F962959BF5F0066D67B /* BookingHistoryCellView.swift */; };
 /* End PBXBuildFile section */
 
@@ -102,6 +107,9 @@
 		17831DCF2955C551005C36D0 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		17831DD22955C56B005C36D0 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		17831DD52955C585005C36D0 /* TransanctionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransanctionView.swift; sourceTree = "<group>"; };
+		179E088829B5E0B500AA4541 /* DateTimeSelectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeSelectionModel.swift; sourceTree = "<group>"; };
+		179E088B29B5E51D00AA4541 /* DateTimeSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeSelectionViewModel.swift; sourceTree = "<group>"; };
+		179E088E29B5F26300AA4541 /* GetTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTokenModel.swift; sourceTree = "<group>"; };
 		17A585DF2935FF2B00365D71 /* FutalaLake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FutalaLake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17A585E22935FF2B00365D71 /* FutalaLakeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutalaLakeApp.swift; sourceTree = "<group>"; };
 		17A585E42935FF2B00365D71 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -121,6 +129,8 @@
 		17DFCA3329ACB62F005E5DE5 /* LoginVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = "<group>"; };
 		17DFCA3529ACB6C0005E5DE5 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		17E97DD1295DACC1007FC9C0 /* PayNowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayNowView.swift; sourceTree = "<group>"; };
+		17F5134C29B1C5A3004A7833 /* OTPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewModel.swift; sourceTree = "<group>"; };
+		17F5134F29B1E606004A7833 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		17FC7F962959BF5F0066D67B /* BookingHistoryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingHistoryCellView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -301,9 +311,8 @@
 		177B40BC2941FB4900EDF0F0 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				173A59B429B0A66C0037AF51 /* LoginModel */,
-				17DFCA3229ACB608005E5DE5 /* VM */,
-				177B40BD2941FB4F00EDF0F0 /* View */,
+				17F5134A29B1C57C004A7833 /* OTP */,
+				17F5134829B1C46B004A7833 /* Login */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -311,7 +320,6 @@
 		177B40BD2941FB4F00EDF0F0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				177B40BE2941FB8E00EDF0F0 /* LoginView.swift */,
 				17545D3D294308CD003E3724 /* OtpView.swift */,
 			);
 			path = View;
@@ -399,6 +407,30 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		179E088729B5E09E00AA4541 /* ResponseModel */ = {
+			isa = PBXGroup;
+			children = (
+				179E088829B5E0B500AA4541 /* DateTimeSelectionModel.swift */,
+			);
+			path = ResponseModel;
+			sourceTree = "<group>";
+		};
+		179E088A29B5E50600AA4541 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				179E088B29B5E51D00AA4541 /* DateTimeSelectionViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		179E088D29B5F24900AA4541 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				179E088E29B5F26300AA4541 /* GetTokenModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		17A585D62935FF2B00365D71 = {
 			isa = PBXGroup;
 			children = (
@@ -422,6 +454,7 @@
 		17A585E12935FF2B00365D71 /* FutalaLake */ = {
 			isa = PBXGroup;
 			children = (
+				17F5134E29B1E606004A7833 /* Manager */,
 				173A59BB29B0ACD20037AF51 /* Helper */,
 				171575042963FA330004F2F8 /* History */,
 				17831DCD2955C533005C36D0 /* Profile */,
@@ -518,6 +551,8 @@
 		17D80F21295EB1C100D861FF /* DateTimeSelection */ = {
 			isa = PBXGroup;
 			children = (
+				179E088A29B5E50600AA4541 /* ViewModel */,
+				179E088729B5E09E00AA4541 /* ResponseModel */,
 				17D80F27295EB3FC00D861FF /* DateTimeSelectionView.swift */,
 			);
 			path = DateTimeSelection;
@@ -538,6 +573,51 @@
 				17DFCA3329ACB62F005E5DE5 /* LoginVM.swift */,
 			);
 			path = VM;
+			sourceTree = "<group>";
+		};
+		17F5134829B1C46B004A7833 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				17DFCA3229ACB608005E5DE5 /* VM */,
+				17F5134929B1C4AD004A7833 /* View */,
+				173A59B429B0A66C0037AF51 /* LoginModel */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		17F5134929B1C4AD004A7833 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				177B40BE2941FB8E00EDF0F0 /* LoginView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		17F5134A29B1C57C004A7833 /* OTP */ = {
+			isa = PBXGroup;
+			children = (
+				179E088D29B5F24900AA4541 /* Model */,
+				17F5134B29B1C590004A7833 /* ViewModel */,
+				177B40BD2941FB4F00EDF0F0 /* View */,
+			);
+			path = OTP;
+			sourceTree = "<group>";
+		};
+		17F5134B29B1C590004A7833 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				17F5134C29B1C5A3004A7833 /* OTPViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		17F5134E29B1E606004A7833 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				17F5134F29B1E606004A7833 /* SessionManager.swift */,
+			);
+			name = Manager;
+			path = "../../NewPractices😁/NewSwifUIAPiCalls/NewSwifUIAPiCalls/Manager";
 			sourceTree = "<group>";
 		};
 		17FC7F952959BF490066D67B /* Cell */ = {
@@ -685,6 +765,7 @@
 			files = (
 				17DFCA3629ACB6C0005E5DE5 /* CustomError.swift in Sources */,
 				17A585E52935FF2B00365D71 /* ContentView.swift in Sources */,
+				179E088F29B5F26300AA4541 /* GetTokenModel.swift in Sources */,
 				17DDFC1129530F1500D7A5C9 /* UpcomcommingbookingStatusCell.swift in Sources */,
 				173A59BD29B0ACDE0037AF51 /* KeychainHelper.swift in Sources */,
 				173A59BA29B0A6ED0037AF51 /* LoginResponseModel.swift in Sources */,
@@ -703,6 +784,7 @@
 				17831DD02955C551005C36D0 /* ProfileView.swift in Sources */,
 				17D80F28295EB3FC00D861FF /* DateTimeSelectionView.swift in Sources */,
 				17DFCA3429ACB62F005E5DE5 /* LoginVM.swift in Sources */,
+				17F5135029B1E606004A7833 /* SessionManager.swift in Sources */,
 				17D80F23295EB20500D861FF /* CustomCalendarView.swift in Sources */,
 				17545D3C2943025F003E3724 /* CustomModifiers.swift in Sources */,
 				173A59B329B0A53F0037AF51 /* APIService.swift in Sources */,
@@ -710,12 +792,15 @@
 				174F1BD5295C172100DAC0D2 /* BookedTicketHistoryView.swift in Sources */,
 				173AB86B296551B800B591A4 /* RootManager.swift in Sources */,
 				174F1BD1295BFCF800DAC0D2 /* CancelTicketAlertView.swift in Sources */,
+				179E088C29B5E51D00AA4541 /* DateTimeSelectionViewModel.swift in Sources */,
 				17545D332942F0BD003E3724 /* CustomTextField.swift in Sources */,
 				17FC7F972959BF5F0066D67B /* BookingHistoryCellView.swift in Sources */,
 				173A59AF29B0732C0037AF51 /* Loader.swift in Sources */,
 				1715750D296428990004F2F8 /* ToastView.swift in Sources */,
 				17831DC72955BCFA005C36D0 /* TopNavItemView.swift in Sources */,
 				174F1BCF295B432D00DAC0D2 /* CancelTicketConfirmAlertView.swift in Sources */,
+				17F5134D29B1C5A3004A7833 /* OTPViewModel.swift in Sources */,
+				179E088929B5E0B500AA4541 /* DateTimeSelectionModel.swift in Sources */,
 				17D80F642962A8D200D861FF /* GateSectionView.swift in Sources */,
 				17BD37892954134700DA2FE9 /* TabContainerView.swift in Sources */,
 				174F1BD3295C0FDA00DAC0D2 /* TicketCancelSuccessAlertView.swift in Sources */,

@@ -10,10 +10,11 @@ import SwiftUI
 struct ContentView: View {
     @State var isActive:Bool = false
     @State var isBasicScreenPassed = false
+    @EnvironmentObject var session: SessionManager
     var body: some View {
         ZStack {
             if isActive {
-                if isBasicScreenPassed {
+                if session.currentUserState == .loggedIn {
                     TabContainerView()
                 } else {
                     NavigationView {

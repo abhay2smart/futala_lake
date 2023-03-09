@@ -42,7 +42,7 @@ class LoginVM: ObservableObject {
     
     @Published var loginResponseModel = LoginResponseModel()
     @Published var isLoading = false
-    @Published var otp = ""
+    @Published var otp: String = ""
     
     func getOTP(mobileNumber: String) {
         isLoading = true
@@ -59,10 +59,11 @@ class LoginVM: ObservableObject {
             case .success(let respData):
                 DispatchQueue.main.async {
                     self.loginResponseModel = respData
-                    self.otp =  "\(self.loginResponseModel.data?.first?.otp ?? 0)"
+                    if let otp = self.loginResponseModel.data?.first?.otp {
+                        self.otp = "\(otp)"
+                    }
                     print("Hola \(self.loginResponseModel.data?.first?.otp)")
                     self.shouldMoveToOTPView = true
-                    
                 }
                 
             case .failure(let error):

@@ -50,7 +50,8 @@ class APIService {
                 if let data = data {
                     let accessToken = String(data: data, encoding: .utf8)
                     if let accessToken, accessToken != "" {
-                        let headers = ["Content-Type": "application/json", "Authorization": "Bearer " + accessToken]
+                        //let headers = ["Content-Type": "application/json", "token": "Bearer " + accessToken]
+                        let headers = ["Content-Type": "application/json", "token": accessToken]
                         request.allHTTPHeaderFields = headers
                     }
                 }

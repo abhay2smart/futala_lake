@@ -11,7 +11,7 @@ import SwiftUI
 struct FutalaLakeApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(SessionManager())
         }
     }
 }

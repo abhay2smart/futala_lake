@@ -7,21 +7,25 @@
 
 import SwiftUI
 
-struct LoginView: View {
-    @State var mobileNumber:String = ""
-    
-    @State var shouldShowDetails:Bool = false
-    @Binding var isLogggedIn : Bool
-    @ObservedObject var loginVM = LoginVM()
+struct OtpView: View {
+    @State var otp:String
+    @State var mobile:String
     @FocusState var isInputActive: Bool
+    @ObservedObject var otpVM = OTPViewModel()
+    @EnvironmentObject var session: SessionManager
+    
     
     
     
     // setting default value for isLoading var
-    init(isLogggedIn: Binding<Bool> = .constant(false) ) {
-        _isLogggedIn = isLogggedIn
-        
+    
+    
+    init(otp: String, mobile: String) {
+        print("OTP recieved \(otp)")
+        self.otp = otp
+        self.mobile = mobile
     }
+    
     
     
     var body: some View {
@@ -60,17 +64,19 @@ struct LoginView: View {
                 }
                 .foregroundColor(.white)
                 .padding(.top, 30)
-                Spacer()
+                .padding(.bottom, 160)
                 
-                Text("Login / Register")
+                
+                
+                Text("OTP")
                     .padding(.bottom, 0)
                     .font(.system(size: 20, weight: .medium, design: .default))
                     .foregroundColor(Color.black)
                 
                 
                 VStack(alignment: .leading) {
-                    Text("Mobile No.")
-                        .font(.system(size: 22, weight: .medium, design: .default))
+                    Text("OTP")
+                        .font(.system(size: 20, weight: .medium, design: .default))
                     
                     HStack(spacing: 0) {
                         HStack {
@@ -87,7 +93,7 @@ struct LoginView: View {
                         .clipShape(Capsule())
                         
                         
-                        TextField("+91 - 123 456 7899", text: $mobileNumber)
+                        TextField("7897", text: $otp)
                             .keyboardType(.numberPad)
                         
                             .focused($isInputActive)
@@ -130,17 +136,19 @@ struct LoginView: View {
                 
                 Group {
                     Button("Enter") {
-                        loginVM.validate(mobileNumber: mobileNumber)
+                        if otpVM.isValidated(otp: self.otp) {
+                            otpVM.fetchToeken(mobileNumber: self.mobile, otp: self.otp)
+                        }
                     }.modifier(CustomButtonModifiers())
                     
-                    NavigationLink(isActive: $loginVM.shouldMoveToOTPView) {
-                        OtpView(isLogggedIn: $isLogggedIn, otp: loginVM.otp)
-                    } label: {
-                        
-                    }
+//                    NavigationLink(isActive: $loginVM.shouldMoveToOTPView)
+//                    {
+//                        OtpView()
+//                    } label: {
+//
+//                    }
                     
                 }
-                
                 
                 Spacer()
                 
@@ -148,30 +156,32 @@ struct LoginView: View {
             
             
             
-            .toast(message: loginVM.errorMessage,
-                   isShowing: $loginVM.showAlert,
+            .toast(message: otpVM.errorMessage,
+                   isShowing: $otpVM.showAlert,
                    duration: Toast.short)
             
             .navigationTitle("") // remove the text for back button on next screen
             
-            if loginVM.isLoading {
+            if otpVM.isLoading {
                 Loader()
             }
             
             
-        }.allowsHitTesting(loginVM.isLoading ? false : true)
-//            .onAppear {
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-//                    self.isLoading = false
-//                }
-//
-//            }
+        }
+        .onChange(of: otpVM.isLoggedIn) { isLoggedIn in
+            if isLoggedIn {
+                print("some action")
+                self.session.signIn()
+                
+            }
+        }
+        .allowsHitTesting(otpVM.isLoading ? false : true)
         
     }
 }
 
-struct LoginView_Previews: PreviewProvider {
+struct OtpView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        OtpView(otp: "4566", mobile: "234234")
     }
 }
