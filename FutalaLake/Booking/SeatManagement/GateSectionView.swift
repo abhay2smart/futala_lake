@@ -8,9 +8,30 @@
 import SwiftUI
 
 struct GateSectionView: View {
-    var wingTitle: String
-    var color: Color
+    
+    @State private var data = [Seats]()
+    
     @State private var buttonStatusArr: [Bool] = [
+        false, false, false, false, false, false, false, false, false, false,
+        false, false, false, false, false, false, false, false, false, false,
+        false, false, false, false, false, false, false, false, false, false,
+        false, false, false, false, false, false, false, false, false, false,
+        false, false, false, false, false, false, false, false, false, false,
+        false, false, false, false, false, false, false, false, false, false,
+        false, false, false, false, false, false, false, false, false, false,
+        false, false, false, false, false, false, false, false, false, false,
+        false, false, false, false, false, false, false, false, false, false,
+        false, false, false, false, false, false, false, false, false, false,
+        false, false, false, false, false, false, false, false, false, false,
+        false, false, false, false, false, false, false, false, false, false,
+        false, false, false, false, false, false, false, false, false, false,
+        false, false, false, false, false, false, false, false, false, false,
+        false, false, false, false, false, false, false, false, false, false,
+        false, false, false, false, false, false, false, false, false, false,
+        false, false, false, false, false, false, false, false, false, false,
+        false, false, false, false, false, false, false, false, false, false,
+        false, false, false, false, false, false, false, false, false, false,
+        false, false, false, false, false, false, false, false, false, false,
         false, false, false, false, false, false, false, false, false, false,
         false, false, false, false, false, false, false, false, false, false,
         false, false, false, false, false, false, false, false, false, false,
@@ -26,35 +47,29 @@ struct GateSectionView: View {
     
         GridItem(.adaptive(minimum: 30))
     ]
-    init(color: Color, wingTitle: String) {
-        self.color = color
-        self.wingTitle = wingTitle
+    
+    init(data: [Seats]) {
+        self.data = data
     }
+    
     var body: some View {
         VStack(spacing: 0) {
-            HStack {
-                //Spacer()
-                Text("\(wingTitle)")
-                    .multilineTextAlignment(.leading)
-                                        .font(.system(size: 20, weight: .medium, design: .default))
-                                        .foregroundColor(AppTheme.appThemeOrange)
-                                        .padding(.top, 12)
-                                        .padding(.horizontal, 12)
-                Spacer()
-            }
             
             LazyVGrid(columns: adaptiveColumns) {
-                ForEach(Array(buttonStatusArr.enumerated()), id: \.offset) { index, element in
-                    Button {
-                        buttonStatusArr[index].toggle()
-                    } label: {
-                        Text("\(index + 1)")
-                            .font(.system(size: 10, weight: .regular, design: .default))
-                            .frame(width: 25, height: 25)
-                            .foregroundColor(.black)
-                    }
-                    .background(buttonStatusArr[index] ? AppTheme.appThemeOrange: .green)
-                    .cornerRadius(3)
+                ForEach(Array(data.enumerated()), id: \.offset) { index, element in
+                    
+//                    Button {
+//                        //buttonStatusArr[index].toggle()
+//                    } label: {
+//                        Text("\(index + 1)")
+//                            .font(.system(size: 10, weight: .regular, design: .default))
+//                            .frame(width: 25, height: 25)
+//                            .foregroundColor(.black)
+//                    }
+//                    .background(buttonStatusArr[index] ? AppTheme.appThemeOrange: .green)
+//                    .cornerRadius(3)
+                    
+                    Text("Helo")
                 }
             }.padding(10)
             Spacer()
@@ -63,6 +78,7 @@ struct GateSectionView: View {
         
         .cornerRadius(12)
         .frame(width: 780)
+        
         
         
         .background(
@@ -81,8 +97,8 @@ struct GateSectionView: View {
     }
 }
 
-struct GateSectionView_Previews: PreviewProvider {
-    static var previews: some View {
-        GateSectionView(color: .red, wingTitle: "WING")
-    }
-}
+//struct GateSectionView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        GateSectionView(data: Seats(from: Decoder()) )
+//    }
+//}

@@ -28,9 +28,15 @@ struct DateTimeSelectionView: View {
                 
                 ZStack(alignment: .top) {
                     
-                    DatePicker("Select Date", selection: $selectedDate,in: Date()..., displayedComponents: [.date])
+//                    DatePicker("Select Date", selection: $selectedDate,in: Date()..., displayedComponents: [.date])
+//                        .padding(.horizontal)
+//                        .datePickerStyle(.graphical)
+                    
+                    
+                    DatePicker("Select Date", selection: $selectedDate, displayedComponents: [.date])
                         .padding(.horizontal)
                         .datePickerStyle(.graphical)
+                    
                 }.padding(.top, -10)
                     .onChange(of: selectedDate) { selectedDate in
                         dateTimeSelectionModel.getShowDays(date: selectedDate)
@@ -47,32 +53,24 @@ struct DateTimeSelectionView: View {
                         
                         
                         if let _ = dateTimeSelectionModel.data {
-                            //let dataCount = dateTimeSelectionModel.data?.first?.shows?.count ?? 0
                             let dataCount = dateTimeSelectionModel.shows?.count ?? 0
-                            
-                            ForEach(0..<dataCount) { index in
-                                
-                                ZStack {
-                                    Rectangle().frame(width: 110, height: 40)
-                                        .foregroundColor(currentTimeSlotSelected == (dateTimeSelectionModel.shows?[index].startTime ?? "") ? AppTheme.appThemeOrange : AppTheme.appThemeBlue)
-                                        .cornerRadius(5)
-                                    Text("\(dateTimeSelectionModel.shows?[index].startTimeInTwelveHourFormat ?? "")")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 16, weight: .medium, design: .default))
-                                    
-                                    
-                                    
-                                }.onTapGesture {
-                                    
-                                    self.currentTimeSlotSelected = (dateTimeSelectionModel.data?[0].shows?[index].startTime ?? "")
+                            if let shows = dateTimeSelectionModel.shows {
+                                ForEach(Array(shows.enumerated()), id: \.offset) { index, item  in
+                                    ZStack {
+                                        Rectangle().frame(width: 110, height: 40)
+                                            .foregroundColor(currentTimeSlotSelected == (dateTimeSelectionModel.shows?[index].startTime ?? "") ? AppTheme.appThemeOrange : AppTheme.appThemeBlue)
+                                            .cornerRadius(5)
+                                        Text("\(dateTimeSelectionModel.shows?[index].startTimeInTwelveHourFormat ?? "")")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 16, weight: .medium, design: .default))
+                                        
+                                    }.onTapGesture {
+                                        
+                                        self.currentTimeSlotSelected = (dateTimeSelectionModel.data?[0].shows?[index].startTime ?? "")
+                                    }
                                 }
-                                //print("Hello Abhay \(index)")
-                                
-                                
                             }
                         }
-                        
-                        
                     }.padding(.horizontal, 10)
                 }.padding(.horizontal, 10)
                 
@@ -84,13 +82,8 @@ struct DateTimeSelectionView: View {
                         .modifier(CustomButtonModifiers())
                 }
                 .navigationTitle("Calendar")
-                
                 .padding(.top, 30)
                 .padding(.horizontal, 13)
-                
-                
-                
-                
                 .navigationBarTitleDisplayMode(.inline)
                 
                 .toolbar { // <2>
@@ -104,7 +97,9 @@ struct DateTimeSelectionView: View {
                 Loader()
             }
             
-        }.onAppear{
+        }
+        .allowsHitTesting(dateTimeSelectionModel.isLoading ? false : true)
+        .onAppear{
             dateTimeSelectionModel.getShowDays(date: selectedDate)
         }
         

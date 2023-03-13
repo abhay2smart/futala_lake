@@ -11,14 +11,14 @@ struct Loader: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 0)
         .fill(.white)
-        .frame(width: 120, height: 120, alignment: .center)
+        .frame(width: 100, height: 100, alignment: .center)
         .cornerRadius(15)
         
         ProgressView {
             Text("Loading...")
-                .font(.title2)
+                .font(.system(size: 16))
         }
-        .frame(width: 120, height: 120, alignment: .center)
+        .frame(width: 100, height: 100, alignment: .center)
         .background(RoundedRectangle(cornerRadius: 15).stroke(.gray))
     }
 }

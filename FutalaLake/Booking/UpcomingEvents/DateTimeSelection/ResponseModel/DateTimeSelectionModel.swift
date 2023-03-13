@@ -63,8 +63,9 @@ struct DateTimeSelectionModelData : Codable {
 
 }
 
-struct Shows : Codable {
+struct Shows : Codable, Identifiable {
     let status : Int?
+    let id = UUID()
     let endTime : String?
     var startTimeInTwelveHourFormat = ""
     let startTime : String?

@@ -46,6 +46,9 @@
 		17A585F42935FF2D00365D71 /* FutalaLakeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A585F32935FF2D00365D71 /* FutalaLakeTests.swift */; };
 		17A585FE2935FF2D00365D71 /* FutalaLakeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A585FD2935FF2D00365D71 /* FutalaLakeUITests.swift */; };
 		17A586002935FF2D00365D71 /* FutalaLakeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A585FF2935FF2D00365D71 /* FutalaLakeUITestsLaunchTests.swift */; };
+		17AE976729BB0BDE00F12E78 /* StandingInputDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE976629BB0BDD00F12E78 /* StandingInputDialog.swift */; };
+		17AE977029BB376A00F12E78 /* SeatLayoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE976F29BB376A00F12E78 /* SeatLayoutModel.swift */; };
+		17AE977329BB38E800F12E78 /* SeatLayoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE977229BB38E800F12E78 /* SeatLayoutViewModel.swift */; };
 		17BD37892954134700DA2FE9 /* TabContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BD37882954134700DA2FE9 /* TabContainerView.swift */; };
 		17D80F23295EB20500D861FF /* CustomCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D80F22295EB20500D861FF /* CustomCalendarView.swift */; };
 		17D80F28295EB3FC00D861FF /* DateTimeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D80F27295EB3FC00D861FF /* DateTimeSelectionView.swift */; };
@@ -120,6 +123,9 @@
 		17A585F92935FF2D00365D71 /* FutalaLakeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FutalaLakeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		17A585FD2935FF2D00365D71 /* FutalaLakeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutalaLakeUITests.swift; sourceTree = "<group>"; };
 		17A585FF2935FF2D00365D71 /* FutalaLakeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutalaLakeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		17AE976629BB0BDD00F12E78 /* StandingInputDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingInputDialog.swift; sourceTree = "<group>"; };
+		17AE976F29BB376A00F12E78 /* SeatLayoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatLayoutModel.swift; sourceTree = "<group>"; };
+		17AE977229BB38E800F12E78 /* SeatLayoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatLayoutViewModel.swift; sourceTree = "<group>"; };
 		17BD37882954134700DA2FE9 /* TabContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContainerView.swift; sourceTree = "<group>"; };
 		17D80F22295EB20500D861FF /* CustomCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalendarView.swift; sourceTree = "<group>"; };
 		17D80F27295EB3FC00D861FF /* DateTimeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeSelectionView.swift; sourceTree = "<group>"; };
@@ -540,6 +546,22 @@
 			path = GettingStarted;
 			sourceTree = "<group>";
 		};
+		17AE976E29BB375600F12E78 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				17AE976F29BB376A00F12E78 /* SeatLayoutModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		17AE977129BB38D100F12E78 /* VIewModel */ = {
+			isa = PBXGroup;
+			children = (
+				17AE977229BB38E800F12E78 /* SeatLayoutViewModel.swift */,
+			);
+			path = VIewModel;
+			sourceTree = "<group>";
+		};
 		17BD37872954132F00DA2FE9 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -561,8 +583,11 @@
 		17D80F5F296296A700D861FF /* SeatManagement */ = {
 			isa = PBXGroup;
 			children = (
+				17AE977129BB38D100F12E78 /* VIewModel */,
+				17AE976E29BB375600F12E78 /* Model */,
 				17D80F60296296C300D861FF /* SeatSelectionView.swift */,
 				17D80F632962A8D200D861FF /* GateSectionView.swift */,
+				17AE976629BB0BDD00F12E78 /* StandingInputDialog.swift */,
 			);
 			path = SeatManagement;
 			sourceTree = "<group>";
@@ -774,6 +799,7 @@
 				177B40BF2941FB8E00EDF0F0 /* LoginView.swift in Sources */,
 				173AB86E296589F100B591A4 /* QRView.swift in Sources */,
 				17831DD62955C585005C36D0 /* TransanctionView.swift in Sources */,
+				17AE977329BB38E800F12E78 /* SeatLayoutViewModel.swift in Sources */,
 				17831DD32955C56B005C36D0 /* SettingView.swift in Sources */,
 				17E97DD2295DACC1007FC9C0 /* PayNowView.swift in Sources */,
 				17545D362942FA05003E3724 /* AppTheme.swift in Sources */,
@@ -803,10 +829,12 @@
 				179E088929B5E0B500AA4541 /* DateTimeSelectionModel.swift in Sources */,
 				17D80F642962A8D200D861FF /* GateSectionView.swift in Sources */,
 				17BD37892954134700DA2FE9 /* TabContainerView.swift in Sources */,
+				17AE977029BB376A00F12E78 /* SeatLayoutModel.swift in Sources */,
 				174F1BD3295C0FDA00DAC0D2 /* TicketCancelSuccessAlertView.swift in Sources */,
 				17545D392942FB2B003E3724 /* Extensions.swift in Sources */,
 				17545D4429433829003E3724 /* UpcomingEventCellView.swift in Sources */,
 				173A59B129B0A3ED0037AF51 /* Constants.swift in Sources */,
+				17AE976729BB0BDE00F12E78 /* StandingInputDialog.swift in Sources */,
 				17545D412943371A003E3724 /* UpcomingEventsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
