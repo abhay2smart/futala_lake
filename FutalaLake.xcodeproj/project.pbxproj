@@ -17,10 +17,16 @@
 		173AB869296542D400B591A4 /* PaymentSuccessAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173AB868296542D400B591A4 /* PaymentSuccessAlertView.swift */; };
 		173AB86B296551B800B591A4 /* RootManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173AB86A296551B800B591A4 /* RootManager.swift */; };
 		173AB86E296589F100B591A4 /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173AB86D296589F100B591A4 /* QRView.swift */; };
+		173E4CBD29C079140004EA52 /* BookedSeatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E4CBC29C079140004EA52 /* BookedSeatModel.swift */; };
+		1746D22929C3160C000385CA /* SubmitBookSeatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1746D22829C3160C000385CA /* SubmitBookSeatModel.swift */; };
 		174F1BCF295B432D00DAC0D2 /* CancelTicketConfirmAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F1BCE295B432D00DAC0D2 /* CancelTicketConfirmAlertView.swift */; };
 		174F1BD1295BFCF800DAC0D2 /* CancelTicketAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F1BD0295BFCF800DAC0D2 /* CancelTicketAlertView.swift */; };
 		174F1BD3295C0FDA00DAC0D2 /* TicketCancelSuccessAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F1BD2295C0FDA00DAC0D2 /* TicketCancelSuccessAlertView.swift */; };
 		174F1BD5295C172100DAC0D2 /* BookedTicketHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F1BD4295C172100DAC0D2 /* BookedTicketHistoryView.swift */; };
+		1753DB8E29C43755008E3078 /* CommonUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1753DB8D29C43755008E3078 /* CommonUtil.swift */; };
+		1753DB9229C46BDA008E3078 /* PaymentSuccessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1753DB9129C46BDA008E3078 /* PaymentSuccessModel.swift */; };
+		1753DB9529C46C12008E3078 /* PaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1753DB9429C46C12008E3078 /* PaymentViewModel.swift */; };
+		1753DB9729C47FB6008E3078 /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1753DB9629C47FB6008E3078 /* ResponseModel.swift */; };
 		17545D332942F0BD003E3724 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17545D322942F0BD003E3724 /* CustomTextField.swift */; };
 		17545D362942FA05003E3724 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17545D352942FA05003E3724 /* AppTheme.swift */; };
 		17545D392942FB2B003E3724 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17545D382942FB2B003E3724 /* Extensions.swift */; };
@@ -91,10 +97,16 @@
 		173AB868296542D400B591A4 /* PaymentSuccessAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSuccessAlertView.swift; sourceTree = "<group>"; };
 		173AB86A296551B800B591A4 /* RootManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootManager.swift; sourceTree = "<group>"; };
 		173AB86D296589F100B591A4 /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
+		173E4CBC29C079140004EA52 /* BookedSeatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookedSeatModel.swift; sourceTree = "<group>"; };
+		1746D22829C3160C000385CA /* SubmitBookSeatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitBookSeatModel.swift; sourceTree = "<group>"; };
 		174F1BCE295B432D00DAC0D2 /* CancelTicketConfirmAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelTicketConfirmAlertView.swift; sourceTree = "<group>"; };
 		174F1BD0295BFCF800DAC0D2 /* CancelTicketAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelTicketAlertView.swift; sourceTree = "<group>"; };
 		174F1BD2295C0FDA00DAC0D2 /* TicketCancelSuccessAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCancelSuccessAlertView.swift; sourceTree = "<group>"; };
 		174F1BD4295C172100DAC0D2 /* BookedTicketHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookedTicketHistoryView.swift; sourceTree = "<group>"; };
+		1753DB8D29C43755008E3078 /* CommonUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonUtil.swift; sourceTree = "<group>"; };
+		1753DB9129C46BDA008E3078 /* PaymentSuccessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSuccessModel.swift; sourceTree = "<group>"; };
+		1753DB9429C46C12008E3078 /* PaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewModel.swift; sourceTree = "<group>"; };
+		1753DB9629C47FB6008E3078 /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
 		17545D322942F0BD003E3724 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		17545D352942FA05003E3724 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		17545D382942FB2B003E3724 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -185,7 +197,9 @@
 		171575082963FC310004F2F8 /* Pay */ = {
 			isa = PBXGroup;
 			children = (
-				17E97DD1295DACC1007FC9C0 /* PayNowView.swift */,
+				1753DB9329C46C01008E3078 /* ViewModel */,
+				1753DB9029C46B59008E3078 /* Model */,
+				1753DB8F29C46B44008E3078 /* View */,
 			);
 			path = Pay;
 			sourceTree = "<group>";
@@ -238,6 +252,23 @@
 			path = QR;
 			sourceTree = "<group>";
 		};
+		173E4CBE29C1E2590004EA52 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		173E4CBF29C1E26A0004EA52 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				17AE976F29BB376A00F12E78 /* SeatLayoutModel.swift */,
+				173E4CBC29C079140004EA52 /* BookedSeatModel.swift */,
+				1746D22829C3160C000385CA /* SubmitBookSeatModel.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
 		174F1BCD295B431400DAC0D2 /* Alert */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,6 +279,30 @@
 			path = Alert;
 			sourceTree = "<group>";
 		};
+		1753DB8F29C46B44008E3078 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				17E97DD1295DACC1007FC9C0 /* PayNowView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1753DB9029C46B59008E3078 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1753DB9129C46BDA008E3078 /* PaymentSuccessModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1753DB9329C46C01008E3078 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1753DB9429C46C12008E3078 /* PaymentViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		17545D302942EFF5003E3724 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,6 +310,7 @@
 				17545D342942F9EC003E3724 /* Theme */,
 				17545D312942F007003E3724 /* View */,
 				173AB86A296551B800B591A4 /* RootManager.swift */,
+				1753DB8D29C43755008E3078 /* CommonUtil.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -338,6 +394,7 @@
 				17DFCA3529ACB6C0005E5DE5 /* CustomError.swift */,
 				173A59B029B0A3ED0037AF51 /* Constants.swift */,
 				173A59B229B0A53F0037AF51 /* APIService.swift */,
+				1753DB9629C47FB6008E3078 /* ResponseModel.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -549,7 +606,8 @@
 		17AE976E29BB375600F12E78 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				17AE976F29BB376A00F12E78 /* SeatLayoutModel.swift */,
+				173E4CBE29C1E2590004EA52 /* Request */,
+				173E4CBF29C1E26A0004EA52 /* Response */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -789,6 +847,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				17DFCA3629ACB6C0005E5DE5 /* CustomError.swift in Sources */,
+				173E4CBD29C079140004EA52 /* BookedSeatModel.swift in Sources */,
 				17A585E52935FF2B00365D71 /* ContentView.swift in Sources */,
 				179E088F29B5F26300AA4541 /* GetTokenModel.swift in Sources */,
 				17DDFC1129530F1500D7A5C9 /* UpcomcommingbookingStatusCell.swift in Sources */,
@@ -810,10 +869,14 @@
 				17831DD02955C551005C36D0 /* ProfileView.swift in Sources */,
 				17D80F28295EB3FC00D861FF /* DateTimeSelectionView.swift in Sources */,
 				17DFCA3429ACB62F005E5DE5 /* LoginVM.swift in Sources */,
+				1753DB9729C47FB6008E3078 /* ResponseModel.swift in Sources */,
 				17F5135029B1E606004A7833 /* SessionManager.swift in Sources */,
+				1753DB9529C46C12008E3078 /* PaymentViewModel.swift in Sources */,
 				17D80F23295EB20500D861FF /* CustomCalendarView.swift in Sources */,
+				1746D22929C3160C000385CA /* SubmitBookSeatModel.swift in Sources */,
 				17545D3C2943025F003E3724 /* CustomModifiers.swift in Sources */,
 				173A59B329B0A53F0037AF51 /* APIService.swift in Sources */,
+				1753DB9229C46BDA008E3078 /* PaymentSuccessModel.swift in Sources */,
 				176CB8DF2966D275006C71D4 /* RadioButton.swift in Sources */,
 				174F1BD5295C172100DAC0D2 /* BookedTicketHistoryView.swift in Sources */,
 				173AB86B296551B800B591A4 /* RootManager.swift in Sources */,
@@ -821,6 +884,7 @@
 				179E088C29B5E51D00AA4541 /* DateTimeSelectionViewModel.swift in Sources */,
 				17545D332942F0BD003E3724 /* CustomTextField.swift in Sources */,
 				17FC7F972959BF5F0066D67B /* BookingHistoryCellView.swift in Sources */,
+				1753DB8E29C43755008E3078 /* CommonUtil.swift in Sources */,
 				173A59AF29B0732C0037AF51 /* Loader.swift in Sources */,
 				1715750D296428990004F2F8 /* ToastView.swift in Sources */,
 				17831DC72955BCFA005C36D0 /* TopNavItemView.swift in Sources */,

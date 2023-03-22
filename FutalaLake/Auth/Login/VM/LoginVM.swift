@@ -48,7 +48,7 @@ class LoginVM: ObservableObject {
         isLoading = true
         let param: [String: Any] = ["mobile": mobileNumber]
         let url = Constants.baseUrl + Constants.API.sendOTP
-        APIService.shared.makeApiTypeRequest(url: url, param: param, methodType: .post, expecting: LoginResponseModel.self, passToken: false) { result in
+        APIService.shared.makeApiTypeRequest(url: url, param: param, methodType: .post, expecting: LoginResponseModel.self, passToken: false) { result, data in
             
             DispatchQueue.main.async {
                 self.isLoading = false

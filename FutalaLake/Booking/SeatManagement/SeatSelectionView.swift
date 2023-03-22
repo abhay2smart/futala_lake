@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct SeatSelectionView: View {
-    @State private var gateSelection = "0"
+    @State private var gateSelection = "GATE NO. 1"
     @State private var showToast = false
-    private let gates = ["0", "1", "2", "3", "4", "5", "6"]
+    private let gates = ["GATE NO. 1", "GATE NO. 2", "GATE NO. 3", "GATE NO. 4", "GATE NO. 5", "GATE NO. 6", "GATE NO. 7"]
     
     @State var maturityType: String = "Adult"
     
@@ -23,9 +23,31 @@ struct SeatSelectionView: View {
     
     @State var isPresented: Bool = false
     
-    @StateObject var seatLayoutViewModel = SeatLayoutViewModel()
+    @ObservedObject var seatLayoutViewModel = SeatLayoutViewModel()
     
     @State var setas = [Seats]()
+    
+    private var showDate: String
+    private var showTimeID: String
+    private var showDayID: String
+    private var showStartTime: String
+    private var showEndTime: String
+    
+    
+    init(showDate: Date, showTimeID: String, showDayID: String, showStartTime: String, showEndTime: String) {
+        let dateFormatter = DateFormatter()
+        // Set Date Format
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        // Convert Date to String
+        let dateString = dateFormatter.string(from: showDate)
+        
+        self.showDate   = dateString
+        self.showTimeID = showTimeID
+        self.showDayID  = showDayID
+        self.showStartTime  = showStartTime
+        self.showEndTime  = showEndTime
+        
+    }
     
     var body: some View {
         ZStack {
@@ -40,12 +62,15 @@ struct SeatSelectionView: View {
                     
                     Spacer()
                     Picker("", selection: $gateSelection) {
-                        ForEach(gates, id: \.self) {
+                        ForEach(gates, id: \.self) { item in
                             //Text($0)
-                            Text("\((Int($0) ?? 0) + 1)")
+                            Text(item)
                         }
                     }.onReceive([self.gateSelection].publisher.first()) { value in
-                        showToast = true
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
+                            self.seatLayoutViewModel.appllyFilterByGate(gameNo: gateSelection)
+                        })
+                        //showToast = true
                     }
                     .pickerStyle(.menu)
                     .background(.white)
@@ -139,8 +164,8 @@ struct SeatSelectionView: View {
                         VStack(spacing: -5) {
                             
                             HStack {
-                                GateSectionView(data: seatLayoutViewModel.totalSeats)
-                                    .frame(width: 780)
+                                GateSectionView(data: $seatLayoutViewModel.totalFilteredSeats, maturityStatus: $maturityType)
+                                    .frame(width: 820)
                             }
                             .padding(.top, 10)
                             .padding(.horizontal, 5)
@@ -198,28 +223,59 @@ struct SeatSelectionView: View {
                     
                     // Submit button
                     
-                    NavigationLink {
-                        CheckoutVIew()
-                    } label: {
-                        Text("Book Ticket")
+//                    NavigationLink {
+//                        CheckoutVIew()
+//                    } label: {
+//                        Text("Book Ticket")
+//                            .modifier(CustomButtonModifiers())
+//                    }.padding(.top, 10)
+//                        .padding(.bottom, 20)
+//                        .navigationTitle("Seat Layout")
+                    
+                    
+                    Group {
+                        Button {
+                            
+                            seatLayoutViewModel.standingAdultCount = self.noOfAdults
+                            seatLayoutViewModel.standingChildCount = self.noOfChildren
+                            seatLayoutViewModel.showStartTime = self.showStartTime
+                            seatLayoutViewModel.showEndTime = self.showEndTime
+                            if seatLayoutViewModel.validate() {
+                                seatLayoutViewModel.submitAction()
+                            }
+                            
+                            self.showToast = seatLayoutViewModel.showAlert
+                            
+                            
+                        } label: {
+                            Text("Book Ticket")
                             .modifier(CustomButtonModifiers())
-                    }.padding(.top, 10)
-                        .padding(.bottom, 20)
-                        .navigationTitle("Seat Layout")
+                        }
+                        
+                        NavigationLink(isActive: $seatLayoutViewModel.shouldMoveToCheckoutView) {
+                            CheckoutVIew(bookingData: seatLayoutViewModel.submitResponseData, dataDic: seatLayoutViewModel.bookedDataDic)
+                        } label: {
+                            
+                        }
+                    }
                     
                     Spacer()
                 }
             }
-            
-            
-            
-            .toast(message: "GATE \((Int(gateSelection) ?? 0) + 1) IS SELECTED",
+            .toast(message: self.seatLayoutViewModel.errorMessage,
                    isShowing: $showToast,
                    duration: Toast.short)
             if isPresented {
                 StandingInputDialog(noOfAdults: $noOfAdults, noOfChildren: $noOfChildren, total: $total, isPresented: $isPresented)
             }
+            if self.seatLayoutViewModel.isLoading {
+                Loader()
+            }
             
+            
+        }.allowsHitTesting(seatLayoutViewModel.isLoading ? false : true)
+        .onAppear {
+            seatLayoutViewModel.updateParameters(showDate: showDate, showTimeID: showTimeID, showDayID: showDayID)
         }
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -236,14 +292,17 @@ struct SeatSelectionView: View {
             }
         }
         .onAppear {
-            seatLayoutViewModel.getSeatMasterData()
+            //seatLayoutViewModel.getSeatMasterData()
+            self.seatLayoutViewModel.getReservedSeatData()
+            
         }
+        
         
     }
 }
 
 struct SeatSelectionView_Previews: PreviewProvider {
     static var previews: some View {
-        SeatSelectionView()
+        SeatSelectionView(showDate: Date(), showTimeID: "", showDayID: "", showStartTime: "", showEndTime: "")
     }
 }

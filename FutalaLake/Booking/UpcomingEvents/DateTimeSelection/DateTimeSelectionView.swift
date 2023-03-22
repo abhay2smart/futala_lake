@@ -13,6 +13,10 @@ struct DateTimeSelectionView: View {
     @ObservedObject private var dateTimeSelectionModel = DateTimeSelectionViewModel()
     @State var selectedDate: Date = Date()
     @State private var currentTimeSlotSelected = ""
+    @State private var showTimeId = ""
+    @State private var showDayId = ""
+    
+    @State var selectedShow: Shows?
     
     private let adaptiveColumns = [
         GridItem(.adaptive(minimum: 110))
@@ -65,8 +69,11 @@ struct DateTimeSelectionView: View {
                                             .font(.system(size: 16, weight: .medium, design: .default))
                                         
                                     }.onTapGesture {
-                                        
+                                        self.selectedShow = dateTimeSelectionModel.data?[0].shows?[index]
                                         self.currentTimeSlotSelected = (dateTimeSelectionModel.data?[0].shows?[index].startTime ?? "")
+                                        showTimeId = dateTimeSelectionModel.data?[0].shows?[index].showTimeID ?? ""
+                                        
+                                        showDayId = dateTimeSelectionModel.data?.first?.showDayID ?? ""
                                     }
                                 }
                             }
@@ -76,11 +83,12 @@ struct DateTimeSelectionView: View {
                 
                 
                 NavigationLink {
-                    SeatSelectionView()
+                    SeatSelectionView(showDate: selectedDate, showTimeID: showTimeId, showDayID: showDayId, showStartTime: selectedShow?.startTime ?? "", showEndTime: selectedShow?.endTime ?? "")
                 } label: {
                     Text("Submit")
                         .modifier(CustomButtonModifiers())
                 }
+                .allowsHitTesting(currentTimeSlotSelected == "" ? false : true)
                 .navigationTitle("Calendar")
                 .padding(.top, 30)
                 .padding(.horizontal, 13)

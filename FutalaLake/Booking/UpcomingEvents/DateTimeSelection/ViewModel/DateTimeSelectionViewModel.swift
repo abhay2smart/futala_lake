@@ -41,7 +41,7 @@ class DateTimeSelectionViewModel: ObservableObject {
         
         
         let url = Constants.baseUrl + Constants.API.showsByDays + "?date=\(dateString)"
-        APIService.shared.makeApiTypeRequest(url: url, param: nil, methodType: .get, expecting: DateTimeSelectionModel.self, passToken: true) { result in
+        APIService.shared.makeApiTypeRequest(url: url, param: nil, methodType: .get, expecting: DateTimeSelectionModel.self, passToken: true) { result, data  in
             
             DispatchQueue.main.async {
                 self.isLoading = false

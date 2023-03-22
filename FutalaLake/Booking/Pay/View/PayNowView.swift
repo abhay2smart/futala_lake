@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct PayNowView: View {
+    @ObservedObject var paymentViewModel = PaymentViewModel()
+    private var dicData = [String: Any]()
+    init(data: [String: Any]) {
+        self.dicData = data
+    }
     var body: some View {
         ZStack {
             AppTheme.appThemeSkyBlue
@@ -166,12 +171,32 @@ struct PayNowView: View {
                 
                 
                 
-                NavigationLink {
-                    PaymentSuccessAlertView()
-                } label: {
-                    Text("Pay Now")
+                Group {
+                    Button {
+                        paymentViewModel.makePayment(params: dicData)
+                    } label: {
+                        Text("Payment")
                         .modifier(CustomButtonModifiers())
-                }.navigationTitle("Payment")
+                    }
+                    
+                    NavigationLink(isActive: $paymentViewModel.shouldMoveToQRScreen) {
+                        PaymentSuccessAlertView()
+                    } label: {
+                        
+                    }
+                }
+                
+                
+                
+                
+                
+                
+//                NavigationLink {
+//                    PaymentSuccessAlertView()
+//                } label: {
+//                    Text("Pay Now")
+//                        .modifier(CustomButtonModifiers())
+//                }.navigationTitle("Payment")
                 
                 Spacer()
             }
@@ -212,6 +237,6 @@ struct PayNowView: View {
 
 struct PayNowView_Previews: PreviewProvider {
     static var previews: some View {
-        PayNowView()
+        PayNowView(data: [:])
     }
 }

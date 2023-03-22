@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State var mobileNumber:String = ""
+    @State var mobileNumber:String = "8173954048"
     
     @State var shouldShowDetails:Bool = false
     @Binding var isLogggedIn : Bool

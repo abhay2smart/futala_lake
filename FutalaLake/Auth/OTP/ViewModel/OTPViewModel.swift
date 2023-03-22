@@ -54,7 +54,7 @@ class OTPViewModel: ObservableObject {
         isLoading = true
         let param: [String: Any] = ["mobile": mobileNumber, "otp": Int(otp)]
         let url = Constants.baseUrl + Constants.API.sendOTP
-        APIService.shared.makeApiTypeRequest(url: url, param: param, methodType: .post, expecting: GetTokenModel.self, passToken: false) { result in
+        APIService.shared.makeApiTypeRequest(url: url, param: param, methodType: .post, expecting: GetTokenModel.self, passToken: false) { result, data in
             
             DispatchQueue.main.async {
                 self.isLoading = false

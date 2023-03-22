@@ -8,68 +8,41 @@
 import SwiftUI
 
 struct GateSectionView: View {
+    @Binding var data:[Seats]
     
-    @State private var data = [Seats]()
-    
-    @State private var buttonStatusArr: [Bool] = [
-        false, false, false, false, false, false, false, false, false, false,
-        false, false, false, false, false, false, false, false, false, false,
-        false, false, false, false, false, false, false, false, false, false,
-        false, false, false, false, false, false, false, false, false, false,
-        false, false, false, false, false, false, false, false, false, false,
-        false, false, false, false, false, false, false, false, false, false,
-        false, false, false, false, false, false, false, false, false, false,
-        false, false, false, false, false, false, false, false, false, false,
-        false, false, false, false, false, false, false, false, false, false,
-        false, false, false, false, false, false, false, false, false, false,
-        false, false, false, false, false, false, false, false, false, false,
-        false, false, false, false, false, false, false, false, false, false,
-        false, false, false, false, false, false, false, false, false, false,
-        false, false, false, false, false, false, false, false, false, false,
-        false, false, false, false, false, false, false, false, false, false,
-        false, false, false, false, false, false, false, false, false, false,
-        false, false, false, false, false, false, false, false, false, false,
-        false, false, false, false, false, false, false, false, false, false,
-        false, false, false, false, false, false, false, false, false, false,
-        false, false, false, false, false, false, false, false, false, false,
-        false, false, false, false, false, false, false, false, false, false,
-        false, false, false, false, false, false, false, false, false, false,
-        false, false, false, false, false, false, false, false, false, false,
-        false, false, false, false, false, false, false, false, false, false,
-        false, false, false, false, false, false, false, false, false, false,
-        false, false, false, false, false, false, false, false, false, false,
-        false, false, false, false, false, false, false, false, false, false,
-        false, false, false, false, false, false, false, false, false, false,
-        false, false, false, false, false, false, false, false, false, false,
-        false, false, false, false, false, false, false, false, false, false
-    ]
     private let adaptiveColumns = [
-    
         GridItem(.adaptive(minimum: 30))
     ]
     
-    init(data: [Seats]) {
-        self.data = data
-    }
+    @Binding var maturityStatus:String
+    
+    
+    
+//    init(data: [Seats]) {
+//        self.data = data
+//    }
     
     var body: some View {
         VStack(spacing: 0) {
-            
             LazyVGrid(columns: adaptiveColumns) {
                 ForEach(Array(data.enumerated()), id: \.offset) { index, element in
+                    Button {
+                        //data[index].toggleIsSelectedStatus()
+                        data.reverse()
+                        element.toggleIsSelectedStatus(maturityStatus: maturityStatus)
+                        data.reverse()
+                    } label: {
+                        Text(element.seatNumber ?? "")
+                            .font(.system(size: 9, weight: .bold, design: .default))
+                            .frame(width: 30, height: 30)
+                            .foregroundColor(.white)
+                    }
+                    .background(element.color)
+                    //.background(AppTheme.appThemeOrange)
+                    .cornerRadius(3)
+                    .allowsHitTesting(element.isSelectable)
                     
-//                    Button {
-//                        //buttonStatusArr[index].toggle()
-//                    } label: {
-//                        Text("\(index + 1)")
-//                            .font(.system(size: 10, weight: .regular, design: .default))
-//                            .frame(width: 25, height: 25)
-//                            .foregroundColor(.black)
-//                    }
-//                    .background(buttonStatusArr[index] ? AppTheme.appThemeOrange: .green)
-//                    .cornerRadius(3)
-                    
-                    Text("Helo")
+                    //Text("Helo")
                 }
             }.padding(10)
             Spacer()
@@ -77,7 +50,7 @@ struct GateSectionView: View {
         }
         
         .cornerRadius(12)
-        .frame(width: 780)
+        .frame(width: 820)
         
         
         

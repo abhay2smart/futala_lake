@@ -6,8 +6,15 @@
 //
 
 import Foundation
+import SwiftUI
+import Combine
 
-struct SeatLayoutModel : Codable {
+fileprivate enum SeatType: String, Codable {
+    case vip = "VIP"
+    case classic =  "Classic"
+}
+
+class SeatLayoutModel : Codable, ObservableObject, Identifiable {
     let status : Bool?
     let data : [SeatData]?
     let error : String?
@@ -19,7 +26,7 @@ struct SeatLayoutModel : Codable {
         case error = "error"
     }
 
-    init(from decoder: Decoder) throws {
+    required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         status = try values.decodeIfPresent(Bool.self, forKey: .status)
         data = try values.decodeIfPresent([SeatData].self, forKey: .data)
@@ -28,7 +35,7 @@ struct SeatLayoutModel : Codable {
 
 }
 
-struct SeatData : Codable {
+class SeatData : Codable, ObservableObject, Identifiable {
     let seats : [Seats]?
     let totalQuantity : String?
 
@@ -38,7 +45,7 @@ struct SeatData : Codable {
         case totalQuantity = "totalQuantity"
     }
 
-    init(from decoder: Decoder) throws {
+    required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         seats = try values.decodeIfPresent([Seats].self, forKey: .seats)
         totalQuantity = try values.decodeIfPresent(String.self, forKey: .totalQuantity)
@@ -46,7 +53,7 @@ struct SeatData : Codable {
 
 }
 
-struct Seats : Codable {
+class Seats : ObservableObject, Codable, Identifiable {
     let id = UUID()
     let seatLayoutID : String?
     let seatNumber : String?
@@ -55,6 +62,41 @@ struct Seats : Codable {
     let seatTypeID : Int?
     let seatType : String?
     let status : Int?
+    
+    @Published var color: Color = AppTheme.SeatColor.defaultColor
+    
+    @Published var isBooked = false
+    
+    @Published var isSelected = false
+    
+    @Published var isSelectable = true
+    
+    // For API request
+    var fare:Float = 0.0
+    var isAdult: Int = 1
+    
+    func toggleIsSelectedStatus(maturityStatus: String) {
+        if !isSelectable {
+            return
+        }
+        
+        if maturityStatus.lowercased() == "child" {
+            isAdult = 0
+        }
+        
+        
+        isSelected = !isSelected
+        setVars()
+        
+    }
+    
+    
+    
+    
+    func setIsBooked() {
+        self.isBooked = true
+        setVars()
+    }
 
     enum CodingKeys: String, CodingKey {
 
@@ -66,8 +108,36 @@ struct Seats : Codable {
         case seatType = "seatType"
         case status = "status"
     }
+    
+    private func setVars() {
+        if status == 3 || isBooked {
+            isSelectable = false
+        }
+        
+        color = AppTheme.SeatColor.defaultColor
+        if isBooked {
+            color = AppTheme.SeatColor.booked
+        }
+        else {
+            if status == 3 {
+               // maintenace
+                color = AppTheme.SeatColor.maintenance
+            } else if status == 1 {
+                
+                if isSelected {
+                    color = AppTheme.SeatColor.selected
+                } else {
+                    if seatType ==  SeatType.vip.rawValue {
+                        color = AppTheme.SeatColor.vip
+                    } else if seatType ==  SeatType.classic.rawValue {
+                        color = AppTheme.SeatColor.classic
+                    }
+                }
+            }
+        }
+    }
 
-    init(from decoder: Decoder) throws {
+    required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         seatLayoutID = try values.decodeIfPresent(String.self, forKey: .seatLayoutID)
         seatNumber = try values.decodeIfPresent(String.self, forKey: .seatNumber)
@@ -76,6 +146,8 @@ struct Seats : Codable {
         seatTypeID = try values.decodeIfPresent(Int.self, forKey: .seatTypeID)
         seatType = try values.decodeIfPresent(String.self, forKey: .seatType)
         status = try values.decodeIfPresent(Int.self, forKey: .status)
+        setVars()
+        
     }
 
 }
