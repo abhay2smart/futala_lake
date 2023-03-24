@@ -32,14 +32,14 @@ struct DateTimeSelectionView: View {
                 
                 ZStack(alignment: .top) {
                     
-//                    DatePicker("Select Date", selection: $selectedDate,in: Date()..., displayedComponents: [.date])
-//                        .padding(.horizontal)
-//                        .datePickerStyle(.graphical)
-                    
-                    
-                    DatePicker("Select Date", selection: $selectedDate, displayedComponents: [.date])
+                    DatePicker("Select Date", selection: $selectedDate,in: Date()..., displayedComponents: [.date])
                         .padding(.horizontal)
                         .datePickerStyle(.graphical)
+                    
+                    
+                    //DatePicker("Select Date", selection: $selectedDate, displayedComponents: [.date])
+                        //.padding(.horizontal)
+                        //.datePickerStyle(.graphical)
                     
                 }.padding(.top, -10)
                     .onChange(of: selectedDate) { selectedDate in
@@ -83,7 +83,7 @@ struct DateTimeSelectionView: View {
                 
                 
                 NavigationLink {
-                    SeatSelectionView(showDate: selectedDate, showTimeID: showTimeId, showDayID: showDayId, showStartTime: selectedShow?.startTime ?? "", showEndTime: selectedShow?.endTime ?? "")
+                    SeatSelectionView(showDate: selectedDate, showTimeID: showTimeId, showDayID: showDayId, showStartTime: selectedShow?.startTime ?? "", showEndTime: selectedShow?.endTime ?? "", seatInventoryData: dateTimeSelectionModel.seatInventoryData)
                 } label: {
                     Text("Submit")
                         .modifier(CustomButtonModifiers())
@@ -109,6 +109,7 @@ struct DateTimeSelectionView: View {
         .allowsHitTesting(dateTimeSelectionModel.isLoading ? false : true)
         .onAppear{
             dateTimeSelectionModel.getShowDays(date: selectedDate)
+            dateTimeSelectionModel.getAllSeatColor()
         }
         
     }

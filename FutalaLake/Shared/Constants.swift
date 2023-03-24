@@ -18,6 +18,12 @@ struct Constants {
         static let seatBooking = "mobile/bookTicket/seatBooking"
         static let saveRedisSeat = "mobile/bookTicket/saveDetailsRedisSeat"
         static let checkOut = "mobile/bookTicket/checkout"
+        static let generateQR = "mobile/bookTicket/generateQRData"
+        static let updatePaymentStatus = "mobile/bookticket/updatePaymentStatus"
+        static let seatInventory = "user/seatInventory"
+        
+        
+        
         
         
     }

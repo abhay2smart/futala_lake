@@ -25,6 +25,8 @@ struct CheckoutVIew: View {
     init(bookingData: SubmitBookSeatModelData, dataDic: [String: Any]) {
         
         self.dataDic = dataDic
+        self.dataDic["total"] = String(bookingData.total ?? 0)
+        self.dataDic["showDate"]  = bookingData.showDate ?? ""
         
         self.showStartTime = CommonUtil.convertTimeTwentyFourIntoTwelve(time: bookingData.showStartTime ?? "") ?? ""
         
@@ -34,7 +36,7 @@ struct CheckoutVIew: View {
         self.ticketType = bookingData.ticketType ?? ""
         self.seatNo = bookingData.seatNumber ?? ""
         self.totalSeat = String(bookingData.totalSeats ?? 0)
-        self.ticketFee = String(bookingData.bookingFees ?? 0)
+        self.ticketFee = String(bookingData.ticketFees ?? 0)
         self.totalAmt = String(bookingData.total ?? 0)
         self.bookingFees = String(bookingData.bookingFees ?? 0)
         self.tax = String(bookingData.tax ?? 0)
@@ -142,9 +144,6 @@ struct CheckoutVIew: View {
                             .foregroundColor(.black)
                             .padding(.vertical, 5)
                         
-                        Divider()
-                        
-                        
                         
                     }
 
@@ -168,16 +167,16 @@ struct CheckoutVIew: View {
                         
                         
                         
-                        HStack {
-                            Text("Ticket Fee")
-                            Spacer()
-                            
-                            Text(ticketFee)
-                            
-                        }
-                        .font(.system(size: 15, weight: .regular, design: .default))
-                            .foregroundColor(.black)
-                            .padding(.vertical, 5)
+//                        HStack {
+//                            Text("Ticket Fee")
+//                            Spacer()
+//
+//                            Text(ticketFee)
+//
+//                        }
+//                        .font(.system(size: 15, weight: .regular, design: .default))
+//                            .foregroundColor(.black)
+//                            .padding(.vertical, 5)
                         
                         
                     }

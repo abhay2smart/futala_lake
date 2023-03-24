@@ -67,10 +67,8 @@ class LoginVM: ObservableObject {
                 }
                 
             case .failure(let error):
-                if error as! CustomAPIError == CustomAPIError.tokenExpired {
-                    DispatchQueue.main.async {
-                        print("Something went wrong")
-                    }
+                DispatchQueue.main.async {
+                    print("Something went wrong LoginVM \(#line)")
                 }
             }
             

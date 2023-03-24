@@ -41,7 +41,7 @@ struct BookSeats : Codable, Identifiable {
     let seatTypeID : Int?
     let seatLayoutID : String?
     let seatType : String?
-    let fare : Float?
+    //let fare : Float?
     let seatNumber : String?
 
     enum CodingKeys: String, CodingKey {
@@ -49,7 +49,7 @@ struct BookSeats : Codable, Identifiable {
         case seatTypeID = "seatTypeID"
         case seatLayoutID = "seatLayoutID"
         case seatType = "seatType"
-        case fare = "fare"
+        //case fare = "fare"
         case seatNumber = "seatNumber"
     }
 
@@ -58,7 +58,7 @@ struct BookSeats : Codable, Identifiable {
         seatTypeID = try values.decodeIfPresent(Int.self, forKey: .seatTypeID)
         seatLayoutID = try values.decodeIfPresent(String.self, forKey: .seatLayoutID)
         seatType = try values.decodeIfPresent(String.self, forKey: .seatType)
-        fare = try values.decodeIfPresent(Float.self, forKey: .fare)
+        //fare = try values.decodeIfPresent(Float.self, forKey: .fare)
         seatNumber = try values.decodeIfPresent(String.self, forKey: .seatNumber)
     }
 

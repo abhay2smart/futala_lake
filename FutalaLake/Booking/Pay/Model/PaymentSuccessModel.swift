@@ -8,28 +8,28 @@
 import Foundation
 
 class PaymentModel: Codable {
-    var status: Bool?
+    //var status: Bool?
     var data: [PaymentModelData]?
-    var error: String?
+    //var error: String?
     
     enum CodingKeys: String, CodingKey {
-        case status = "status"
+        //case status = "status"
         case data = "data"
-        case error = "error"
+        //case error = "error"
     }
 
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        status = try values.decodeIfPresent(Bool.self, forKey: .status)
+        //status = try values.decodeIfPresent(Bool.self, forKey: .status)
         data = try values.decodeIfPresent([PaymentModelData].self, forKey: .data)
-        error = try values.decodeIfPresent(String.self, forKey: .error)
+        //error = try values.decodeIfPresent(String.self, forKey: .error)
     }
     
 }
 
 class PaymentModelData:Codable {
     var bookingID: String?
-    var ticketID: Int?
+    var ticketID: String?
     
     enum CodingKeys: String, CodingKey {
         case bookingID = "bookingID"
@@ -39,6 +39,6 @@ class PaymentModelData:Codable {
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         bookingID = try values.decodeIfPresent(String.self, forKey: .bookingID)
-        ticketID = try values.decodeIfPresent(Int.self, forKey: .ticketID)
+        ticketID = try values.decodeIfPresent(String.self, forKey: .ticketID)
     }
 }

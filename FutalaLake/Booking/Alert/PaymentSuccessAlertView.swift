@@ -6,8 +6,17 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct PaymentSuccessAlertView: View {
+    private var data: [String: Any] = [String: Any]()
+    @ObservedObject var paymentSuccessAlertViewModel = PaymentSuccessAlertViewModel()
+    private var bookingId:String = ""
+    
+    init(data: [String: Any], bookingId: String) {
+        self.data = data
+        self.bookingId = bookingId
+    }
     var body: some View {
         ZStack {
             AppTheme.appThemeSkyBlue
@@ -55,7 +64,7 @@ struct PaymentSuccessAlertView: View {
                         HStack {
                             Text("Payment Amount")
                             Spacer()
-                            Text("₹300")
+                            Text("₹\(data["total"] as? String ?? "")")
                         }
                         .font(.system(size: 15, weight: .regular, design: .default))
                         .foregroundColor(.black)
@@ -66,7 +75,7 @@ struct PaymentSuccessAlertView: View {
                         HStack {
                             Text("Payment Date")
                             Spacer()
-                            Text("5 Dec - 2022")
+                            Text(data["showDate"] as? String ?? "")
                             
                         }
                             
@@ -107,7 +116,7 @@ struct PaymentSuccessAlertView: View {
                             Text("Total Amount")
                             Spacer()
                             
-                            Text("₹320")
+                            Text("₹\(data["total"] as? String ?? "")")
                             
                         }
                         .font(.system(size: 15, weight: .regular, design: .default))
@@ -128,20 +137,52 @@ struct PaymentSuccessAlertView: View {
                 .padding()
                 
                 
-                NavigationLink {
-                    QRView()
-                } label: {
-                    Text("Done")
-                        .modifier(CustomButtonModifiers())
-                }.navigationTitle("Success")
+//                NavigationLink {
+//                    QRView(data: self.data)
+//                } label: {
+//                    Text("Done")
+//                        .modifier(CustomButtonModifiers())
+//                }.navigationTitle("Success")
                 
                 
+//                Group {
+//
+//                    Button {
+//                        //
+//                    } label: {
+//                        Text("Done")
+//                            .modifier(CustomButtonModifiers())
+//                    }
+//
+//
+//                    NavigationLink(isActive: paymentSuccessAlertViewModel.moveToQRView) {
+//                        QRView(data: self.data, encriptedStandingData: paymentSuccessAlertViewModel.encriptedQRSeatString)
+//                    } label: {
+//
+//                    }
+//
+//                }
                 
+                
+                Group {
+                    Button("Done") {
+                        paymentSuccessAlertViewModel.updatePaymentStatus(bookingId: bookingId)
+                    }.modifier(CustomButtonModifiers())
+                    
+                    NavigationLink(isActive: $paymentSuccessAlertViewModel.moveToQRView) {
+                        //QRView(data: self.data, encriptedStandingData: paymentSuccessAlertViewModel.encriptedQRSeatString)
+                        QRView(data: paymentSuccessAlertViewModel.qrModelData)
+                    } label: {
+                        
+                    }.navigationTitle("Success")
+                    
+                }
                 
                 Spacer()
             }
             
             .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     VStack {
@@ -157,6 +198,11 @@ struct PaymentSuccessAlertView: View {
             }
             
             
+        }.onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                //paymentSuccessAlertViewModel.updatePaymentStatus(bookingId: bookingId)
+            })
+            
         }
 
     }
@@ -164,6 +210,6 @@ struct PaymentSuccessAlertView: View {
 
 struct PaymentSuccessAlertView_Previews: PreviewProvider {
     static var previews: some View {
-        PaymentSuccessAlertView()
+        PaymentSuccessAlertView(data: [:], bookingId: "")
     }
 }

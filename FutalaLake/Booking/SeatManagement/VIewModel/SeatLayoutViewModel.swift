@@ -43,67 +43,156 @@ class SeatLayoutViewModel: ObservableObject {
         //mobile/seatConfig/seatMaster
         let url = Constants.baseUrl + Constants.API.seatMaster
         
-        APIService.shared.makeApiTypeRequest(url: url, param: nil, methodType: .get, expecting: SeatLayoutModel.self) { result, data in
+        APIService.shared.makeApiTypeRequest2(url: url, param: nil, methodType: .get, expecting: GlobResponseModel.self) { resultStatus, error, data  in
             
             DispatchQueue.main.async {
                 self.isLoading = false
             }
             
+            if !resultStatus {
+                print("something went wrong::\(#line) SeatLayoutViewModel")
+                return
+            }
             
-            switch result {
-            case .success(let respData):
-                DispatchQueue.main.async {
-                    if respData.status ?? false {
-                        if let totalseat = respData.data?.first?.seats {
-                            var vipFare:Float = 0.0
-                            var classicFare:Float = 0.0
-                            // get seat fare
-                            if let bookedData = self.bookedSeats.first?.seatFare {
-                                for item in bookedData {
-                                    if item.seatType?.lowercased() == "classic" {
-                                        classicFare = item.fare ?? 0
-                                    } else {
-                                        vipFare = item.fare ?? 0
-                                    }
-                                }
-                            }
-                            
-                            for seat in totalseat {
-                                // set seat fare in seatlayout object
-                                if seat.seatType?.lowercased() == "classic" {
-                                    seat.fare = classicFare
-                                } else {
-                                    seat.fare = vipFare
-                                }
-                                
-                                if let arr = self.bookedSeats.first?.bookSeats {
-                                    if let itemExist = self.isItemExist(arr: arr, item: seat) {
-                                        //print("Hellofare \(itemExist.fare)")
-                                        seat.setIsBooked()
-                                        self.setAddionalValues(seat: seat, bookedSeat: itemExist)
-                                    }
-                                }
-                            }
-                            
-                            self.totalSeats = totalseat
-                            self.totalFilteredSeats = totalseat
-                            
-                            self.appllyFilterByGate(gameNo: "GATE NO. 1")
-                            
-                        }
-                    }
+            if resultStatus {
+                guard let data = data else {
+                    return
                 }
                 
-            case .failure(let error):
-                print("Something went wrong")
+                
+                APIService.shared.parseModel(data: data, expecting: SeatLayoutModel.self) { result, data in
+                    switch result {
+                        case .success(let respData):
+                            DispatchQueue.main.async {
+                                if respData.status ?? false {
+                                    if let totalseat = respData.data?.first?.seats {
+//                                        var vipFare:Float = 0.0
+//                                        var classicFare:Float = 0.0
+                                        // get seat fare
+//                                        if let bookedData = self.bookedSeats.first?.seatFare {
+//                                            for item in bookedData {
+//                                                if item.seatType?.lowercased() == "classic" {
+//                                                    classicFare = item.fare ?? 0
+//                                                } else {
+//                                                    vipFare = item.fare ?? 0
+//                                                }
+//                                            }
+//                                        }
+            
+                                        for seat in totalseat {
+                                            // set seat fare in seatlayout object
+//                                            if seat.seatType?.lowercased() == "classic" {
+//                                                seat.fare = classicFare
+//                                            } else {
+//                                                seat.fare = vipFare
+//                                            }
+                                            if let seatFare = self.bookedSeats.first?.seatFare {
+                                                self.setFare(seat: seat, fares: seatFare)
+                                            }
+            
+                                            if let arr = self.bookedSeats.first?.bookSeats {
+                                                if let itemExist = self.isItemExist(arr: arr, item: seat) {
+                                                    //print("Hellofare \(itemExist.fare)")
+                                                    seat.setIsBooked()
+                                                }
+                                            }
+                                        }
+            
+                                        self.totalSeats = totalseat
+                                        self.totalFilteredSeats = totalseat
+            
+                                        self.appllyFilterByGate(gameNo: "GATE NO. 1")
+            
+                                    }
+                                }
+                            }
+            
+                        case .failure(let error):
+                            print("Something went wrong::SeatLayoutViewModel@\(#line)")
+                        }
+            
+                }
+                
+                
+                
+                
             }
             
             
         }
+        
+        
+        
+//        APIService.shared.makeApiTypeRequest(url: url, param: nil, methodType: .get, expecting: SeatLayoutModel.self) { result, data in
+//
+//            DispatchQueue.main.async {
+//                self.isLoading = false
+//            }
+//
+//
+//            switch result {
+//            case .success(let respData):
+//                DispatchQueue.main.async {
+//                    if respData.status ?? false {
+//                        if let totalseat = respData.data?.first?.seats {
+//                            var vipFare:Float = 0.0
+//                            var classicFare:Float = 0.0
+//                            // get seat fare
+//                            if let bookedData = self.bookedSeats.first?.seatFare {
+//                                for item in bookedData {
+//                                    if item.seatType?.lowercased() == "classic" {
+//                                        classicFare = item.fare ?? 0
+//                                    } else {
+//                                        vipFare = item.fare ?? 0
+//                                    }
+//                                }
+//                            }
+//
+//                            for seat in totalseat {
+//                                // set seat fare in seatlayout object
+//                                if seat.seatType?.lowercased() == "classic" {
+//                                    seat.fare = classicFare
+//                                } else {
+//                                    seat.fare = vipFare
+//                                }
+//
+//                                if let arr = self.bookedSeats.first?.bookSeats {
+//                                    if let itemExist = self.isItemExist(arr: arr, item: seat) {
+//                                        //print("Hellofare \(itemExist.fare)")
+//                                        seat.setIsBooked()
+//                                        self.setAddionalValues(seat: seat, bookedSeat: itemExist)
+//                                    }
+//                                }
+//                            }
+//
+//                            self.totalSeats = totalseat
+//                            self.totalFilteredSeats = totalseat
+//
+//                            self.appllyFilterByGate(gameNo: "GATE NO. 1")
+//
+//                        }
+//                    }
+//                }
+//
+//            case .failure(let error):
+//                print("Something went wrong")
+//            }
+//
+//
+//        }
     }
     
-    private func setAddionalValues(seat: Seats, bookedSeat: BookSeats) {
-        seat.fare = bookedSeat.fare ?? 0.0
+    private func setFare(seat: Seats, fares: [SeatFare]) {
+        //seat.fare = bookedSeat.fare ?? 0.0
+        
+        for fare in fares {
+            if seat.seatTypeID == fare.seatTypeID {
+                seat.fare = fare.fare ?? 0
+            }
+        }
+        
+        
+        
     }
     
     func submitAction() {
@@ -179,7 +268,7 @@ class SeatLayoutViewModel: ObservableObject {
                 }
                 
             case .failure(let error):
-                print("Something went wrong23432 \(error.localizedDescription)")
+                print("Something went@\(#line) \(error.localizedDescription)")
             }
             
             
@@ -198,7 +287,6 @@ class SeatLayoutViewModel: ObservableObject {
     }
     
     func appllyFilterByGate(gameNo: String) {
-        print("Gat777 \(gameNo)")
         self.totalFilteredSeats = self.totalSeats.filter {
             $0.gateNumber == gameNo
         }
@@ -232,33 +320,76 @@ class SeatLayoutViewModel: ObservableObject {
         
         let url = Constants.baseUrl + Constants.API.seatBooking + params
         
-        print("Hello777 \(url)")
-        
-        APIService.shared.makeApiTypeRequest(url: url, param: nil, methodType: .get, expecting: BookedSeats.self) { result, data in
+        APIService.shared.makeApiTypeRequest2(url: url, param: nil, methodType: .get, expecting: GlobResponseModel.self) { resultStatus, error, data  in
             
             DispatchQueue.main.async {
                 self.isLoading = false
             }
             
-            
-            switch result {
-            case .success(let respData):
-                DispatchQueue.main.async {
-                    if respData.status ?? false {
-                        print("Booked Seat data recieved \(respData.data?.count)")
-                        if let bookedSeatData = respData.data {
-                            self.bookedSeats = bookedSeatData
-                            self.getSeatMasterData()
-                        }
-                    }
-                }
-                
-            case .failure(let error):
-                print("Something went wrong")
+            if !resultStatus {
+                print("something went wrong:: SeatLayoutViewModel \(#line)")
+                return
             }
             
+            if resultStatus {
+                
+                
+                guard let data = data else {
+                    return
+                }
+                
+                
+                APIService.shared.parseModel(data: data, expecting: BookedSeats.self) { result, data in
+                    
+                    switch result {
+                        case .success(let respData):
+                            DispatchQueue.main.async {
+                                if respData.status ?? false {
+                                    print("Booked Seat data recieved \(respData.data?.count)")
+                                    if let bookedSeatData = respData.data {
+                                        self.bookedSeats = bookedSeatData
+                                        self.getSeatMasterData()
+                                    }
+                                }
+                            }
+            
+                        case .failure(let error):
+                            print("Something went wrong SeatLayoutModel@\(#line)")
+                        }
+                    
+                }
+                
+                
+                
+            }
             
         }
+        
+//        APIService.shared.makeApiTypeRequest(url: url, param: nil, methodType: .get, expecting: BookedSeats.self) { result, data in
+//
+//            DispatchQueue.main.async {
+//                self.isLoading = false
+//            }
+//
+//
+//            switch result {
+//            case .success(let respData):
+//                DispatchQueue.main.async {
+//                    if respData.status ?? false {
+//                        print("Booked Seat data recieved \(respData.data?.count)")
+//                        if let bookedSeatData = respData.data {
+//                            self.bookedSeats = bookedSeatData
+//                            self.getSeatMasterData()
+//                        }
+//                    }
+//                }
+//
+//            case .failure(let error):
+//                print("Something went wrong")
+//            }
+//
+//
+//        }
     }
     
     

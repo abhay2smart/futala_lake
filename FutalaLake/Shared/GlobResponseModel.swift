@@ -6,7 +6,7 @@
 //
 
 import Foundation
-class ResponseModel: Codable {
+class GlobResponseModel: Codable {
     var status: Bool?
     var error: String?
     

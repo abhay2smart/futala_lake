@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct UpcomingEventsView: View {
+    @EnvironmentObject var session: SessionManager
+    @State var isView1Active: Bool = false
     
     var body: some View {
         NavigationView {
@@ -21,11 +23,24 @@ struct UpcomingEventsView: View {
                             .padding(.top, 20)
                         
                         ForEach(1..<2) { index in
-                            NavigationLink {
-                                DateTimeSelectionView()
-                            } label: {
+                            
+                            NavigationLink(destination: DateTimeSelectionView(), isActive: $isView1Active) {
                                 UpcomingEventCellView()
-                            }.navigationTitle("Booking")
+                            }
+                            .navigationTitle("Booking")
+                            .onReceive(self.session.$moveToDashboard) { moveToDashboard in
+                                if moveToDashboard {
+                                    print("Move to dashboard: \(moveToDashboard)")
+                                    self.isView1Active = false
+                                    //self.session.moveToDashboard = false
+                                }
+                            }
+                            
+//                            NavigationLink {
+//                                DateTimeSelectionView()
+//                            } label: {
+//                                UpcomingEventCellView()
+//                            }.navigationTitle("Booking")
                             
                         }
                         

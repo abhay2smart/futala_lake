@@ -33,8 +33,9 @@ struct SeatSelectionView: View {
     private var showStartTime: String
     private var showEndTime: String
     
-    
-    init(showDate: Date, showTimeID: String, showDayID: String, showStartTime: String, showEndTime: String) {
+    private var seatInventoryData:[SeatInventoryData] = [SeatInventoryData]()
+    init(showDate: Date, showTimeID: String, showDayID: String, showStartTime: String, showEndTime: String, seatInventoryData: [SeatInventoryData]) {
+        self.seatInventoryData = seatInventoryData
         let dateFormatter = DateFormatter()
         // Set Date Format
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -46,6 +47,7 @@ struct SeatSelectionView: View {
         self.showDayID  = showDayID
         self.showStartTime  = showStartTime
         self.showEndTime  = showEndTime
+        
         
     }
     
@@ -158,6 +160,10 @@ struct SeatSelectionView: View {
                 }
                 
                 
+                Image("wave")
+                    .padding(.vertical)
+                
+                
                 ScrollView {
                     
                     ScrollView(.horizontal) {
@@ -181,45 +187,29 @@ struct SeatSelectionView: View {
                     
                     
                     // color indicator
-                    HStack(alignment: .top, spacing: 10) {
-                        Rectangle()
-                            .fill(.purple)
-                            .frame(width: 18, height: 18)
-                        
-                        Text("Booked")
-                            .font(.system(size: 15, weight: .regular, design: .default))
-                            .foregroundColor(.black)
-                        
-                        Spacer()
-                        
-                        Rectangle()
-                            .fill(.green)
-                            .frame(width: 18, height: 18)
-                        
-                        Text("Selected")
-                            .font(.system(size: 15, weight: .regular, design: .default))
-                            .foregroundColor(.black)
-                        
-                        Spacer()
-                        
-                        Text("VIP")
-                            .font(.system(size: 15, weight: .regular, design: .default))
-                            .foregroundColor(.black)
-                        
-                        Spacer()
-                        
-                        Rectangle()
-                            .fill(AppTheme.appThemeOrange)
-                            .frame(width: 18, height: 18)
-                        
-                        Text("Classic")
-                            .font(.system(size: 15, weight: .regular, design: .default))
-                            .foregroundColor(.black)
-                        
-                        
+                    
+                    ScrollView(.horizontal) {
+                        HStack(alignment: .top, spacing: 10) {
+                            
+                            ForEach(0..<(seatInventoryData.count)) { index in
+                                Rectangle()
+                                    .fill(AppTheme.SeatColor.isColorMatched(colorName: seatInventoryData[index].colorName ?? ""))
+                                    .frame(width: 18, height: 18)
+                                
+                                Text(seatInventoryData[index].seatType ?? "")
+                                //Text(seatInventoryData[index].colorName ?? "")
+                                    .font(.system(size: 15, weight: .regular, design: .default))
+                                    .foregroundColor(.black)
+                                
+                                Spacer()
+                            }
+                            
+                        }
+                        .padding(.horizontal, 18)
+                        .padding(.vertical, 10)
                     }
-                    .padding(.horizontal, 18)
-                    .padding(.vertical, 10)
+                    
+                    
                     
                     // Submit button
                     
@@ -250,13 +240,13 @@ struct SeatSelectionView: View {
                         } label: {
                             Text("Book Ticket")
                             .modifier(CustomButtonModifiers())
-                        }
+                        }.padding(.top, 40)
                         
                         NavigationLink(isActive: $seatLayoutViewModel.shouldMoveToCheckoutView) {
                             CheckoutVIew(bookingData: seatLayoutViewModel.submitResponseData, dataDic: seatLayoutViewModel.bookedDataDic)
                         } label: {
                             
-                        }
+                        }.navigationTitle("Seat Layout")
                     }
                     
                     Spacer()
@@ -303,6 +293,6 @@ struct SeatSelectionView: View {
 
 struct SeatSelectionView_Previews: PreviewProvider {
     static var previews: some View {
-        SeatSelectionView(showDate: Date(), showTimeID: "", showDayID: "", showStartTime: "", showEndTime: "")
+        SeatSelectionView(showDate: Date(), showTimeID: "", showDayID: "", showStartTime: "", showEndTime: "", seatInventoryData: [SeatInventoryData()])
     }
 }

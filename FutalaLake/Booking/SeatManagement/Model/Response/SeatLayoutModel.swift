@@ -62,6 +62,7 @@ class Seats : ObservableObject, Codable, Identifiable {
     let seatTypeID : Int?
     let seatType : String?
     let status : Int?
+    let colorName:String?
     
     @Published var color: Color = AppTheme.SeatColor.defaultColor
     
@@ -107,6 +108,7 @@ class Seats : ObservableObject, Codable, Identifiable {
         case seatTypeID = "seatTypeID"
         case seatType = "seatType"
         case status = "status"
+        case colorName = "colorName"
     }
     
     private func setVars() {
@@ -127,11 +129,17 @@ class Seats : ObservableObject, Codable, Identifiable {
                 if isSelected {
                     color = AppTheme.SeatColor.selected
                 } else {
-                    if seatType ==  SeatType.vip.rawValue {
-                        color = AppTheme.SeatColor.vip
-                    } else if seatType ==  SeatType.classic.rawValue {
-                        color = AppTheme.SeatColor.classic
+                    for color in AppTheme.SeatColor.colorList {
+                        if color.key.lowercased() == colorName?.lowercased() {
+                            self.color = color.color
+                        }
                     }
+                    
+//                    if seatType ==  SeatType.vip.rawValue {
+//                        color = AppTheme.SeatColor.vip
+//                    } else if seatType ==  SeatType.classic.rawValue {
+//                        color = AppTheme.SeatColor.classic
+//                    }
                 }
             }
         }
@@ -145,8 +153,12 @@ class Seats : ObservableObject, Codable, Identifiable {
         gateNumber = try values.decodeIfPresent(String.self, forKey: .gateNumber)
         seatTypeID = try values.decodeIfPresent(Int.self, forKey: .seatTypeID)
         seatType = try values.decodeIfPresent(String.self, forKey: .seatType)
+        colorName = try values.decodeIfPresent(String.self, forKey: .colorName)
         status = try values.decodeIfPresent(Int.self, forKey: .status)
+        
         setVars()
+        
+        
         
     }
 

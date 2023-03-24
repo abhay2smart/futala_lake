@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		171575072963FBE10004F2F8 /* CheckoutVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171575062963FBE10004F2F8 /* CheckoutVIew.swift */; };
 		1715750D296428990004F2F8 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1715750C296428990004F2F8 /* ToastView.swift */; };
+		171B402F29CD732400743095 /* SeatInventoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171B402E29CD732400743095 /* SeatInventoryModel.swift */; };
+		171B403129CDCA0D00743095 /* QRSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171B403029CDCA0D00743095 /* QRSubView.swift */; };
+		1724EEA829CC6DDB00930830 /* UpdatePaymentStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1724EEA729CC6DDB00930830 /* UpdatePaymentStatusModel.swift */; };
+		1733F8E229CAFBBF00D97F2E /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1733F8E129CAFBBF00D97F2E /* SessionManager.swift */; };
+		1733F8E529CB1AD300D97F2E /* PaymentSuccessAlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1733F8E429CB1AD300D97F2E /* PaymentSuccessAlertViewModel.swift */; };
+		1733F8E829CB1CB100D97F2E /* QRModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1733F8E729CB1CB100D97F2E /* QRModelData.swift */; };
 		173A59AF29B0732C0037AF51 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A59AE29B0732C0037AF51 /* Loader.swift */; };
 		173A59B129B0A3ED0037AF51 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A59B029B0A3ED0037AF51 /* Constants.swift */; };
 		173A59B329B0A53F0037AF51 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A59B229B0A53F0037AF51 /* APIService.swift */; };
@@ -26,7 +32,7 @@
 		1753DB8E29C43755008E3078 /* CommonUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1753DB8D29C43755008E3078 /* CommonUtil.swift */; };
 		1753DB9229C46BDA008E3078 /* PaymentSuccessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1753DB9129C46BDA008E3078 /* PaymentSuccessModel.swift */; };
 		1753DB9529C46C12008E3078 /* PaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1753DB9429C46C12008E3078 /* PaymentViewModel.swift */; };
-		1753DB9729C47FB6008E3078 /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1753DB9629C47FB6008E3078 /* ResponseModel.swift */; };
+		1753DB9729C47FB6008E3078 /* GlobResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1753DB9629C47FB6008E3078 /* GlobResponseModel.swift */; };
 		17545D332942F0BD003E3724 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17545D322942F0BD003E3724 /* CustomTextField.swift */; };
 		17545D362942FA05003E3724 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17545D352942FA05003E3724 /* AppTheme.swift */; };
 		17545D392942FB2B003E3724 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17545D382942FB2B003E3724 /* Extensions.swift */; };
@@ -65,7 +71,6 @@
 		17DFCA3629ACB6C0005E5DE5 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DFCA3529ACB6C0005E5DE5 /* CustomError.swift */; };
 		17E97DD2295DACC1007FC9C0 /* PayNowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E97DD1295DACC1007FC9C0 /* PayNowView.swift */; };
 		17F5134D29B1C5A3004A7833 /* OTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F5134C29B1C5A3004A7833 /* OTPViewModel.swift */; };
-		17F5135029B1E606004A7833 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F5134F29B1E606004A7833 /* SessionManager.swift */; };
 		17FC7F972959BF5F0066D67B /* BookingHistoryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC7F962959BF5F0066D67B /* BookingHistoryCellView.swift */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +94,12 @@
 /* Begin PBXFileReference section */
 		171575062963FBE10004F2F8 /* CheckoutVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutVIew.swift; sourceTree = "<group>"; };
 		1715750C296428990004F2F8 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		171B402E29CD732400743095 /* SeatInventoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatInventoryModel.swift; sourceTree = "<group>"; };
+		171B403029CDCA0D00743095 /* QRSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRSubView.swift; sourceTree = "<group>"; };
+		1724EEA729CC6DDB00930830 /* UpdatePaymentStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePaymentStatusModel.swift; sourceTree = "<group>"; };
+		1733F8E129CAFBBF00D97F2E /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		1733F8E429CB1AD300D97F2E /* PaymentSuccessAlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSuccessAlertViewModel.swift; sourceTree = "<group>"; };
+		1733F8E729CB1CB100D97F2E /* QRModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRModelData.swift; sourceTree = "<group>"; };
 		173A59AE29B0732C0037AF51 /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		173A59B029B0A3ED0037AF51 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		173A59B229B0A53F0037AF51 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
@@ -106,7 +117,7 @@
 		1753DB8D29C43755008E3078 /* CommonUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonUtil.swift; sourceTree = "<group>"; };
 		1753DB9129C46BDA008E3078 /* PaymentSuccessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSuccessModel.swift; sourceTree = "<group>"; };
 		1753DB9429C46C12008E3078 /* PaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewModel.swift; sourceTree = "<group>"; };
-		1753DB9629C47FB6008E3078 /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
+		1753DB9629C47FB6008E3078 /* GlobResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobResponseModel.swift; sourceTree = "<group>"; };
 		17545D322942F0BD003E3724 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		17545D352942FA05003E3724 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		17545D382942FB2B003E3724 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -148,7 +159,6 @@
 		17DFCA3529ACB6C0005E5DE5 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		17E97DD1295DACC1007FC9C0 /* PayNowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayNowView.swift; sourceTree = "<group>"; };
 		17F5134C29B1C5A3004A7833 /* OTPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewModel.swift; sourceTree = "<group>"; };
-		17F5134F29B1E606004A7833 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		17FC7F962959BF5F0066D67B /* BookingHistoryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingHistoryCellView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -207,9 +217,43 @@
 		1715750E296431980004F2F8 /* Alert */ = {
 			isa = PBXGroup;
 			children = (
+				1733F8E629CB1C9800D97F2E /* Model */,
+				1733F8E329CB1AB300D97F2E /* ViewModel */,
 				173AB868296542D400B591A4 /* PaymentSuccessAlertView.swift */,
 			);
 			path = Alert;
+			sourceTree = "<group>";
+		};
+		171B402C29CD730A00743095 /* Extras */ = {
+			isa = PBXGroup;
+			children = (
+				171B402D29CD731300743095 /* Model */,
+			);
+			path = Extras;
+			sourceTree = "<group>";
+		};
+		171B402D29CD731300743095 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				171B402E29CD732400743095 /* SeatInventoryModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1733F8E329CB1AB300D97F2E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1733F8E429CB1AD300D97F2E /* PaymentSuccessAlertViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1733F8E629CB1C9800D97F2E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1733F8E729CB1CB100D97F2E /* QRModelData.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		173A59B429B0A66C0037AF51 /* LoginModel */ = {
@@ -248,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				173AB86D296589F100B591A4 /* QRView.swift */,
+				171B403029CDCA0D00743095 /* QRSubView.swift */,
 			);
 			path = QR;
 			sourceTree = "<group>";
@@ -291,6 +336,7 @@
 			isa = PBXGroup;
 			children = (
 				1753DB9129C46BDA008E3078 /* PaymentSuccessModel.swift */,
+				1724EEA729CC6DDB00930830 /* UpdatePaymentStatusModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -394,7 +440,7 @@
 				17DFCA3529ACB6C0005E5DE5 /* CustomError.swift */,
 				173A59B029B0A3ED0037AF51 /* Constants.swift */,
 				173A59B229B0A53F0037AF51 /* APIService.swift */,
-				1753DB9629C47FB6008E3078 /* ResponseModel.swift */,
+				1753DB9629C47FB6008E3078 /* GlobResponseModel.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -517,7 +563,7 @@
 		17A585E12935FF2B00365D71 /* FutalaLake */ = {
 			isa = PBXGroup;
 			children = (
-				17F5134E29B1E606004A7833 /* Manager */,
+				171B402C29CD730A00743095 /* Extras */,
 				173A59BB29B0ACD20037AF51 /* Helper */,
 				171575042963FA330004F2F8 /* History */,
 				17831DCD2955C533005C36D0 /* Profile */,
@@ -569,6 +615,7 @@
 		17A5860C2935FF7300365D71 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				1733F8E129CAFBBF00D97F2E /* SessionManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -692,15 +739,6 @@
 				17F5134C29B1C5A3004A7833 /* OTPViewModel.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		17F5134E29B1E606004A7833 /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				17F5134F29B1E606004A7833 /* SessionManager.swift */,
-			);
-			name = Manager;
-			path = "../../NewPractices😁/NewSwifUIAPiCalls/NewSwifUIAPiCalls/Manager";
 			sourceTree = "<group>";
 		};
 		17FC7F952959BF490066D67B /* Cell */ = {
@@ -846,11 +884,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				171B403129CDCA0D00743095 /* QRSubView.swift in Sources */,
 				17DFCA3629ACB6C0005E5DE5 /* CustomError.swift in Sources */,
 				173E4CBD29C079140004EA52 /* BookedSeatModel.swift in Sources */,
 				17A585E52935FF2B00365D71 /* ContentView.swift in Sources */,
 				179E088F29B5F26300AA4541 /* GetTokenModel.swift in Sources */,
 				17DDFC1129530F1500D7A5C9 /* UpcomcommingbookingStatusCell.swift in Sources */,
+				171B402F29CD732400743095 /* SeatInventoryModel.swift in Sources */,
 				173A59BD29B0ACDE0037AF51 /* KeychainHelper.swift in Sources */,
 				173A59BA29B0A6ED0037AF51 /* LoginResponseModel.swift in Sources */,
 				177B40BB2941EBAF00EDF0F0 /* LaunchView.swift in Sources */,
@@ -864,13 +904,13 @@
 				17545D362942FA05003E3724 /* AppTheme.swift in Sources */,
 				17A585E32935FF2B00365D71 /* FutalaLakeApp.swift in Sources */,
 				173AB869296542D400B591A4 /* PaymentSuccessAlertView.swift in Sources */,
+				1733F8E529CB1AD300D97F2E /* PaymentSuccessAlertViewModel.swift in Sources */,
 				171575072963FBE10004F2F8 /* CheckoutVIew.swift in Sources */,
 				17D80F61296296C300D861FF /* SeatSelectionView.swift in Sources */,
 				17831DD02955C551005C36D0 /* ProfileView.swift in Sources */,
 				17D80F28295EB3FC00D861FF /* DateTimeSelectionView.swift in Sources */,
 				17DFCA3429ACB62F005E5DE5 /* LoginVM.swift in Sources */,
-				1753DB9729C47FB6008E3078 /* ResponseModel.swift in Sources */,
-				17F5135029B1E606004A7833 /* SessionManager.swift in Sources */,
+				1753DB9729C47FB6008E3078 /* GlobResponseModel.swift in Sources */,
 				1753DB9529C46C12008E3078 /* PaymentViewModel.swift in Sources */,
 				17D80F23295EB20500D861FF /* CustomCalendarView.swift in Sources */,
 				1746D22929C3160C000385CA /* SubmitBookSeatModel.swift in Sources */,
@@ -884,9 +924,12 @@
 				179E088C29B5E51D00AA4541 /* DateTimeSelectionViewModel.swift in Sources */,
 				17545D332942F0BD003E3724 /* CustomTextField.swift in Sources */,
 				17FC7F972959BF5F0066D67B /* BookingHistoryCellView.swift in Sources */,
+				1724EEA829CC6DDB00930830 /* UpdatePaymentStatusModel.swift in Sources */,
 				1753DB8E29C43755008E3078 /* CommonUtil.swift in Sources */,
+				1733F8E229CAFBBF00D97F2E /* SessionManager.swift in Sources */,
 				173A59AF29B0732C0037AF51 /* Loader.swift in Sources */,
 				1715750D296428990004F2F8 /* ToastView.swift in Sources */,
+				1733F8E829CB1CB100D97F2E /* QRModelData.swift in Sources */,
 				17831DC72955BCFA005C36D0 /* TopNavItemView.swift in Sources */,
 				174F1BCF295B432D00DAC0D2 /* CancelTicketConfirmAlertView.swift in Sources */,
 				17F5134D29B1C5A3004A7833 /* OTPViewModel.swift in Sources */,

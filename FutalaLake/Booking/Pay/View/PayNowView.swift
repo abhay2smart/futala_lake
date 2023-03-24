@@ -180,10 +180,10 @@ struct PayNowView: View {
                     }
                     
                     NavigationLink(isActive: $paymentViewModel.shouldMoveToQRScreen) {
-                        PaymentSuccessAlertView()
+                        PaymentSuccessAlertView(data: dicData, bookingId: paymentViewModel.bookingID )
                     } label: {
                         
-                    }
+                    }.navigationTitle("Payment")
                 }
                 
                 

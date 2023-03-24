@@ -69,24 +69,24 @@ class APIService {
                 }
                 
 //                if let data = data {
-//                        do {
-//                            let a = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-//                            print("check \(a)")
-//                        } catch {
-//                            print("ERROR \(error.localizedDescription)")
-//                        }
+//                    do {
+//                        let a = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+//                        print("APIService->String JSON DATA:: \(a)")
+//                    } catch {
+//                        print("Error APIService@\(#line)-> \(error.localizedDescription)")
 //                    }
+//                }
                 
                 
                 if let data = data {
                     if let httpStatus = response as? HTTPURLResponse {
-                        print("Status code::: \(httpStatus.statusCode)")
+                        print("APIService->Status code::: \(httpStatus.statusCode)")
                         switch httpStatus.statusCode {
                         case 400:
                             completion(.failure(CustomAPIError.forbidden), data)
                         case 200:
                             let resp = String(decoding: data, as: UTF8.self)
-                            print("JSON Response: \(resp)")
+                            print("APIService->JSON Response: \(resp)")
                             let respObj = try JSONDecoder().decode(T.self, from: data)
                             completion(.success(respObj), data)
                         case 500:
@@ -102,11 +102,12 @@ class APIService {
                     
                 } else {
                     completion(.failure(CustomAPIError.unknown), data)
-                    print("no data found")
+                    print("Error APIService@\(#line)-> UNKNOWN")
                 }
             } catch(let error) {
                 completion(.failure(CustomAPIError.unknown), nil)
-                print("Error A123::: \(error.localizedDescription)")
+                print("Error APIService@\(#line)-> \(error.localizedDescription)")
+                
             }
         }.resume()
         
@@ -121,7 +122,7 @@ class APIService {
         methodType: HttpMethodType,
         expecting: T.Type,
         passToken: Bool = true,
-        completion: @escaping ((Bool), _ data:Data?)->Void) {
+        completion: @escaping ((Bool), (String), _ data:Data?)->Void) {
             
             guard let url = URL(string: url) else {
                 return
@@ -156,7 +157,7 @@ class APIService {
             do {
                 
                 if let error = error {
-                    completion(false, data)
+                    completion(false, "\(error.localizedDescription)",data)
                     return
                 }
                 
@@ -175,30 +176,33 @@ class APIService {
                         print("Status code::: \(httpStatus.statusCode)")
                         switch httpStatus.statusCode {
                         case 400:
-                            completion(false, data)
+                            completion(false, "statusCode 400",data)
+                            print("Error APIService@\(#line)-> statusCode 400")
                         case 200:
-                            let resp = String(decoding: data, as: UTF8.self)
-                            print("JSON Response: \(resp)")
-                            let respObj = try JSONDecoder().decode(T.self, from: data)
-                            completion(true, data)
+                            //let resp = String(decoding: data, as: UTF8.self)
+                            //print("JSON Response: \(resp)")
+                            //let respObj = try JSONDecoder().decode(T.self, from: data)
+                            completion(true, "success", data)
                         case 500:
                             // token expired
                             DispatchQueue.main.async {
                                 NotificationCenter.default.post(name: Notification.Name("test.token.expired"), object: nil)
                             }
-                            completion(false, data)
+                            completion(false, "statusCode 500", data)
+                            print("Error APIService@\(#line)-> statusCode 500")
                         default:
-                            completion(false, data)
+                            completion(false, "unknown statusCode" ,data)
+                            print("Error APIService@\(#line)-> unknown statusCode")
                         }
                     }
                     
                 } else {
-                    completion(false, data)
+                    completion(false, "unknown error:: APIService", data)
                     print("no data found")
+                    print("Error APIService@\(#line)-> unknown error")
                 }
             } catch(let error) {
-                completion(false, nil)
-                print("Error A123::: \(error.localizedDescription)")
+                print("Error APIService@\(#line)-> \(error.localizedDescription)")
             }
         }.resume()
         
@@ -210,6 +214,14 @@ class APIService {
         data: Data,
         expecting: T.Type,
         completion: @escaping (Result<T, Error>, _ data:Data?)->Void) {
+            
+            do {
+                let a = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                print("APIService->String JSON DATA:: \(a)")
+            } catch {
+                print("Error APIService@\(#line)-> \(error.localizedDescription)")
+            }
+            
             do {
                 let respObj = try JSONDecoder().decode(T.self, from: data)
                 completion(.success(respObj), data)
@@ -218,6 +230,7 @@ class APIService {
             }
             
         }
+    
     
 }
 

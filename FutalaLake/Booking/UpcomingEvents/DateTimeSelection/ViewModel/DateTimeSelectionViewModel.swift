@@ -11,6 +11,8 @@ class DateTimeSelectionViewModel: ObservableObject {
     @Published var data: [DateTimeSelectionModelData]?
     @Published private (set) var  shows:[Shows]?
     
+    @Published var  seatInventoryData = [SeatInventoryData]()
+    
     @Published var isLoading = false
     
     //API Calls
@@ -53,10 +55,7 @@ class DateTimeSelectionViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     if respData.status ?? false {
                         self.data = respData.data
-                        //self.shows = respData.data?.first?.shows
-                        print("Abhay88 \(respData.data?.first?.shows?.count)")
                         self.shows = respData.data?.first?.shows
-                        //print()
                     }
                     
                 }
@@ -72,6 +71,47 @@ class DateTimeSelectionViewModel: ObservableObject {
                     print("Something went wrong34 \(error)")
                 }
             }
+            
+        }
+    }
+    
+    // Get all seat colors
+    func getAllSeatColor() {
+        isLoading = true
+        let url = Constants.baseUrl + Constants.API.seatInventory
+        
+        APIService.shared.makeApiTypeRequest2(url: url, param: nil, methodType: .get, expecting: GlobResponseModel.self) { resultStatus, error, data  in
+            
+            DispatchQueue.main.async {
+                self.isLoading = false
+            }
+            
+            if !resultStatus {
+                print("something went wrong:: SeatLayoutViewModel \(#line)")
+                return
+            }
+            
+            
+            guard let data = data else {
+                return
+            }
+            
+            
+            APIService.shared.parseModel(data: data, expecting: SeatInventoryModel.self) { result, data in
+                switch result {
+                    case .success(let respData):
+                    DispatchQueue.main.async {
+                        if let data = respData.data {
+                            self.seatInventoryData = data
+                        }
+                        
+                    }
+                    
+                    case .failure(let error):
+                        print("Something went wrong DateTimeSelectionViewModel@\(#line)")
+                }
+            }
+            
             
         }
     }
