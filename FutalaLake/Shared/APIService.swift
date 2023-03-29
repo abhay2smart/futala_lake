@@ -192,7 +192,9 @@ class APIService {
                             print("Error APIService@\(#line)-> statusCode 500")
                         default:
                             completion(false, "unknown statusCode" ,data)
-                            print("Error APIService@\(#line)-> unknown statusCode")
+                            print("Error APIService@\(#line)-> out of status statusCode:: \(httpStatus.statusCode)")
+                            let resp = String(decoding: data, as: UTF8.self)
+                            print("JSON Response3e423: \(resp)")
                         }
                     }
                     
@@ -227,6 +229,7 @@ class APIService {
                 completion(.success(respObj), data)
             } catch {
                 completion(.failure(CustomAPIError.unknown), nil)
+                print("Error APIService@\(#line)-> \(error.localizedDescription)")
             }
             
         }

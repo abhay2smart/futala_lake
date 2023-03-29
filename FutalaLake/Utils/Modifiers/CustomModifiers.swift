@@ -11,12 +11,12 @@ struct CustomButtonModifiers: ViewModifier {
     func body(content: Content) -> some View {
         content
             .frame(maxWidth: .infinity)
-            .frame(height: 50)
+            .frame(height: 45)
             .foregroundColor(.white)
             .background(AppTheme.appThemeOrange)
             .clipShape(Capsule())
             .padding(.horizontal)
-            .font(.system(size: 25, weight: .regular, design: .default))
+            .font(.system(size: 23, weight: .regular, design: .default))
     }
 }
 

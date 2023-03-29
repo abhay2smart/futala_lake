@@ -103,6 +103,7 @@ class DateTimeSelectionViewModel: ObservableObject {
                     DispatchQueue.main.async {
                         if let data = respData.data {
                             self.seatInventoryData = data
+                            UserDefaults.standard.setCodableObject(data, forKey: Constants.colorKey)
                         }
                         
                     }

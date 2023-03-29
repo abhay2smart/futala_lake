@@ -62,6 +62,8 @@ struct QRSubView: View {
                                     .font(.system(size: 17, weight: .regular, design: .default))
                                     .foregroundColor(.black)
                                 
+                                Divider()
+                                
                                 if isSeating {
                                     HStack(spacing: 20) {
                                         Text("Seat No./Nos")
@@ -71,6 +73,8 @@ struct QRSubView: View {
                                         .font(.system(size: 17, weight: .regular, design: .default))
                                         .foregroundColor(.black)
                                     
+                                    Divider()
+                                    
                                     HStack(spacing: 20) {
                                         Text("Seat type")
                                         Spacer()
@@ -78,6 +82,8 @@ struct QRSubView: View {
                                     }.multilineTextAlignment(.center)
                                         .font(.system(size: 17, weight: .regular, design: .default))
                                         .foregroundColor(.black)
+                                    
+                                    Divider()
                                     
                                     HStack(spacing: 20) {
                                         Text("Toat Seats")
@@ -87,6 +93,8 @@ struct QRSubView: View {
                                         .font(.system(size: 17, weight: .regular, design: .default))
                                         .foregroundColor(.black)
                                     
+                                    //Divider()
+                                    
                                 } else {
                                     HStack(spacing: 20) {
                                         Text("Standing")
@@ -95,7 +103,11 @@ struct QRSubView: View {
                                     }.multilineTextAlignment(.center)
                                         .font(.system(size: 17, weight: .regular, design: .default))
                                         .foregroundColor(.black)
+                                    
+                                    //Divider()
                                 }
+                                
+                                Divider()
                                 
                                 
                                 
@@ -107,6 +119,8 @@ struct QRSubView: View {
                                     .font(.system(size: 17, weight: .regular, design: .default))
                                     .foregroundColor(.black)
                                 
+                                Divider()
+                                
                                 HStack {
                                     Text("Show Date")
                                     Spacer()
@@ -115,6 +129,8 @@ struct QRSubView: View {
                                 }.multilineTextAlignment(.center)
                                     .font(.system(size: 17, weight: .regular, design: .default))
                                     .foregroundColor(.black)
+                                
+                                Divider()
                                 
                                 HStack {
                                     Text("Total")

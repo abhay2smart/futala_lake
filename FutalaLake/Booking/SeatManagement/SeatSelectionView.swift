@@ -161,7 +161,10 @@ struct SeatSelectionView: View {
                 
                 
                 Image("wave")
+                    .resizable()
+                    .frame(width: (UIScreen.main.bounds.width - 40), height: 40)
                     .padding(.vertical)
+                    
                 
                 
                 ScrollView {
@@ -230,7 +233,7 @@ struct SeatSelectionView: View {
                             seatLayoutViewModel.standingChildCount = self.noOfChildren
                             seatLayoutViewModel.showStartTime = self.showStartTime
                             seatLayoutViewModel.showEndTime = self.showEndTime
-                            if seatLayoutViewModel.validate() {
+                            if seatLayoutViewModel.validate(isSeating: self.isSeating) {
                                 seatLayoutViewModel.submitAction()
                             }
                             

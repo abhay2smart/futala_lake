@@ -41,3 +41,19 @@ public extension UIColor {
         return NSString(format: "#%02lX%02lX%02lX", lroundf(Float(r * 255)), lroundf(Float(g * 255)), lroundf(Float(b * 255))) as String
     }
 }
+
+extension UserDefaults {
+  func codableObject<T : Codable>(dataType: T.Type, key: String) -> T? {
+    guard let userDefaultData = data(forKey: key) else {
+      return nil
+    }
+    return try? JSONDecoder().decode(T.self, from: userDefaultData)
+  }
+}
+
+extension UserDefaults {
+  func setCodableObject<T: Codable>(_ data: T?, forKey defaultName: String) {
+    let encoded = try? JSONEncoder().encode(data)
+    set(encoded, forKey: defaultName)
+  }
+}

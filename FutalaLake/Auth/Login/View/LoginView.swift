@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State var mobileNumber:String = "8173954048"
+    //@State var mobileNumber:String = "8173954048"
+    @State var mobileNumber:String = ""
     
     @State var shouldShowDetails:Bool = false
     @Binding var isLogggedIn : Bool
@@ -27,7 +28,7 @@ struct LoginView: View {
     
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .top) {
 //            AppTheme.appThemeSkyBlue
 //                .edgesIgnoringSafeArea(.all)
 //
@@ -42,12 +43,13 @@ struct LoginView: View {
 //                .edgesIgnoringSafeArea(.all)
             
             AppTheme.appThemeSkyBlue
-                .edgesIgnoringSafeArea(.all)
-                .overlay(alignment: .topTrailing) {
-                    Image("login_top_img")
-                    
-                        .padding([.trailing], -20)
-                }
+            .edgesIgnoringSafeArea(.all)
+            
+            Image("login_top_img")
+            
+                .resizable()
+                .scaledToFit()
+                .frame(width: UIScreen.main.bounds.width)
                 .edgesIgnoringSafeArea(.all)
             
             
@@ -66,7 +68,7 @@ struct LoginView: View {
                 
                 
                 
-                Text("Login / Register")
+                Text("Login")
                     .padding(.bottom, 0)
                     .font(.system(size: 20, weight: .medium, design: .default))
                     .foregroundColor(Color.black)

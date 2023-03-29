@@ -8,51 +8,81 @@
 import SwiftUI
 
 struct BookingHistoryCellView: View {
-    @Binding var isCancelConfirmPreseneted: Bool
     @Binding var isTicketInfoPreseneted: Bool
     @Binding var isViewButtonPressed: Bool
+    @Binding var historyDataIndex: Int
+    
+    private var historyData:HistoryData?
+    private var index:Int = 0
+    
+    init(data: HistoryData, historyDataIndex: Binding<Int>,isTicketInfoPreseneted: Binding<Bool>, isViewButtonPressed: Binding<Bool>, index: Int) {
+        self._historyDataIndex = historyDataIndex
+        self.historyData = data
+        self._isTicketInfoPreseneted = isTicketInfoPreseneted
+        self._isViewButtonPressed = isViewButtonPressed
+        self.index = index
+        //self.historyDataIndex = 0
+    }
     var body: some View {
         VStack(alignment: .leading) {
             HStack(alignment: .top, spacing: 0) {
                 VStack(alignment: .center, spacing: 5) {
-                    Text("Show")
-                        .font(.system(size: 17, weight: .regular, design: .default))
+                    Text("Show Time")
                         .foregroundColor(AppTheme.appThemeOrange)
-                    Text("7:00 PM")
+                    Text(CommonUtil.convertTimeTwentyFourIntoTwelve(time: self.historyData?.startTime ?? "") ?? "")
                 }
                 Spacer()
                 
                 VStack(alignment: .center, spacing: 5) {
                     Text("Date")
-                        .font(.system(size: 17, weight: .regular, design: .default))
                         .foregroundColor(AppTheme.appThemeOrange)
-                    
-                    Text("7:00 PM")
+                    Text(self.historyData?.showDate ?? "")
                 }
                 Spacer()
                 
                 VStack(alignment: .center, spacing: 5) {
-                    Text("Ticket")
-                        .font(.system(size: 17, weight: .regular, design: .default))
+                    Text("Ticket ID")
                         .foregroundColor(AppTheme.appThemeOrange)
-                    Text("D3, 34")
+                    Text(self.historyData?.ticketID ?? "")
+                        
                 }
-                Spacer()
-                
-                VStack(alignment: .center, spacing: 5) {
-                    Text("Booking ID")
-                        .font(.system(size: 17, weight: .regular, design: .default))
-                        .foregroundColor(AppTheme.appThemeOrange)
-                    
-                    Text("1219831983")
-                }
-            }
+            }.font(.system(size: 15, weight: .regular, design: .default))
             
             Divider()
                 .padding(.horizontal, 2)
+            
+            HStack {
+                Text("Seat No:")
+                    .foregroundColor(AppTheme.appThemeOrange)
+                Text("\(self.historyData?.getSeatsStr() ?? "")")
+            }.font(.system(size: 15, weight: .regular, design: .default))
+            
+            if (historyData?.standing?.count ?? 0) > 0 {
+                Divider()
+                    .padding(.horizontal, 2)
+                
+                HStack {
+                    Text("Standing Count")
+                        .foregroundColor(AppTheme.appThemeOrange)
+                    Group {
+                        Text("Adult: \(self.historyData?.getAdultCount() ?? 0)")
+                        Text(" | ")
+                        Text("Child: \(self.historyData?.getChildCount() ?? 0)")
+                    }
+                    
+                    
+                }.font(.system(size: 15, weight: .regular, design: .default))
+            }
+            
+            
+            
+            
+            
+            
             HStack {
                 Spacer()
                 Button {
+                    self.historyDataIndex = index
                     isViewButtonPressed = true
                 } label: {
                     Text("View")
@@ -63,18 +93,18 @@ struct BookingHistoryCellView: View {
                 .foregroundColor(.white)
                 .clipShape(Capsule())
                 
-                Button {
-                    //
-                    isCancelConfirmPreseneted = true
-                    //isTicketInfoPreseneted = true
-                } label: {
-                    Text("Cancel")
-                }
-                .padding(5)
-                .padding(.horizontal)
-                .background(AppTheme.appThemeRed)
-                .foregroundColor(.white)
-                .clipShape(Capsule())
+//                Button {
+//                    //
+//                    isCancelConfirmPreseneted = true
+//                    //isTicketInfoPreseneted = true
+//                } label: {
+//                    Text("Cancel")
+//                }
+//                .padding(5)
+//                .padding(.horizontal)
+//                .background(AppTheme.appThemeRed)
+//                .foregroundColor(.white)
+//                .clipShape(Capsule())
 
             }
         }.padding(10)
@@ -96,6 +126,6 @@ struct BookingHistoryCellView: View {
 
 struct BookingHistoryCellView_Previews: PreviewProvider {
     static var previews: some View {
-        BookingHistoryCellView(isCancelConfirmPreseneted: .constant(false), isTicketInfoPreseneted: .constant(false), isViewButtonPressed: .constant(false))
+        BookingHistoryCellView(data: HistoryData(from: nil), historyDataIndex: .constant(0), isTicketInfoPreseneted: .constant(false), isViewButtonPressed: .constant(false), index: 0)
     }
 }

@@ -235,15 +235,19 @@ struct CheckoutVIew: View {
                             .foregroundColor(.black)
                             .padding(.vertical, 5)
                     }
-                
-                    
-
-                    
-                    
-
                 }
                 .padding()
-                .background(Color(UIColor(hexString: "#C0C5F7")))
+                //.background(Color(UIColor(hexString: "#C0C5F7")))
+                .background(
+                 Rectangle()
+                 .fill(.white)
+                 .cornerRadius(12)
+                  .shadow(
+                   color: Color.gray.opacity(0.7),
+                   radius: 8,
+                   x: 0, y: 0)
+                  )
+
                 .cornerRadius(10)
                 .padding()
                 

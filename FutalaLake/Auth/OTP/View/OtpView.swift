@@ -29,29 +29,17 @@ struct OtpView: View {
     
     
     var body: some View {
-        ZStack {
-//            AppTheme.appThemeSkyBlue
-//                .edgesIgnoringSafeArea(.all)
-//
-//                .overlay(alignment: .topTrailing) {
-//                    Image("login_top_img")
-//
-//                        .resizable()
-//                        .padding([.leading, .trailing], -1)
-//                        .frame(height: 250)
-//
-//                }
-//                .edgesIgnoringSafeArea(.all)
-            
+        ZStack (alignment: .top){
+           
             AppTheme.appThemeSkyBlue
-                .edgesIgnoringSafeArea(.all)
-                .overlay(alignment: .topTrailing) {
-                    Image("login_top_img")
-                    
-                        .padding([.trailing], -20)
-                }
-                .edgesIgnoringSafeArea(.all)
+            .edgesIgnoringSafeArea(.all)
             
+            Image("login_top_img")
+            
+                .resizable()
+                .scaledToFit()
+                .frame(width: UIScreen.main.bounds.width)
+                .edgesIgnoringSafeArea(.all)
             
             VStack {
                 VStack(spacing: 4) {
@@ -160,7 +148,9 @@ struct OtpView: View {
                    isShowing: $otpVM.showAlert,
                    duration: Toast.short)
             
+            
             .navigationTitle("") // remove the text for back button on next screen
+            .navigationBarBackButtonHidden(true)
             
             if otpVM.isLoading {
                 Loader()

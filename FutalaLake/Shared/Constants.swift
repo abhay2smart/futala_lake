@@ -9,6 +9,7 @@ import Foundation
 
 struct Constants {
     static let tokenKey = "usertoken"
+    static let colorKey = "colorKey"
     static let baseUrl = "http://220.226.100.106:3001/"
     
     struct API {
@@ -21,6 +22,10 @@ struct Constants {
         static let generateQR = "mobile/bookTicket/generateQRData"
         static let updatePaymentStatus = "mobile/bookticket/updatePaymentStatus"
         static let seatInventory = "user/seatInventory"
+        static let userHistory = "mobile/user/mobileUserHistory"
+        static let cancelTicket = "mobile/bookTicket/updateCancelTicketStatus"
+        
+        
         
         
         

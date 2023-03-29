@@ -62,6 +62,7 @@
 		17AE977029BB376A00F12E78 /* SeatLayoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE976F29BB376A00F12E78 /* SeatLayoutModel.swift */; };
 		17AE977329BB38E800F12E78 /* SeatLayoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE977229BB38E800F12E78 /* SeatLayoutViewModel.swift */; };
 		17BD37892954134700DA2FE9 /* TabContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BD37882954134700DA2FE9 /* TabContainerView.swift */; };
+		17C4047329D4330E006EDF3F /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C4047229D4330E006EDF3F /* TestView.swift */; };
 		17D80F23295EB20500D861FF /* CustomCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D80F22295EB20500D861FF /* CustomCalendarView.swift */; };
 		17D80F28295EB3FC00D861FF /* DateTimeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D80F27295EB3FC00D861FF /* DateTimeSelectionView.swift */; };
 		17D80F61296296C300D861FF /* SeatSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D80F60296296C300D861FF /* SeatSelectionView.swift */; };
@@ -69,6 +70,11 @@
 		17DDFC1129530F1500D7A5C9 /* UpcomcommingbookingStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DDFC1029530F1500D7A5C9 /* UpcomcommingbookingStatusCell.swift */; };
 		17DFCA3429ACB62F005E5DE5 /* LoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DFCA3329ACB62F005E5DE5 /* LoginVM.swift */; };
 		17DFCA3629ACB6C0005E5DE5 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DFCA3529ACB6C0005E5DE5 /* CustomError.swift */; };
+		17E570A129D1569D0011DA87 /* HistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E570A029D1569D0011DA87 /* HistoryModel.swift */; };
+		17E570A329D157570011DA87 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E570A229D157570011DA87 /* HistoryViewModel.swift */; };
+		17E570A529D205310011DA87 /* CancelHistorySeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E570A429D205310011DA87 /* CancelHistorySeat.swift */; };
+		17E570AA29D2C8C30011DA87 /* CancelTicketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E570A929D2C8C30011DA87 /* CancelTicketViewModel.swift */; };
+		17E570AC29D2DDE90011DA87 /* CancelTicketConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E570AB29D2DDE90011DA87 /* CancelTicketConfirmView.swift */; };
 		17E97DD2295DACC1007FC9C0 /* PayNowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E97DD1295DACC1007FC9C0 /* PayNowView.swift */; };
 		17F5134D29B1C5A3004A7833 /* OTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F5134C29B1C5A3004A7833 /* OTPViewModel.swift */; };
 		17FC7F972959BF5F0066D67B /* BookingHistoryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC7F962959BF5F0066D67B /* BookingHistoryCellView.swift */; };
@@ -150,6 +156,7 @@
 		17AE976F29BB376A00F12E78 /* SeatLayoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatLayoutModel.swift; sourceTree = "<group>"; };
 		17AE977229BB38E800F12E78 /* SeatLayoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatLayoutViewModel.swift; sourceTree = "<group>"; };
 		17BD37882954134700DA2FE9 /* TabContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContainerView.swift; sourceTree = "<group>"; };
+		17C4047229D4330E006EDF3F /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		17D80F22295EB20500D861FF /* CustomCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalendarView.swift; sourceTree = "<group>"; };
 		17D80F27295EB3FC00D861FF /* DateTimeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeSelectionView.swift; sourceTree = "<group>"; };
 		17D80F60296296C300D861FF /* SeatSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatSelectionView.swift; sourceTree = "<group>"; };
@@ -157,6 +164,11 @@
 		17DDFC1029530F1500D7A5C9 /* UpcomcommingbookingStatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomcommingbookingStatusCell.swift; sourceTree = "<group>"; };
 		17DFCA3329ACB62F005E5DE5 /* LoginVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = "<group>"; };
 		17DFCA3529ACB6C0005E5DE5 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
+		17E570A029D1569D0011DA87 /* HistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryModel.swift; sourceTree = "<group>"; };
+		17E570A229D157570011DA87 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		17E570A429D205310011DA87 /* CancelHistorySeat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelHistorySeat.swift; sourceTree = "<group>"; };
+		17E570A929D2C8C30011DA87 /* CancelTicketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelTicketViewModel.swift; sourceTree = "<group>"; };
+		17E570AB29D2DDE90011DA87 /* CancelTicketConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelTicketConfirmView.swift; sourceTree = "<group>"; };
 		17E97DD1295DACC1007FC9C0 /* PayNowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayNowView.swift; sourceTree = "<group>"; };
 		17F5134C29B1C5A3004A7833 /* OTPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewModel.swift; sourceTree = "<group>"; };
 		17FC7F962959BF5F0066D67B /* BookingHistoryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingHistoryCellView.swift; sourceTree = "<group>"; };
@@ -190,6 +202,9 @@
 		171575042963FA330004F2F8 /* History */ = {
 			isa = PBXGroup;
 			children = (
+				17E570A629D2C8790011DA87 /* CancelTicket */,
+				17E5709F29D1543E0011DA87 /* ViewModel */,
+				17E5709E29D154330011DA87 /* Model */,
 				17831DD42955C570005C36D0 /* View */,
 				17FC7F952959BF490066D67B /* Cell */,
 			);
@@ -511,7 +526,6 @@
 			children = (
 				174F1BCD295B431400DAC0D2 /* Alert */,
 				17831DD52955C585005C36D0 /* TransanctionView.swift */,
-				174F1BD4295C172100DAC0D2 /* BookedTicketHistoryView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -705,6 +719,50 @@
 			path = VM;
 			sourceTree = "<group>";
 		};
+		17E5709E29D154330011DA87 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				17E570A029D1569D0011DA87 /* HistoryModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		17E5709F29D1543E0011DA87 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				17E570A229D157570011DA87 /* HistoryViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		17E570A629D2C8790011DA87 /* CancelTicket */ = {
+			isa = PBXGroup;
+			children = (
+				17E570A829D2C8A50011DA87 /* ViewModel */,
+				17E570A729D2C8850011DA87 /* VIew */,
+			);
+			path = CancelTicket;
+			sourceTree = "<group>";
+		};
+		17E570A729D2C8850011DA87 /* VIew */ = {
+			isa = PBXGroup;
+			children = (
+				17E570A429D205310011DA87 /* CancelHistorySeat.swift */,
+				17E570AB29D2DDE90011DA87 /* CancelTicketConfirmView.swift */,
+				174F1BD4295C172100DAC0D2 /* BookedTicketHistoryView.swift */,
+				17C4047229D4330E006EDF3F /* TestView.swift */,
+			);
+			path = VIew;
+			sourceTree = "<group>";
+		};
+		17E570A829D2C8A50011DA87 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				17E570A929D2C8C30011DA87 /* CancelTicketViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		17F5134829B1C46B004A7833 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -885,6 +943,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				171B403129CDCA0D00743095 /* QRSubView.swift in Sources */,
+				17E570A529D205310011DA87 /* CancelHistorySeat.swift in Sources */,
 				17DFCA3629ACB6C0005E5DE5 /* CustomError.swift in Sources */,
 				173E4CBD29C079140004EA52 /* BookedSeatModel.swift in Sources */,
 				17A585E52935FF2B00365D71 /* ContentView.swift in Sources */,
@@ -894,8 +953,11 @@
 				173A59BD29B0ACDE0037AF51 /* KeychainHelper.swift in Sources */,
 				173A59BA29B0A6ED0037AF51 /* LoginResponseModel.swift in Sources */,
 				177B40BB2941EBAF00EDF0F0 /* LaunchView.swift in Sources */,
+				17C4047329D4330E006EDF3F /* TestView.swift in Sources */,
+				17E570AC29D2DDE90011DA87 /* CancelTicketConfirmView.swift in Sources */,
 				17545D3E294308CD003E3724 /* OtpView.swift in Sources */,
 				177B40BF2941FB8E00EDF0F0 /* LoginView.swift in Sources */,
+				17E570A329D157570011DA87 /* HistoryViewModel.swift in Sources */,
 				173AB86E296589F100B591A4 /* QRView.swift in Sources */,
 				17831DD62955C585005C36D0 /* TransanctionView.swift in Sources */,
 				17AE977329BB38E800F12E78 /* SeatLayoutViewModel.swift in Sources */,
@@ -923,6 +985,7 @@
 				174F1BD1295BFCF800DAC0D2 /* CancelTicketAlertView.swift in Sources */,
 				179E088C29B5E51D00AA4541 /* DateTimeSelectionViewModel.swift in Sources */,
 				17545D332942F0BD003E3724 /* CustomTextField.swift in Sources */,
+				17E570AA29D2C8C30011DA87 /* CancelTicketViewModel.swift in Sources */,
 				17FC7F972959BF5F0066D67B /* BookingHistoryCellView.swift in Sources */,
 				1724EEA829CC6DDB00930830 /* UpdatePaymentStatusModel.swift in Sources */,
 				1753DB8E29C43755008E3078 /* CommonUtil.swift in Sources */,
@@ -940,6 +1003,7 @@
 				174F1BD3295C0FDA00DAC0D2 /* TicketCancelSuccessAlertView.swift in Sources */,
 				17545D392942FB2B003E3724 /* Extensions.swift in Sources */,
 				17545D4429433829003E3724 /* UpcomingEventCellView.swift in Sources */,
+				17E570A129D1569D0011DA87 /* HistoryModel.swift in Sources */,
 				173A59B129B0A3ED0037AF51 /* Constants.swift in Sources */,
 				17AE976729BB0BDE00F12E78 /* StandingInputDialog.swift in Sources */,
 				17545D412943371A003E3724 /* UpcomingEventsView.swift in Sources */,

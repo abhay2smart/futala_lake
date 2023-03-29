@@ -12,38 +12,57 @@ struct TransanctionView: View {
     @State private var isTicketInfoPreseneted = false
     @State private var isTicketCancelSuccessPreseneted = false
     @State private var isViewButtonPressed = false
+    
+    @State private var historyDataIndex:Int = 0
+    
+    @ObservedObject var historyViewModel = HistoryViewModel()
+    
     var body: some View {
         NavigationView {
             ZStack {
                 ScrollView {
                     VStack {
-                        ForEach(1..<11) { index in
-                            BookingHistoryCellView(isCancelConfirmPreseneted: $isCancelConfirmPreseneted, isTicketInfoPreseneted: $isTicketInfoPreseneted, isViewButtonPressed: $isViewButtonPressed)
+                        
+                        ForEach(Array(historyViewModel.historyData.enumerated()), id: \.offset) { index, element in
+                            BookingHistoryCellView(data: element, historyDataIndex: $historyDataIndex, isTicketInfoPreseneted: $isTicketInfoPreseneted, isViewButtonPressed: $isViewButtonPressed, index: index)
                                 .padding(.horizontal, 15)
                                 .padding(.vertical, 0)
-                            
                         }
+                        
+//                        ForEach(0..<historyViewModel.historyData.count) { index in
+//                            BookingHistoryCellView(isCancelConfirmPreseneted: $isCancelConfirmPreseneted, isTicketInfoPreseneted: $isTicketInfoPreseneted, isViewButtonPressed: $isViewButtonPressed)
+//                                .padding(.horizontal, 15)
+//                                .padding(.vertical, 0)
+//
+//                        }
                         
                     }.padding(.top, 20)
                     
                 }
-                if isCancelConfirmPreseneted {
-                    CancelTicketConfirmAlertView(isPresented: $isCancelConfirmPreseneted, isConfirmPressed: $isTicketInfoPreseneted)
+//                if isCancelConfirmPreseneted {
+//                    CancelTicketConfirmAlertView(isPresented: $isCancelConfirmPreseneted, isConfirmPressed: $isTicketInfoPreseneted)
+//                }
+//
+//                else if isTicketInfoPreseneted {
+//                    // ticket info
+//                    CancelTicketAlertView(isTicketCancelSuccessPreseneted: $isTicketCancelSuccessPreseneted, isTicketInfoPreseneted: $isTicketInfoPreseneted)
+//                }
+//
+//                else if isTicketCancelSuccessPreseneted {
+//                    TicketCancelSuccessAlertView(isGoHomeBtnPressed: $isTicketCancelSuccessPreseneted)
+//                }
+                if historyDataIndex < historyViewModel.historyData.count {
+                    NavigationLink(destination: BookedTicketHistoryView(data: historyViewModel.historyData[historyDataIndex]), isActive: $isViewButtonPressed) {
+                    }.navigationTitle("History") // to change the text on back button on next
                 }
+                 
                 
-                else if isTicketInfoPreseneted {
-                    // ticket info
-                    CancelTicketAlertView(isTicketCancelSuccessPreseneted: $isTicketCancelSuccessPreseneted, isTicketInfoPreseneted: $isTicketInfoPreseneted)
+                if self.historyViewModel.isLoading {
+                    Loader()
                 }
-                
-                else if isTicketCancelSuccessPreseneted {
-                    TicketCancelSuccessAlertView(isGoHomeBtnPressed: $isTicketCancelSuccessPreseneted)
-                }
-                NavigationLink(destination: BookedTicketHistoryView(), isActive: $isViewButtonPressed) {
-                    Text("")
-                }.navigationTitle("History") // to change the text on back button on next screen
                 
             }
+            
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
@@ -57,6 +76,9 @@ struct TransanctionView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     TopNavItemView()
                 }
+            }
+            .onAppear {
+                historyViewModel.fetchHistory()
             }
         }.navigationViewStyle(StackNavigationViewStyle())
         

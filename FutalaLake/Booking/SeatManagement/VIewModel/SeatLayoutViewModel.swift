@@ -296,7 +296,17 @@ class SeatLayoutViewModel: ObservableObject {
     }
     
     
-    func validate()->Bool {
+    func validate(isSeating: Bool)->Bool {
+        if isSeating == false {
+            if (standingAdultCount.isEmpty || standingAdultCount == "0") && (standingChildCount.isEmpty || standingChildCount == "0") {
+                self.errorMessage = "Please enter atleast one standing"
+                self.showAlert = true
+                return false
+            } else {
+                return true
+            }
+        }
+        
         var isValid = false
         for seat in totalSeats {
             if seat.isSelected  {
