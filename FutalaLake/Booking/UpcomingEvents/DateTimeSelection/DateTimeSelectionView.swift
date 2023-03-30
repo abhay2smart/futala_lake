@@ -89,16 +89,16 @@ struct DateTimeSelectionView: View {
                         .modifier(CustomButtonModifiers())
                 }
                 .allowsHitTesting(currentTimeSlotSelected == "" ? false : true)
-                .navigationTitle("Calendar")
+                .navigationTitle("Date & Time")
                 .padding(.top, 30)
                 .padding(.horizontal, 13)
                 .navigationBarTitleDisplayMode(.inline)
                 
-                .toolbar { // <2>
-                    ToolbarItem(placement: .navigationBarTrailing) { // <3>
-                        TopNavItemView()
-                    }
-                }
+//                .toolbar { // <2>
+//                    ToolbarItem(placement: .navigationBarTrailing) { // <3>
+//                        TopNavItemView()
+//                    }
+//                }
             }
             
             if dateTimeSelectionModel.isLoading {

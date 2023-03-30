@@ -330,6 +330,8 @@ class SeatLayoutViewModel: ObservableObject {
         
         let url = Constants.baseUrl + Constants.API.seatBooking + params
         
+        print("aparsm=====\(params)")
+        
         APIService.shared.makeApiTypeRequest2(url: url, param: nil, methodType: .get, expecting: GlobResponseModel.self) { resultStatus, error, data  in
             
             DispatchQueue.main.async {

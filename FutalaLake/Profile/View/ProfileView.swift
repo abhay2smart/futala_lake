@@ -170,11 +170,11 @@ struct ProfileView: View {
                 }
             }
             
-            .toolbar { // <2>
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    TopNavItemView()
-                }
-            }
+//            .toolbar { // <2>
+//                ToolbarItem(placement: .navigationBarTrailing) {
+//                    TopNavItemView()
+//                }
+//            }
             
         }.navigationViewStyle(StackNavigationViewStyle())
     }

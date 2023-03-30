@@ -72,11 +72,11 @@ struct TransanctionView: View {
                 }
             }
             
-            .toolbar { // <2>
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    TopNavItemView()
-                }
-            }
+//            .toolbar { // <2>
+//                ToolbarItem(placement: .navigationBarTrailing) {
+//                    TopNavItemView()
+//                }
+//            }
             .onAppear {
                 historyViewModel.fetchHistory()
             }

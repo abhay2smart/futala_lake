@@ -39,12 +39,12 @@ struct TabContainerView: View {
             
         }
         // top navbar
-        .toolbar {
-            ToolbarItem(placement: .automatic) {
-                TopNavItemView()
-            }
-            
-        }
+//        .toolbar {
+//            ToolbarItem(placement: .automatic) {
+//                TopNavItemView()
+//            }
+//            
+//        }
         // top nav bar
         .navigationBarColor(backgroundColor: AppTheme.appThemeBlue, titleColor: .white)
         .navigationBarTitleDisplayMode(.inline)

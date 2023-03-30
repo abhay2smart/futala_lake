@@ -15,6 +15,12 @@ class OTPViewModel: ObservableObject {
     @Published var errorMessage = ""
     @Published var isLoading = false
     
+    @Published var loginResponseModel = LoginResponseModel()
+    
+    @Published var otp = ""
+    
+    
+    
     
     //@Published var getTokenModel = GetTokenModel()
     
@@ -50,7 +56,7 @@ class OTPViewModel: ObservableObject {
 //    }
     
     
-    func fetchToeken(mobileNumber: String, otp: String) {
+    func fetchToeken(mobileNumber: String) {
         isLoading = true
         let param: [String: Any] = ["mobile": mobileNumber, "otp": Int(otp)]
         let url = Constants.baseUrl + Constants.API.sendOTP
@@ -88,5 +94,34 @@ class OTPViewModel: ObservableObject {
         KeychainHelper.standard.save(data, service: Constants.tokenKey)
     }
     
+    func getOTP(mobileNumber: String) {
+        isLoading = true
+        let param: [String: Any] = ["mobile": mobileNumber]
+        let url = Constants.baseUrl + Constants.API.sendOTP
+        APIService.shared.makeApiTypeRequest(url: url, param: param, methodType: .post, expecting: LoginResponseModel.self, passToken: false) { result, data in
+            
+            DispatchQueue.main.async {
+                self.isLoading = false
+            }
+            
+            
+            switch result {
+            case .success(let respData):
+                DispatchQueue.main.async {
+                    self.loginResponseModel = respData
+                    if let otp = self.loginResponseModel.data?.first?.otp {
+                        self.otp = "\(otp)"
+                    }
+                }
+                
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    print("Something went wrong OTPViewModel \(#line)")
+                }
+            }
+            
+        }
+        
+    }
     
 }

@@ -65,6 +65,99 @@ class HistoryData : Codable, ObservableObject {
         return seatsStr
     }
     
+    func getQRImageForSeating()->Image {
+        
+        let endTime = getFormatteDateObjForTime(time: self.endTime ?? "")
+        let currentTime = getCurrentTime()
+        let ticketDate = getDateFromDateString(date: self.showDate ?? "")
+        
+        print("currentTime \(currentTime)  endTime \(endTime)")
+        
+        
+        if ((isVerifiedSeats == 0 && currentTime > endTime && Date() == ticketDate) || (Date() > ticketDate )){
+            let img = Image("expired-qr-icon")
+            return img
+        }
+        
+        if seatingStatus == 4 {
+            let img = Image("cancelled-qr-icon")
+            return img
+        }
+        
+        if isVerifiedSeats == 1 {
+            let img = Image("verified-qr-icon")
+            return img
+        }
+        
+       
+        let img = UIImage(data: CommonUtil.getQRCodeData(dictionary: ["data": self.encryptedSeatingQRCode ?? ""])!)!
+        return Image(uiImage: img)
+    
+        
+    }
+    
+    
+    
+    
+    func getQRImageForStanding()->Image {
+        
+        let endTime = getFormatteDateObjForTime(time: self.endTime ?? "")
+        let currentTime = getCurrentTime()
+        let ticketDate = getDateFromDateString(date: self.showDate ?? "")
+        
+        
+        
+        if ((isVerifiedStanding == 0 && currentTime > endTime && Date() == ticketDate) || (Date() > ticketDate )){
+            let img = Image("expired-qr-icon")
+            return img
+        }
+        
+        
+        if standingStatus == 4 {
+            let img = Image("cancelled-qr-icon")
+            return img
+        }
+        
+        if isVerifiedStanding == 1 {
+            let img = Image("verified-qr-icon")
+            return img
+        }
+        
+       
+        let img = UIImage(data: CommonUtil.getQRCodeData(dictionary: ["data": self.encryptedStandingQRCode ?? ""])!)!
+        
+        return Image(uiImage: img)
+    
+        
+    }
+    
+    
+    func isCancelButtonHidden()->Bool {
+        let endTime = getFormatteDateObjForTime(time: self.endTime ?? "")
+        let currentTime = getCurrentTime()
+        let ticketDate = getDateFromDateString(date: self.showDate ?? "")
+        
+        if ((isVerifiedSeats == 0 && endTime < currentTime && Date() == ticketDate) || (Date() > ticketDate)) {
+            return true
+        }
+        
+        if ((isVerifiedStanding == 0 && endTime < currentTime && Date() == ticketDate) || (Date() > ticketDate)) {
+            return true
+        }
+        
+        if isVerifiedSeats == 1 {
+            return true
+        }
+        
+        if(bookingStatus == 4){
+            return true
+        }
+        
+        return false
+        
+    }
+    
+    
     func getAdultCount()->Int {
         var adultCount = 0
         for standingItem in standing ?? [] {
@@ -278,5 +371,64 @@ class HistorySeats : Codable, Identifiable, ObservableObject, Hashable  {
         
         
     }
+    
+    //
+    func getCurrentTime() -> Date? {
+        let date = Date()
+        let calender = Calendar.current
+        let components = calender.dateComponents([.year,.month,.day,.hour,.minute,.second], from: date)
+        let hour = components.hour
+        let minute = components.minute
+        let second = components.second
 
+        let today_string = String(hour!)  + ":" + String(minute!) + ":" +  String(second!)
+        
+        let s1 = today_string
+        
+        let f = DateFormatter()
+        f.dateFormat = "HH:mm:ss"
+        return f.date(from: s1)
+        
+
+        //return today_string
+    }
+
+
+}
+
+
+
+func getFormatteDateObjForTime(time: String)->Date {
+    let f = DateFormatter()
+    f.dateFormat = "HH:mm:ss"
+    return f.date(from: time) ?? Date()
+}
+
+func getCurrentTime() -> Date {
+    let date = Date()
+    let calender = Calendar.current
+    let components = calender.dateComponents([.year,.month,.day,.hour,.minute,.second], from: date)
+    let hour = components.hour
+    let minute = components.minute
+    let second = components.second
+
+    let today_string = String(hour!)  + ":" + String(minute!) + ":" +  String(second!)
+    
+    let s1 = today_string
+    
+    let f = DateFormatter()
+    f.dateFormat = "HH:mm:ss"
+    return f.date(from: s1) ?? Date()
+    
+
+    //return today_string
+}
+
+
+func getDateFromDateString(date: String) -> Date {
+      let dateFormatter = DateFormatter()
+      dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+      dateFormatter.dateFormat =  "yyyy-MM-dd"//"yyyy-MM-dd'T'HH:mm:ssZ"
+      let date = dateFormatter.date(from:date) ?? Date()
+    return date
 }

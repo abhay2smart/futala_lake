@@ -62,7 +62,6 @@
 		17AE977029BB376A00F12E78 /* SeatLayoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE976F29BB376A00F12E78 /* SeatLayoutModel.swift */; };
 		17AE977329BB38E800F12E78 /* SeatLayoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE977229BB38E800F12E78 /* SeatLayoutViewModel.swift */; };
 		17BD37892954134700DA2FE9 /* TabContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BD37882954134700DA2FE9 /* TabContainerView.swift */; };
-		17C4047329D4330E006EDF3F /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C4047229D4330E006EDF3F /* TestView.swift */; };
 		17D80F23295EB20500D861FF /* CustomCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D80F22295EB20500D861FF /* CustomCalendarView.swift */; };
 		17D80F28295EB3FC00D861FF /* DateTimeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D80F27295EB3FC00D861FF /* DateTimeSelectionView.swift */; };
 		17D80F61296296C300D861FF /* SeatSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D80F60296296C300D861FF /* SeatSelectionView.swift */; };
@@ -156,7 +155,6 @@
 		17AE976F29BB376A00F12E78 /* SeatLayoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatLayoutModel.swift; sourceTree = "<group>"; };
 		17AE977229BB38E800F12E78 /* SeatLayoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatLayoutViewModel.swift; sourceTree = "<group>"; };
 		17BD37882954134700DA2FE9 /* TabContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContainerView.swift; sourceTree = "<group>"; };
-		17C4047229D4330E006EDF3F /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		17D80F22295EB20500D861FF /* CustomCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalendarView.swift; sourceTree = "<group>"; };
 		17D80F27295EB3FC00D861FF /* DateTimeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeSelectionView.swift; sourceTree = "<group>"; };
 		17D80F60296296C300D861FF /* SeatSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatSelectionView.swift; sourceTree = "<group>"; };
@@ -750,7 +748,6 @@
 				17E570A429D205310011DA87 /* CancelHistorySeat.swift */,
 				17E570AB29D2DDE90011DA87 /* CancelTicketConfirmView.swift */,
 				174F1BD4295C172100DAC0D2 /* BookedTicketHistoryView.swift */,
-				17C4047229D4330E006EDF3F /* TestView.swift */,
 			);
 			path = VIew;
 			sourceTree = "<group>";
@@ -953,7 +950,6 @@
 				173A59BD29B0ACDE0037AF51 /* KeychainHelper.swift in Sources */,
 				173A59BA29B0A6ED0037AF51 /* LoginResponseModel.swift in Sources */,
 				177B40BB2941EBAF00EDF0F0 /* LaunchView.swift in Sources */,
-				17C4047329D4330E006EDF3F /* TestView.swift in Sources */,
 				17E570AC29D2DDE90011DA87 /* CancelTicketConfirmView.swift in Sources */,
 				17545D3E294308CD003E3724 /* OtpView.swift in Sources */,
 				177B40BF2941FB8E00EDF0F0 /* LoginView.swift in Sources */,
@@ -1172,7 +1168,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1201,7 +1197,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

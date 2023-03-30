@@ -190,11 +190,11 @@ struct QRView: View {
                 }
             }
             
-            .toolbar { // <2>
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    TopNavItemView()
-                }
-            }
+//            .toolbar { // <2>
+//                ToolbarItem(placement: .navigationBarTrailing) {
+//                    TopNavItemView()
+//                }
+//            }
         }.onAppear {
             if encriptedSeatingData == "" {
                 isSeating = false

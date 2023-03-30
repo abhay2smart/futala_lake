@@ -14,9 +14,6 @@ struct OtpView: View {
     @ObservedObject var otpVM = OTPViewModel()
     @EnvironmentObject var session: SessionManager
     
-    
-    
-    
     // setting default value for isLoading var
     
     
@@ -24,6 +21,7 @@ struct OtpView: View {
         print("OTP recieved \(otp)")
         self.otp = otp
         self.mobile = mobile
+        otpVM.otp = otp
     }
     
     
@@ -81,7 +79,7 @@ struct OtpView: View {
                         .clipShape(Capsule())
                         
                         
-                        TextField("7897", text: $otp)
+                        TextField("7897", text: $otpVM.otp)
                             .keyboardType(.numberPad)
                         
                             .focused($isInputActive)
@@ -113,9 +111,20 @@ struct OtpView: View {
                             .overlay(RoundedRectangle(cornerRadius: 25).stroke(Color.white))
                         //.padding([.horizontal], 24)
                             .padding(.leading, -40)
+                        
+                        
                     }
-                    
-                    
+                    HStack {
+                        Spacer()
+                        Button {
+                            otpVM.getOTP(mobileNumber: self.mobile)
+                        } label: {
+                            Text("Resend OTP")
+                                .underline()
+                                .foregroundColor(AppTheme.appThemeBlue)
+                        }
+                        Spacer()
+                    }.padding(.top, 10)
                     
                 }.padding(20)
                 
@@ -123,9 +132,9 @@ struct OtpView: View {
                 
                 
                 Group {
-                    Button("Enter") {
+                    Button("Submit") {
                         if otpVM.isValidated(otp: self.otp) {
-                            otpVM.fetchToeken(mobileNumber: self.mobile, otp: self.otp)
+                            otpVM.fetchToeken(mobileNumber: self.mobile)
                         }
                     }.modifier(CustomButtonModifiers())
                     

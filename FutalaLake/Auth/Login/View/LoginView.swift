@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct LoginView: View {
     //@State var mobileNumber:String = "8173954048"
@@ -93,7 +94,9 @@ struct LoginView: View {
                         .clipShape(Capsule())
                         
                         
+                        
                         TextField("+91 - 123 456 7899", text: $mobileNumber)
+                            .onReceive(Just(mobileNumber)) { _ in limitText(10) }
                             .keyboardType(.numberPad)
                         
                             .focused($isInputActive)
@@ -135,9 +138,14 @@ struct LoginView: View {
                 
                 
                 Group {
-                    Button("Enter") {
+                    
+                    Button {
                         loginVM.validate(mobileNumber: mobileNumber)
-                    }.modifier(CustomButtonModifiers())
+                    } label: {
+                        Text("Login")
+                        .modifier(CustomButtonModifiers())
+                    }
+                    
                     
                     NavigationLink(isActive: $loginVM.shouldMoveToOTPView) {
                         OtpView(otp: self.loginVM.otp, mobile: self.mobileNumber )
@@ -173,7 +181,15 @@ struct LoginView: View {
 //            }
         
     }
+    
+    //Function to keep text length in limits
+        func limitText(_ upper: Int) {
+            if mobileNumber.count > upper {
+                mobileNumber = String(mobileNumber.prefix(upper))
+            }
+        }
 }
+
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {

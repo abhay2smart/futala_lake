@@ -39,84 +39,90 @@ struct BookedTicketHistoryView: View {
             
             
             ScrollView {
-                VStack(spacing: 0) {
-                    Text("Seating")
-                        .font(.system(size: 18, weight: .medium, design: .default))
-                        .foregroundColor(AppTheme.appThemeOrange)
-                        .padding()
+                
+                //Seating
+                
+                if data.encryptedSeatingQRCode != "" {
                     
-                    
-                    Image(uiImage: UIImage(data: CommonUtil.getQRCodeData(dictionary: ["data": data.encryptedSeatingQRCode ?? ""])!)!)
-                                   .resizable()
-                                   .frame(width: 200, height: 200)
-                    HStack {
-                        Text("Seats:")
+                    VStack(spacing: 0) {
+                        Text("Seating")
                             .font(.system(size: 18, weight: .medium, design: .default))
                             .foregroundColor(AppTheme.appThemeOrange)
-                            .padding(.top, 10)
-                        Spacer()
-                    }.padding(.horizontal, 25)
-                    
-                    
-                    LazyVGrid(columns: adaptiveColumns) {
+                            .padding()
                         
-                        ForEach(Array(buttonStatusArr.enumerated()), id: \.offset) { index, element in
-                            Button {
-                                buttonStatusArr.reversed()
-                                buttonStatusArr[index].toggle()
-                                data.seats?[index].toggleSelected()
-                            } label: {
-                                if index < (data.seats?.count ?? 0)  {
-                                    Text("\(data.seats?[index].seatNumber ?? "")")
-                                        .font(.system(size: 10, weight: .regular, design: .default))
-                                        .frame(width: 25, height: 25)
-                                        .foregroundColor(.black)
-                                }
-                                
-                            }
-                            .allowsHitTesting(data.seats?[index].isSelectable ?? false)
-                            .background(data.seats?[index].color)
-                            .cornerRadius(3)
-                        }
+                            data.getQRImageForSeating()
                         
-                    }.padding()
+                            .resizable()
+                            .frame(width: 200, height: 200)
+                        HStack {
+                            Text("Seats:")
+                                .font(.system(size: 18, weight: .medium, design: .default))
+                                .foregroundColor(AppTheme.appThemeOrange)
+                                .padding(.top, 10)
+                            Spacer()
+                        }.padding(.horizontal, 25)
                         
-                       
-                    
-                    
-                    
-                    
-                    
-                    
-                    ScrollView(.horizontal) {
-                        HStack(alignment: .top, spacing: 5) {
+                        
+                        LazyVGrid(columns: adaptiveColumns) {
                             
-                            let key = Constants.colorKey
-                            if let retrievedCodableObject = UserDefaults.standard.codableObject(dataType: [SeatInventoryData].self, key: key) {
-                              
-                                ForEach(0..<(retrievedCodableObject.count)) { index in
-                                    Rectangle()
-                                        .fill(AppTheme.SeatColor.isColorMatched(colorName: retrievedCodableObject[index].colorName ?? ""))
-                                        .frame(width: 15, height: 15)
+                            ForEach(Array(buttonStatusArr.enumerated()), id: \.offset) { index, element in
+                                Button {
+                                    buttonStatusArr.reversed()
+                                    buttonStatusArr[index].toggle()
+                                    data.seats?[index].toggleSelected()
+                                } label: {
+                                    if index < (data.seats?.count ?? 0)  {
+                                        Text("\(data.seats?[index].seatNumber ?? "")")
+                                            .font(.system(size: 10, weight: .regular, design: .default))
+                                            .frame(width: 25, height: 25)
+                                            .foregroundColor(.black)
+                                    }
                                     
-                                    Text(retrievedCodableObject[index].seatType ?? "")
-                                    //Text(seatInventoryData[index].colorName ?? "")
-                                        .font(.system(size: 14, weight: .regular, design: .default))
-                                        .foregroundColor(.black)
-                                    
-                                    Spacer()
                                 }
-                                
+                                .allowsHitTesting(data.seats?[index].isSelectable ?? false)
+                                .background(data.seats?[index].color)
+                                .cornerRadius(3)
                             }
                             
+                        }.padding()
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        ScrollView(.horizontal) {
+                            HStack(alignment: .top, spacing: 5) {
+                                
+                                let key = Constants.colorKey
+                                if let retrievedCodableObject = UserDefaults.standard.codableObject(dataType: [SeatInventoryData].self, key: key) {
+                                    
+                                    ForEach(0..<(retrievedCodableObject.count)) { index in
+                                        Rectangle()
+                                            .fill(AppTheme.SeatColor.isColorMatched(colorName: retrievedCodableObject[index].colorName ?? ""))
+                                            .frame(width: 15, height: 15)
+                                        
+                                        Text(retrievedCodableObject[index].seatType ?? "")
+                                        //Text(seatInventoryData[index].colorName ?? "")
+                                            .font(.system(size: 14, weight: .regular, design: .default))
+                                            .foregroundColor(.black)
+                                        
+                                        Spacer()
+                                    }
+                                    
+                                }
+                                
                                 
                             }.padding(.horizontal, 18)
-                            .padding(.vertical, 10)
+                                .padding(.vertical, 10)
                             
                             
-                    }.padding(.bottom)
-                    
-                }
+                        }.padding(.bottom)
+                        
+                    }
+                
                 //.padding(.top, 10)
                 .background(
                  Rectangle()
@@ -129,6 +135,7 @@ struct BookedTicketHistoryView: View {
                   )
                 .padding(.horizontal)
                 .padding(.top, 10)
+                }
 
                 // Standing
                 
@@ -140,7 +147,8 @@ struct BookedTicketHistoryView: View {
                             .foregroundColor(AppTheme.appThemeOrange)
                             .padding(.top)
                         
-                        Image(uiImage: UIImage(data: CommonUtil.getQRCodeData(dictionary: ["data": data.encryptedStandingQRCode ?? ""])!)!)
+                        data.getQRImageForStanding()
+                        
                                        .resizable()
                                        .frame(width: 200, height: 200)
                                        .padding(.bottom)
@@ -262,12 +270,16 @@ struct BookedTicketHistoryView: View {
                     
                 }
                 
-                Button {
-                    isPresented.toggle()
-                } label: {
-                    Text("Cancel")
-                        .modifier(CustomButtonModifiers())
+                if data.isCancelButtonHidden() == false {
+                    Button {
+                        isPresented.toggle()
+                    } label: {
+                        Text("Cancel")
+                            .modifier(CustomButtonModifiers())
+                    }.padding(.vertical)
                 }
+                
+                
                 Spacer()
             }.padding(.top, 80)
             
