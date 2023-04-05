@@ -65,16 +65,76 @@ class HistoryData : Codable, ObservableObject {
         return seatsStr
     }
     
+    
+    func isSeatingContainerClickable()->Bool {
+        
+//        let endTime = getFormatteDateObjForTime(time: self.endTime ?? "")
+//        let currentTime = getCurrentTime()
+        let ticketDate = CommonUtil.getDateFromDateString(date: self.showDate ?? "")
+        
+        let currentDate = CommonUtil.todayDate()
+        
+        
+        let currentTimeStr = CommonUtil.getCurrentStrTime()
+        let diff = CommonUtil.getTimeDiff(currentTimeStr: currentTimeStr ?? "", endTimeStr: self.endTime ?? "")
+        
+        
+        
+        if ((isVerifiedSeats == 0 && diff < 1 && currentDate == ticketDate) || (currentDate > ticketDate )){
+            return false
+        }
+        
+        if seatingStatus == 4 {
+            return false
+        }
+        
+        if isVerifiedSeats == 1 {
+            return false
+        }
+        
+        return true
+ 
+    }
+    
+    func isStandingContainerClickable()->Bool {
+
+        let ticketDate = CommonUtil.getDateFromDateString(date: self.showDate ?? "")
+        
+        let currentDate = CommonUtil.todayDate()
+        
+        
+        let currentTimeStr = CommonUtil.getCurrentStrTime()
+        let diff = CommonUtil.getTimeDiff(currentTimeStr: currentTimeStr ?? "", endTimeStr: self.endTime ?? "")
+        
+        
+        if ((isVerifiedStanding == 0 && diff < 1 && currentDate == ticketDate) || (currentDate > ticketDate )){
+            return false
+        }
+        
+        if standingStatus == 4 {
+            return false
+        }
+        
+        if isVerifiedStanding == 1 {
+            return false
+        }
+        
+        return true
+    }
+    
+            
     func getQRImageForSeating()->Image {
+
+        let ticketDate = CommonUtil.getDateFromDateString(date: self.showDate ?? "")
         
-        let endTime = getFormatteDateObjForTime(time: self.endTime ?? "")
-        let currentTime = getCurrentTime()
-        let ticketDate = getDateFromDateString(date: self.showDate ?? "")
-        
-        print("currentTime \(currentTime)  endTime \(endTime)")
+        let currentDate = CommonUtil.todayDate()
         
         
-        if ((isVerifiedSeats == 0 && currentTime > endTime && Date() == ticketDate) || (Date() > ticketDate )){
+        let currentTimeStr = CommonUtil.getCurrentStrTime()
+        let diff = CommonUtil.getTimeDiff(currentTimeStr: currentTimeStr ?? "", endTimeStr: self.endTime ?? "")
+        
+        
+        if ((isVerifiedSeats == 0 && diff < 1 && currentDate == ticketDate) || (currentDate > ticketDate )){
             let img = Image("expired-qr-icon")
             return img
         }
@@ -88,10 +148,9 @@ class HistoryData : Codable, ObservableObject {
             let img = Image("verified-qr-icon")
             return img
         }
-        
        
-        let img = UIImage(data: CommonUtil.getQRCodeData(dictionary: ["data": self.encryptedSeatingQRCode ?? ""])!)!
-        return Image(uiImage: img)
+        let qrImg = UIImage(data: CommonUtil.getQRCodeData(dictionary: ["data": self.encryptedSeatingQRCode ?? ""])!)!
+        return Image(uiImage: qrImg)
     
         
     }
@@ -101,17 +160,18 @@ class HistoryData : Codable, ObservableObject {
     
     func getQRImageForStanding()->Image {
         
-        let endTime = getFormatteDateObjForTime(time: self.endTime ?? "")
-        let currentTime = getCurrentTime()
-        let ticketDate = getDateFromDateString(date: self.showDate ?? "")
+        let ticketDate = CommonUtil.getDateFromDateString(date: self.showDate ?? "")
+        
+        let currentDate = CommonUtil.todayDate()
+        
+        let currentTimeStr = CommonUtil.getCurrentStrTime()
+        let diff = CommonUtil.getTimeDiff(currentTimeStr: currentTimeStr ?? "", endTimeStr: self.endTime ?? "")
         
         
-        
-        if ((isVerifiedStanding == 0 && currentTime > endTime && Date() == ticketDate) || (Date() > ticketDate )){
+        if ((isVerifiedStanding == 0 && diff < 1 && currentDate == ticketDate) || (currentDate > ticketDate )){
             let img = Image("expired-qr-icon")
             return img
         }
-        
         
         if standingStatus == 4 {
             let img = Image("cancelled-qr-icon")
@@ -124,24 +184,28 @@ class HistoryData : Codable, ObservableObject {
         }
         
        
-        let img = UIImage(data: CommonUtil.getQRCodeData(dictionary: ["data": self.encryptedStandingQRCode ?? ""])!)!
+        let qrImg = UIImage(data: CommonUtil.getQRCodeData(dictionary: ["data": self.encryptedStandingQRCode ?? ""])!)!
         
-        return Image(uiImage: img)
+        return Image(uiImage: qrImg)
     
         
     }
     
     
     func isCancelButtonHidden()->Bool {
-        let endTime = getFormatteDateObjForTime(time: self.endTime ?? "")
-        let currentTime = getCurrentTime()
-        let ticketDate = getDateFromDateString(date: self.showDate ?? "")
         
-        if ((isVerifiedSeats == 0 && endTime < currentTime && Date() == ticketDate) || (Date() > ticketDate)) {
+        let ticketDate = CommonUtil.getDateFromDateString(date: self.showDate ?? "")
+        
+        let currentDate = CommonUtil.todayDate()
+        
+        let currentTimeStr = CommonUtil.getCurrentStrTime()
+        let diff = CommonUtil.getTimeDiff(currentTimeStr: currentTimeStr ?? "", endTimeStr: self.endTime ?? "")
+        
+        if ((isVerifiedSeats == 0 && diff < 1 && currentDate == ticketDate) || (currentDate > ticketDate)) {
             return true
         }
         
-        if ((isVerifiedStanding == 0 && endTime < currentTime && Date() == ticketDate) || (Date() > ticketDate)) {
+        if ((isVerifiedStanding == 0 && diff < 1 && currentDate == ticketDate) || (currentDate > ticketDate)) {
             return true
         }
         
@@ -322,13 +386,7 @@ class HistorySeats : Codable, Identifiable, ObservableObject, Hashable  {
                 }
             }
         }
-        
-        
-        
     }
-    
-    
-    
 
     enum CodingKeys: String, CodingKey {
 
@@ -369,66 +427,10 @@ class HistorySeats : Codable, Identifiable, ObservableObject, Hashable  {
             self.color = AppTheme.SeatColor.booked
         }
         
-        
     }
     
-    //
-    func getCurrentTime() -> Date? {
-        let date = Date()
-        let calender = Calendar.current
-        let components = calender.dateComponents([.year,.month,.day,.hour,.minute,.second], from: date)
-        let hour = components.hour
-        let minute = components.minute
-        let second = components.second
-
-        let today_string = String(hour!)  + ":" + String(minute!) + ":" +  String(second!)
-        
-        let s1 = today_string
-        
-        let f = DateFormatter()
-        f.dateFormat = "HH:mm:ss"
-        return f.date(from: s1)
-        
-
-        //return today_string
-    }
 
 
 }
 
 
-
-func getFormatteDateObjForTime(time: String)->Date {
-    let f = DateFormatter()
-    f.dateFormat = "HH:mm:ss"
-    return f.date(from: time) ?? Date()
-}
-
-func getCurrentTime() -> Date {
-    let date = Date()
-    let calender = Calendar.current
-    let components = calender.dateComponents([.year,.month,.day,.hour,.minute,.second], from: date)
-    let hour = components.hour
-    let minute = components.minute
-    let second = components.second
-
-    let today_string = String(hour!)  + ":" + String(minute!) + ":" +  String(second!)
-    
-    let s1 = today_string
-    
-    let f = DateFormatter()
-    f.dateFormat = "HH:mm:ss"
-    return f.date(from: s1) ?? Date()
-    
-
-    //return today_string
-}
-
-
-func getDateFromDateString(date: String) -> Date {
-      let dateFormatter = DateFormatter()
-      dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
-      dateFormatter.dateFormat =  "yyyy-MM-dd"//"yyyy-MM-dd'T'HH:mm:ssZ"
-      let date = dateFormatter.date(from:date) ?? Date()
-    return date
-}

@@ -54,5 +54,108 @@ class CommonUtil {
         
         return nil
     }
+    
+    static func getDateStringFromDate(date: Date, outputFormat: String = "dd-MM-yyyy")->String? {
+        // Create Date Formatter
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        // Set Date Format
+        dateFormatter.dateFormat =  outputFormat
+        // Convert Date to String
+        let dateStr = dateFormatter.string(from: date)
+        return dateStr
+    }
+    
+    
+    static func getDateTimeStringFromDate(date: Date, outputFormat: String = "dd-MM-yyyy HH:mm:ss")->String? {
+        // Create Date Formatter
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        // Set Date Format
+        dateFormatter.dateFormat =  outputFormat
+        // Convert Date to String
+        let dateStr = dateFormatter.string(from: date)
+        return dateStr
+    }
+    
+    
+    static func getCurrentStrTime() -> String? {
+        let date = Date()
+        let calender = Calendar.current
+        let components = calender.dateComponents([.year,.month,.day,.hour,.minute,.second], from: date)
+        let hour = components.hour
+        let minute = components.minute
+        let second = components.second
 
+        let todayString = String(hour!)  + ":" + String(minute!) + ":" +  String(second!)
+        
+        return todayString
+        //return today_string
+    }
+    
+    static func getTimeDiff(currentTimeStr: String, endTimeStr: String)->Double {
+        
+        print("currentTimeStr: \(currentTimeStr) endTimeStr: \(endTimeStr)")
+        
+        let textDate1 = currentTimeStr
+        let textDate2 = endTimeStr
+
+        let dateFormatter: DateFormatter = {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "HH:mm:ss"
+            formatter.timeZone = TimeZone.current
+            return formatter
+        } ()
+
+        // Dates used for the comparison
+        let date1 = dateFormatter.date(from: textDate1)
+        let date2 = dateFormatter.date(from: textDate2)
+        
+        var diff = 0.0
+        if let date1 = date1, let date2 = date2 {
+            diff = date1.timeOfDayInterval(toDate: date2)
+            if diff > 0 {
+                    print("Time of the day in the second date is greater")
+                } else if diff < 0 {
+                    print("Time of the day in the first date is greater")
+                } else {
+                    print("Times of the day in both dates are equal")
+                }        }
+        
+        
+        print("currentTimeStr: \(currentTimeStr) endTimeStr: \(endTimeStr) diff: \(diff)")
+        
+        return diff
+    }
+    
+    
+    static func getDateFromDateString(date: String, inputFormat: String = "yyyy-MM-dd") -> Date {
+          let dateFormatter = DateFormatter()
+          dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+          dateFormatter.dateFormat =  inputFormat //"yyyy-MM-dd'T'HH:mm:ssZ"
+          let date = dateFormatter.date(from:date) ?? Date()
+        return date
+    }
+    
+    static func todayDate() -> Date{
+        let currentDate = Date()
+        let calendar = Calendar.current
+
+        let year = calendar.component(.year, from: currentDate)
+        let month = calendar.component(.month, from: currentDate)
+        let day = calendar.component(.day, from: currentDate)
+
+        var dateComponents = DateComponents()
+        dateComponents.year = year
+        dateComponents.month = month
+        dateComponents.day = day
+
+        let date = calendar.date(from: dateComponents)!
+        return date
+    }
+    
+
+
+
+    
 }

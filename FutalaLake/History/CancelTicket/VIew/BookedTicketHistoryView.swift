@@ -51,7 +51,6 @@ struct BookedTicketHistoryView: View {
                             .padding()
                         
                             data.getQRImageForSeating()
-                        
                             .resizable()
                             .frame(width: 200, height: 200)
                         HStack {
@@ -79,7 +78,7 @@ struct BookedTicketHistoryView: View {
                                     }
                                     
                                 }
-                                .allowsHitTesting(data.seats?[index].isSelectable ?? false)
+                                //.allowsHitTesting(data.seats?[index].isSelectable ?? false)
                                 .background(data.seats?[index].color)
                                 .cornerRadius(3)
                             }
@@ -121,7 +120,7 @@ struct BookedTicketHistoryView: View {
                             
                         }.padding(.bottom)
                         
-                    }
+                    }.allowsTightening(data.isSeatingContainerClickable())
                 
                 //.padding(.top, 10)
                 .background(
@@ -255,6 +254,7 @@ struct BookedTicketHistoryView: View {
                         
                         Spacer()
                     }
+                    .allowsTightening(data.isStandingContainerClickable())
                     .background(
                      Rectangle()
                      .fill(.white)
