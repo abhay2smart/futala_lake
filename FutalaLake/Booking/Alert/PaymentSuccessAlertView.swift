@@ -30,7 +30,7 @@ struct PaymentSuccessAlertView: View {
                                 .frame(width: 100, height: 100)
                             
                             
-                            Text("Payment Success")
+                            Text("Payment Successful")
                             .multilineTextAlignment(.center)
                                                 .font(.system(size: 20, weight: .medium, design: .default))
                                                 .foregroundColor(.black)

@@ -13,7 +13,14 @@ class DateTimeSelectionViewModel: ObservableObject {
     
     @Published var  seatInventoryData = [SeatInventoryData]()
     
+    @Published var message = ""
+    @Published var isPresensted = false
+    
+    
     @Published var isLoading = false
+    
+    
+    
     
     //API Calls
     
@@ -103,6 +110,25 @@ class DateTimeSelectionViewModel: ObservableObject {
                     DispatchQueue.main.async {
                         if let data = respData.data {
                             self.seatInventoryData = data
+                            
+                            // adding more colors
+                            var selected = SeatInventoryData()
+                            selected.seatType = "Selected"
+                            selected.colorName = "Selected"
+                            
+                            var booked = SeatInventoryData()
+                            booked.seatType = "booked"
+                            booked.colorName = "booked"
+                            
+                            var maintenance = SeatInventoryData()
+                            maintenance.seatType = "Maintenance"
+                            maintenance.colorName = "maintenance"
+                            
+                            self.seatInventoryData.append(booked)
+                            self.seatInventoryData.append(selected)
+                            self.seatInventoryData.append(maintenance)
+                            
+                            
                             UserDefaults.standard.setCodableObject(data, forKey: Constants.colorKey)
                         }
                         
@@ -116,4 +142,9 @@ class DateTimeSelectionViewModel: ObservableObject {
             
         }
     }
+}
+
+struct ValidationObj {
+    let status : Bool
+    let message: String
 }

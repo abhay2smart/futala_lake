@@ -79,7 +79,7 @@ struct BookedTicketHistoryView: View {
                                     
                                 }
                                 //.allowsHitTesting(data.seats?[index].isSelectable ?? false)
-                                .background(data.seats?[index].color)
+                                .background(index < (data.seats?.count ?? 0) ? data.seats?[index].color: .white)
                                 .cornerRadius(3)
                             }
                             

@@ -154,6 +154,23 @@ class CommonUtil {
         return date
     }
     
+    static func excludeTimeFromDateDate(date: Date) -> Date{
+        let currentDate = date
+        let calendar = Calendar.current
+
+        let year = calendar.component(.year, from: currentDate)
+        let month = calendar.component(.month, from: currentDate)
+        let day = calendar.component(.day, from: currentDate)
+
+        var dateComponents = DateComponents()
+        dateComponents.year = year
+        dateComponents.month = month
+        dateComponents.day = day
+
+        let date = calendar.date(from: dateComponents)!
+        return date
+    }
+    
 
 
 

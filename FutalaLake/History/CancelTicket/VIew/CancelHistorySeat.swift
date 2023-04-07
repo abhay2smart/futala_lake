@@ -47,3 +47,7 @@ struct CancelHistorySeat_Previews: PreviewProvider {
         CancelHistorySeat(data: .constant([HistorySeats]()))
     }
 }
+
+
+
+

@@ -18,9 +18,12 @@ struct DateTimeSelectionView: View {
     
     @State var selectedShow: Shows?
     
+    @State var color = AppTheme.appThemeBlue
+    
     private let adaptiveColumns = [
-        GridItem(.adaptive(minimum: 110))
+        GridItem(.adaptive(minimum: 170))
     ]
+    
     
     var body: some View {
         ZStack {
@@ -43,6 +46,7 @@ struct DateTimeSelectionView: View {
                     
                 }.padding(.top, -10)
                     .onChange(of: selectedDate) { selectedDate in
+                        currentTimeSlotSelected = ""
                         dateTimeSelectionModel.getShowDays(date: selectedDate)
                     }
                 
@@ -61,14 +65,27 @@ struct DateTimeSelectionView: View {
                             if let shows = dateTimeSelectionModel.shows {
                                 ForEach(Array(shows.enumerated()), id: \.offset) { index, item  in
                                     ZStack {
-                                        Rectangle().frame(width: 110, height: 40)
-                                            .foregroundColor(currentTimeSlotSelected == (dateTimeSelectionModel.shows?[index].startTime ?? "") ? AppTheme.appThemeOrange : AppTheme.appThemeBlue)
-                                            .cornerRadius(5)
-                                        Text("\(dateTimeSelectionModel.shows?[index].startTimeInTwelveHourFormat ?? "")")
-                                            .foregroundColor(.white)
-                                            .font(.system(size: 16, weight: .medium, design: .default))
+                                        if checkIsSelectable(startTime: dateTimeSelectionModel.shows?[index].startTime ?? "") {
+                                            
+                                            Rectangle().frame(width: 170, height: 40)
+                                            
+                                                .foregroundColor(currentTimeSlotSelected == (dateTimeSelectionModel.shows?[index].startTime ?? "") ? AppTheme.appThemeOrange : AppTheme.appThemeBlue)
+                                                .cornerRadius(5)
+                                            
+                                        } else {
+                                            Rectangle().frame(width: 170, height: 40)
+                                            
+                                                .foregroundColor(currentTimeSlotSelected == (dateTimeSelectionModel.shows?[index].startTime ?? "") ? AppTheme.appThemeOrange : AppTheme.SeatColor.booked)
+                                                .cornerRadius(5)
+                                        }
                                         
-                                    }.onTapGesture {
+                                        Text("\(dateTimeSelectionModel.shows?[index].startTimeInTwelveHourFormat ?? "") -  \(dateTimeSelectionModel.shows?[index].endTimeInTwelveHourFormat ?? "")")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 15, weight: .medium, design: .default))
+                                        
+                                    }
+                                    .allowsHitTesting(checkIsSelectable(startTime: dateTimeSelectionModel.shows?[index].startTime ?? ""))
+                                    .onTapGesture {
                                         self.selectedShow = dateTimeSelectionModel.data?[0].shows?[index]
                                         self.currentTimeSlotSelected = (dateTimeSelectionModel.data?[0].shows?[index].startTime ?? "")
                                         showTimeId = dateTimeSelectionModel.data?[0].shows?[index].showTimeID ?? ""
@@ -82,6 +99,8 @@ struct DateTimeSelectionView: View {
                 }.padding(.horizontal, 10)
                 
                 
+                
+                
                 NavigationLink {
                     SeatSelectionView(showDate: selectedDate, showTimeID: showTimeId, showDayID: showDayId, showStartTime: selectedShow?.startTime ?? "", showEndTime: selectedShow?.endTime ?? "", seatInventoryData: dateTimeSelectionModel.seatInventoryData)
                 } label: {
@@ -89,10 +108,9 @@ struct DateTimeSelectionView: View {
                         .modifier(CustomButtonModifiers())
                 }
                 .allowsHitTesting(currentTimeSlotSelected == "" ? false : true)
-                .navigationTitle("Date & Time")
-                .padding(.top, 30)
-                .padding(.horizontal, 13)
-                .navigationBarTitleDisplayMode(.inline)
+                
+
+                
                 
 //                .toolbar { // <2>
 //                    ToolbarItem(placement: .navigationBarTrailing) { // <3>
@@ -118,5 +136,31 @@ struct DateTimeSelectionView: View {
 struct DateTimeSelectionView_Previews: PreviewProvider {
     static var previews: some View {
         DateTimeSelectionView()
+    }
+}
+
+extension DateTimeSelectionView {
+    private func checkIsSelectable(startTime: String)->Bool {
+        //let startTimeDate = CommonUtil.getDateFromDateString(date: self.startTime ?? "")
+        
+        let currentTimeStr = CommonUtil.getCurrentStrTime()
+        
+        
+        
+        let diff = CommonUtil.getTimeDiff(currentTimeStr: startTime, endTimeStr: currentTimeStr ?? "")
+        
+        let currentDate = CommonUtil.todayDate()
+        
+        let selectedDate = CommonUtil.excludeTimeFromDateDate(date: selectedDate)
+        
+        
+        
+        
+        if diff > 0 && selectedDate == currentDate {
+            print("Time of the day in the second date is greater")
+            return false
+        }
+        
+        return true
     }
 }

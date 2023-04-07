@@ -17,9 +17,10 @@ struct QRView: View {
     @State private var isSeating = true // for button toggle
     
     init(data: QRData) {
-        encriptedSeatingData = data.seatData?.first?.encryptedSeatingQRCode ?? ""
+        //encriptedSeatingData = data.seatData?.first?.encryptedSeatingQRCode ?? ""
         encriptedStandingData = data.qrStandingData?.first?.encryptedStandingQRCode ?? ""
         self.qrData = data
+        
     }
     
     var body: some View {
@@ -31,7 +32,9 @@ struct QRView: View {
                     HStack(alignment: .center) {
                         //Spacer()
                         
-                        if encriptedSeatingData != "" {
+                        
+                        
+                        if (qrData?.seatData?.count ?? 0) > 0 {
                             Button {
                                 isSeating = true
                             } label: {
@@ -51,14 +54,12 @@ struct QRView: View {
                                         x: 0, y: 0)
                             )
                             .padding(.horizontal, 10)
+                            
                         }
                         
                         
                         
-                        
-                        
-                        
-                        if encriptedStandingData != "" {
+                        if (qrData?.qrStandingData?.count ?? 0) > 0 {
                             Button {
                                 isSeating = false
                             } label: {
@@ -80,14 +81,26 @@ struct QRView: View {
                         }
                         
                         
-                        
-                        
                     }.padding()
                 
                 
                 ScrollView {
                     VStack {
-                        QRSubView(qrData: qrData ?? QRData(), isSeating: isSeating)
+                        
+                        if isSeating {
+                            if let safeSeats = qrData?.seatData {
+                                ForEach(Array(safeSeats.enumerated()), id: \.offset) { index, element in
+                                    QRSubView(qrData: qrData ?? QRData(), isSeating: isSeating, qRSeatData: element)
+                                }
+                            }
+                            
+                        } else {
+                            QRSubView(qrData: qrData ?? QRData(), isSeating: isSeating)
+                        }
+                        
+                        
+                        
+                        
                         
                         HStack {
                             Spacer()
@@ -196,9 +209,10 @@ struct QRView: View {
 //                }
 //            }
         }.onAppear {
-            if encriptedSeatingData == "" {
+            if (qrData?.seatData?.count ?? 0) == 0 {
                 isSeating = false
             }
+            
         }
         
     }

@@ -68,8 +68,10 @@ struct Shows : Codable, Identifiable {
     let id = UUID()
     let endTime : String?
     var startTimeInTwelveHourFormat = ""
+    var endTimeInTwelveHourFormat = ""
     let startTime : String?
     let showTimeID : String?
+    
 
     enum CodingKeys: String, CodingKey {
 
@@ -85,19 +87,12 @@ struct Shows : Codable, Identifiable {
         endTime = try values.decodeIfPresent(String.self, forKey: .endTime)
         startTime = try values.decodeIfPresent(String.self, forKey: .startTime)
         showTimeID = try values.decodeIfPresent(String.self, forKey: .showTimeID)
-        self.startTimeInTwelveHourFormat = convertTime(time: startTime ?? "") ?? ""
+        self.startTimeInTwelveHourFormat = CommonUtil.convertTimeTwentyFourIntoTwelve(time: startTime ?? "") ?? ""
+        self.endTimeInTwelveHourFormat = CommonUtil.convertTimeTwentyFourIntoTwelve(time: endTime ?? "") ?? ""
+        
     }
     
-    private func convertTime(time: String)->String? {
-        let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "H:mm:s"
-        if let date12 = dateFormatter.date(from: time) {
-            dateFormatter.dateFormat = "h:mm a"
-            let date22 = dateFormatter.string(from: date12)
-            return date22
-        }
-        return nil
-    }
+    
 
 }
 

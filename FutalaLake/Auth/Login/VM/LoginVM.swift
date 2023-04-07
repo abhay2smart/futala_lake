@@ -68,7 +68,7 @@ class LoginVM: ObservableObject {
                 
             case .failure(let error):
                 DispatchQueue.main.async {
-                    print("Something went wrong LoginVM \(#line)")
+                    print("Something went wrong \(error.localizedDescription) LoginVM \(#line)")
                 }
             }
             

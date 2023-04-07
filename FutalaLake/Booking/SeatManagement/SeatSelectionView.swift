@@ -167,11 +167,13 @@ struct SeatSelectionView: View {
                     
                 
                 
+                Text(gateSelection)
+                    .font(.system(size: 20, weight: .medium, design: .default))
+                
                 ScrollView {
                     
                     ScrollView(.horizontal) {
                         VStack(spacing: -5) {
-                            
                             HStack {
                                 GateSectionView(data: $seatLayoutViewModel.totalFilteredSeats, maturityStatus: $maturityType)
                                     .frame(width: 820)
@@ -192,7 +194,7 @@ struct SeatSelectionView: View {
                     // color indicator
                     
                     ScrollView(.horizontal) {
-                        HStack(alignment: .top, spacing: 10) {
+                        HStack(alignment: .top, spacing: 7) {
                             
                             ForEach(0..<(seatInventoryData.count)) { index in
                                 Rectangle()
@@ -211,19 +213,6 @@ struct SeatSelectionView: View {
                         .padding(.horizontal, 18)
                         .padding(.vertical, 10)
                     }
-                    
-                    
-                    
-                    // Submit button
-                    
-//                    NavigationLink {
-//                        CheckoutVIew()
-//                    } label: {
-//                        Text("Book Ticket")
-//                            .modifier(CustomButtonModifiers())
-//                    }.padding(.top, 10)
-//                        .padding(.bottom, 20)
-//                        .navigationTitle("Seat Layout")
                     
                     
                     Group {

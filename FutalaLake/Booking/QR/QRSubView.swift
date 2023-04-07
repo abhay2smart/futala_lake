@@ -14,7 +14,7 @@ struct QRSubView: View {
     private var startTime = ""
     private var endTime = ""
     private var isSeating = true
-    init(qrData: QRData, isSeating: Bool = true) {
+    init(qrData: QRData, isSeating: Bool = true, qRSeatData:QRSeatData? = nil) {
         self.qrData = qrData
         self.isSeating = isSeating
         

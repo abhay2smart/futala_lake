@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct OtpView: View {
-    @State var otp:String
     @State var mobile:String
     @FocusState var isInputActive: Bool
     @ObservedObject var otpVM = OTPViewModel()
@@ -19,7 +18,6 @@ struct OtpView: View {
     
     init(otp: String, mobile: String) {
         print("OTP recieved \(otp)")
-        self.otp = otp
         self.mobile = mobile
         otpVM.otp = otp
     }
@@ -38,6 +36,7 @@ struct OtpView: View {
                 .scaledToFit()
                 .frame(width: UIScreen.main.bounds.width)
                 .edgesIgnoringSafeArea(.all)
+                //.padding(.top, -30)
             
             VStack {
                 VStack(spacing: 4) {
@@ -133,7 +132,7 @@ struct OtpView: View {
                 
                 Group {
                     Button("Submit") {
-                        if otpVM.isValidated(otp: self.otp) {
+                        if otpVM.isValidated(otp: otpVM.otp) {
                             otpVM.fetchToeken(mobileNumber: self.mobile)
                         }
                     }.modifier(CustomButtonModifiers())
@@ -159,7 +158,7 @@ struct OtpView: View {
             
             
             .navigationTitle("") // remove the text for back button on next screen
-            .navigationBarBackButtonHidden(true)
+            //.navigationBarBackButtonHidden(true)
             
             if otpVM.isLoading {
                 Loader()

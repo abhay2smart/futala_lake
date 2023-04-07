@@ -237,3 +237,24 @@ class APIService {
     
 }
 
+
+
+
+
+func processGloabalModel(data: Data)->OuterResult {
+    
+    do {
+        let respObj = try JSONDecoder().decode(GlobResponseModel.self, from: data)
+        return OuterResult(error: respObj.error ?? "", status: respObj.status ?? false)
+        
+    } catch {
+        return OuterResult(error: "uanble to parse", status: false)
+        print("Error APIService@\(#line)-> \(error.localizedDescription)")
+    }
+    
+}
+
+struct OuterResult {
+    let error:String
+    let status: Bool
+}

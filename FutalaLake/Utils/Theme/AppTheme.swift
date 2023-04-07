@@ -25,6 +25,9 @@ struct AppTheme {
         static let maintenance = Color(UIColor.init(hexString: "#F890ED"))
         static let booked = Color(UIColor.init(hexString: "#EAEAEA"))
         
+        
+        
+        
         static var colorList = [
             ColorCode(key: "blue", color: Color(UIColor.init(hexString: "#908EDC"))),
             ColorCode(key: "orange", color: Color(UIColor.init(hexString: "#F6AB70"))),
@@ -35,7 +38,9 @@ struct AppTheme {
             ColorCode(key: "velvet", color: Color(UIColor.init(hexString: "#710B48"))),
             ColorCode(key: "Sailing Safari", color: Color(UIColor.init(hexString: "#3B5465"))),
             ColorCode(key: "Pea Case", color: Color(UIColor.init(hexString: "#749F3D"))),
-            ColorCode(key: "Copenhagen Blue", color: Color(UIColor.init(hexString: "#226190")))
+            ColorCode(key: "Selected", color: SeatColor.selected),
+            ColorCode(key: "booked", color: SeatColor.booked),
+            ColorCode(key: "maintenance", color: SeatColor.maintenance)
         ]
         
         static func isColorMatched(colorName: String)->Color {

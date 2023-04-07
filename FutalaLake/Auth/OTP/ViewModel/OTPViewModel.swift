@@ -17,7 +17,15 @@ class OTPViewModel: ObservableObject {
     
     @Published var loginResponseModel = LoginResponseModel()
     
-    @Published var otp = ""
+    private let characterLimit: Int = 4
+    
+    @Published var otp = "" {
+        didSet {
+            if otp.count > characterLimit && oldValue.count <= characterLimit {
+                otp = oldValue
+            }
+        }
+    }
     
     
     
@@ -60,33 +68,63 @@ class OTPViewModel: ObservableObject {
         isLoading = true
         let param: [String: Any] = ["mobile": mobileNumber, "otp": Int(otp)]
         let url = Constants.baseUrl + Constants.API.sendOTP
-        APIService.shared.makeApiTypeRequest(url: url, param: param, methodType: .post, expecting: GetTokenModel.self, passToken: false) { result, data in
+        
+        
+        APIService.shared.makeApiTypeRequest2(url: url, param: param, methodType: .post, expecting: GlobResponseModel.self) { resultStatus, error, data  in
+                    
+                    DispatchQueue.main.async {
+                        self.isLoading = false
+                    }
+                    
+                    if !resultStatus {
+                        print("something went wrong:: SeatLayoutViewModel \(#line)")
+                        return
+                    }
+                    
+                    
+                    guard let data = data else {
+                        return
+                    }
             
-            DispatchQueue.main.async {
-                self.isLoading = false
-            }
+                
+                let parsedObj = processGloabalModel(data: data)
             
+                if parsedObj.status == false {
+                    DispatchQueue.main.async {
+                        self.errorMessage = parsedObj.error
+                        self.showAlert = true
+                        return
+                    }
+                    
+                }
             
-            switch result {
-            case .success(let respData):
-                DispatchQueue.main.async {
-                    if respData.status ?? false {
-                        if let token = respData.data?.first?.token  {
-                            self.saveToken(token: token)
-                            self.isLoggedIn = true
+                    
+                    
+                    APIService.shared.parseModel(data: data, expecting: GetTokenModel.self) { result, data in
+                        switch result {
+                        case .success(let respData):
+                            DispatchQueue.main.async {
+                                if respData.status ?? false {
+                                    if let token = respData.data?.first?.token  {
+                                        self.saveToken(token: token)
+                                        self.isLoggedIn = true
+                                    }
+                                }
+                            }
+                            
+                        case .failure(let error):
+                            if error as! CustomAPIError == CustomAPIError.tokenExpired {
+                                DispatchQueue.main.async {
+                                    print("Something went wrong")
+                                }
+                            }
                         }
                     }
+                    
+                    
                 }
-                
-            case .failure(let error):
-                if error as! CustomAPIError == CustomAPIError.tokenExpired {
-                    DispatchQueue.main.async {
-                        print("Something went wrong")
-                    }
-                }
-            }
-            
-        }
+        
+        
     }
     
     private func saveToken(token: String) {
@@ -125,3 +163,5 @@ class OTPViewModel: ObservableObject {
     }
     
 }
+
+

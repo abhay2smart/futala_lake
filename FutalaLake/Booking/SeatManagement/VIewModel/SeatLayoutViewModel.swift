@@ -217,6 +217,7 @@ class SeatLayoutViewModel: ObservableObject {
                 seatDic["seatNumber"] = String(seat.seatNumber ?? "")
                 seatDic["seatLayoutID"] = String(seat.seatLayoutID ?? "")
                 seatDic["fare"] = "\(seat.fare)"
+                seatDic["gateNumberID"] = seat.gateNumberID ?? 0
                 seatArr.append(seatDic)
             }
             
