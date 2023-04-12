@@ -28,6 +28,9 @@ struct BookedTicketHistoryView: View {
     
     @State var buttonStatusArr:[Bool] = [Bool]()
     
+    @State var buttonStatusSeatingArr:[[Bool]] = [[Bool]]()
+    //@State private var isSeating = true // for button toggle
+    
     init(data: HistoryData) {
         self.data = data
     }
@@ -36,252 +39,132 @@ struct BookedTicketHistoryView: View {
         ZStack {
             //AppTheme.appThemeSkyBlue
             
-            
-            
-            ScrollView {
-                
-                //Seating
-                
-                if data.encryptedSeatingQRCode != "" {
-                    
-                    VStack(spacing: 0) {
-                        Text("Seating")
-                            .font(.system(size: 18, weight: .medium, design: .default))
-                            .foregroundColor(AppTheme.appThemeOrange)
-                            .padding()
-                        
-                            data.getQRImageForSeating()
-                            .resizable()
-                            .frame(width: 200, height: 200)
-                        HStack {
-                            Text("Seats:")
-                                .font(.system(size: 18, weight: .medium, design: .default))
-                                .foregroundColor(AppTheme.appThemeOrange)
-                                .padding(.top, 10)
-                            Spacer()
-                        }.padding(.horizontal, 25)
-                        
-                        
-                        LazyVGrid(columns: adaptiveColumns) {
-                            
-                            ForEach(Array(buttonStatusArr.enumerated()), id: \.offset) { index, element in
-                                Button {
-                                    buttonStatusArr.reversed()
-                                    buttonStatusArr[index].toggle()
-                                    data.seats?[index].toggleSelected()
-                                } label: {
-                                    if index < (data.seats?.count ?? 0)  {
-                                        Text("\(data.seats?[index].seatNumber ?? "")")
-                                            .font(.system(size: 10, weight: .regular, design: .default))
-                                            .frame(width: 25, height: 25)
-                                            .foregroundColor(.black)
-                                    }
-                                    
-                                }
-                                //.allowsHitTesting(data.seats?[index].isSelectable ?? false)
-                                .background(index < (data.seats?.count ?? 0) ? data.seats?[index].color: .white)
-                                .cornerRadius(3)
-                            }
-                            
-                        }.padding()
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        ScrollView(.horizontal) {
-                            HStack(alignment: .top, spacing: 5) {
-                                
-                                let key = Constants.colorKey
-                                if let retrievedCodableObject = UserDefaults.standard.codableObject(dataType: [SeatInventoryData].self, key: key) {
-                                    
-                                    ForEach(0..<(retrievedCodableObject.count)) { index in
-                                        Rectangle()
-                                            .fill(AppTheme.SeatColor.isColorMatched(colorName: retrievedCodableObject[index].colorName ?? ""))
-                                            .frame(width: 15, height: 15)
-                                        
-                                        Text(retrievedCodableObject[index].seatType ?? "")
-                                        //Text(seatInventoryData[index].colorName ?? "")
-                                            .font(.system(size: 14, weight: .regular, design: .default))
-                                            .foregroundColor(.black)
-                                        
-                                        Spacer()
-                                    }
-                                    
-                                }
-                                
-                                
-                            }.padding(.horizontal, 18)
-                                .padding(.vertical, 10)
-                            
-                            
-                        }.padding(.bottom)
-                        
-                    }.allowsTightening(data.isSeatingContainerClickable())
-                
-                //.padding(.top, 10)
-                .background(
-                 Rectangle()
-                 .fill(.white)
-                 .cornerRadius(12)
-                  .shadow(
-                   color: Color.gray.opacity(0.7),
-                   radius: 8,
-                   x: 0, y: 0)
-                  )
-                .padding(.horizontal)
-                .padding(.top, 10)
-                }
-
-                // Standing
-                
-                if data.encryptedStandingQRCode != "" {
-                    VStack {
-                        
-                        Text("Standing")
-                            .font(.system(size: 18, weight: .medium, design: .default))
-                            .foregroundColor(AppTheme.appThemeOrange)
-                            .padding(.top)
-                        
-                        data.getQRImageForStanding()
-                        
-                                       .resizable()
-                                       .frame(width: 200, height: 200)
-                                       .padding(.bottom)
-                          
-                        
-                        
-                        VStack(spacing: 20) {
-//                            HStack {
-//                                Text("Cancel Ticket Count")
-//                                    Spacer()
-//                            }
-                            
-                            
-                            HStack(spacing: 20) {
-                                Spacer()
-                                HStack {
-                                    Text("Adult")
-                                    Text("\(data.getStandingAdultNonCancelledCount())").foregroundColor(.green)
-                                    Text(" | ")
-                                    Text("\(data.getStandingAdultCancelledCount())").foregroundColor(.red)
-                                }
-                                .padding(10)
-                                //.border(.red)
-                                .background(
-                                 Rectangle()
-                                 .fill(.white)
-                                 .cornerRadius(2)
-                                  .shadow(
-                                   color: Color.gray.opacity(0.7),
-                                   radius: 2,
-                                   x: 0, y: 0)
-                                  )
-
-                                
-                                
-                                
-                                HStack {
-                                    Text("Child")
-                                    Text("\(data.getStandingChildNonCancelledCount())").foregroundColor(.green)
-                                    Text(" | ")
-                                    Text("\(data.getStandingChildCancelledCount())").foregroundColor(.red)
-                                }
-                                .padding(10)
-                                //.border(.red)
-                                .background(
-                                 Rectangle()
-                                 .fill(.white)
-                                 .cornerRadius(2)
-                                  .shadow(
-                                   color: Color.gray.opacity(0.7),
-                                   radius: 2,
-                                   x: 0, y: 0)
-                                  )
-                                
-                                Spacer()
-                            }
+            VStack {
+                HStack(alignment: .center) {
+                    //Spacer()
+                    if (cancelTicketViewModel.historyDetailData.data?.first?.ticketData?.count ?? 0) > 0 {
+                        Button {
+                            cancelTicketViewModel.isSeating = true
+                        } label: {
+                            Text("Seating")
+                                .foregroundColor(cancelTicketViewModel.isSeating ? .white: .black)
                         }
-                        .padding(.top)
-                        .padding(.bottom, 8)
+                        .frame(width: 140)
+                        .padding(.vertical, 10)
+                        .padding(.horizontal, 10)
+                        .background(
+                            Rectangle()
+                                .fill(cancelTicketViewModel.isSeating ? AppTheme.appThemeOrange: .white )
+                                .cornerRadius(5)
+                                .shadow(
+                                    color: Color.gray.opacity(0.7),
+                                    radius: 8,
+                                    x: 0, y: 0)
+                        )
+                        .padding(.horizontal, 10)
                         
-                        HStack(spacing: 20) {
-                            
-                            Picker("", selection: $adultDropDownSelectedItem) {
-                                ForEach(totalAdultsDropDownList, id: \.self) { item in
-                                    //Text($0)
-                                    Text("\(item)")
-                                }
-                            }
-                            .padding(.horizontal)
-                            .padding(.horizontal)
-                            .background(
-                             Rectangle()
-                             .fill(.white)
-                             .cornerRadius(2)
-                              .shadow(
-                               color: Color.gray.opacity(0.7),
-                               radius: 2,
-                               x: 0, y: 0)
-                              )
-                            
-                            
-                            
-                            Picker("", selection: $childDropDownSelectedItem) {
-                                ForEach(totalChildDropDownList, id: \.self) { item in
-                                    //Text($0)
-                                    Text("\(item ?? 0)")
-                                }
-                            }
-                            //.padding(10)
-                            .padding(.horizontal)
-                            .padding(.horizontal)
-                            .background(
-                             Rectangle()
-                             .fill(.white)
-                             .cornerRadius(2)
-                              .shadow(
-                               color: Color.gray.opacity(0.7),
-                               radius: 2,
-                               x: 0, y: 0)
-                              )
-
-                        }
-                        .padding(.bottom)
-                        
-                        Spacer()
                     }
-                    .allowsTightening(data.isStandingContainerClickable())
-                    .background(
-                     Rectangle()
-                     .fill(.white)
-                     .cornerRadius(12)
-                      .shadow(
-                       color: Color.gray.opacity(0.7),
-                       radius: 8,
-                       x: 0, y: 0)
-                      )
-                    .padding(.horizontal)
                     
-                    .padding(.vertical)
+                    if (cancelTicketViewModel.historyDetailData.data?.first?.standing?.count ?? 0) > 0 {
+                        Button {
+                            cancelTicketViewModel.isSeating = false
+                        } label: {
+                            Text("Standing")
+                                .foregroundColor(cancelTicketViewModel.isSeating ? .black: .white )
+                        }
+                        .frame(width: 140)
+                        .padding(.all, 10)
+                        .background(
+                            Rectangle()
+                                .fill(cancelTicketViewModel.isSeating ? .white: AppTheme.appThemeOrange )
+                                .cornerRadius(5)
+                                .shadow(
+                                    color: Color.gray.opacity(0.7),
+                                    radius: 8,
+                                    x: 0, y: 0)
+                        )
+                        .padding(.horizontal, 10)
+                    }
                     
                 }
                 
-                if data.isCancelButtonHidden() == false {
-                    Button {
-                        isPresented.toggle()
-                    } label: {
-                        Text("Cancel")
-                            .modifier(CustomButtonModifiers())
-                    }.padding(.vertical)
+                ScrollView {
+                    
+                    if cancelTicketViewModel.isSeating {
+                        if (cancelTicketViewModel.historyDetailData.data?.first?.ticketData) != nil {
+                            
+                            // Seating
+                                ForEach(cancelTicketViewModel.ticketData, id: \.self) { item in
+                                    if (cancelTicketViewModel.historyDetailData.data?.first) != nil {
+                                        CancelTicketSeatingCell(ticketData: item, historyDetailData: (cancelTicketViewModel.historyDetailData.data?.first)!)
+                                    }
+                                    
+                                }
+                            
+                            // Seat Indicators
+                            ScrollView(.horizontal) {
+                                HStack(alignment: .top, spacing: 5) {
+                                    
+                                    let key = Constants.colorKey
+                                    if let retrievedCodableObject = UserDefaults.standard.codableObject(dataType: [SeatInventoryData].self, key: key) {
+                                        
+                                        ForEach(0..<(retrievedCodableObject.count)) { index in
+                                            Rectangle()
+                                                .fill(AppTheme.SeatColor.isColorMatched(colorName: retrievedCodableObject[index].colorName ?? ""))
+                                                .frame(width: 15, height: 15)
+                                            
+                                            Text(retrievedCodableObject[index].seatType ?? "")
+                                            //Text(seatInventoryData[index].colorName ?? "")
+                                                .font(.system(size: 14, weight: .regular, design: .default))
+                                                .foregroundColor(.black)
+                                            
+                                            Spacer()
+                                        }
+                                        
+                                    }
+                                    
+                                    
+                                }.padding(.horizontal, 18)
+                                    .padding(.vertical, 10)
+                                
+                                
+                            }.padding(.bottom)
+                            
+                            }
+                        
+                    } else {
+                        if let data = cancelTicketViewModel.historyDetailData.data?.first {
+                            CancelTicketStanding(data: data, standingParams: cancelTicketViewModel.standingParams)
+                        }
+                        
+                    }
+                
+                    
+                    
+                    
+                    
                 }
                 
+                Button {
+                    isPresented.toggle()
+                } label: {
+                    Text("Cancel")
+                        .modifier(CustomButtonModifiers())
+                }.padding(.vertical)
+                .onChange(of: isyesButtonPressed, perform: { value in
+                    if value {
+                        cancelTicketViewModel.cancelTicket()
+                    }
+                })
                 
                 Spacer()
-            }.padding(.top, 80)
+                
+                
+            }.padding(.top, 100)
+            
+            
+            
+            
             
             
             VStack {
@@ -306,9 +189,9 @@ struct BookedTicketHistoryView: View {
                         Text(data.ticketID ?? "")
                     }.padding(.horizontal, 0)
                     
-                    .font(.system(size: 18, weight: .medium, design: .default))
-                    .padding(.horizontal)
-                    .padding(.vertical, 3)
+                        .font(.system(size: 18, weight: .medium, design: .default))
+                        .padding(.horizontal)
+                        .padding(.vertical, 3)
                 }.background(AppTheme.appThemeBlue)
                     .foregroundColor(AppTheme.appThemeRed)
                 Spacer()
@@ -319,33 +202,47 @@ struct BookedTicketHistoryView: View {
                 }
                 
             })
+            
             .sheet(isPresented: $isPresented) {
                 CancelTicketConfirmView(data: data, isYesButtonPressed: $isyesButtonPressed, isNoButtonPressed: $isNoButtonPressed, isPresented: $isPresented, standingAdultCount: adultDropDownSelectedItem, standingChildCount: childDropDownSelectedItem)
             }
             
             .navigationBarTitle("Cancel Ticket")
             
-
+            
         }.onAppear {
-            for item in data.seats ?? []{
+            
+            
+
+            
+            //cancelTicketViewModel.getHistoryDetails(bookingId: data.bookingID ?? "")
+            cancelTicketViewModel.getHistoryDetails(bookingId: data.bookingID ?? "")
+            
+//            if (cancelTicketViewModel.historyDetailData.data?.first?.ticketData?.count ?? 0) == 0 {
+//                isSeating = false
+//            } else {
+//                isSeating = true
+//            }
+            
+            
+            for _ in data.seats ?? []{
                 buttonStatusArr.append(false)
-                print("fsdfdf")
             }
             
-            totalAdultsDropDownList.append(0)
-            if data.getStandingAdultNonCancelledCount() > 0 {
-                for i in 1...data.getStandingAdultNonCancelledCount() {
-                    totalAdultsDropDownList.append(i)
-                }
-            }
-            
-            
-            totalChildDropDownList.append(0)
-            if data.getStandingChildNonCancelledCount() > 0 {
-                for i in 1...data.getStandingChildNonCancelledCount() {
-                    totalChildDropDownList.append(i)
-                }
-            }
+//            totalAdultsDropDownList.append(0)
+//            if data.getStandingAdultNonCancelledCount() > 0 {
+//                for i in 1...data.getStandingAdultNonCancelledCount() {
+//                    totalAdultsDropDownList.append(i)
+//                }
+//            }
+//
+//
+//            totalChildDropDownList.append(0)
+//            if data.getStandingChildNonCancelledCount() > 0 {
+//                for i in 1...data.getStandingChildNonCancelledCount() {
+//                    totalChildDropDownList.append(i)
+//                }
+//            }
             
             
             //totalChildDropDownList = data.getStandingChildNonCancelledCount()
@@ -365,9 +262,9 @@ struct BookedTicketHistoryView_Previews: PreviewProvider {
 
 
 struct CheckboxStyle: ToggleStyle {
-
+    
     func makeBody(configuration: Self.Configuration) -> some View {
-
+        
         return HStack {
             //Image(systemName: configuration.isOn ? "checkmark.square" : "square")
             Image(systemName: "square")
@@ -379,13 +276,13 @@ struct CheckboxStyle: ToggleStyle {
             
             configuration.label
                 .multilineTextAlignment(.center)
-            .padding(.leading, -27)
-            .font(.system(size: 10, weight: .regular, design: .default))
-            .foregroundColor(.white)
-                
+                .padding(.leading, -27)
+                .font(.system(size: 10, weight: .regular, design: .default))
+                .foregroundColor(.white)
+            
             
         }
         .onTapGesture { configuration.isOn.toggle() }
-
+        
     }
 }

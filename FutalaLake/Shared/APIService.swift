@@ -248,8 +248,9 @@ func processGloabalModel(data: Data)->OuterResult {
         return OuterResult(error: respObj.error ?? "", status: respObj.status ?? false)
         
     } catch {
-        return OuterResult(error: "uanble to parse", status: false)
         print("Error APIService@\(#line)-> \(error.localizedDescription)")
+        return OuterResult(error: "uanble to parse", status: false)
+        
     }
     
 }

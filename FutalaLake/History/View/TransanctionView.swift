@@ -29,28 +29,11 @@ struct TransanctionView: View {
                                 .padding(.vertical, 0)
                         }
                         
-//                        ForEach(0..<historyViewModel.historyData.count) { index in
-//                            BookingHistoryCellView(isCancelConfirmPreseneted: $isCancelConfirmPreseneted, isTicketInfoPreseneted: $isTicketInfoPreseneted, isViewButtonPressed: $isViewButtonPressed)
-//                                .padding(.horizontal, 15)
-//                                .padding(.vertical, 0)
-//
-//                        }
                         
                     }.padding(.top, 20)
                     
                 }
-//                if isCancelConfirmPreseneted {
-//                    CancelTicketConfirmAlertView(isPresented: $isCancelConfirmPreseneted, isConfirmPressed: $isTicketInfoPreseneted)
-//                }
-//
-//                else if isTicketInfoPreseneted {
-//                    // ticket info
-//                    CancelTicketAlertView(isTicketCancelSuccessPreseneted: $isTicketCancelSuccessPreseneted, isTicketInfoPreseneted: $isTicketInfoPreseneted)
-//                }
-//
-//                else if isTicketCancelSuccessPreseneted {
-//                    TicketCancelSuccessAlertView(isGoHomeBtnPressed: $isTicketCancelSuccessPreseneted)
-//                }
+                
                 if historyDataIndex < historyViewModel.historyData.count {
                     NavigationLink(destination: BookedTicketHistoryView(data: historyViewModel.historyData[historyDataIndex]), isActive: $isViewButtonPressed) {
                     }.navigationTitle("History") // to change the text on back button on next
