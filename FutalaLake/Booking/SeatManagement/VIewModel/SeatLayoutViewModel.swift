@@ -11,9 +11,12 @@ class SeatLayoutViewModel: ObservableObject {
     @Published var showAlert = false
     @Published var errorMessage = ""
     @Published var isLoading = false
-    @Published var totalFilteredSeats:[Seats] = [Seats]()
+    //@Published var totalFilteredSeats:[Seats] = [Seats]()
     @Published var totalSeats:[Seats] = [Seats]()
     @Published var bookedSeats:[BookedSeatData] = [BookedSeatData]()
+    
+    @Published var gatesWithSections = [GateWithSections]()
+    @Published var gateWithSections:GateWithSections?
     
     @Published var bookedDataDic = [String: Any]()
     
@@ -66,18 +69,16 @@ class SeatLayoutViewModel: ObservableObject {
                             DispatchQueue.main.async {
                                 if respData.status ?? false {
                                     if let totalseat = respData.data?.first?.seats {
-//                                        var vipFare:Float = 0.0
-//                                        var classicFare:Float = 0.0
-                                        // get seat fare
-//                                        if let bookedData = self.bookedSeats.first?.seatFare {
-//                                            for item in bookedData {
-//                                                if item.seatType?.lowercased() == "classic" {
-//                                                    classicFare = item.fare ?? 0
-//                                                } else {
-//                                                    vipFare = item.fare ?? 0
-//                                                }
-//                                            }
-//                                        }
+                                        self.gatesWithSections = self.PrepareDataSectionWise(totalSeats: totalseat)
+                                        print("Let's go====")
+                                        for item in self.gatesWithSections {
+                                            print("gate \(item.gateNo)")
+                                            for section in item.sections {
+                                                print("Section: \(section.sectionName)")
+                                            }
+                                        }
+                                        
+                                        print("Let's end====")
             
                                         for seat in totalseat {
                                             // set seat fare in seatlayout object
@@ -99,9 +100,11 @@ class SeatLayoutViewModel: ObservableObject {
                                         }
             
                                         self.totalSeats = totalseat
-                                        self.totalFilteredSeats = totalseat
+                                        //self.totalFilteredSeats = totalseat
             
-                                        self.appllyFilterByGate(gameNo: "GATE NO. 1")
+                                        //self.appllyFilterByGate(gameNo: "GATE NO. 1")
+                                        
+                                        self.gateWithSections = self.appllyFilterByGateForSectionList(gateNo: "GATE NO. 1")
             
                                     }
                                 }
@@ -110,76 +113,9 @@ class SeatLayoutViewModel: ObservableObject {
                         case .failure(let error):
                             print("Something went wrong::SeatLayoutViewModel@\(#line)")
                         }
-            
                 }
-                
-                
-                
-                
             }
-            
-            
         }
-        
-        
-        
-//        APIService.shared.makeApiTypeRequest(url: url, param: nil, methodType: .get, expecting: SeatLayoutModel.self) { result, data in
-//
-//            DispatchQueue.main.async {
-//                self.isLoading = false
-//            }
-//
-//
-//            switch result {
-//            case .success(let respData):
-//                DispatchQueue.main.async {
-//                    if respData.status ?? false {
-//                        if let totalseat = respData.data?.first?.seats {
-//                            var vipFare:Float = 0.0
-//                            var classicFare:Float = 0.0
-//                            // get seat fare
-//                            if let bookedData = self.bookedSeats.first?.seatFare {
-//                                for item in bookedData {
-//                                    if item.seatType?.lowercased() == "classic" {
-//                                        classicFare = item.fare ?? 0
-//                                    } else {
-//                                        vipFare = item.fare ?? 0
-//                                    }
-//                                }
-//                            }
-//
-//                            for seat in totalseat {
-//                                // set seat fare in seatlayout object
-//                                if seat.seatType?.lowercased() == "classic" {
-//                                    seat.fare = classicFare
-//                                } else {
-//                                    seat.fare = vipFare
-//                                }
-//
-//                                if let arr = self.bookedSeats.first?.bookSeats {
-//                                    if let itemExist = self.isItemExist(arr: arr, item: seat) {
-//                                        //print("Hellofare \(itemExist.fare)")
-//                                        seat.setIsBooked()
-//                                        self.setAddionalValues(seat: seat, bookedSeat: itemExist)
-//                                    }
-//                                }
-//                            }
-//
-//                            self.totalSeats = totalseat
-//                            self.totalFilteredSeats = totalseat
-//
-//                            self.appllyFilterByGate(gameNo: "GATE NO. 1")
-//
-//                        }
-//                    }
-//                }
-//
-//            case .failure(let error):
-//                print("Something went wrong")
-//            }
-//
-//
-//        }
     }
     
     private func setFare(seat: Seats, fares: [SeatFare]) {
@@ -194,6 +130,72 @@ class SeatLayoutViewModel: ObservableObject {
         
         
     }
+    
+    
+    
+    private func isItemExistInSectionList(item: String, list: [String])->Bool {
+        for section in list {
+            if section.lowercased() == item.lowercased() {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func PrepareDataSectionWise(totalSeats: [Seats])->[GateWithSections] {
+        var gateWithSections = [GateWithSections]()
+        
+        let gates = Constants.GATES
+        
+        for gate in gates {
+            let seatsInAGate = totalSeats.filter {
+                $0.gateNumber == gate
+            }
+            
+            
+            var sectionList = [String]()
+            
+            for seat in seatsInAGate {
+                if isItemExistInSectionList(item: seat.section ?? "", list: sectionList) ==  false {
+                    sectionList.append(seat.section ?? "")
+                }
+                
+            }
+            
+            //sectionList = Array(Set(sectionList))
+            
+            
+            var sections = [Section]()
+            
+            
+            for sectionStr in sectionList {
+                let sectionForTheGate = seatsInAGate.filter {
+                    $0.section == sectionStr
+                }
+                let section = Section()
+                section.seats = sectionForTheGate
+                section.sectionName = sectionStr
+                section.width = 780
+                sections.append(section)
+                
+            }
+            
+            let gateWithSection = GateWithSections(gateNo: gate, sections: sections)
+            gateWithSections.append(gateWithSection)
+            
+        }
+        
+        return gateWithSections
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
     
     func submitAction() {
         var seatArr = [[String: Any]]()
@@ -287,13 +289,23 @@ class SeatLayoutViewModel: ObservableObject {
         return bookSeatItem
     }
     
-    func appllyFilterByGate(gameNo: String) {
-        self.totalFilteredSeats = self.totalSeats.filter {
-            $0.gateNumber == gameNo
+//    func appllyFilterByGate(gameNo: String) {
+//        self.totalFilteredSeats = self.totalSeats.filter {
+//            $0.gateNumber == gameNo
+//        }
+//
+//        self.totalFilteredSeats.reverse()
+//        self.totalFilteredSeats.reverse()
+//    }
+    
+    func appllyFilterByGateForSectionList(gateNo: String)->GateWithSections? {
+        for item in gatesWithSections {
+            if item.gateNo == gateNo {
+                self.gateWithSections = item
+                return item
+            }
         }
-        
-        self.totalFilteredSeats.reverse()
-        self.totalFilteredSeats.reverse()
+        return nil
     }
     
     

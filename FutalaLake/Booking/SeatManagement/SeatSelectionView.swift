@@ -10,7 +10,7 @@ import SwiftUI
 struct SeatSelectionView: View {
     @State private var gateSelection = "GATE NO. 1"
     @State private var showToast = false
-    private let gates = ["GATE NO. 1", "GATE NO. 2", "GATE NO. 3", "GATE NO. 4", "GATE NO. 5", "GATE NO. 6", "GATE NO. 7"]
+    private let gates = Constants.GATES
     
     @State var maturityType: String = "Adult"
     
@@ -94,7 +94,8 @@ struct SeatSelectionView: View {
                         }
                     }.onReceive([self.gateSelection].publisher.first()) { value in
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
-                            self.seatLayoutViewModel.appllyFilterByGate(gameNo: gateSelection)
+                            //self.seatLayoutViewModel.appllyFilterByGate(gameNo: gateSelection)
+                            self.seatLayoutViewModel.appllyFilterByGateForSectionList(gateNo: gateSelection)
                         })
                         //showToast = true
                     }
@@ -202,8 +203,21 @@ struct SeatSelectionView: View {
                     ScrollView(.horizontal) {
                         VStack(spacing: -5) {
                             HStack {
-                                GateSectionView(data: $seatLayoutViewModel.totalFilteredSeats, maturityStatus: $maturityType)
-                                    .frame(width: 820)
+                                if let data = seatLayoutViewModel.gateWithSections {
+                                    
+                                    
+                                    ForEach(data.sections) { item in
+                                        if let safeData = item.seats {
+                                            GateSectionView(data: safeData, maturityStatus: $maturityType)
+                                                .frame(width: 820)
+                                        }
+                                        
+                                    }
+                                    
+                                }
+                                
+                                
+                                
                             }
                             .padding(.top, 10)
                             .padding(.horizontal, 5)

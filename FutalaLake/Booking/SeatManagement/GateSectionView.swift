@@ -8,15 +8,18 @@
 import SwiftUI
 
 struct GateSectionView: View {
-    @Binding var data:[Seats]
+    var data:[Seats]
     
     private let adaptiveColumns = [
-        GridItem(.adaptive(minimum: 30))
+        GridItem(.adaptive(minimum: 40))
     ]
     
     @Binding var maturityStatus:String
     
-    
+    init(data: [Seats], maturityStatus: Binding<String>) {
+        self.data = data
+        self._maturityStatus = maturityStatus
+    }
     
 //    init(data: [Seats]) {
 //        self.data = data
@@ -28,14 +31,14 @@ struct GateSectionView: View {
                 ForEach(Array(data.enumerated()), id: \.offset) { index, element in
                     Button {
                         //data[index].toggleIsSelectedStatus()
-                        data.reverse()
+                        //data.reverse()
                         element.toggleIsSelectedStatus(maturityStatus: maturityStatus)
-                        data.reverse()
+                        //data.reverse()
                     } label: {
                         Text(element.seatNumber ?? "")
-                            .font(.system(size: 9, weight: .bold, design: .default))
-                            .frame(width: 30, height: 30)
-                            .foregroundColor(.white)
+                            .font(.system(size: 10, weight: .bold, design: .default))
+                            .frame(width: 40, height: 40)
+                            .foregroundColor(.black)
                     }
                     .background(element.color)
                     //.background(AppTheme.appThemeOrange)

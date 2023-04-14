@@ -9,10 +9,6 @@ import Foundation
 import SwiftUI
 import Combine
 
-fileprivate enum SeatType: String, Codable {
-    case vip = "VIP"
-    case classic =  "Classic"
-}
 
 class SeatLayoutModel : Codable, ObservableObject, Identifiable {
     let status : Bool?
@@ -56,13 +52,14 @@ class SeatData : Codable, ObservableObject, Identifiable {
 class Seats : ObservableObject, Codable, Identifiable {
     let id = UUID()
     let seatLayoutID : String?
-    let seatNumber : String?
+    var seatNumber : String?
     let gateNumberID : Int?
     let gateNumber : String?
     let seatTypeID : Int?
     let seatType : String?
     let status : Int?
     let colorName:String?
+    let section: String?
     
     @Published var color: Color = AppTheme.SeatColor.defaultColor
     
@@ -109,14 +106,23 @@ class Seats : ObservableObject, Codable, Identifiable {
         case seatType = "seatType"
         case status = "status"
         case colorName = "colorName"
+        case section = "section"
     }
     
     private func setVars() {
+        if seatNumber == "!"  {
+            isSelectable = false
+            color = .white
+            seatNumber = ""
+            return
+        }
+        
         if status == 3 || isBooked {
             isSelectable = false
         }
         
         color = AppTheme.SeatColor.defaultColor
+        
         if isBooked {
             color = AppTheme.SeatColor.booked
         }
@@ -155,12 +161,31 @@ class Seats : ObservableObject, Codable, Identifiable {
         seatType = try values.decodeIfPresent(String.self, forKey: .seatType)
         colorName = try values.decodeIfPresent(String.self, forKey: .colorName)
         status = try values.decodeIfPresent(Int.self, forKey: .status)
-        
+        section = try values.decodeIfPresent(String.self, forKey: .section)
         setVars()
-        
-        
         
     }
 
+}
+
+
+class GateWithSections:Identifiable {
+    var id = UUID()
+    var gateNo = ""
+    var sections:[Section]
+    init(gateNo: String, sections: [Section] ) {
+        self.gateNo = gateNo
+        self.sections = sections
+    }
+    
+    
+}
+
+class Section: Identifiable  {
+    var id = UUID()
+    var sectionName = ""
+    
+    var width = 780
+    var seats: [Seats]?
 }
 

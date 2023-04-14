@@ -12,6 +12,8 @@ struct Constants {
     static let colorKey = "colorKey"
     static let baseUrl = "http://220.226.100.106:3001/"
     
+    static let GATES = ["GATE NO. 1", "GATE NO. 2", "GATE NO. 3", "GATE NO. 4", "GATE NO. 5", "GATE NO. 6", "GATE NO. 7"]
+    
     struct API {
         static let sendOTP = "mobile/user/sendMobileVerificationRedisOTP"
         static let showsByDays = "mobile/bookTicket/getShowsByDay"
