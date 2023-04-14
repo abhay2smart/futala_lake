@@ -21,6 +21,17 @@ class CommonUtil {
         return nil
     }
     
+    // change date format
+    static func showDate(date: String)->String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        if let safeDate = dateFormatter.date(from: date) {
+            dateFormatter.dateFormat = "dd-MM-yyyy"
+            return dateFormatter.string(from: safeDate)
+        }
+        return ""
+    }
+    
     static func getQRCodeData(dictionary: [String: String]) -> Data? {
         //guard let filter = CIFilter(name: "CIQRCodeGenerator") else { return nil }
         

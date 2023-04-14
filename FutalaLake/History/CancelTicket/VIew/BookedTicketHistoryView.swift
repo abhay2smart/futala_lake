@@ -134,7 +134,7 @@ struct BookedTicketHistoryView: View {
                         
                     } else {
                         if let data = cancelTicketViewModel.historyDetailData.data?.first {
-                            CancelTicketStanding(data: data, standingParams: cancelTicketViewModel.standingParams)
+                            CancelTicketStandingCell(data: data, standingParams: cancelTicketViewModel.standingParams)
                         }
                         
                     }
@@ -145,17 +145,21 @@ struct BookedTicketHistoryView: View {
                     
                 }
                 
-                Button {
-                    isPresented.toggle()
-                } label: {
-                    Text("Cancel")
-                        .modifier(CustomButtonModifiers())
-                }.padding(.vertical)
-                .onChange(of: isyesButtonPressed, perform: { value in
-                    if value {
-                        cancelTicketViewModel.cancelTicket()
-                    }
-                })
+                if (cancelTicketViewModel.historyDetailData.data?.first?.isCancelButtonVisible ?? false) {
+                    Button {
+                        isPresented.toggle()
+                    } label: {
+                        Text("Cancel")
+                            .modifier(CustomButtonModifiers())
+                    }.padding(.vertical)
+                    .onChange(of: isyesButtonPressed, perform: { value in
+                        if value {
+                            cancelTicketViewModel.cancelTicket()
+                        }
+                    })
+                }
+                
+                
                 
                 Spacer()
                 

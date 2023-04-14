@@ -35,14 +35,6 @@ struct HistoryDetailsModel : Codable {
         }
         
     }
-    
-    
-        
-    
-    
-
-    
-    
 
 }
 
@@ -106,7 +98,102 @@ struct HistoryDetailData : Codable {
         
     }
     
+    var isCancelButtonVisible : Bool {
+        
+        if(bookingStatus == 4){
+            return false
+        }
+        
+        let ticketDate = CommonUtil.getDateFromDateString(date: self.showDate ?? "")
+        let currentDate = CommonUtil.todayDate()
+        
+        let currentTimeStr = CommonUtil.getCurrentStrTime()
+        let diff = CommonUtil.getTimeDiff(currentTimeStr: currentTimeStr ?? "", endTimeStr: self.startTime ?? "")
+        
+        
+        if ((ticketDate == currentDate) && (diff <= 1800) ) {
+            return false
+        }
+        
+        let diffWIthEndTime = CommonUtil.getTimeDiff(currentTimeStr: currentTimeStr ?? "", endTimeStr: self.endTime ?? "")
+        
+        
+        
+        if (((isVerifiedStanding ?? 0) == 0) && diffWIthEndTime < 0 && currentDate == ticketDate || currentDate > ticketDate){
+            return false
+        }
+        
+        
+        if(isVerifiedStanding == 1){
+            return false
+        }
+        
+        
+        if isVerifiedStanding == 1 {
+            return false
+        }
+        
+//        if standingStatus == 4 {
+//            return false
+//        }
+        
+        
+        
+        
+        var seatingIsVerifiedCount = 0
+        
+        for item in ticketData ?? [] {
+            if item.isVerified == 1 {
+                seatingIsVerifiedCount += 1
+            }
+        }
+        
+        // booking status 4 means all the tickets has been cancelled (seating & standing both)
+        if seatingIsVerifiedCount == (ticketData?.count ?? 0) && bookingStatus != 4 {
+            return false
+        }
+        
+        
+        
+        if(bookingStatus == 3){
+            //Toast.makeText(requireActivity(),"Payment Failed",Toast.LENGTH_SHORT).show()
+        }
+        
+        return true
+    }
+    
+    
+    
+    
+    
+    
     func getQRImageForStanding()->Image {
+        
+        let ticketDate = CommonUtil.getDateFromDateString(date: self.showDate ?? "")
+        
+        let currentDate = CommonUtil.todayDate()
+        
+        let currentTimeStr = CommonUtil.getCurrentStrTime()
+        let diff = CommonUtil.getTimeDiff(currentTimeStr: currentTimeStr ?? "", endTimeStr: self.endTime ?? "")
+        
+        if standingStatus == 4 {
+            let img = Image("cancelled-qr-icon")
+            return img
+        }
+        
+        if ((isVerifiedStanding == 0 && diff < 1 && currentDate == ticketDate) || (currentDate > ticketDate )){
+            let img = Image("expired-qr-icon")
+            return img
+        }
+        
+        
+        
+        if isVerifiedStanding == 1 {
+            let img = Image("verified-qr-icon")
+            return img
+        }
+        
+        
         let qrImg = UIImage(data: CommonUtil.getQRCodeData(dictionary: ["data": self.encryptedStandingQRCode ?? ""])!)!
         return Image(uiImage: qrImg)
     }
@@ -154,13 +241,6 @@ struct HistoryDetailData : Codable {
     }
     
     
-    
-    
-    
-    
-    
-    
-    
 
 }
 
@@ -200,6 +280,7 @@ class SeatNo : Codable, ObservableObject {
     let seatNumber : String?
     let seatLayoutID : String?
     let seatBookingID : String?
+    var isSelectable = true
     @Published var isSelected = false
     @Published var color: Color = AppTheme.SeatColor.selected
 
@@ -227,15 +308,31 @@ class SeatNo : Codable, ObservableObject {
         seatNumber = try values.decodeIfPresent(String.self, forKey: .seatNumber)
         seatLayoutID = try values.decodeIfPresent(String.self, forKey: .seatLayoutID)
         seatBookingID = try values.decodeIfPresent(String.self, forKey: .seatBookingID)
-        
-        for color in AppTheme.SeatColor.colorList {
-            if color.key.lowercased() == colorName?.lowercased() {
-                self.color = color.color
-            }
+       
+        // status 4 means cancelled
+        if status == 4 {
+            isSelectable = false
         }
+        
+        
+        
+        if isSelectable {
+            for color in AppTheme.SeatColor.colorList {
+                if color.key.lowercased() == colorName?.lowercased() {
+                    self.color = color.color
+                }
+            }
+        } else {
+            self.color = AppTheme.SeatColor.booked
+        }
+        
+        
     }
     
     func toggleSelectedStatus() {
+        if !isSelectable {
+            return
+        }
         isSelected = !isSelected
         if isSelected {
             color = AppTheme.SeatColor.selected
@@ -306,16 +403,17 @@ class TicketData : Codable, Hashable {
             
             
             
+            if data.seatingStatus == 4 {
+                let img = Image("cancelled-qr-icon")
+                return img
+            }
             
             if ((isVerified == 0 && diff < 1 && currentDate == ticketDate) || (currentDate > ticketDate )){
                 let img = Image("expired-qr-icon")
                 return img
             }
             
-            if data.seatingStatus == 4 {
-                let img = Image("cancelled-qr-icon")
-                return img
-            }
+            
 
             if isVerified == 1 {
                 let img = Image("verified-qr-icon")

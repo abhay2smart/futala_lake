@@ -56,6 +56,30 @@ struct SeatSelectionView: View {
             Color.white
             
             VStack {
+                
+                VStack(spacing: 5) {
+                    HStack {
+                        Text("Date")
+                        Spacer()
+                        Text("Show Time")
+                    }
+                    .font(.system(size: 16, weight: .regular, design: .default))
+                    .padding(.horizontal)
+                    
+                    HStack {
+                        Text(CommonUtil.showDate(date: showDate))
+                        Spacer()
+                        Text(CommonUtil.convertTimeTwentyFourIntoTwelve(time: showStartTime) ?? "")
+                    }
+                    .font(.system(size: 20, weight: .medium, design: .default))
+                    .padding(.horizontal)
+                    .padding(.vertical, 3)
+                }
+                .padding(.bottom)
+                .background(AppTheme.appThemeBlue)
+                .foregroundColor(AppTheme.appThemeRed)
+                
+                
                 HStack {
                     Text("GATE")
                         .padding(.leading, 23)
@@ -78,7 +102,9 @@ struct SeatSelectionView: View {
                     .background(.white)
                     .padding(.trailing)
                     
-                }.frame(width: UIScreen.main.bounds.width, height: 45)
+                }
+                
+                .frame(width: UIScreen.main.bounds.width, height: 45)
                     .background(
                         Rectangle()
                             .fill(Color.white)
@@ -90,6 +116,7 @@ struct SeatSelectionView: View {
                                 y: 0
                             )
                     )
+                    .padding(.top, -10)
                 
                 // Seat type selection
                 

@@ -84,6 +84,7 @@ struct CancelTicketSeatingCell: View {
                 
                 
             }//.allowsTightening(data.isSeatingContainerClickable())
+            //.allowsHitTesting(false)
             .onAppear {
                 if let safeSeats = ticketData?.seatNo {
                     for _ in safeSeats {

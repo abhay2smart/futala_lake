@@ -74,9 +74,9 @@ struct RadioButton: View {
 
 struct RadioButtonGroup: View {
 
-    let items : [String]
+    @State var items : [String]
 
-    @State var selectedId: String = ""
+    @State  var selectedId: String = ""
 
     let callback: (String) -> ()
 

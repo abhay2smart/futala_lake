@@ -179,9 +179,9 @@ class APIService {
                             completion(false, "statusCode 400",data)
                             print("Error APIService@\(#line)-> statusCode 400")
                         case 200:
-                            //let resp = String(decoding: data, as: UTF8.self)
-                            //print("JSON Response: \(resp)")
-                            //let respObj = try JSONDecoder().decode(T.self, from: data)
+                            let resp = String(decoding: data, as: UTF8.self)
+                            print("JSON Response in \(self): \(resp)")
+                            let respObj = try JSONDecoder().decode(T.self, from: data)
                             completion(true, "success", data)
                         case 500:
                             // token expired

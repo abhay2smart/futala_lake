@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CancelTicketStanding: View {
+struct CancelTicketStandingCell: View {
     private var data = HistoryDetailData()
     @State private var totalAdultsDropDownList = [Int]()
     @State private var totalChildDropDownList = [Int]()
@@ -147,6 +147,7 @@ struct CancelTicketStanding: View {
             
             
         }
+        //.allowsHitTesting(false)
         .onAppear {
             fillDropList()
         }
@@ -168,7 +169,7 @@ struct CancelTicketStanding: View {
 
 struct CancelTicketStanding_Previews: PreviewProvider {
     static var previews: some View {
-        CancelTicketStanding(data: HistoryDetailData(), standingParams: StandingParams())
+        CancelTicketStandingCell(data: HistoryDetailData(), standingParams: StandingParams())
     }
 }
 
