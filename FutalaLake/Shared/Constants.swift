@@ -29,6 +29,7 @@ struct Constants {
         static let userHistoryDetails = "mobile/user/mobileUserHistoryDetail"
         static let getProfileDetails = "mobile/user/profileList"
         static let updateProfile = "mobile/user/profileUpdate"
+        static let masterConfig = "masterConfig"
         
     }
 }

@@ -14,13 +14,32 @@ class DateTimeSelectionViewModel: ObservableObject {
     @Published var  seatInventoryData = [SeatInventoryData]()
     
     @Published var message = ""
-    @Published var isPresensted = false
+    //@Published var isPresensted = false
     
     
     @Published var isLoading = false
     
+    @Published var shouldMoveToSeatLayout = false
+    
+    @Published var currentTimeSlotSelected = ""
+    
+    @Published  var showToast = false
     
     
+    
+    
+    func isValidated()->Bool {
+        if currentTimeSlotSelected.isEmpty {
+            message = "Please select show time"
+            showToast = true
+            return false
+        }
+        
+        shouldMoveToSeatLayout = true
+        
+        
+        return true
+    }
     
     //API Calls
     

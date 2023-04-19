@@ -188,7 +188,7 @@ struct CheckoutVIew: View {
                             Text("Ticket Fees")
                             Spacer()
                             
-                            Text(ticketFee)
+                            Text("₹\(ticketFee)")
                             
                         }
                         .font(.system(size: 15, weight: .regular, design: .default))
@@ -201,7 +201,7 @@ struct CheckoutVIew: View {
                             Text("Booking Fees")
                             Spacer()
                             
-                            Text(bookingFees)
+                            Text("₹\(bookingFees)")
                             
                         }
                         .font(.system(size: 15, weight: .regular, design: .default))
@@ -215,7 +215,7 @@ struct CheckoutVIew: View {
                             Text("Tax")
                             Spacer()
                             
-                            Text(tax)
+                            Text("₹\(tax)")
                             
                         }
                         .font(.system(size: 15, weight: .regular, design: .default))
@@ -228,7 +228,7 @@ struct CheckoutVIew: View {
                             Text("Total Amount")
                             Spacer()
                             
-                            Text(totalAmt)
+                            Text("₹\(totalAmt)")
                             
                         }
                         .font(.system(size: 15, weight: .regular, design: .default))

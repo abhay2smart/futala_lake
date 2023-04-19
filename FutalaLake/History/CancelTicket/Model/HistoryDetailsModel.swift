@@ -124,18 +124,11 @@ struct HistoryDetailData : Codable {
         }
         
         
-        if(isVerifiedStanding == 1){
-            return false
-        }
-        
-        
-        if isVerifiedStanding == 1 {
-            return false
-        }
-        
-//        if standingStatus == 4 {
+//        if(isVerifiedStanding == 1){
 //            return false
 //        }
+        
+        
         
         
         
@@ -149,7 +142,7 @@ struct HistoryDetailData : Codable {
         }
         
         // booking status 4 means all the tickets has been cancelled (seating & standing both)
-        if seatingIsVerifiedCount == (ticketData?.count ?? 0) && bookingStatus != 4 {
+        if seatingIsVerifiedCount == (ticketData?.count ?? 0) && isVerifiedStanding == 1 {
             return false
         }
         
@@ -401,12 +394,22 @@ class TicketData : Codable, Hashable {
             let currentTimeStr = CommonUtil.getCurrentStrTime()
             let diff = CommonUtil.getTimeDiff(currentTimeStr: currentTimeStr ?? "", endTimeStr: data.endTime ?? "")
             
+            var cancelledSeatCount = 0
+            for item in seatNo ?? [] {
+                if item.status == 4 {
+                    cancelledSeatCount += 1
+                }
+            }
             
-            
-            if data.seatingStatus == 4 {
+            if cancelledSeatCount == seatNo?.count ?? 0 {
                 let img = Image("cancelled-qr-icon")
                 return img
             }
+            
+//            if data.seatingStatus == 4 {
+//                let img = Image("cancelled-qr-icon")
+//                return img
+//            }
             
             if ((isVerified == 0 && diff < 1 && currentDate == ticketDate) || (currentDate > ticketDate )){
                 let img = Image("expired-qr-icon")

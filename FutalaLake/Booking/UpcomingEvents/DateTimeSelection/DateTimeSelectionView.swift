@@ -12,13 +12,15 @@ import SwiftUI
 struct DateTimeSelectionView: View {
     @ObservedObject private var dateTimeSelectionModel = DateTimeSelectionViewModel()
     @State var selectedDate: Date = Date()
-    @State private var currentTimeSlotSelected = ""
+    //@State private var currentTimeSlotSelected = ""
     @State private var showTimeId = ""
     @State private var showDayId = ""
     
     @State var selectedShow: Shows?
     
     @State var color = AppTheme.appThemeBlue
+    
+    @State var shouldMoveToSeatLayout = false
     
     private let adaptiveColumns = [
         GridItem(.adaptive(minimum: 170))
@@ -46,7 +48,7 @@ struct DateTimeSelectionView: View {
                     
                 }.padding(.top, -10)
                     .onChange(of: selectedDate) { selectedDate in
-                        currentTimeSlotSelected = ""
+                        dateTimeSelectionModel.currentTimeSlotSelected = ""
                         dateTimeSelectionModel.getShowDays(date: selectedDate)
                     }
                 
@@ -69,13 +71,13 @@ struct DateTimeSelectionView: View {
                                             
                                             Rectangle().frame(width: 170, height: 40)
                                             
-                                                .foregroundColor(currentTimeSlotSelected == (dateTimeSelectionModel.shows?[index].startTime ?? "") ? AppTheme.appThemeOrange : AppTheme.appThemeBlue)
+                                                .foregroundColor(dateTimeSelectionModel.currentTimeSlotSelected == (dateTimeSelectionModel.shows?[index].startTime ?? "") ? AppTheme.appThemeOrange : AppTheme.appThemeBlue)
                                                 .cornerRadius(5)
                                             
                                         } else {
                                             Rectangle().frame(width: 170, height: 40)
                                             
-                                                .foregroundColor(currentTimeSlotSelected == (dateTimeSelectionModel.shows?[index].startTime ?? "") ? AppTheme.appThemeOrange : AppTheme.SeatColor.booked)
+                                                .foregroundColor(dateTimeSelectionModel.currentTimeSlotSelected == (dateTimeSelectionModel.shows?[index].startTime ?? "") ? AppTheme.appThemeOrange : AppTheme.SeatColor.booked)
                                                 .cornerRadius(5)
                                         }
                                         
@@ -87,7 +89,7 @@ struct DateTimeSelectionView: View {
                                     .allowsHitTesting(checkIsSelectable(startTime: dateTimeSelectionModel.shows?[index].startTime ?? ""))
                                     .onTapGesture {
                                         self.selectedShow = dateTimeSelectionModel.data?[0].shows?[index]
-                                        self.currentTimeSlotSelected = (dateTimeSelectionModel.data?[0].shows?[index].startTime ?? "")
+                                        dateTimeSelectionModel.currentTimeSlotSelected = (dateTimeSelectionModel.data?[0].shows?[index].startTime ?? "")
                                         showTimeId = dateTimeSelectionModel.data?[0].shows?[index].showTimeID ?? ""
                                         
                                         showDayId = dateTimeSelectionModel.data?.first?.showDayID ?? ""
@@ -99,15 +101,39 @@ struct DateTimeSelectionView: View {
                 }.padding(.horizontal, 10)
                 
                 
+                //shouldMoveToSeatLayout
                 
-                
-                NavigationLink {
-                    SeatSelectionView(showDate: selectedDate, showTimeID: showTimeId, showDayID: showDayId, showStartTime: selectedShow?.startTime ?? "", showEndTime: selectedShow?.endTime ?? "", seatInventoryData: dateTimeSelectionModel.seatInventoryData)
-                } label: {
-                    Text("Submit")
+                Group {
+                    
+                    Button {
+                        if dateTimeSelectionModel.isValidated() {
+                            shouldMoveToSeatLayout = true
+                        }
+                    } label: {
+                        Text("Proceed")
                         .modifier(CustomButtonModifiers())
+                    }
+
+                   
+                    NavigationLink(isActive: $shouldMoveToSeatLayout) {
+                        SeatSelectionView(showDate: selectedDate, showTimeID: showTimeId, showDayID: showDayId, showStartTime: selectedShow?.startTime ?? "", showEndTime: selectedShow?.endTime ?? "", seatInventoryData: dateTimeSelectionModel.seatInventoryData)
+                    } label: {
+                        
+                    }.navigationTitle("Seat Layout")
                 }
-                .allowsHitTesting(currentTimeSlotSelected == "" ? false : true)
+                
+                
+                
+                
+                
+                
+//                NavigationLink {
+//                    SeatSelectionView(showDate: selectedDate, showTimeID: showTimeId, showDayID: showDayId, showStartTime: selectedShow?.startTime ?? "", showEndTime: selectedShow?.endTime ?? "", seatInventoryData: dateTimeSelectionModel.seatInventoryData)
+//                } label: {
+//                    Text("Submit")
+//                        .modifier(CustomButtonModifiers())
+//                }
+//                .allowsHitTesting(currentTimeSlotSelected == "" ? false : true)
                 
 
                 
@@ -118,6 +144,10 @@ struct DateTimeSelectionView: View {
 //                    }
 //                }
             }
+            
+            .toast(message: dateTimeSelectionModel.message,
+                   isShowing: $dateTimeSelectionModel.showToast,
+                   duration: Toast.short)
             
             if dateTimeSelectionModel.isLoading {
                 Loader()

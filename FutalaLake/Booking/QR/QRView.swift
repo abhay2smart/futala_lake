@@ -90,7 +90,24 @@ struct QRView: View {
                         if isSeating {
                             if let safeSeats = qrData?.seatData {
                                 ForEach(Array(safeSeats.enumerated()), id: \.offset) { index, element in
-                                    QRSubView(qrData: qrData ?? QRData(), isSeating: isSeating, qRSeatData: element)
+                                    VStack {
+                                        
+                                            QRSubView(qrData: qrData ?? QRData(), isSeating: isSeating, qRSeatData: element)
+                                            BookedActionsView()
+                                        
+                                        
+                                        
+                                    }.padding(.bottom, 30)
+                                        .background(
+                                         Rectangle()
+                                         .fill(.white)
+                                         .cornerRadius(12)
+                                          .shadow(
+                                           color: Color.gray.opacity(0.7),
+                                           radius: 8,
+                                           x: 0, y: 0)
+                                          )
+                                    
                                 }
                             }
                             
@@ -99,95 +116,8 @@ struct QRView: View {
                         }
                         
                         
-                        
-                        
-                        
-                        HStack {
-                            Spacer()
-                            
-                            Button {
-                                //
-                            } label: {
-                                VStack(spacing: 5) {
-                                    ZStack {
-                                        Rectangle()
-                                            .fill(AppTheme.appThemeOrange)
-                                            .frame(width: 50, height: 50)
-                                            .clipShape(Circle())
-                                        Image("sms")
-                                            .resizable()
-                                            .frame(width: 25, height: 25)
-                                        
-                                    }
-                                    
-                                    
-                                }
-                                
-                            }
-                            
-                            Spacer()
-                            
-                            Button {
-                                //
-                            } label: {
-                                VStack(spacing: 5) {
-                                    ZStack {
-                                        Rectangle()
-                                            .fill(.green)
-                                            .frame(width: 50, height: 50)
-                                            .clipShape(Circle())
-                                        Image("whatsapp")
-                                            .resizable()
-                                            .frame(width: 25, height: 25)
-                                        
-                                    }
-                                    
-                                    
-                                }
-                                
-                            }
-                            
-                            Spacer()
-//
-                            Button {
-                                //
-                                self.session.moveToDashboard = true
-                            } label: {
-                                VStack(spacing: 5) {
-                                    ZStack {
-                                        Rectangle()
-                                            .fill(AppTheme.appThemeOrange)
-                                            .frame(width: 50, height: 50)
-                                            .clipShape(Circle())
-                                        Text("Booking")
-                                            .multilineTextAlignment(.center)
-                                            .font(.system(size: 10, weight: .medium, design: .default))
-                                            .foregroundColor(.white)
-
-                                    }
-
-                                    
-                                }
-
-
-
-                            }
-//
-                            Spacer()
-                            
-                        }
-                        
                     }
-                    .padding(.bottom, 30)
-                    .background(
-                     Rectangle()
-                     .fill(.white)
-                     .cornerRadius(12)
-                      .shadow(
-                       color: Color.gray.opacity(0.7),
-                       radius: 8,
-                       x: 0, y: 0)
-                      )
+                    
                     .padding()
 
                 }.padding(.top, -20)

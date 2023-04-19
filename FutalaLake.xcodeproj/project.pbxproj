@@ -51,6 +51,9 @@
 		179E088929B5E0B500AA4541 /* DateTimeSelectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179E088829B5E0B500AA4541 /* DateTimeSelectionModel.swift */; };
 		179E088C29B5E51D00AA4541 /* DateTimeSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179E088B29B5E51D00AA4541 /* DateTimeSelectionViewModel.swift */; };
 		179E088F29B5F26300AA4541 /* GetTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179E088E29B5F26300AA4541 /* GetTokenModel.swift */; };
+		17A1E24329EE75BB0056117B /* BookedActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E24229EE75BB0056117B /* BookedActionsView.swift */; };
+		17A1E24729EFC2DD0056117B /* MasterConfigModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E24629EFC2DD0056117B /* MasterConfigModel.swift */; };
+		17A1E24A29EFC3B70056117B /* MasterConfigViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E24929EFC3B70056117B /* MasterConfigViewModel.swift */; };
 		17A585E32935FF2B00365D71 /* FutalaLakeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A585E22935FF2B00365D71 /* FutalaLakeApp.swift */; };
 		17A585E52935FF2B00365D71 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A585E42935FF2B00365D71 /* ContentView.swift */; };
 		17A585E72935FF2D00365D71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17A585E62935FF2D00365D71 /* Assets.xcassets */; };
@@ -146,6 +149,9 @@
 		179E088829B5E0B500AA4541 /* DateTimeSelectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeSelectionModel.swift; sourceTree = "<group>"; };
 		179E088B29B5E51D00AA4541 /* DateTimeSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeSelectionViewModel.swift; sourceTree = "<group>"; };
 		179E088E29B5F26300AA4541 /* GetTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTokenModel.swift; sourceTree = "<group>"; };
+		17A1E24229EE75BB0056117B /* BookedActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookedActionsView.swift; sourceTree = "<group>"; };
+		17A1E24629EFC2DD0056117B /* MasterConfigModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterConfigModel.swift; sourceTree = "<group>"; };
+		17A1E24929EFC3B70056117B /* MasterConfigViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterConfigViewModel.swift; sourceTree = "<group>"; };
 		17A585DF2935FF2B00365D71 /* FutalaLake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FutalaLake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17A585E22935FF2B00365D71 /* FutalaLakeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutalaLakeApp.swift; sourceTree = "<group>"; };
 		17A585E42935FF2B00365D71 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -316,6 +322,7 @@
 			children = (
 				173AB86D296589F100B591A4 /* QRView.swift */,
 				171B403029CDCA0D00743095 /* QRSubView.swift */,
+				17A1E24229EE75BB0056117B /* BookedActionsView.swift */,
 			);
 			path = QR;
 			sourceTree = "<group>";
@@ -459,6 +466,7 @@
 		17831DC42955BCDA005C36D0 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				17A1E24429EFC2AB0056117B /* MasterConfig */,
 				17831DC52955BCE0005C36D0 /* View */,
 				17DFCA3529ACB6C0005E5DE5 /* CustomError.swift */,
 				173A59B029B0A3ED0037AF51 /* Constants.swift */,
@@ -562,6 +570,31 @@
 				179E088E29B5F26300AA4541 /* GetTokenModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		17A1E24429EFC2AB0056117B /* MasterConfig */ = {
+			isa = PBXGroup;
+			children = (
+				17A1E24829EFC3A20056117B /* ViewModel */,
+				17A1E24529EFC2B90056117B /* Model */,
+			);
+			path = MasterConfig;
+			sourceTree = "<group>";
+		};
+		17A1E24529EFC2B90056117B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				17A1E24629EFC2DD0056117B /* MasterConfigModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		17A1E24829EFC3A20056117B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				17A1E24929EFC3B70056117B /* MasterConfigViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		17A585D62935FF2B00365D71 = {
@@ -980,6 +1013,7 @@
 			files = (
 				171B403129CDCA0D00743095 /* QRSubView.swift in Sources */,
 				17E570A529D205310011DA87 /* CancelHistorySeat.swift in Sources */,
+				17A1E24329EE75BB0056117B /* BookedActionsView.swift in Sources */,
 				17DFCA3629ACB6C0005E5DE5 /* CustomError.swift in Sources */,
 				173E4CBD29C079140004EA52 /* BookedSeatModel.swift in Sources */,
 				17A585E52935FF2B00365D71 /* ContentView.swift in Sources */,
@@ -1009,9 +1043,11 @@
 				17D80F28295EB3FC00D861FF /* DateTimeSelectionView.swift in Sources */,
 				17DFCA3429ACB62F005E5DE5 /* LoginVM.swift in Sources */,
 				17B921E629E7C6D700277C0E /* ProfileViewModel.swift in Sources */,
+				17A1E24729EFC2DD0056117B /* MasterConfigModel.swift in Sources */,
 				1753DB9729C47FB6008E3078 /* GlobResponseModel.swift in Sources */,
 				1753DB9529C46C12008E3078 /* PaymentViewModel.swift in Sources */,
 				17D80F23295EB20500D861FF /* CustomCalendarView.swift in Sources */,
+				17A1E24A29EFC3B70056117B /* MasterConfigViewModel.swift in Sources */,
 				1746D22929C3160C000385CA /* SubmitBookSeatModel.swift in Sources */,
 				17545D3C2943025F003E3724 /* CustomModifiers.swift in Sources */,
 				173A59B329B0A53F0037AF51 /* APIService.swift in Sources */,

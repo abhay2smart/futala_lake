@@ -8,35 +8,42 @@
 import SwiftUI
 
 struct TabContainerView: View {
+    @ObservedObject var masterConfigViewModel = MasterConfigViewModel()
     var body: some View {
-        TabView {
-            UpcomingEventsView()
-            //PayNowView()
-                .tabItem {
-                    Text("Booking")
-                    Image("booking")
-                }
-            
-            ProfileView()
-                .tabItem {
-                    Text("Profile")
-                    Image("user")
-                }
-            
-            TransanctionView()
-                .tabItem {
-                    Text("History")
-                    Image("trasanctions")
-                }
-            
-            SettingView()
-                .tabItem {
-                    Text("Setting")
-                    Image("settings")
-                }
-            
-            
-            
+        ZStack {
+            TabView {
+                UpcomingEventsView()
+                //PayNowView()
+                    .tabItem {
+                        Text("Booking")
+                        Image("booking")
+                    }
+                
+                ProfileView()
+                    .tabItem {
+                        Text("Profile")
+                        Image("user")
+                    }
+                
+                TransanctionView()
+                    .tabItem {
+                        Text("History")
+                        Image("trasanctions")
+                    }
+                
+                SettingView()
+                    .tabItem {
+                        Text("Setting")
+                        Image("settings")
+                    }
+                
+                
+                
+            }
+        }
+        
+        .onAppear {
+            masterConfigViewModel.fetchMasterConfigData()
         }
         // top navbar
 //        .toolbar {

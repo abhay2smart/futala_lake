@@ -172,10 +172,14 @@ class SeatLayoutViewModel: ObservableObject {
                 let sectionForTheGate = seatsInAGate.filter {
                     $0.section == sectionStr
                 }
+                
+                let rowCount = getRowCountForTheSection(sectionName: sectionStr)
+                
+                
                 let section = Section()
                 section.seats = sectionForTheGate
                 section.sectionName = sectionStr
-                section.width = 780
+                section.rowCount = rowCount
                 sections.append(section)
                 
             }
@@ -189,6 +193,25 @@ class SeatLayoutViewModel: ObservableObject {
         
         
         
+    }
+    
+    private func getRowCountForTheSection(sectionName: String)->Int {
+        var  masterConfigViewModel = MasterConfigViewModel()
+        if let masterConfigData = masterConfigViewModel.getPreservedMasterData() {
+            let masterConfigDataMobile = masterConfigData.filter {
+                $0.type == "MOBILE_LAYOUT_SECTION"
+            }
+            
+            for item in masterConfigDataMobile.first?.options ?? [] {
+                if item.value?.lowercased() == sectionName.lowercased() {
+                    print("Section333 \(sectionName): \(item.code ?? 0)")
+                    return item.code ?? 0
+                }
+            }
+            //MOBILE_LAYOUT_SECTION
+        }
+        
+        return 0
     }
     
     

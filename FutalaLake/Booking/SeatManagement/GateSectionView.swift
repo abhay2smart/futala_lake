@@ -14,11 +14,20 @@ struct GateSectionView: View {
         GridItem(.adaptive(minimum: 40))
     ]
     
+    let perBlockSpace = 48.0
+    var sectionWidth = 0.0
+    var rowCount = 0
+    
     @Binding var maturityStatus:String
     
-    init(data: [Seats], maturityStatus: Binding<String>) {
+    init(data: [Seats], maturityStatus: Binding<String>, rowCountInASection: Int) {
         self.data = data
+        print("rowCountInASection: \(rowCountInASection)")
         self._maturityStatus = maturityStatus
+        self.rowCount = rowCountInASection
+        
+        //self.sectionWidth = (Double(rowCountInASection) * perBlockSpace) + 30
+        self.sectionWidth = (Double(rowCountInASection) * perBlockSpace) + 30
     }
     
 //    init(data: [Seats]) {
@@ -51,9 +60,13 @@ struct GateSectionView: View {
             Spacer()
             
         }
+        .onAppear {
+            //sectionWidth = (sectionWidth * perBlockSpace) + 30
+            
+        }
         
         .cornerRadius(12)
-        .frame(width: 820)
+        .frame(width: sectionWidth)
         
         
         

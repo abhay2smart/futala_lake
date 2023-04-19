@@ -185,7 +185,7 @@ class Section: Identifiable  {
     var id = UUID()
     var sectionName = ""
     
-    var width = 780
+    var rowCount:Int = 0
     var seats: [Seats]?
 }
 

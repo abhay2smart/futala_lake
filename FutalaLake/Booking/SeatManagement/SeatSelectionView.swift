@@ -202,14 +202,14 @@ struct SeatSelectionView: View {
                     
                     ScrollView(.horizontal) {
                         VStack(spacing: -5) {
-                            HStack {
+                            HStack(spacing: -50) {
                                 if let data = seatLayoutViewModel.gateWithSections {
-                                    
-                                    
                                     ForEach(data.sections) { item in
                                         if let safeData = item.seats {
-                                            GateSectionView(data: safeData, maturityStatus: $maturityType)
-                                                .frame(width: 820)
+                                            GateSectionView(data: safeData, maturityStatus: $maturityType, rowCountInASection: item.rowCount)
+                                            Image("stair")
+                                                .resizable()
+                                                .frame(width: 180)
                                         }
                                         
                                     }
