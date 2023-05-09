@@ -20,14 +20,21 @@ struct GateSectionView: View {
     
     @Binding var maturityStatus:String
     
-    init(data: [Seats], maturityStatus: Binding<String>, rowCountInASection: Int) {
+    var groupSeating: Int = 0
+    var groupStanding: Int = 0
+    var isGroupTicketing = false
+    
+    init(data: [Seats], maturityStatus: Binding<String>, rowCountInASection: Int, groupSeats: String, groupStanding: String, isGroupTicketing: Bool) {
         self.data = data
-        print("rowCountInASection: \(rowCountInASection)")
         self._maturityStatus = maturityStatus
         self.rowCount = rowCountInASection
         
-        //self.sectionWidth = (Double(rowCountInASection) * perBlockSpace) + 30
+        
         self.sectionWidth = (Double(rowCountInASection) * perBlockSpace) + 30
+        
+        self.groupSeating = Int(groupSeats) ?? 0
+        self.groupStanding = Int(groupStanding) ?? 0
+        self.isGroupTicketing = isGroupTicketing
     }
     
 //    init(data: [Seats]) {
@@ -41,8 +48,14 @@ struct GateSectionView: View {
                     Button {
                         //data[index].toggleIsSelectedStatus()
                         //data.reverse()
-                        element.toggleIsSelectedStatus(maturityStatus: maturityStatus)
-                        //data.reverse()
+                        if isGroupTicketing {
+                            //element.selectGroupSeats(seats: data, startIndex: index)
+                            //element.toggleIsSelectedStatus(maturityStatus: maturityStatus)
+                            element.selectGroupSeats(seats: data, startIndex: index, maxGroupSeat: groupSeating)
+                        } else {
+                            element.toggleIsSelectedStatus(maturityStatus: maturityStatus)
+                        }
+                        
                     } label: {
                         Text(element.seatNumber ?? "")
                             .font(.system(size: 10, weight: .bold, design: .default))

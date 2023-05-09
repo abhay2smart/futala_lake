@@ -90,6 +90,7 @@ class BookedSeatData : Codable {
     let bookStanding : BookStanding?
     let seatFare : [SeatFare]?
     let standingFare : StandingFare?
+    let groupTicket: GroupTicket?
 
     enum CodingKeys: String, CodingKey {
 
@@ -97,6 +98,7 @@ class BookedSeatData : Codable {
         case bookStanding = "bookStanding"
         case seatFare = "seatFare"
         case standingFare = "standingFare"
+        case groupTicket = "groupTicket"
     }
 
     required init(from decoder: Decoder) throws {
@@ -105,6 +107,7 @@ class BookedSeatData : Codable {
         bookStanding = try values.decodeIfPresent(BookStanding.self, forKey: .bookStanding)
         seatFare = try values.decodeIfPresent([SeatFare].self, forKey: .seatFare)
         standingFare = try values.decodeIfPresent(StandingFare.self, forKey: .standingFare)
+        groupTicket = try values.decodeIfPresent(GroupTicket.self, forKey: .groupTicket)
     }
 
 }
@@ -144,4 +147,23 @@ struct StandingFare : Codable {
         fare = try values.decodeIfPresent(Float.self, forKey: .fare)
     }
 
+}
+
+struct GroupTicket: Codable {
+    let minGroupValue : String?
+    let maxGroupValue : String?
+    let groupDiscountSeat : String?
+    let groupDiscountStanding : String?
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        minGroupValue = try values.decodeIfPresent(String.self, forKey: .minGroupValue)
+        maxGroupValue = try values.decodeIfPresent(String.self, forKey: .maxGroupValue)
+        groupDiscountSeat = try values.decodeIfPresent(String.self, forKey: .groupDiscountSeat)
+        groupDiscountStanding = try values.decodeIfPresent(String.self, forKey: .groupDiscountStanding)
+    }
+    
+    
+    
+    
 }

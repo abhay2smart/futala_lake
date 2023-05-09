@@ -50,20 +50,21 @@ struct CancelTicketSeatingCell: View {
                 
                 LazyVGrid(columns: adaptiveColumns) {
                     ForEach(Array((seats.enumerated())), id: \.offset) { index, element in
-                        Button {
-                            //seats.reversed()
-                            seats[index].toggle()
-                            ticketData?.seatNo?[index].toggleSelectedStatus()
-                            //seats.reversed()
-                        } label: {
-                            Text(ticketData?.seatNo?[index].seatNumber ?? "")
-                                .font(.system(size: 10, weight: .regular, design: .default))
-                                .frame(width: 25, height: 25)
-                                .foregroundColor(.black)
+                        if index < seats.count {
+                            Button {
+                                //seats.reversed()
+                                seats[index].toggle()
+                                ticketData?.seatNo?[index].toggleSelectedStatus()
+                                //seats.reversed()
+                            } label: {
+                                Text(ticketData?.seatNo?[index].seatNumber ?? "")
+                                    .font(.system(size: 10, weight: .regular, design: .default))
+                                    .frame(width: 25, height: 25)
+                                    .foregroundColor(.black)
+                            }
+                            .background(index < (ticketData?.seatNo?.count ?? 0) ? ticketData?.seatNo?[index].color : .blue  )
+                            .cornerRadius(3)
                         }
-                        .background(index < (ticketData?.seatNo?.count ?? 0) ? ticketData?.seatNo?[index].color : .blue  )
-                        .cornerRadius(3)
-
                         
                     }.onChange(of: seats, perform: { value in
                         //seatingParams?.seats.removeAll()

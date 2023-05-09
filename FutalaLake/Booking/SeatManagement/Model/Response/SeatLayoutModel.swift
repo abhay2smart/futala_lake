@@ -49,6 +49,8 @@ class SeatData : Codable, ObservableObject, Identifiable {
 
 }
 
+var totalGroupSelectedCount:Int = 0
+
 class Seats : ObservableObject, Codable, Identifiable {
     let id = UUID()
     let seatLayoutID : String?
@@ -69,6 +71,8 @@ class Seats : ObservableObject, Codable, Identifiable {
     
     @Published var isSelectable = true
     
+    //@Published var totalGroupSelectedCount:Int = 0
+    
     // For API request
     var fare:Float = 0.0
     var isAdult: Int = 1
@@ -87,6 +91,85 @@ class Seats : ObservableObject, Codable, Identifiable {
         setVars()
         
     }
+    
+    
+    // group
+    func selectGroupSeats(seats:[Seats], startIndex: Int, maxGroupSeat: Int) {
+        
+        var lastIndex = startIndex + (maxGroupSeat - totalGroupSelectedCount)
+        
+        print("startIndex: \(startIndex) lastIndex: \(lastIndex)")
+        
+        
+        if totalGroupSelectedCount >= maxGroupSeat {
+            if seats[startIndex].isSelected {
+                seats[startIndex].isSelected = false
+                setVars(seat: seats[startIndex])
+                totalGroupSelectedCount -= 1
+            }
+            
+//
+//            lastIndex = startIndex + (maxGroupSeat - totalGroupSelectedCount)
+            
+        } else {
+            for i in startIndex..<lastIndex {
+                if !seats[i].isSelectable {
+                    break
+                }
+                if seats[i].isSelected {
+                    seats[i].isSelected = false
+                    totalGroupSelectedCount -= 1
+                    setVars(seat: seats[i])
+                    break
+                } else {
+                    seats[i].isSelected = true
+                    totalGroupSelectedCount += 1
+                    setVars(seat: seats[i])
+                    
+                }
+                
+            }
+        }
+        
+    }
+    
+    private func setVars(seat: Seats) {
+            //check for
+            if seat.seatNumber == "!"  {
+                seat.isSelectable = false
+                seat.color = .white
+                seat.seatNumber = ""
+                return
+            }
+            
+            if seat.status == 3 || seat.isBooked {
+                isSelectable = false
+            }
+            
+            seat.color = AppTheme.SeatColor.defaultColor
+            
+            if seat.isBooked {
+                seat.color = AppTheme.SeatColor.booked
+            }
+            else {
+                if seat.status == 3 {
+                   // maintenace
+                    seat.color = AppTheme.SeatColor.maintenance
+                } else if seat.status == 1 {
+                    
+                    if seat.isSelected {
+                        seat.color = AppTheme.SeatColor.selected
+                    } else {
+                        for color in AppTheme.SeatColor.colorList {
+                            if color.key.lowercased() == seat.colorName?.lowercased() {
+                                seat.color = color.color
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
     
     
     
@@ -110,6 +193,7 @@ class Seats : ObservableObject, Codable, Identifiable {
     }
     
     private func setVars() {
+        //check for
         if seatNumber == "!"  {
             isSelectable = false
             color = .white

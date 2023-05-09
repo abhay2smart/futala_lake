@@ -24,6 +24,24 @@ class SeatLayoutViewModel: ObservableObject {
     
     @Published var shouldMoveToCheckoutView = false
     
+    
+    
+    //group
+    
+    @Published var isGroupPresented = false
+    
+    @Published var minGroupValue:String = ""
+    
+    
+    @Published var groupSeats:String = "20"
+    @Published var groupStanding:String = "0"
+    @Published var maxGroupValue:String = "60"
+    
+    @Published var standings:String = "0"
+    
+    @Published var total:String = "0"
+    
+    
     private var showDate: String = ""
     private var showTimeID: String = ""
     private var showDayID: String = ""
@@ -393,8 +411,10 @@ class SeatLayoutViewModel: ObservableObject {
                         case .success(let respData):
                             DispatchQueue.main.async {
                                 if respData.status ?? false {
-                                    print("Booked Seat data recieved \(respData.data?.count)")
                                     if let bookedSeatData = respData.data {
+                                        //self.groupTicketValidationParam = bookedSeatData.first?.groupTicket
+                                        self.minGroupValue = bookedSeatData.first?.groupTicket?.minGroupValue ?? ""
+                                        self.maxGroupValue = bookedSeatData.first?.groupTicket?.maxGroupValue ?? ""
                                         self.bookedSeats = bookedSeatData
                                         self.getSeatMasterData()
                                     }

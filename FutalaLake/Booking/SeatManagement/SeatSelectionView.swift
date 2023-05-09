@@ -7,6 +7,12 @@
 
 import SwiftUI
 
+enum TicketTypeButtonState:  CaseIterable, Codable {
+    case seating
+    case standing
+    case group
+}
+
 struct SeatSelectionView: View {
     @State private var gateSelection = "GATE NO. 1"
     @State private var showToast = false
@@ -26,6 +32,11 @@ struct SeatSelectionView: View {
     @ObservedObject var seatLayoutViewModel = SeatLayoutViewModel()
     
     @State var setas = [Seats]()
+    
+    @State var ticketTypeButtonState:TicketTypeButtonState = .seating
+    
+    
+    
     
     private var showDate: String
     private var showTimeID: String
@@ -121,22 +132,25 @@ struct SeatSelectionView: View {
                 
                 // Seat type selection
                 
+                Text("\(totalGroupSelectedCount)")
+                
                 
                 VStack {
-                    HStack(alignment: .center) {
-                        //Spacer()
+                    HStack(alignment: .center, spacing: -10) {
+                        Spacer()
                         Button {
-                            isSeating = true
+                            //isSeating = true
+                            ticketTypeButtonState = .seating
                         } label: {
                             Text("Seating")
-                                .foregroundColor(isSeating ? .white: .black)
+                                .foregroundColor(.black)
                         }
-                        .frame(width: 140)
+                        .frame(width: 100)
                         .padding(.vertical, 10)
                         .padding(.horizontal, 10)
                             .background(
                                 Rectangle()
-                                    .fill(isSeating ? AppTheme.appThemeOrange: .white )
+                                    .fill(ticketTypeButtonState == .seating ? AppTheme.appThemeOrange: .white )
                                 .cornerRadius(5)
                                  .shadow(
                                   color: Color.gray.opacity(0.7),
@@ -146,20 +160,21 @@ struct SeatSelectionView: View {
                             .padding(.horizontal, 10)
                             
                         
-                        Spacer()
+                        
                         
                         Button {
-                            isSeating = false
+                            //isSeating = false
+                            ticketTypeButtonState = .standing
                             isPresented = true
                         } label: {
                             Text("Standing")
-                                .foregroundColor(isSeating ? .black: .white )
+                                .foregroundColor(.black )
                         }
-                        .frame(width: 140)
+                        .frame(width: 100)
                         .padding(.all, 10)
                             .background(
                                 Rectangle()
-                                .fill(isSeating ? .white: AppTheme.appThemeOrange )
+                                    .fill(ticketTypeButtonState == .standing ? AppTheme.appThemeOrange : .white  )
                                 .cornerRadius(5)
                                  .shadow(
                                   color: Color.gray.opacity(0.7),
@@ -168,6 +183,32 @@ struct SeatSelectionView: View {
                                  )
                             .padding(.horizontal, 10)
 
+                        
+                        
+                        Button {
+                            ticketTypeButtonState = .group
+                            seatLayoutViewModel.isGroupPresented = true
+                        } label: {
+                            Text("Group")
+                                .foregroundColor(.black)
+                        }
+                        .frame(width: 100)
+                        .padding(.all, 10)
+                            .background(
+                                Rectangle()
+                                    .fill(ticketTypeButtonState == .group ? AppTheme.appThemeOrange  : .white )
+                                .cornerRadius(5)
+                                 .shadow(
+                                  color: Color.gray.opacity(0.7),
+                                  radius: 8,
+                                  x: 0, y: 0)
+                                 )
+                            .padding(.horizontal, 10)
+                        
+                        Spacer()
+
+                        
+                        
                     }
                     
                 .padding(.all, 10)
@@ -206,18 +247,21 @@ struct SeatSelectionView: View {
                                 if let data = seatLayoutViewModel.gateWithSections {
                                     ForEach(data.sections) { item in
                                         if let safeData = item.seats {
-                                            GateSectionView(data: safeData, maturityStatus: $maturityType, rowCountInASection: item.rowCount)
-                                            Image("stair")
-                                                .resizable()
-                                                .frame(width: 180)
+                                            if ticketTypeButtonState == .group {
+                                                GateSectionView(data: safeData, maturityStatus: $maturityType, rowCountInASection: item.rowCount, groupSeats: seatLayoutViewModel.groupSeats, groupStanding: seatLayoutViewModel.groupStanding, isGroupTicketing: true)
+                                                Image("stair")
+                                                    .resizable()
+                                                    .frame(width: 180)
+                                            } else {
+                                                GateSectionView(data: safeData, maturityStatus: $maturityType, rowCountInASection: item.rowCount, groupSeats: "0", groupStanding: "0", isGroupTicketing: false)
+                                                Image("stair")
+                                                    .resizable()
+                                                    .frame(width: 180)
+                                            }
+                                            
                                         }
-                                        
                                     }
-                                    
                                 }
-                                
-                                
-                                
                             }
                             .padding(.top, 10)
                             .padding(.horizontal, 5)
@@ -291,6 +335,11 @@ struct SeatSelectionView: View {
             if isPresented {
                 StandingInputDialog(noOfAdults: $noOfAdults, noOfChildren: $noOfChildren, total: $total, isPresented: $isPresented)
             }
+            
+            if seatLayoutViewModel.isGroupPresented {
+                GroupInputDialogView(standing: $seatLayoutViewModel.standings, isGroupDialogPresented: $seatLayoutViewModel.isGroupPresented, groupSeats: $seatLayoutViewModel.groupSeats, groupStanding: $seatLayoutViewModel.groupStanding, minVal: seatLayoutViewModel.minGroupValue, maxVal: seatLayoutViewModel.maxGroupValue, ticketTypeButtonState: $ticketTypeButtonState)
+            }
+            
             if self.seatLayoutViewModel.isLoading {
                 Loader()
             }

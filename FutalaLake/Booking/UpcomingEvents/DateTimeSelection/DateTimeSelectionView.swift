@@ -112,14 +112,14 @@ struct DateTimeSelectionView: View {
                     } label: {
                         Text("Proceed")
                         .modifier(CustomButtonModifiers())
-                    }
+                    }.padding(.vertical)
 
                    
                     NavigationLink(isActive: $shouldMoveToSeatLayout) {
                         SeatSelectionView(showDate: selectedDate, showTimeID: showTimeId, showDayID: showDayId, showStartTime: selectedShow?.startTime ?? "", showEndTime: selectedShow?.endTime ?? "", seatInventoryData: dateTimeSelectionModel.seatInventoryData)
                     } label: {
                         
-                    }.navigationTitle("Seat Layout")
+                    }.navigationTitle("Date & Time")
                 }
                 
                 

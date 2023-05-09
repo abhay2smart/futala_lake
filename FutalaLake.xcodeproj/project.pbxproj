@@ -54,6 +54,7 @@
 		17A1E24329EE75BB0056117B /* BookedActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E24229EE75BB0056117B /* BookedActionsView.swift */; };
 		17A1E24729EFC2DD0056117B /* MasterConfigModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E24629EFC2DD0056117B /* MasterConfigModel.swift */; };
 		17A1E24A29EFC3B70056117B /* MasterConfigViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E24929EFC3B70056117B /* MasterConfigViewModel.swift */; };
+		17A1E24C29F0046F0056117B /* GroupInputDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E24B29F0046F0056117B /* GroupInputDialogView.swift */; };
 		17A585E32935FF2B00365D71 /* FutalaLakeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A585E22935FF2B00365D71 /* FutalaLakeApp.swift */; };
 		17A585E52935FF2B00365D71 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A585E42935FF2B00365D71 /* ContentView.swift */; };
 		17A585E72935FF2D00365D71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17A585E62935FF2D00365D71 /* Assets.xcassets */; };
@@ -152,6 +153,7 @@
 		17A1E24229EE75BB0056117B /* BookedActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookedActionsView.swift; sourceTree = "<group>"; };
 		17A1E24629EFC2DD0056117B /* MasterConfigModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterConfigModel.swift; sourceTree = "<group>"; };
 		17A1E24929EFC3B70056117B /* MasterConfigViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterConfigViewModel.swift; sourceTree = "<group>"; };
+		17A1E24B29F0046F0056117B /* GroupInputDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupInputDialogView.swift; sourceTree = "<group>"; };
 		17A585DF2935FF2B00365D71 /* FutalaLake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FutalaLake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17A585E22935FF2B00365D71 /* FutalaLakeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutalaLakeApp.swift; sourceTree = "<group>"; };
 		17A585E42935FF2B00365D71 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -774,6 +776,7 @@
 				17D80F60296296C300D861FF /* SeatSelectionView.swift */,
 				17D80F632962A8D200D861FF /* GateSectionView.swift */,
 				17AE976629BB0BDD00F12E78 /* StandingInputDialog.swift */,
+				17A1E24B29F0046F0056117B /* GroupInputDialogView.swift */,
 			);
 			path = SeatManagement;
 			sourceTree = "<group>";
@@ -1061,6 +1064,7 @@
 				17545D332942F0BD003E3724 /* CustomTextField.swift in Sources */,
 				17E570AA29D2C8C30011DA87 /* CancelTicketViewModel.swift in Sources */,
 				17FC7F972959BF5F0066D67B /* BookingHistoryCellView.swift in Sources */,
+				17A1E24C29F0046F0056117B /* GroupInputDialogView.swift in Sources */,
 				1724EEA829CC6DDB00930830 /* UpdatePaymentStatusModel.swift in Sources */,
 				1753DB8E29C43755008E3078 /* CommonUtil.swift in Sources */,
 				1733F8E229CAFBBF00D97F2E /* SessionManager.swift in Sources */,
