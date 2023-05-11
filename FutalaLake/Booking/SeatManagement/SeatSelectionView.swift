@@ -132,9 +132,6 @@ struct SeatSelectionView: View {
                 
                 // Seat type selection
                 
-                Text("\(totalGroupSelectedCount)")
-                
-                
                 VStack {
                     HStack(alignment: .center, spacing: -10) {
                         Spacer()
@@ -213,18 +210,33 @@ struct SeatSelectionView: View {
                     
                 .padding(.all, 10)
                 //.background(.red)
-                    if isSeating {
-                        HStack {
-                            RadioButtonGroup(items: ["Adult", "Child"], selectedId: maturityType) { selected in
-                                maturityType = selected
-                                print("Selected is: \(selected)")
-                                
+                    HStack {
+                        if isSeating {
+                            HStack {
+                                RadioButtonGroup(items: ["Adult", "Child"], selectedId: maturityType) { selected in
+                                    maturityType = selected
+                                    print("Selected is: \(selected)")
+                                    
+                                }
+                                .frame(width: 200, height: 10)
+                                .padding(.leading, 20)
+                                Spacer()
+                            }.padding(.bottom)
+                        }
+                        
+                        Spacer()
+                        
+                        if ticketTypeButtonState == .group {
+                            HStack {
+                                Text(seatLayoutViewModel.groupSeats)
+                                Text(" | ")
+                                Text("\(Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT)")
+                                    .padding(.trailing, 40)
                             }
-                            .frame(width: 200, height: 10)
-                            .padding(.leading, 20)
-                            Spacer()
-                        }.padding(.bottom)
+                            
+                        }
                     }
+                    
                     
                 }
                 
@@ -243,20 +255,20 @@ struct SeatSelectionView: View {
                     
                     ScrollView(.horizontal) {
                         VStack(spacing: -5) {
-                            HStack(spacing: -50) {
+                            HStack(spacing: 0) {
                                 if let data = seatLayoutViewModel.gateWithSections {
                                     ForEach(data.sections) { item in
                                         if let safeData = item.seats {
                                             if ticketTypeButtonState == .group {
-                                                GateSectionView(data: safeData, maturityStatus: $maturityType, rowCountInASection: item.rowCount, groupSeats: seatLayoutViewModel.groupSeats, groupStanding: seatLayoutViewModel.groupStanding, isGroupTicketing: true)
+                                                GateSectionView(data: safeData, maturityStatus: $maturityType, rowCountInASection: item.rowCount, groupSeats: seatLayoutViewModel.groupSeats, groupStanding: seatLayoutViewModel.groupStanding, isGroupTicketing: true, gateWithSections: data)
                                                 Image("stair")
                                                     .resizable()
-                                                    .frame(width: 180)
+                                                    .frame(width: 80)
                                             } else {
                                                 GateSectionView(data: safeData, maturityStatus: $maturityType, rowCountInASection: item.rowCount, groupSeats: "0", groupStanding: "0", isGroupTicketing: false)
                                                 Image("stair")
                                                     .resizable()
-                                                    .frame(width: 180)
+                                                    .frame(width: 80)
                                             }
                                             
                                         }
@@ -348,6 +360,7 @@ struct SeatSelectionView: View {
         }.allowsHitTesting(seatLayoutViewModel.isLoading ? false : true)
         .onAppear {
             seatLayoutViewModel.updateParameters(showDate: showDate, showTimeID: showTimeID, showDayID: showDayID)
+            Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT = 0
         }
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {

@@ -48,6 +48,7 @@
 		17831DD02955C551005C36D0 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17831DCF2955C551005C36D0 /* ProfileView.swift */; };
 		17831DD32955C56B005C36D0 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17831DD22955C56B005C36D0 /* SettingView.swift */; };
 		17831DD62955C585005C36D0 /* TransanctionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17831DD52955C585005C36D0 /* TransanctionView.swift */; };
+		1795302E2A0A10A200E37B96 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1795302D2A0A10A200E37B96 /* Global.swift */; };
 		179E088929B5E0B500AA4541 /* DateTimeSelectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179E088829B5E0B500AA4541 /* DateTimeSelectionModel.swift */; };
 		179E088C29B5E51D00AA4541 /* DateTimeSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179E088B29B5E51D00AA4541 /* DateTimeSelectionViewModel.swift */; };
 		179E088F29B5F26300AA4541 /* GetTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179E088E29B5F26300AA4541 /* GetTokenModel.swift */; };
@@ -147,6 +148,7 @@
 		17831DCF2955C551005C36D0 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		17831DD22955C56B005C36D0 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		17831DD52955C585005C36D0 /* TransanctionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransanctionView.swift; sourceTree = "<group>"; };
+		1795302D2A0A10A200E37B96 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		179E088829B5E0B500AA4541 /* DateTimeSelectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeSelectionModel.swift; sourceTree = "<group>"; };
 		179E088B29B5E51D00AA4541 /* DateTimeSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeSelectionViewModel.swift; sourceTree = "<group>"; };
 		179E088E29B5F26300AA4541 /* GetTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTokenModel.swift; sourceTree = "<group>"; };
@@ -468,6 +470,7 @@
 		17831DC42955BCDA005C36D0 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				1795302C2A0A108F00E37B96 /* Globals */,
 				17A1E24429EFC2AB0056117B /* MasterConfig */,
 				17831DC52955BCE0005C36D0 /* View */,
 				17DFCA3529ACB6C0005E5DE5 /* CustomError.swift */,
@@ -548,6 +551,14 @@
 				17831DD52955C585005C36D0 /* TransanctionView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1795302C2A0A108F00E37B96 /* Globals */ = {
+			isa = PBXGroup;
+			children = (
+				1795302D2A0A10A200E37B96 /* Global.swift */,
+			);
+			path = Globals;
 			sourceTree = "<group>";
 		};
 		179E088729B5E09E00AA4541 /* ResponseModel */ = {
@@ -1018,6 +1029,7 @@
 				17E570A529D205310011DA87 /* CancelHistorySeat.swift in Sources */,
 				17A1E24329EE75BB0056117B /* BookedActionsView.swift in Sources */,
 				17DFCA3629ACB6C0005E5DE5 /* CustomError.swift in Sources */,
+				1795302E2A0A10A200E37B96 /* Global.swift in Sources */,
 				173E4CBD29C079140004EA52 /* BookedSeatModel.swift in Sources */,
 				17A585E52935FF2B00365D71 /* ContentView.swift in Sources */,
 				179E088F29B5F26300AA4541 /* GetTokenModel.swift in Sources */,

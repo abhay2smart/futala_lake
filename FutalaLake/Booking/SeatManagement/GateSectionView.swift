@@ -24,7 +24,9 @@ struct GateSectionView: View {
     var groupStanding: Int = 0
     var isGroupTicketing = false
     
-    init(data: [Seats], maturityStatus: Binding<String>, rowCountInASection: Int, groupSeats: String, groupStanding: String, isGroupTicketing: Bool) {
+    var seatsInAGate: GateWithSections?
+    
+    init(data: [Seats], maturityStatus: Binding<String>, rowCountInASection: Int, groupSeats: String, groupStanding: String, isGroupTicketing: Bool, gateWithSections: GateWithSections? = nil) {
         self.data = data
         self._maturityStatus = maturityStatus
         self.rowCount = rowCountInASection
@@ -35,6 +37,7 @@ struct GateSectionView: View {
         self.groupSeating = Int(groupSeats) ?? 0
         self.groupStanding = Int(groupStanding) ?? 0
         self.isGroupTicketing = isGroupTicketing
+        self.seatsInAGate = gateWithSections
     }
     
 //    init(data: [Seats]) {
@@ -51,7 +54,7 @@ struct GateSectionView: View {
                         if isGroupTicketing {
                             //element.selectGroupSeats(seats: data, startIndex: index)
                             //element.toggleIsSelectedStatus(maturityStatus: maturityStatus)
-                            element.selectGroupSeats(seats: data, startIndex: index, maxGroupSeat: groupSeating)
+                            element.selectGroupSeats(seats: data, startIndex: index, maxGroupSeat: groupSeating, seatsInAGate: seatsInAGate)
                         } else {
                             element.toggleIsSelectedStatus(maturityStatus: maturityStatus)
                         }

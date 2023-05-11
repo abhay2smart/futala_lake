@@ -49,7 +49,7 @@ class SeatData : Codable, ObservableObject, Identifiable {
 
 }
 
-var totalGroupSelectedCount:Int = 0
+
 
 class Seats : ObservableObject, Codable, Identifiable {
     let id = UUID()
@@ -94,41 +94,74 @@ class Seats : ObservableObject, Codable, Identifiable {
     
     
     // group
-    func selectGroupSeats(seats:[Seats], startIndex: Int, maxGroupSeat: Int) {
+    
+    private func getAllPreSelectedCount(seats:[Seats])->Int {
+        return seats.filter({ $0.isSelected}).count
+    }
+    
+    private func getAllPreSelectedCount(seatsInAGate:GateWithSections?)->Int {
+        guard let safeData = seatsInAGate else {
+            return 0
+        }
+        var totalCount = 0
+        for item in safeData.sections {
+            for item2 in item.seats ?? [] {
+                if item2.isSelected {
+                    totalCount += 1
+                }
+            }
+        }
+        return totalCount
         
-        var lastIndex = startIndex + (maxGroupSeat - totalGroupSelectedCount)
+    }
+    
+    func selectGroupSeats(seats:[Seats], startIndex: Int, maxGroupSeat: Int, seatsInAGate: GateWithSections?) {
+        let allPreselectedSeats = getAllPreSelectedCount(seatsInAGate: seatsInAGate)
         
-        print("startIndex: \(startIndex) lastIndex: \(lastIndex)")
+        let lastIndex = startIndex + (maxGroupSeat - Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT)
+        
+        print("TOTAL_GROUP_SELECTED_COUNT \(Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT) maxGroupSeat: \(maxGroupSeat)")
         
         
-        if totalGroupSelectedCount >= maxGroupSeat {
+        if Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT >= maxGroupSeat {
+            guard seats[safe: startIndex] != nil else {
+              return
+            }
             if seats[startIndex].isSelected {
                 seats[startIndex].isSelected = false
                 setVars(seat: seats[startIndex])
-                totalGroupSelectedCount -= 1
+                Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT -= 1
+            }
+        } else {
+            
+            guard seats[safe: startIndex] != nil else {
+              return
             }
             
-//
-//            lastIndex = startIndex + (maxGroupSeat - totalGroupSelectedCount)
-            
-        } else {
-            for i in startIndex..<lastIndex {
-                if !seats[i].isSelectable {
-                    break
-                }
-                if seats[i].isSelected {
-                    seats[i].isSelected = false
-                    totalGroupSelectedCount -= 1
-                    setVars(seat: seats[i])
-                    break
-                } else {
+            if seats[startIndex].isSelected {
+                seats[startIndex].isSelected = false
+                Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT -= 1
+                setVars(seat: seats[startIndex])
+                
+            } else {
+                
+                for i in startIndex..<lastIndex {
+                    guard seats[safe: i] != nil else {
+                      return
+                    }
+                    if !seats[i].isSelectable || seats[i].isSelected{
+                        break
+                    }
+                    
                     seats[i].isSelected = true
-                    totalGroupSelectedCount += 1
+                    Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT += 1
                     setVars(seat: seats[i])
                     
+                    
                 }
-                
             }
+            
+            
         }
         
     }
@@ -273,3 +306,10 @@ class Section: Identifiable  {
     var seats: [Seats]?
 }
 
+
+
+extension Collection where Indices.Iterator.Element == Index {
+    subscript (safe index: Index) -> Iterator.Element? {
+        return indices.contains(index) ? self[index] : nil
+    }
+}
