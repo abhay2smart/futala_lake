@@ -171,26 +171,6 @@ struct PayNowView: View {
                 
                 
                 
-                Group {
-                    Button {
-                        paymentViewModel.makePayment(params: dicData)
-                    } label: {
-                        Text("Payment")
-                        .modifier(CustomButtonModifiers())
-                    }
-                    
-                    NavigationLink(isActive: $paymentViewModel.shouldMoveToQRScreen) {
-                        PaymentSuccessAlertView(data: dicData, bookingId: paymentViewModel.bookingID )
-                    } label: {
-                        
-                    }.navigationTitle("Payment")
-                }
-                
-                
-                
-                
-                
-                
 //                NavigationLink {
 //                    PaymentSuccessAlertView()
 //                } label: {
@@ -235,8 +215,8 @@ struct PayNowView: View {
     }
 }
 
-struct PayNowView_Previews: PreviewProvider {
-    static var previews: some View {
-        PayNowView(data: [:])
-    }
-}
+//struct PayNowView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PayNowView(data: [:])
+//    }
+//}

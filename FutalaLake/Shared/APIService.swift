@@ -161,14 +161,14 @@ class APIService {
                     return
                 }
                 
-//                if let data = data {
-//                        do {
-//                            let a = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-//                            print("check \(a)")
-//                        } catch {
-//                            print("ERROR \(error.localizedDescription)")
-//                        }
-//                    }
+                if let data = data {
+                        do {
+                            let a = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                            print("check353453 \(a)")
+                        } catch {
+                            print("ERROR \(error.localizedDescription)")
+                        }
+                    }
                 
                 
                 if let data = data {

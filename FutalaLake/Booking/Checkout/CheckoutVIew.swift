@@ -22,6 +22,8 @@ struct CheckoutVIew: View {
     
     var dataDic = [String: Any]()
     
+    @ObservedObject var checkoutViewModel = CheckoutViewModel()
+    
     init(bookingData: SubmitBookSeatModelData, dataDic: [String: Any]) {
         
         self.dataDic = dataDic
@@ -251,31 +253,39 @@ struct CheckoutVIew: View {
                 .cornerRadius(10)
                 .padding()
                 
-                NavigationLink {
-                    PayNowView(data: dataDic)
+                
+                Button {
+                    checkoutViewModel.makeCheckout(params: dataDic)
                 } label: {
                     Text("Checkout")
-                        .modifier(CustomButtonModifiers())
+                    .modifier(CustomButtonModifiers())
+                }
+
+                
+                
+                NavigationLink(isActive: $checkoutViewModel.shouldMoveToPaymentWebViewScreen) {
+                    PaymentWebView(data: checkoutViewModel.checkOutModelData)
+                } label: {
+                    
                 }.navigationTitle("Checkout")
+                
+                
+                
                 Spacer()
             }
             
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    VStack {
-                        Text("Checkout").font(.subheadline)
-                    }.foregroundColor(.white)
-                }
-            }
-            
-//            .toolbar { // <2>
-//                ToolbarItem(placement: .navigationBarTrailing) {
-//                    TopNavItemView()
+//            .navigationBarTitleDisplayMode(.inline)
+//            .toolbar {
+//                ToolbarItem(placement: .principal) {
+//                    VStack {
+//                        Text("Checkout").font(.subheadline)
+//                    }.foregroundColor(.white)
 //                }
 //            }
             
-            
+            if checkoutViewModel.isLoading {
+                Loader()
+            }
             
         }
         

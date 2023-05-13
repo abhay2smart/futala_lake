@@ -9,13 +9,14 @@ import SwiftUI
 import UIKit
 
 struct PaymentSuccessAlertView: View {
-    private var data: [String: Any] = [String: Any]()
+    private var data: CheckOutModelData?
     @ObservedObject var paymentSuccessAlertViewModel = PaymentSuccessAlertViewModel()
     private var bookingId:String = ""
     
-    init(data: [String: Any], bookingId: String) {
+    init(data: CheckOutModelData, bookingId: String) {
         self.data = data
         self.bookingId = bookingId
+        paymentSuccessAlertViewModel.getPaymentDetails(bookingID: bookingId)
     }
     var body: some View {
         ZStack {
@@ -64,7 +65,7 @@ struct PaymentSuccessAlertView: View {
                         HStack {
                             Text("Payment Amount")
                             Spacer()
-                            Text("₹\(data["total"] as? String ?? "")")
+                            Text("₹ \(paymentSuccessAlertViewModel.totalAmt)")
                         }
                         .font(.system(size: 15, weight: .regular, design: .default))
                         .foregroundColor(.black)
@@ -75,7 +76,7 @@ struct PaymentSuccessAlertView: View {
                         HStack {
                             Text("Payment Date")
                             Spacer()
-                            Text(data["showDate"] as? String ?? "")
+                            Text(Date.getCurrentDate())
                             
                         }
                             
@@ -89,7 +90,7 @@ struct PaymentSuccessAlertView: View {
                             Text("Payment Method")
                             Spacer()
                             
-                            Text("SBI UPI")
+                            Text("Internet Banking")
                             
                         }
                         .font(.system(size: 15, weight: .regular, design: .default))
@@ -99,10 +100,10 @@ struct PaymentSuccessAlertView: View {
                         Divider()
                         
                         HStack {
-                            Text("Bank Transfer ID")
+                            Text("Bank Trsanction ID")
                             Spacer()
                             
-                            Text("2763876383")
+                            Text("\(paymentSuccessAlertViewModel.trsanctionId)")
                             
                         }
                         .font(.system(size: 15, weight: .regular, design: .default))
@@ -116,7 +117,7 @@ struct PaymentSuccessAlertView: View {
                             Text("Total Amount")
                             Spacer()
                             
-                            Text("₹\(data["total"] as? String ?? "")")
+                            Text("₹ \(paymentSuccessAlertViewModel.totalAmt)")
                             
                         }
                         .font(.system(size: 15, weight: .regular, design: .default))
@@ -166,14 +167,14 @@ struct PaymentSuccessAlertView: View {
                 
                 Group {
                     Button("Done") {
-                        paymentSuccessAlertViewModel.updatePaymentStatus(bookingId: bookingId)
+                        paymentSuccessAlertViewModel.getQRData(bookingId: bookingId)
                     }.modifier(CustomButtonModifiers())
                     
                     NavigationLink(isActive: $paymentSuccessAlertViewModel.moveToQRView) {
                         //QRView(data: self.data, encriptedStandingData: paymentSuccessAlertViewModel.encriptedQRSeatString)
                         QRView(data: paymentSuccessAlertViewModel.qrModelData)
                     } label: {
-                        
+
                     }.navigationTitle("Success")
                     
                 }
@@ -208,8 +209,8 @@ struct PaymentSuccessAlertView: View {
     }
 }
 
-struct PaymentSuccessAlertView_Previews: PreviewProvider {
-    static var previews: some View {
-        PaymentSuccessAlertView(data: [:], bookingId: "")
-    }
-}
+//struct PaymentSuccessAlertView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PaymentSuccessAlertView(data: [:], bookingId: "")
+//    }
+//}

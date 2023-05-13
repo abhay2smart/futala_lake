@@ -91,11 +91,8 @@ struct QRView: View {
                             if let safeSeats = qrData?.seatData {
                                 ForEach(Array(safeSeats.enumerated()), id: \.offset) { index, element in
                                     VStack {
-                                        
                                             QRSubView(qrData: qrData ?? QRData(), isSeating: isSeating, qRSeatData: element)
                                             BookedActionsView()
-                                        
-                                        
                                         
                                     }.padding(.bottom, 30)
                                         .background(
@@ -143,7 +140,8 @@ struct QRView: View {
                 isSeating = false
             }
             
-        }
+            
+        }.navigationBarBackButtonHidden(true)
         
     }
 }

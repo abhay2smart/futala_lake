@@ -1,20 +1,19 @@
 //
-//  PaymentViewModel.swift
+//  CheckoutViewModel.swift
 //  FutalaLake
 //
-//  Created by Abhayjeet Singh on 17/03/23.
+//  Created by Abhayjeet Singh on 11/05/23.
 //
 
 import Foundation
-
-class PaymentViewModel: ObservableObject {
+class CheckoutViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     
-    @Published var shouldMoveToQRScreen: Bool = false
+    @Published var shouldMoveToPaymentWebViewScreen: Bool = false
     
-    @Published var bookingID: String = ""
+    @Published var checkOutModelData:CheckOutModelData?
     
-    func makePayment(params: [String: Any]) {
+    func makeCheckout(params: [String: Any]) {
         var param = params
         param["paymentTypeID"] = "1"
         isLoading = true
@@ -28,7 +27,7 @@ class PaymentViewModel: ObservableObject {
             
             if !resultStatus {
                 print("something went wrong:: PaymnetViewModel")
-                return             
+                return
             }
             
             if resultStatus {
@@ -38,7 +37,7 @@ class PaymentViewModel: ObservableObject {
                 
                 do {
                     let a = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-                    print("APIService->String JSON DATAww:: \(a)")
+                    print("APIServicewerwe->String JSON DATAww:: \(a)")
                 } catch {
                     print("Error APIService@\(#line)-> \(error.localizedDescription)")
                 }
@@ -50,9 +49,9 @@ class PaymentViewModel: ObservableObject {
                     case .success(let respData):
                         DispatchQueue.main.async {
                             
-                            if let bookingId = respData.data?.first?.bookingID {
-                                self.bookingID = bookingId
-                                self.shouldMoveToQRScreen = true
+                            if let safeData = respData.data?.first {
+                                self.checkOutModelData = safeData
+                                self.shouldMoveToPaymentWebViewScreen = true
                             }
                             
                         }

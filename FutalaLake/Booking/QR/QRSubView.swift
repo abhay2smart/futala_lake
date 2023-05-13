@@ -17,7 +17,6 @@ struct QRSubView: View {
     init(qrData: QRData, isSeating: Bool = true, qRSeatData:QRSeatData? = nil) {
         self.qrData = qrData
         self.isSeating = isSeating
-        
         startTime = CommonUtil.convertTimeTwentyFourIntoTwelve(time: qrData.startTime ?? "") ?? ""
         endTime = CommonUtil.convertTimeTwentyFourIntoTwelve(time: qrData.endTime ?? "") ?? ""
         

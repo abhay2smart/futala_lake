@@ -87,16 +87,18 @@ struct QRSeatData : Codable {
     let gateNumbers : String?
     let seatTotalFare : Int?
     let groupNo: Int?
+    let gateNo: String?
 
     enum CodingKeys: String, CodingKey {
 
         case encryptedSeatingQRCode = "encryptedQRString"
-        case seats = "seats"
+        case seats = "seatNo"
         case noOfSeats = "noOfSeats"
         case ticketType = "ticketType"
         case gateNumbers = "gateNumbers"
         case seatTotalFare = "seatTotalFare"
         case groupNo = "groupNo"
+        case gateNo = "gateNo"
     }
 
     init(from decoder: Decoder) throws {
@@ -108,6 +110,7 @@ struct QRSeatData : Codable {
         gateNumbers = try values.decodeIfPresent(String.self, forKey: .gateNumbers)
         seatTotalFare = try values.decodeIfPresent(Int.self, forKey: .seatTotalFare)
         groupNo = try values.decodeIfPresent(Int.self, forKey: .groupNo)
+        gateNo = try values.decodeIfPresent(String.self, forKey: .gateNo)
     }
 
 }

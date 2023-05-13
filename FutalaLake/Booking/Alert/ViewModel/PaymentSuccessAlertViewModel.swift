@@ -15,16 +15,82 @@ class PaymentSuccessAlertViewModel: ObservableObject {
     //var bookingId:String = ""
     @Published var qrModelData:QRData = QRData()
     
+    @Published var trsanctionId: String = ""
+    
+    @Published var totalAmt: String = ""
+    
+    @Published var paymentDate: String = ""
+    
+    
+    func getPaymentDetails(bookingID: String) {
+        
+        let url = Constants.baseUrl + Constants.API.getPaymentDetails + "?bookingID=\(bookingID)"
+        
+        APIService.shared.makeApiTypeRequest2(url: url, param: nil, methodType: .get, expecting: GlobResponseModel.self) { resultStatus, error, data  in
+            
+            DispatchQueue.main.async {
+                self.isLoading = false
+            }
+            
+            
+            if !resultStatus {
+                print("something went wrong:: PaymentAlertSuccess")
+                return
+            }
+            
+            guard let data = data else {
+                return
+            }
+            
+            
+            
+            
+            
+            do {
+                let a = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                print("sdsdfsrr:::: \(a)")
+            } catch {
+                print("Error APIService@\(#line)-> \(error.localizedDescription)")
+            }
+            
+            
+            
+            APIService.shared.parseModel(data: data, expecting: PaymentSuccessModel.self) { result, data in
+                
+                switch result {
+                case .success(let respData):
+                    DispatchQueue.main.async {
+                        self.trsanctionId = respData.data?.first?.transactionID ?? ""
+                        self.totalAmt = String(respData.data?.first?.totalAmount ?? 0)
+                        self.paymentDate = CommonUtil.convertTimeTwentyFourIntoTwelve(time: respData.data?.first?.showDate ?? "") ?? ""
+                    }
+                    
+                case .failure(let error):
+                        print("Something went wrong23432 \(error.localizedDescription)")
+                    }
+                }
+            }
+            
+            
+            
+
+            
+        }
+        
+        
+        
+        
+    
+    
+    
+    
+    
     func updatePaymentStatus(bookingId: String) {
         let url = Constants.baseUrl + Constants.API.updatePaymentStatus
         let params = ["bookingID": bookingId]
         
         
         APIService.shared.makeApiTypeRequest2(url: url, param: params, methodType: .post, expecting: GlobResponseModel.self) { resultStatus, error, data  in
-            
-            DispatchQueue.main.async {
-                self.isLoading = false
-            }
             
             
             if !resultStatus {
@@ -81,13 +147,6 @@ class PaymentSuccessAlertViewModel: ObservableObject {
                 return
             }
             
-//            do {
-//                let a = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-//                print("sdsdfsrr:: \(a)")
-//            } catch {
-//                print("Error APIService@\(#line)-> \(error.localizedDescription)")
-//            }
-            
             
             APIService.shared.parseModel(data: data, expecting: QRModel.self) { result, data in
                 
@@ -101,6 +160,7 @@ class PaymentSuccessAlertViewModel: ObservableObject {
                             print("Qr model data is empty")
                             return
                         }
+                        print("Qr model data is empty45 \(qrData.seatData?.first?.seats?.count)")
                         self.qrModelData = qrData
                         self.encriptedQRSeatString = respData.data?.first?.seatData?.first?.encryptedSeatingQRCode ?? ""
                         self.encriptedQRStandingString = respData.data?.first?.qrStandingData?.first?.encryptedStandingQRCode ?? ""

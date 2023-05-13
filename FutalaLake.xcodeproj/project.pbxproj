@@ -23,6 +23,12 @@
 		173AB869296542D400B591A4 /* PaymentSuccessAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173AB868296542D400B591A4 /* PaymentSuccessAlertView.swift */; };
 		173AB86B296551B800B591A4 /* RootManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173AB86A296551B800B591A4 /* RootManager.swift */; };
 		173AB86E296589F100B591A4 /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173AB86D296589F100B591A4 /* QRView.swift */; };
+		173BCE2A2A0CB1BC00DF98FC /* PaymentWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173BCE292A0CB1BC00DF98FC /* PaymentWebView.swift */; };
+		173BCE2D2A0CB25F00DF98FC /* WebViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173BCE2C2A0CB25F00DF98FC /* WebViewRepresentable.swift */; };
+		173BCE302A0CBD9500DF98FC /* CheckoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173BCE2F2A0CBD9500DF98FC /* CheckoutViewModel.swift */; };
+		173BCE322A0E0FF600DF98FC /* PaymentFailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173BCE312A0E0FF600DF98FC /* PaymentFailView.swift */; };
+		173BCE352A0E337100DF98FC /* PaymentWebViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173BCE342A0E337100DF98FC /* PaymentWebViewViewModel.swift */; };
+		173BCE372A0E3C7200DF98FC /* PaymentSuccessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173BCE362A0E3C7100DF98FC /* PaymentSuccessModel.swift */; };
 		173E4CBD29C079140004EA52 /* BookedSeatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E4CBC29C079140004EA52 /* BookedSeatModel.swift */; };
 		1746D22929C3160C000385CA /* SubmitBookSeatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1746D22829C3160C000385CA /* SubmitBookSeatModel.swift */; };
 		174F1BCF295B432D00DAC0D2 /* CancelTicketConfirmAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F1BCE295B432D00DAC0D2 /* CancelTicketConfirmAlertView.swift */; };
@@ -30,7 +36,7 @@
 		174F1BD3295C0FDA00DAC0D2 /* TicketCancelSuccessAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F1BD2295C0FDA00DAC0D2 /* TicketCancelSuccessAlertView.swift */; };
 		174F1BD5295C172100DAC0D2 /* BookedTicketHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F1BD4295C172100DAC0D2 /* BookedTicketHistoryView.swift */; };
 		1753DB8E29C43755008E3078 /* CommonUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1753DB8D29C43755008E3078 /* CommonUtil.swift */; };
-		1753DB9229C46BDA008E3078 /* PaymentSuccessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1753DB9129C46BDA008E3078 /* PaymentSuccessModel.swift */; };
+		1753DB9229C46BDA008E3078 /* CheckOutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1753DB9129C46BDA008E3078 /* CheckOutModel.swift */; };
 		1753DB9529C46C12008E3078 /* PaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1753DB9429C46C12008E3078 /* PaymentViewModel.swift */; };
 		1753DB9729C47FB6008E3078 /* GlobResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1753DB9629C47FB6008E3078 /* GlobResponseModel.swift */; };
 		17545D332942F0BD003E3724 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17545D322942F0BD003E3724 /* CustomTextField.swift */; };
@@ -123,6 +129,12 @@
 		173AB868296542D400B591A4 /* PaymentSuccessAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSuccessAlertView.swift; sourceTree = "<group>"; };
 		173AB86A296551B800B591A4 /* RootManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootManager.swift; sourceTree = "<group>"; };
 		173AB86D296589F100B591A4 /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
+		173BCE292A0CB1BC00DF98FC /* PaymentWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentWebView.swift; sourceTree = "<group>"; };
+		173BCE2C2A0CB25F00DF98FC /* WebViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewRepresentable.swift; sourceTree = "<group>"; };
+		173BCE2F2A0CBD9500DF98FC /* CheckoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewModel.swift; sourceTree = "<group>"; };
+		173BCE312A0E0FF600DF98FC /* PaymentFailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentFailView.swift; sourceTree = "<group>"; };
+		173BCE342A0E337100DF98FC /* PaymentWebViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentWebViewViewModel.swift; sourceTree = "<group>"; };
+		173BCE362A0E3C7100DF98FC /* PaymentSuccessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSuccessModel.swift; sourceTree = "<group>"; };
 		173E4CBC29C079140004EA52 /* BookedSeatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookedSeatModel.swift; sourceTree = "<group>"; };
 		1746D22829C3160C000385CA /* SubmitBookSeatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitBookSeatModel.swift; sourceTree = "<group>"; };
 		174F1BCE295B432D00DAC0D2 /* CancelTicketConfirmAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelTicketConfirmAlertView.swift; sourceTree = "<group>"; };
@@ -130,7 +142,7 @@
 		174F1BD2295C0FDA00DAC0D2 /* TicketCancelSuccessAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCancelSuccessAlertView.swift; sourceTree = "<group>"; };
 		174F1BD4295C172100DAC0D2 /* BookedTicketHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookedTicketHistoryView.swift; sourceTree = "<group>"; };
 		1753DB8D29C43755008E3078 /* CommonUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonUtil.swift; sourceTree = "<group>"; };
-		1753DB9129C46BDA008E3078 /* PaymentSuccessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSuccessModel.swift; sourceTree = "<group>"; };
+		1753DB9129C46BDA008E3078 /* CheckOutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOutModel.swift; sourceTree = "<group>"; };
 		1753DB9429C46C12008E3078 /* PaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewModel.swift; sourceTree = "<group>"; };
 		1753DB9629C47FB6008E3078 /* GlobResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobResponseModel.swift; sourceTree = "<group>"; };
 		17545D322942F0BD003E3724 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
@@ -232,6 +244,7 @@
 		171575052963FBC00004F2F8 /* Checkout */ = {
 			isa = PBXGroup;
 			children = (
+				173BCE2E2A0CBD7D00DF98FC /* ViewModel */,
 				171575062963FBE10004F2F8 /* CheckoutVIew.swift */,
 			);
 			path = Checkout;
@@ -240,6 +253,7 @@
 		171575082963FC310004F2F8 /* Pay */ = {
 			isa = PBXGroup;
 			children = (
+				173BCE282A0CB1A400DF98FC /* PaymentWebView */,
 				1753DB9329C46C01008E3078 /* ViewModel */,
 				1753DB9029C46B59008E3078 /* Model */,
 				1753DB8F29C46B44008E3078 /* View */,
@@ -253,6 +267,7 @@
 				1733F8E629CB1C9800D97F2E /* Model */,
 				1733F8E329CB1AB300D97F2E /* ViewModel */,
 				173AB868296542D400B591A4 /* PaymentSuccessAlertView.swift */,
+				173BCE312A0E0FF600DF98FC /* PaymentFailView.swift */,
 			);
 			path = Alert;
 			sourceTree = "<group>";
@@ -285,6 +300,7 @@
 			isa = PBXGroup;
 			children = (
 				1733F8E729CB1CB100D97F2E /* QRModelData.swift */,
+				173BCE362A0E3C7100DF98FC /* PaymentSuccessModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -331,6 +347,39 @@
 			path = QR;
 			sourceTree = "<group>";
 		};
+		173BCE282A0CB1A400DF98FC /* PaymentWebView */ = {
+			isa = PBXGroup;
+			children = (
+				173BCE332A0E335B00DF98FC /* ViewModel */,
+				173BCE292A0CB1BC00DF98FC /* PaymentWebView.swift */,
+			);
+			path = PaymentWebView;
+			sourceTree = "<group>";
+		};
+		173BCE2B2A0CB23E00DF98FC /* Representable */ = {
+			isa = PBXGroup;
+			children = (
+				173BCE2C2A0CB25F00DF98FC /* WebViewRepresentable.swift */,
+			);
+			path = Representable;
+			sourceTree = "<group>";
+		};
+		173BCE2E2A0CBD7D00DF98FC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				173BCE2F2A0CBD9500DF98FC /* CheckoutViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		173BCE332A0E335B00DF98FC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				173BCE342A0E337100DF98FC /* PaymentWebViewViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		173E4CBE29C1E2590004EA52 /* Request */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,7 +418,7 @@
 		1753DB9029C46B59008E3078 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1753DB9129C46BDA008E3078 /* PaymentSuccessModel.swift */,
+				1753DB9129C46BDA008E3078 /* CheckOutModel.swift */,
 				1724EEA729CC6DDB00930830 /* UpdatePaymentStatusModel.swift */,
 			);
 			path = Model;
@@ -633,6 +682,7 @@
 		17A585E12935FF2B00365D71 /* FutalaLake */ = {
 			isa = PBXGroup;
 			children = (
+				173BCE2B2A0CB23E00DF98FC /* Representable */,
 				171B402C29CD730A00743095 /* Extras */,
 				173A59BB29B0ACD20037AF51 /* Helper */,
 				171575042963FA330004F2F8 /* History */,
@@ -1032,11 +1082,13 @@
 				1795302E2A0A10A200E37B96 /* Global.swift in Sources */,
 				173E4CBD29C079140004EA52 /* BookedSeatModel.swift in Sources */,
 				17A585E52935FF2B00365D71 /* ContentView.swift in Sources */,
+				173BCE302A0CBD9500DF98FC /* CheckoutViewModel.swift in Sources */,
 				179E088F29B5F26300AA4541 /* GetTokenModel.swift in Sources */,
 				17DDFC1129530F1500D7A5C9 /* UpcomcommingbookingStatusCell.swift in Sources */,
 				171B402F29CD732400743095 /* SeatInventoryModel.swift in Sources */,
 				173A59BD29B0ACDE0037AF51 /* KeychainHelper.swift in Sources */,
 				173A59BA29B0A6ED0037AF51 /* LoginResponseModel.swift in Sources */,
+				173BCE2A2A0CB1BC00DF98FC /* PaymentWebView.swift in Sources */,
 				177B40BB2941EBAF00EDF0F0 /* LaunchView.swift in Sources */,
 				17E570AC29D2DDE90011DA87 /* CancelTicketConfirmView.swift in Sources */,
 				17545D3E294308CD003E3724 /* OtpView.swift in Sources */,
@@ -1066,14 +1118,16 @@
 				1746D22929C3160C000385CA /* SubmitBookSeatModel.swift in Sources */,
 				17545D3C2943025F003E3724 /* CustomModifiers.swift in Sources */,
 				173A59B329B0A53F0037AF51 /* APIService.swift in Sources */,
-				1753DB9229C46BDA008E3078 /* PaymentSuccessModel.swift in Sources */,
+				1753DB9229C46BDA008E3078 /* CheckOutModel.swift in Sources */,
 				176CB8DF2966D275006C71D4 /* RadioButton.swift in Sources */,
 				174F1BD5295C172100DAC0D2 /* BookedTicketHistoryView.swift in Sources */,
 				173AB86B296551B800B591A4 /* RootManager.swift in Sources */,
 				174F1BD1295BFCF800DAC0D2 /* CancelTicketAlertView.swift in Sources */,
 				17B921E929E7D2E500277C0E /* ProfileModel.swift in Sources */,
+				173BCE322A0E0FF600DF98FC /* PaymentFailView.swift in Sources */,
 				179E088C29B5E51D00AA4541 /* DateTimeSelectionViewModel.swift in Sources */,
 				17545D332942F0BD003E3724 /* CustomTextField.swift in Sources */,
+				173BCE2D2A0CB25F00DF98FC /* WebViewRepresentable.swift in Sources */,
 				17E570AA29D2C8C30011DA87 /* CancelTicketViewModel.swift in Sources */,
 				17FC7F972959BF5F0066D67B /* BookingHistoryCellView.swift in Sources */,
 				17A1E24C29F0046F0056117B /* GroupInputDialogView.swift in Sources */,
@@ -1093,9 +1147,11 @@
 				17BAE80F29E14C3200333A0A /* CancelTicketSeatingCell.swift in Sources */,
 				174F1BD3295C0FDA00DAC0D2 /* TicketCancelSuccessAlertView.swift in Sources */,
 				17BAE81629E3250100333A0A /* CancelTicketStandingCell.swift in Sources */,
+				173BCE352A0E337100DF98FC /* PaymentWebViewViewModel.swift in Sources */,
 				17545D392942FB2B003E3724 /* Extensions.swift in Sources */,
 				17545D4429433829003E3724 /* UpcomingEventCellView.swift in Sources */,
 				17E570A129D1569D0011DA87 /* HistoryModel.swift in Sources */,
+				173BCE372A0E3C7200DF98FC /* PaymentSuccessModel.swift in Sources */,
 				173A59B129B0A3ED0037AF51 /* Constants.swift in Sources */,
 				17AE976729BB0BDE00F12E78 /* StandingInputDialog.swift in Sources */,
 				17545D412943371A003E3724 /* UpcomingEventsView.swift in Sources */,

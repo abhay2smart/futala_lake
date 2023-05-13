@@ -30,6 +30,9 @@ struct Constants {
         static let getProfileDetails = "mobile/user/profileList"
         static let updateProfile = "mobile/user/profileUpdate"
         static let masterConfig = "masterConfig"
+        static let getPaymentDetails = "mobile/bookTicket/getPaymentDetails"
+        
+        
         
     }
 }

@@ -52,6 +52,16 @@ class SeatLayoutViewModel: ObservableObject {
     var standingChildCount = "0"
     
     
+    func unselectAllSeats() {
+        for gate in gatesWithSections {
+            for section in gate.sections {
+                for seat in section.seats ?? []{
+                    print("Abhay43453")
+                    seat.isSelected = false
+                }
+            }
+        }
+    }
     
     func updateParameters(showDate: String, showTimeID: String, showDayID: String) {
         self.showDate   = showDate
