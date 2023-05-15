@@ -11,7 +11,8 @@ struct GroupInputDialogView: View {
     @Binding var groupStanding: String
     @State var total: String = ""
     
-    @State var isInputActive: Bool = false
+    
+    @FocusState var isInputActive: Bool
     
     @Binding var isGroupDialogPresented: Bool
     
@@ -51,7 +52,7 @@ struct GroupInputDialogView: View {
                         .font(.system(size: 14, weight: .semibold))
                     CustomTextField(placeHolder: "", text: $groupSeats)
                     .keyboardType(.numberPad)
-                    //.focused($isInputActive)
+                    .focused($isInputActive)
                     .toolbar {
                         ToolbarItemGroup(placement: .keyboard) {
                             Spacer()
@@ -72,7 +73,7 @@ struct GroupInputDialogView: View {
                         .font(.system(size: 14, weight: .semibold))
                     CustomTextField(placeHolder: "", text: $groupStanding)
                         .keyboardType(.numberPad)
-                        //.focused($isInputActive)
+                        .focused($isInputActive)
                     
                 }
                 .padding(.horizontal)

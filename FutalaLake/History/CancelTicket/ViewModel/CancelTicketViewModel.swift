@@ -14,7 +14,7 @@ class CancelTicketViewModel: ObservableObject {
     @Published var childDropDownSelectedItem:Int?
     
     @Published var isLoading = false
-    @Published var isPresented = false
+    @Published var isPresented = true
     
     @Published var historyDetailData = HistoryDetailsModel()
     
@@ -123,9 +123,7 @@ class CancelTicketViewModel: ObservableObject {
     }
     
     
-    func updateCancelTicketStatus(data: HistoryData?, standingAdultCount: Int, standingChildCount: Int, refundAmt: Int) {
-//        self.standingAdultCount = standingAdultCount
-//        self.standingChildCount = standingChildCount
+    func updateCancelTicketStatus(data: HistoryData?, ticketData: [TicketData], standingAdultCount: Int, standingChildCount: Int, refundAmt: Int) {
         self.refundAmt = refundAmt
         
         var params = [String: Any]()
@@ -135,16 +133,21 @@ class CancelTicketViewModel: ObservableObject {
         
         var seats = [[String: Any]]()
         
-        for item in data?.seats ?? [] {
-            if item.isSelected {
-                var seat = [String: String]()
-                seat["seatNumber"] = item.seatNumber
-                seat["seatBookingID"] = item.seatBookingID
-                seat["seatLayoutID"] = item.seatLayoutID
-                seats.append(seat)
-                
+        
+        for item in ticketData {
+            for seatItem in item.seatNo ?? [] {
+                if seatItem.isSelected {
+                    var seat = [String: String]()
+                    seat["seatNumber"] = seatItem.seatNumber
+                    seat["seatBookingID"] = seatItem.seatBookingID
+                    seat["seatLayoutID"] = seatItem.seatLayoutID
+                    seats.append(seat)
+                    
+                }
             }
         }
+        
+        
         
         
         
@@ -181,11 +184,16 @@ class CancelTicketViewModel: ObservableObject {
         
         
         var totalSeatsFare = 0
-        for item in data?.seats ?? [] {
-            if item.isSelected {
-                totalSeatsFare += item.seatFare ?? 0
+        
+        for item in ticketData {
+            for seatItem in item.seatNo ?? [] {
+                if seatItem.isSelected {
+                    totalSeatsFare += seatItem.seatFare ?? 0
+                    
+                }
             }
         }
+        
         
         params["bookingID"] = data?.bookingID
         params["showTimeID"] = data?.showTimeID
@@ -194,7 +202,7 @@ class CancelTicketViewModel: ObservableObject {
         
         params["totalCancelSeatsFare"] = "\(totalSeatsFare)"
         
-        params["adminCharges"] = "50"
+        params["adminCharges"] = Constants.adminCharges
         
         params["totalRefundAmount"] = "\(refundAmt)"
         
@@ -207,30 +215,36 @@ class CancelTicketViewModel: ObservableObject {
     }
     
     func postData(params: [String: Any]) {
-        print("Cancel Ticket Called")
+        print("Cancel Ticket Called \(params)")
         isLoading = true
+        
         
         let url = Constants.baseUrl + Constants.API.cancelTicket
                 
                 APIService.shared.makeApiTypeRequest2(url: url, param: params, methodType: .put, expecting: GlobResponseModel.self) { resultStatus, error, data  in
                     
                     DispatchQueue.main.async {
+                        self.isPresented = false
+                        print("isPresentedeiiii \(self.isPresented)")
+                    }
+                    
+                    DispatchQueue.main.async {
                         self.isLoading = false
                     }
                     
                     if !resultStatus {
-                        print("something went wrong:: SeatLayoutViewModel \(#line)")
+                        print("something went wrong:: SeatLayoutViewModel09999 \(#line)")
                         return
                     }
+                    
+                    print("Cancellation params55 \(params)")
                     
                     
                     
                     guard let data = data else {
                         return
                     }
-                    DispatchQueue.main.async {
-                        self.isPresented = false
-                    }
+                    
                 }
         
     }
@@ -238,6 +252,8 @@ class CancelTicketViewModel: ObservableObject {
     // get all tickets
     
     func getHistoryDetails(bookingId: String) {
+        self.ticketData = [TicketData]()
+        self.historyDetailData = HistoryDetailsModel()
         isLoading = true
         let url = Constants.baseUrl + Constants.API.userHistoryDetails + "?bookingID=" + "\(bookingId)"
         APIService.shared.makeApiTypeRequest2(url: url, param: nil, methodType: .get, expecting: GlobResponseModel.self) { resultStatus, error, data  in
@@ -271,6 +287,19 @@ class CancelTicketViewModel: ObservableObject {
             
             
             APIService.shared.parseModel(data: data, expecting: HistoryDetailsModel.self) { result, data in
+                guard let data = data else {
+                    return
+                }
+                
+                do {
+                     let a = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                     print("HistoryDetails45:: \(a)")
+                  } catch {
+                    print("Error APIService@\(#line)-> \(error.localizedDescription)")
+                }
+
+                
+                
                 switch result {
                 case .success(let respData):
                     DispatchQueue.main.async {
@@ -281,6 +310,11 @@ class CancelTicketViewModel: ObservableObject {
                                 
                                 if let ticketData = respData.data?.first?.ticketData {
                                     self.ticketData = ticketData
+                                    for item in ticketData {
+                                        for seat in item.seatNo ?? []{
+                                            print("Hola233 \(seat.seatNumber ?? "")  \(seat.status ?? 0)")
+                                        }
+                                    }
                                 }
                                 
                                 if (respData.data?.first?.ticketData?.count ?? 0) == 0 {

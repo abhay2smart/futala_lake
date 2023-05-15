@@ -301,6 +301,8 @@ class SeatNo : Codable, ObservableObject {
         seatNumber = try values.decodeIfPresent(String.self, forKey: .seatNumber)
         seatLayoutID = try values.decodeIfPresent(String.self, forKey: .seatLayoutID)
         seatBookingID = try values.decodeIfPresent(String.self, forKey: .seatBookingID)
+        
+        print("abhay-----> s: \(seatNumber) status: \(status)")
        
         // status 4 means cancelled
         if status == 4 {
@@ -339,6 +341,7 @@ class SeatNo : Codable, ObservableObject {
     }
 
 }
+
 
 class TicketData : Codable, Hashable {
     

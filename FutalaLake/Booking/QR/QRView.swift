@@ -109,7 +109,11 @@ struct QRView: View {
                             }
                             
                         } else {
-                            QRSubView(qrData: qrData ?? QRData(), isSeating: isSeating)
+                            VStack {
+                                QRSubView(qrData: qrData ?? QRData(), isSeating: isSeating)
+                                BookedActionsView()
+                            }
+                            
                         }
                         
                         

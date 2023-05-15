@@ -11,14 +11,16 @@ struct CancelTicketStandingCell: View {
     private var data = HistoryDetailData()
     @State private var totalAdultsDropDownList = [Int]()
     @State private var totalChildDropDownList = [Int]()
-    @State private var adultDropDownSelectedItem:Int = 0
-    @State private var childDropDownSelectedItem:Int = 0
+    @Binding var adultDropDownSelectedItem:Int
+    @Binding var childDropDownSelectedItem:Int
     
     private var standingParams:StandingParams?
     
-    init(data: HistoryDetailData, standingParams: StandingParams) {
+    init(data: HistoryDetailData, standingParams: StandingParams,adultDropDownSelectedItem: Binding<Int> , childDropDownSelectedItem: Binding<Int>) {
         self.data = data
         self.standingParams = standingParams
+        self._adultDropDownSelectedItem = adultDropDownSelectedItem
+        self._childDropDownSelectedItem = childDropDownSelectedItem
     }
     
     private func fillDropList() {
@@ -169,7 +171,7 @@ struct CancelTicketStandingCell: View {
 
 struct CancelTicketStanding_Previews: PreviewProvider {
     static var previews: some View {
-        CancelTicketStandingCell(data: HistoryDetailData(), standingParams: StandingParams())
+        CancelTicketStandingCell(data: HistoryDetailData(), standingParams: StandingParams(), adultDropDownSelectedItem: .constant(0), childDropDownSelectedItem: .constant(0))
     }
 }
 

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct CancelTicketConfirmView: View {
     @Binding var isYesButtonPressed: Bool
@@ -19,44 +20,46 @@ struct CancelTicketConfirmView: View {
     private var standingChildCount = 0
     private var totalAmount = 0
     private var data: HistoryData?
+    private var ticketData: [TicketData]
     
-    private var adminCharges = 10
-    
-    init(data: HistoryData, isYesButtonPressed: Binding<Bool>, isNoButtonPressed: Binding<Bool>, isPresented: Binding<Bool>, standingAdultCount: Int, standingChildCount: Int) {
+    init(data: HistoryData, ticketData: [TicketData],isYesButtonPressed: Binding<Bool>, isNoButtonPressed: Binding<Bool>, isPresented: Binding<Bool>, standingAdultCount: Int, standingChildCount: Int) {
         self._isNoButtonPressed = isNoButtonPressed
         self._isYesButtonPressed = isYesButtonPressed
         self._isPresented = isPresented
         self.standingAdultCount = standingAdultCount
         self.standingChildCount = standingChildCount
         self.data = data
+        self.ticketData = ticketData
     }
+    
     
     func getSeatsStr()->String {
         var seatsStr = ""
-        //var seatsArr = [String]()
-        var i = 0
-        for seat in data?.seats ?? [] {
-            if seat.isSelected {
-                //seatsArr.append(seat.seatNumber ?? "")
-                seatsStr += (seat.seatNumber ?? "") + ", "
+        for ticket in ticketData {
+            for seat in ticket.seatNo ?? [] {
+                if seat.isSelected {
+                    seatsStr += (seat.seatNumber ?? "") + " "
+                }
             }
-            
-            i += 1
         }
         
+        seatsStr = seatsStr.trimmingCharacters(in: .whitespaces)
+        seatsStr = seatsStr.replacingOccurrences(of: " ", with: ", ")
         return seatsStr
     }
     
     private func calculateTotal()->Int {
+        
         var seatFare = 0
         var standingSingleChildFare = 0
         var standingSingleAdultFare = 0
-        
         var total = 0
         
-        for item in self.data?.seats ?? [] {
-            if item.isSelected {
-                seatFare += item.seatFare ?? 0
+        for ticket in ticketData {
+            for seat in ticket.seatNo ?? [] {
+                if seat.isSelected {
+                    seatFare += seat.seatFare ?? 0
+                }
             }
         }
         
@@ -70,8 +73,41 @@ struct CancelTicketConfirmView: View {
         
         
         let totalStandingFare = (standingSingleAdultFare * standingAdultCount) + (standingSingleChildFare * standingChildCount)
+        
+        
         total = seatFare + totalStandingFare
+        
+        
         return total
+        
+        
+        
+        
+        
+//        var seatFare = 0
+//        var standingSingleChildFare = 0
+//        var standingSingleAdultFare = 0
+//
+//        var total = 0
+//
+//        for item in self.data?.seats ?? [] {
+//            if item.isSelected {
+//                seatFare += item.seatFare ?? 0
+//            }
+//        }
+//
+//        for item in self.data?.standing ?? [] {
+//            if item.isAdult == 1 {
+//                standingSingleAdultFare = Int(item.seatFare ?? 0)
+//            } else {
+//                standingSingleChildFare = Int(item.seatFare ?? 0)
+//            }
+//        }
+//
+//
+//        let totalStandingFare = (standingSingleAdultFare * standingAdultCount) + (standingSingleChildFare * standingChildCount)
+//        total = seatFare + totalStandingFare
+        
         
     }
     
@@ -149,7 +185,7 @@ struct CancelTicketConfirmView: View {
                             HStack {
                                 Text("Admin Charges")
                                 Spacer()
-                                Text("₹\(adminCharges)")
+                                Text("₹\(Constants.adminCharges)")
                             }
                             
                             Divider()
@@ -157,7 +193,7 @@ struct CancelTicketConfirmView: View {
                             HStack {
                                 Text("Refund Amount")
                                 Spacer()
-                                Text("₹\(abs(calculateTotal() - (adminCharges)))")
+                                Text("₹\(abs(calculateTotal() - (Int(Constants.adminCharges) ?? 0)))")
                             }
                         }
                        
@@ -170,13 +206,17 @@ struct CancelTicketConfirmView: View {
                 
                 HStack {
                     Button {
-                        isPresented = cancelTicketViewModel.isPresented //false
-                        isYesButtonPressed = true
-                        self.cancelTicketViewModel.updateCancelTicketStatus(data: data, standingAdultCount: standingAdultCount, standingChildCount: standingChildCount, refundAmt: (abs(calculateTotal() - (adminCharges))))
+                        //isYesButtonPressed = true
+                        self.cancelTicketViewModel.updateCancelTicketStatus(data: data, ticketData: ticketData, standingAdultCount: standingAdultCount, standingChildCount: standingChildCount, refundAmt: (abs(calculateTotal() - (Int(Constants.adminCharges) ?? 0))))
+                        //isPresented = cancelTicketViewModel.isPresented //false
+                        
+                        
                     } label: {
                         Text("Yes")
                             .modifier(CustomButtonModifiers())
-                    }
+                    }.onChange(of: cancelTicketViewModel.isPresented, perform: { value in
+                        self.isPresented = value
+                    })
                     
                     Button {
                         isPresented = false
@@ -191,12 +231,16 @@ struct CancelTicketConfirmView: View {
                 Spacer()
             }.padding()
             
+            if cancelTicketViewModel.isLoading {
+                Loader()
+            }
+            
         }
     }
 }
 
-struct CancelTicketConfirmView_Previews: PreviewProvider {
-    static var previews: some View {
-        CancelTicketConfirmView(data: HistoryData(from: nil), isYesButtonPressed: .constant(false), isNoButtonPressed: .constant(false), isPresented: .constant(false), standingAdultCount: 0, standingChildCount: 0)
-    }
-}
+//struct CancelTicketConfirmView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CancelTicketConfirmView(data: HistoryData(from: nil), ticketData: TicketData(), isYesButtonPressed: .constant(false), isNoButtonPressed: .constant(false), isPresented: .constant(false), standingAdultCount: 0, standingChildCount: 0)
+//    }
+//}

@@ -52,16 +52,6 @@ class SeatLayoutViewModel: ObservableObject {
     var standingChildCount = "0"
     
     
-    func unselectAllSeats() {
-        for gate in gatesWithSections {
-            for section in gate.sections {
-                for seat in section.seats ?? []{
-                    print("Abhay43453")
-                    seat.isSelected = false
-                }
-            }
-        }
-    }
     
     func updateParameters(showDate: String, showTimeID: String, showDayID: String) {
         self.showDate   = showDate
@@ -360,28 +350,36 @@ class SeatLayoutViewModel: ObservableObject {
     }
     
     
-    func validate(isSeating: Bool)->Bool {
-        if isSeating == false {
+    func validate(ticketTypeButtonState: TicketTypeButtonState)->Bool {
+        if ticketTypeButtonState == .standing {
             if (standingAdultCount.isEmpty || standingAdultCount == "0") && (standingChildCount.isEmpty || standingChildCount == "0") {
                 self.errorMessage = "Please enter atleast one standing"
                 self.showAlert = true
                 return false
-            } else {
-                return true
             }
         }
         
+        
+        
         var isValid = false
-        for seat in totalSeats {
-            if seat.isSelected  {
-                isValid = true
-                break
+        
+        if ticketTypeButtonState == .seating {
+            for seat in totalSeats {
+                if seat.isSelected  {
+                    isValid = true
+                    break
+                }
+            }
+            if !isValid {
+                self.errorMessage = "Please select atleast one seat"
+                self.showAlert = true
             }
         }
-        if !isValid {
-            self.errorMessage = "Please select atleast one seat"
-            self.showAlert = true
+        
+        if ticketTypeButtonState == .group {
+            isValid = true
         }
+        
         return isValid
     }
     

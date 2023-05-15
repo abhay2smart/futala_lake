@@ -211,7 +211,7 @@ struct SeatSelectionView: View {
                 .padding(.all, 10)
                 //.background(.red)
                     HStack {
-                        if isSeating {
+                        if ticketTypeButtonState == .seating {
                             HStack {
                                 RadioButtonGroup(items: ["Adult", "Child"], selectedId: maturityType) { selected in
                                     maturityType = selected
@@ -319,7 +319,7 @@ struct SeatSelectionView: View {
                             seatLayoutViewModel.standingChildCount = self.noOfChildren
                             seatLayoutViewModel.showStartTime = self.showStartTime
                             seatLayoutViewModel.showEndTime = self.showEndTime
-                            if seatLayoutViewModel.validate(isSeating: self.isSeating) {
+                            if seatLayoutViewModel.validate(ticketTypeButtonState: ticketTypeButtonState) {
                                 seatLayoutViewModel.submitAction()
                             }
                             

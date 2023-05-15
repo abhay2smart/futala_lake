@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BookedTicketHistoryView: View {
     @Environment(\.presentationMode) var presentationMode
-    private var data:HistoryData = HistoryData(from: nil)
+    @ObservedObject var data:HistoryData = HistoryData(from: nil)
     @State private var totalAdultsDropDownList = [Int]()
     @State private var totalChildDropDownList = [Int]()
     @State private var adultDropDownSelectedItem:Int = 0
@@ -21,6 +21,8 @@ struct BookedTicketHistoryView: View {
     @State var isPresented:Bool = false
     
     @ObservedObject var cancelTicketViewModel = CancelTicketViewModel()
+    
+    @State var cancelDropDownAdultCount = 0
     
     private let adaptiveColumns = [
         GridItem(.adaptive(minimum: 35))
@@ -134,7 +136,7 @@ struct BookedTicketHistoryView: View {
                         
                     } else {
                         if let data = cancelTicketViewModel.historyDetailData.data?.first {
-                            CancelTicketStandingCell(data: data, standingParams: cancelTicketViewModel.standingParams)
+                            CancelTicketStandingCell(data: data, standingParams: cancelTicketViewModel.standingParams, adultDropDownSelectedItem: $cancelDropDownAdultCount, childDropDownSelectedItem: $childDropDownSelectedItem)
                         }
                         
                     }
@@ -208,52 +210,20 @@ struct BookedTicketHistoryView: View {
             })
             
             .sheet(isPresented: $isPresented) {
-                CancelTicketConfirmView(data: data, isYesButtonPressed: $isyesButtonPressed, isNoButtonPressed: $isNoButtonPressed, isPresented: $isPresented, standingAdultCount: adultDropDownSelectedItem, standingChildCount: childDropDownSelectedItem)
+                CancelTicketConfirmView(data: data,ticketData: cancelTicketViewModel.ticketData, isYesButtonPressed: $isyesButtonPressed, isNoButtonPressed: $isNoButtonPressed, isPresented: $isPresented, standingAdultCount: cancelDropDownAdultCount, standingChildCount: childDropDownSelectedItem)
             }
             
             .navigationBarTitle("Cancel Ticket")
             
             
-        }.onAppear {
-            
-            
-
-            
-            //cancelTicketViewModel.getHistoryDetails(bookingId: data.bookingID ?? "")
+        }
+        .onAppear {
             cancelTicketViewModel.getHistoryDetails(bookingId: data.bookingID ?? "")
             
-//            if (cancelTicketViewModel.historyDetailData.data?.first?.ticketData?.count ?? 0) == 0 {
-//                isSeating = false
-//            } else {
-//                isSeating = true
-//            }
-            
-            
-            for _ in data.seats ?? []{
+            for _ in data.seats ?? [] {
                 buttonStatusArr.append(false)
             }
-            
-//            totalAdultsDropDownList.append(0)
-//            if data.getStandingAdultNonCancelledCount() > 0 {
-//                for i in 1...data.getStandingAdultNonCancelledCount() {
-//                    totalAdultsDropDownList.append(i)
-//                }
-//            }
-//
-//
-//            totalChildDropDownList.append(0)
-//            if data.getStandingChildNonCancelledCount() > 0 {
-//                for i in 1...data.getStandingChildNonCancelledCount() {
-//                    totalChildDropDownList.append(i)
-//                }
-//            }
-            
-            
-            //totalChildDropDownList = data.getStandingChildNonCancelledCount()
-            //self.buttonStatusArr.reversed()
         }
-        
-        
     }
 }
 
