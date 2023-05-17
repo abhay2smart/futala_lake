@@ -123,7 +123,7 @@ struct QRSubView: View {
                                 HStack {
                                     Text("Show Date")
                                     Spacer()
-                                    Text(qrData.showDate ?? "")
+                                    Text(CommonUtil.showDate(date: qrData.showDate ?? ""))
                                     
                                 }.multilineTextAlignment(.center)
                                     .font(.system(size: 17, weight: .regular, design: .default))

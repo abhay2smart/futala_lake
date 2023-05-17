@@ -36,7 +36,7 @@ struct BookingHistoryCellView: View {
                 VStack(alignment: .center, spacing: 5) {
                     Text("Date")
                         .foregroundColor(AppTheme.appThemeOrange)
-                    Text(self.historyData?.showDate ?? "")
+                    Text(CommonUtil.showDate(date: self.historyData?.showDate ?? ""))
                 }
                 Spacer()
                 

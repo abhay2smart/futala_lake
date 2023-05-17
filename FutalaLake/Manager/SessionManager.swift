@@ -16,13 +16,13 @@ class SessionManager: ObservableObject {
     @Published var isLoading:Bool = false
     @Published var moveToDashboard: Bool = false
     init() {
-        let data = KeychainHelper.standard.read(service: Constants.tokenKey)
-        if let data = data {
-            let accessToken = String(data: data, encoding: .utf8)
-            if let accessToken, accessToken != "" {
-                self.currentUserState = .loggedIn
-            }
-        }
+//        let data = KeychainHelper.standard.read(service: Constants.tokenKey)
+//        if let data = data {
+//            let accessToken = String(data: data, encoding: .utf8)
+//            if let accessToken, accessToken != "" {
+//                self.currentUserState = .loggedIn
+//            }
+//        }
         
     }
     
@@ -31,7 +31,7 @@ class SessionManager: ObservableObject {
     }
     
     func signout() {
-        KeychainHelper.standard.delete(service: Constants.tokenKey)
+        //KeychainHelper.standard.delete(service: Constants.tokenKey)
         self.currentUserState = .loggedout
     }
 }

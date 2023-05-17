@@ -27,6 +27,8 @@ struct SeatSelectionView: View {
     @State var noOfChildren = "0"
     @State var total = "0"
     
+    @State var isStandingCancelBtnPressed = false
+    
     @State var isPresented: Bool = false
     
     @ObservedObject var seatLayoutViewModel = SeatLayoutViewModel()
@@ -63,28 +65,34 @@ struct SeatSelectionView: View {
     }
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .bottom) {
             Color.white
             
             VStack {
                 
                 VStack(spacing: 5) {
-                    HStack {
-                        Text("Date")
-                        Spacer()
-                        Text("Show Time")
-                    }
-                    .font(.system(size: 16, weight: .regular, design: .default))
-                    .padding(.horizontal)
-                    
-                    HStack {
-                        Text(CommonUtil.showDate(date: showDate))
-                        Spacer()
-                        Text(CommonUtil.convertTimeTwentyFourIntoTwelve(time: showStartTime) ?? "")
-                    }
-                    .font(.system(size: 20, weight: .medium, design: .default))
-                    .padding(.horizontal)
-                    .padding(.vertical, 3)
+                    Group {
+                        HStack {
+                            Text("Date")
+                            Spacer()
+                            Text("Time")
+                            .padding(.trailing)
+                            
+                        }
+                        .font(.system(size: 16, weight: .regular, design: .default))
+                        .padding(.horizontal)
+                        
+                        HStack {
+                            Text(CommonUtil.showDate(date: showDate))
+                            Spacer()
+                            Text("\(CommonUtil.convertTimeTwentyFourIntoTwelve(time: showStartTime) ?? "") - \(Text(CommonUtil.convertTimeTwentyFourIntoTwelve(time: showEndTime) ?? ""))")
+                            
+                            
+                        }.padding(.horizontal)
+                        
+                    }.font(.system(size: 16, weight: .medium, design: .default))
+                        .padding(.horizontal)
+                        .padding(.vertical, 3)
                 }
                 .padding(.bottom)
                 .background(AppTheme.appThemeBlue)
@@ -94,7 +102,7 @@ struct SeatSelectionView: View {
                 HStack {
                     Text("GATE")
                         .padding(.leading, 23)
-                        .font(.system(size: 20, weight: .medium, design: .default))
+                        .font(.system(size: 18, weight: .medium, design: .default))
                         .foregroundColor(AppTheme.appThemeOrange)
                     
                     Spacer()
@@ -102,14 +110,19 @@ struct SeatSelectionView: View {
                         ForEach(gates, id: \.self) { item in
                             //Text($0)
                             Text(item)
+                                
                         }
-                    }.onReceive([self.gateSelection].publisher.first()) { value in
+                    }
+                    .onReceive([self.gateSelection].publisher.first()) { value in
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
                             //self.seatLayoutViewModel.appllyFilterByGate(gameNo: gateSelection)
                             self.seatLayoutViewModel.appllyFilterByGateForSectionList(gateNo: gateSelection)
                         })
-                        //showToast = true
+                        
                     }
+                    .onChange(of: gateSelection, perform: { newValue in
+                        self.seatLayoutViewModel.unsetSeletedSeats()
+                    })
                     .pickerStyle(.menu)
                     .background(.white)
                     .padding(.trailing)
@@ -138,11 +151,13 @@ struct SeatSelectionView: View {
                         Button {
                             //isSeating = true
                             ticketTypeButtonState = .seating
+                            Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT = 0
+                            self.seatLayoutViewModel.unsetSeletedSeats()
                         } label: {
                             Text("Seating")
                                 .foregroundColor(.black)
                         }
-                        .frame(width: 100)
+                        .frame(width: 95)
                         .padding(.vertical, 10)
                         .padding(.horizontal, 10)
                             .background(
@@ -163,6 +178,13 @@ struct SeatSelectionView: View {
                             //isSeating = false
                             ticketTypeButtonState = .standing
                             isPresented = true
+                            
+                            if Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT > 0 {
+                                Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT = 0
+                                self.seatLayoutViewModel.unsetSeletedSeats()
+                            }
+                            
+                            
                         } label: {
                             Text("Standing")
                                 .foregroundColor(.black )
@@ -185,6 +207,8 @@ struct SeatSelectionView: View {
                         Button {
                             ticketTypeButtonState = .group
                             seatLayoutViewModel.isGroupPresented = true
+                            Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT = 0
+                            self.seatLayoutViewModel.unsetSeletedSeats()//getSeatMasterData()
                         } label: {
                             Text("Group")
                                 .foregroundColor(.black)
@@ -241,15 +265,43 @@ struct SeatSelectionView: View {
                 }
                 
                 
-                Image("wave")
-                    .resizable()
-                    .frame(width: (UIScreen.main.bounds.width - 40), height: 40)
-                    .padding(.vertical)
-                    
+//                Image("wave")
+//                    .resizable()
+//                    .frame(width: (UIScreen.main.bounds.width - 40), height: 40)
+//                    .padding(.vertical)
+//
                 
                 
                 Text(gateSelection)
                     .font(.system(size: 20, weight: .medium, design: .default))
+                
+                
+                // color indicator
+                
+                ScrollView(.horizontal) {
+                    HStack(alignment: .top, spacing: 7) {
+                        
+                        ForEach(0..<(seatInventoryData.count)) { index in
+                            Rectangle()
+                                .fill(AppTheme.SeatColor.isColorMatched(colorName: seatInventoryData[index].colorName ?? ""))
+                                .frame(width: 18, height: 18)
+                            
+                            Text(seatInventoryData[index].seatType ?? "")
+                            //Text(seatInventoryData[index].colorName ?? "")
+                                .font(.system(size: 15, weight: .regular, design: .default))
+                                .foregroundColor(.black)
+                            
+                            Spacer()
+                        }
+                        
+                    }
+                    .padding(.horizontal, 18)
+                    .padding(.vertical, 10)
+                }
+                
+                
+                
+                
                 
                 ScrollView {
                     
@@ -287,63 +339,20 @@ struct SeatSelectionView: View {
                     .padding(.vertical, -10)
                     .padding(.top)
                     
-                    
-                    // color indicator
-                    
-                    ScrollView(.horizontal) {
-                        HStack(alignment: .top, spacing: 7) {
-                            
-                            ForEach(0..<(seatInventoryData.count)) { index in
-                                Rectangle()
-                                    .fill(AppTheme.SeatColor.isColorMatched(colorName: seatInventoryData[index].colorName ?? ""))
-                                    .frame(width: 18, height: 18)
-                                
-                                Text(seatInventoryData[index].seatType ?? "")
-                                //Text(seatInventoryData[index].colorName ?? "")
-                                    .font(.system(size: 15, weight: .regular, design: .default))
-                                    .foregroundColor(.black)
-                                
-                                Spacer()
-                            }
-                            
-                        }
-                        .padding(.horizontal, 18)
-                        .padding(.vertical, 10)
-                    }
-                    
-                    
-                    Group {
-                        Button {
-                            
-                            seatLayoutViewModel.standingAdultCount = self.noOfAdults
-                            seatLayoutViewModel.standingChildCount = self.noOfChildren
-                            seatLayoutViewModel.showStartTime = self.showStartTime
-                            seatLayoutViewModel.showEndTime = self.showEndTime
-                            if seatLayoutViewModel.validate(ticketTypeButtonState: ticketTypeButtonState) {
-                                seatLayoutViewModel.submitAction()
-                            }
-                            
-                            self.showToast = seatLayoutViewModel.showAlert
-                            
-                            
-                        } label: {
-                            Text("Book Ticket")
-                            .modifier(CustomButtonModifiers())
-                        }.padding(.top, 40)
-                        
-                        NavigationLink(isActive: $seatLayoutViewModel.shouldMoveToCheckoutView) {
-                            CheckoutVIew(bookingData: seatLayoutViewModel.submitResponseData, dataDic: seatLayoutViewModel.bookedDataDic)
-                        } label: {
-                            
-                        }.navigationTitle("Seat Layout")
-                    }
-                    
                     Spacer()
                 }
             }
             .toast(message: self.seatLayoutViewModel.errorMessage,
                    isShowing: $showToast,
                    duration: Toast.short)
+            .onChange(of: isPresented, perform: { value in
+                if value == false {
+                    ticketTypeButtonState = .seating
+                }
+                
+            })
+            .padding(.bottom, 40)
+            
             if isPresented {
                 StandingInputDialog(noOfAdults: $noOfAdults, noOfChildren: $noOfChildren, total: $total, isPresented: $isPresented)
             }
@@ -352,9 +361,40 @@ struct SeatSelectionView: View {
                 GroupInputDialogView(standing: $seatLayoutViewModel.standings, isGroupDialogPresented: $seatLayoutViewModel.isGroupPresented, groupSeats: $seatLayoutViewModel.groupSeats, groupStanding: $seatLayoutViewModel.groupStanding, minVal: seatLayoutViewModel.minGroupValue, maxVal: seatLayoutViewModel.maxGroupValue, ticketTypeButtonState: $ticketTypeButtonState)
             }
             
+            
+            
+            Group {
+                Button {
+                    
+                    seatLayoutViewModel.standingAdultCount = self.noOfAdults
+                    seatLayoutViewModel.standingChildCount = self.noOfChildren
+                    seatLayoutViewModel.showStartTime = self.showStartTime
+                    seatLayoutViewModel.showEndTime = self.showEndTime
+                    if seatLayoutViewModel.validate(ticketTypeButtonState: ticketTypeButtonState) {
+                        seatLayoutViewModel.submitAction()
+                    }
+                    
+                    self.showToast = seatLayoutViewModel.showAlert
+                    
+                    
+                } label: {
+                    Text("Book Ticket")
+                    .modifier(CustomButtonModifiers())
+                }
+                .padding(.bottom, 10)
+                
+                NavigationLink(isActive: $seatLayoutViewModel.shouldMoveToCheckoutView) {
+                    CheckoutVIew(bookingData: seatLayoutViewModel.submitResponseData, dataDic: seatLayoutViewModel.bookedDataDic)
+                } label: {
+                    
+                }.navigationTitle("Seat Layout")
+            }
+            
             if self.seatLayoutViewModel.isLoading {
                 Loader()
             }
+            
+            
             
             
         }.allowsHitTesting(seatLayoutViewModel.isLoading ? false : true)

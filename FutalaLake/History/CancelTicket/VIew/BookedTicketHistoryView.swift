@@ -184,7 +184,7 @@ struct BookedTicketHistoryView: View {
                     .padding(.horizontal)
                     
                     HStack {
-                        Text(data.showDate ?? "")
+                        Text(CommonUtil.showDate(date: data.showDate ?? ""))
                         Spacer()
                         Text(CommonUtil.convertTimeTwentyFourIntoTwelve(time: data.startTime ?? "") ?? "")
                     }.padding(.horizontal)

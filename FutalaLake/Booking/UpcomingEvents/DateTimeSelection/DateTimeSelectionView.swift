@@ -37,7 +37,7 @@ struct DateTimeSelectionView: View {
                 
                 ZStack(alignment: .top) {
                     
-                    DatePicker("Select Date", selection: $selectedDate,in: Date()..., displayedComponents: [.date])
+                    DatePicker("Select Date", selection: $selectedDate,in: Date()...Date.now.addingTimeInterval((86400 * 15) - 86400), displayedComponents: [.date])
                         .padding(.horizontal)
                         .datePickerStyle(.graphical)
                     
@@ -121,28 +121,6 @@ struct DateTimeSelectionView: View {
                         
                     }.navigationTitle("Date & Time")
                 }
-                
-                
-                
-                
-                
-                
-//                NavigationLink {
-//                    SeatSelectionView(showDate: selectedDate, showTimeID: showTimeId, showDayID: showDayId, showStartTime: selectedShow?.startTime ?? "", showEndTime: selectedShow?.endTime ?? "", seatInventoryData: dateTimeSelectionModel.seatInventoryData)
-//                } label: {
-//                    Text("Submit")
-//                        .modifier(CustomButtonModifiers())
-//                }
-//                .allowsHitTesting(currentTimeSlotSelected == "" ? false : true)
-                
-
-                
-                
-//                .toolbar { // <2>
-//                    ToolbarItem(placement: .navigationBarTrailing) { // <3>
-//                        TopNavItemView()
-//                    }
-//                }
             }
             
             .toast(message: dateTimeSelectionModel.message,
@@ -158,10 +136,14 @@ struct DateTimeSelectionView: View {
         .onAppear{
             dateTimeSelectionModel.getShowDays(date: selectedDate)
             dateTimeSelectionModel.getAllSeatColor()
+            reset()
         }
         
     }
+    
+    
 }
+
 
 struct DateTimeSelectionView_Previews: PreviewProvider {
     static var previews: some View {
@@ -170,6 +152,11 @@ struct DateTimeSelectionView_Previews: PreviewProvider {
 }
 
 extension DateTimeSelectionView {
+    
+    private func reset() {
+        dateTimeSelectionModel.currentTimeSlotSelected = ""
+    }
+    
     private func checkIsSelectable(startTime: String)->Bool {
         //let startTimeDate = CommonUtil.getDateFromDateString(date: self.startTime ?? "")
         

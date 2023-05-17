@@ -50,7 +50,7 @@ struct CancelTicketSeatingCell: View {
                 
                 LazyVGrid(columns: adaptiveColumns) {
                     ForEach(Array((seats.enumerated())), id: \.offset) { index, element in
-                        if index < seats.count {
+                        if (index < seats.count)  && (index < ticketData?.seatNo?.count ?? 0) {
                             Button {
                                 //seats.reversed()
                                 seats[index].toggle()

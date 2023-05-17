@@ -13,6 +13,11 @@ struct StandingInputDialog: View {
     @Binding var total: String
     @Binding var isPressented: Bool
     @FocusState var isInputActive: Bool
+    
+    @State private var message = ""
+    @State private var shouldShowToast = false
+    
+    
         
     init(noOfAdults: Binding<String>, noOfChildren : Binding<String>, total : Binding<String>, isPresented: Binding<Bool>) {
         self._isPressented = isPresented
@@ -50,7 +55,7 @@ struct StandingInputDialog: View {
                 
                 
                 VStack(alignment: .leading) {
-                    Text("No. of Childred")
+                    Text("No. of Children")
                         .font(.system(size: 14, weight: .semibold))
                     CustomTextField(placeHolder: "", text: $noOfChildren)
                         .onChange(of: noOfChildren) { newValue in
@@ -71,15 +76,37 @@ struct StandingInputDialog: View {
                 }
                 .padding(.horizontal)
                 
-                Button {
-                    isPressented = false
-                } label: {
-                    Text("OK")
-                }.frame(width: 150, height: 40)
-                    .background(AppTheme.appThemeOrange)
-                    .foregroundColor(.white)
-                    .cornerRadius(5)
-                    .padding(.top, 5)
+                HStack {
+                    Button {
+                        self.noOfAdults = "0"
+                        self.noOfChildren = "0"
+                        self.total = "0"
+                       
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+                            self.isPressented = false
+                        })
+                        
+                        
+                    } label: {
+                        Text("Cancel")
+                    }.frame(width: 150, height: 40)
+                        .background(AppTheme.appThemeOrange)
+                        .foregroundColor(.white)
+                        .cornerRadius(5)
+                        .padding(.top, 5)
+                    
+                    Button {
+                        isPressented = !validate()
+                    } label: {
+                        Text("OK")
+                    }.frame(width: 150, height: 40)
+                        .background(AppTheme.appThemeOrange)
+                        .foregroundColor(.white)
+                        .cornerRadius(5)
+                        .padding(.top, 5)
+                }
+                
+                
 
                 Spacer()
             }.frame(height: 350)
@@ -93,6 +120,8 @@ struct StandingInputDialog: View {
                       x: 0, y: 0)
                      )
                 .padding()
+            
+                .toast(message: self.message, isShowing: $shouldShowToast, duration: Toast.short)
         }
         
     }
@@ -102,4 +131,25 @@ struct StandingInputDialog_Previews: PreviewProvider {
     static var previews: some View {
         StandingInputDialog(noOfAdults: .constant("0"), noOfChildren: .constant("0"), total: .constant("0"), isPresented: .constant(true))
     }
+}
+
+extension StandingInputDialog {
+    private func validate()-> Bool {
+        let trimmedStandingAdultCount = noOfAdults.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedStandingChildCount = noOfChildren.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if (trimmedStandingAdultCount == "0" || trimmedStandingAdultCount == "") && (trimmedStandingChildCount == "0" || trimmedStandingChildCount == "") {
+            self.message = "Please enter atleast one standing"
+            self.shouldShowToast = true
+            return false
+        }
+        
+        return true
+        
+    }
+}
+
+enum StandingDialogButtonState: String {
+    case yes = "yes"
+    case no = "no"
 }

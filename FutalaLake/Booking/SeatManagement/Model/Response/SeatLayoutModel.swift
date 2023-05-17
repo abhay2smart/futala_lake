@@ -95,28 +95,28 @@ class Seats : ObservableObject, Codable, Identifiable {
     
     // group
     
-    private func getAllPreSelectedCount(seats:[Seats])->Int {
-        return seats.filter({ $0.isSelected}).count
-    }
-    
-    private func getAllPreSelectedCount(seatsInAGate:GateWithSections?)->Int {
-        guard let safeData = seatsInAGate else {
-            return 0
-        }
-        var totalCount = 0
-        for item in safeData.sections {
-            for item2 in item.seats ?? [] {
-                if item2.isSelected {
-                    totalCount += 1
-                }
-            }
-        }
-        return totalCount
-        
-    }
+//    private func getAllPreSelectedCount(seats:[Seats])->Int {
+//        return seats.filter({ $0.isSelected}).count
+//    }
+//
+//    private func getAllPreSelectedCount(seatsInAGate:GateWithSections?)->Int {
+//        guard let safeData = seatsInAGate else {
+//            return 0
+//        }
+//        var totalCount = 0
+//        for item in safeData.sections {
+//            for item2 in item.seats ?? [] {
+//                if item2.isSelected {
+//                    totalCount += 1
+//                }
+//            }
+//        }
+//        return totalCount
+//
+//    }
     
     func selectGroupSeats(seats:[Seats], startIndex: Int, maxGroupSeat: Int, seatsInAGate: GateWithSections?) {
-        let allPreselectedSeats = getAllPreSelectedCount(seatsInAGate: seatsInAGate)
+        //_ = getAllPreSelectedCount(seatsInAGate: seatsInAGate)
         
         let lastIndex = startIndex + (maxGroupSeat - Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT)
         
@@ -225,9 +225,9 @@ class Seats : ObservableObject, Codable, Identifiable {
         case section = "section"
     }
     
-    private func setVars() {
+    func setVars() {
         //check for
-        if seatNumber == "!"  {
+        if seatNumber == "!" || seatNumber == "" {
             isSelectable = false
             color = .white
             seatNumber = ""

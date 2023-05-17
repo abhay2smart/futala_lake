@@ -84,6 +84,8 @@ struct GroupInputDialogView: View {
                     Button {
                         ticketTypeButtonState = .seating
                         isGroupDialogPresented = false
+                        groupStanding = "0"
+                        Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT = 0
                     } label: {
                         Text("Cancel")
                     }.frame(width: 150, height: 40)

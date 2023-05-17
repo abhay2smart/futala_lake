@@ -54,15 +54,15 @@ struct CheckoutVIew: View {
                         Spacer()
                         Text("Show Time")
                     }
-                    .font(.system(size: 16, weight: .regular, design: .default))
+                    .font(.system(size: 18, weight: .regular, design: .default))
                     .padding(.horizontal)
                     
                     HStack {
-                        Text(showDate)
+                        Text(CommonUtil.showDate(date: showDate))
                         Spacer()
                         Text(showStartTime)
                     }
-                    .font(.system(size: 23, weight: .medium, design: .default))
+                    .font(.system(size: 18, weight: .medium, design: .default))
                     .padding(.horizontal)
                     .padding(.vertical, 3)
                 }.background(AppTheme.appThemeBlue)

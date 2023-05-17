@@ -136,17 +136,25 @@ class SeatLayoutViewModel: ObservableObject {
         }
     }
     
-    private func setFare(seat: Seats, fares: [SeatFare]) {
-        //seat.fare = bookedSeat.fare ?? 0.0
+    
+    func unsetSeletedSeats() {
+        for item in self.gatesWithSections {
+            for section in item.sections {
+                for seat in section.seats ?? [] {
+                    seat.isSelected = false
+                    seat.setVars()
+                }
+            }
+        }
         
+    }
+    
+    private func setFare(seat: Seats, fares: [SeatFare]) {
         for fare in fares {
             if seat.seatTypeID == fare.seatTypeID {
                 seat.fare = fare.fare ?? 0
             }
         }
-        
-        
-        
     }
     
     
@@ -245,6 +253,11 @@ class SeatLayoutViewModel: ObservableObject {
         var standing = [String: Any]()
         standing["quantityAdult"] = standingAdultCount
         standing["quantityChild"] = standingChildCount
+        
+        if groupStanding != "0" && groupStanding != "" {
+            standing["quantityAdult"] = groupStanding
+        }
+        
         let fare = self.bookedSeats.first?.standingFare?.fare ?? 0
         standing["fare"] = "\(fare)"
         
@@ -277,6 +290,7 @@ class SeatLayoutViewModel: ObservableObject {
         
         param["standing"] = [standing]
         self.postData(params: param)
+        
         
     }
     
@@ -351,48 +365,61 @@ class SeatLayoutViewModel: ObservableObject {
     
     
     func validate(ticketTypeButtonState: TicketTypeButtonState)->Bool {
+        
+        let trimmedStandingAdultCount = standingAdultCount.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedStandingChildCount = standingChildCount.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if ticketTypeButtonState == .seating {
+            var isValidForSeat = false
+            for seat in totalSeats {
+                if seat.isSelected  {
+                    isValidForSeat = true
+                    break
+                }
+            }
+            
+            if !isValidForSeat && ((trimmedStandingAdultCount == "0" || trimmedStandingAdultCount == "") && (trimmedStandingChildCount == "0" || trimmedStandingChildCount == "")) {
+                
+                self.errorMessage = "Please select atleast one seat"
+                self.showAlert = true
+                return isValidForSeat
+            }
+            
+            return true
+        }
+        
+        
         if ticketTypeButtonState == .standing {
-            if (standingAdultCount.isEmpty || standingAdultCount == "0") && (standingChildCount.isEmpty || standingChildCount == "0") {
+            
+            if (trimmedStandingAdultCount == "0" || trimmedStandingAdultCount == "") && (trimmedStandingChildCount == "0" || trimmedStandingChildCount == "") {
                 self.errorMessage = "Please enter atleast one standing"
                 self.showAlert = true
                 return false
             }
         }
         
-        
-        
-        var isValid = false
-        
-        if ticketTypeButtonState == .seating {
-            for seat in totalSeats {
-                if seat.isSelected  {
-                    isValid = true
-                    break
-                }
-            }
-            if !isValid {
-                self.errorMessage = "Please select atleast one seat"
-                self.showAlert = true
-            }
-        }
-        
         if ticketTypeButtonState == .group {
-            isValid = true
+            if Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT < (Int(self.groupSeats) ?? 0)  {
+                let remainingSeats = (Int(self.groupSeats) ?? 0) - Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT
+                self.errorMessage = "Please select \(remainingSeats) remaining seats"
+                self.showAlert = true
+                return false
+            }
         }
         
-        return isValid
+        
+        return true
+        
+        
+        
     }
     
     func getReservedSeatData() {
         isLoading = true
-        //mobile/seatConfig/seatMaster
-        //let params = "?showDate=2023-03-14&showTimeID=00dc715e-0776-4436-96f0-4ac11f0ff6cb&showDayID=17241fff-b7f3-40a4-9e46-27a5fb6c42d0"
+        
         let params = "?showDate=\(showDate)&showTimeID=\(self.showTimeID)&showDayID=\(self.showDayID)"
-        
-        
         let url = Constants.baseUrl + Constants.API.seatBooking + params
-        
-        print("aparsm=====\(params)")
+        print("aparsm=====\(url)")
         
         APIService.shared.makeApiTypeRequest2(url: url, param: nil, methodType: .get, expecting: GlobResponseModel.self) { resultStatus, error, data  in
             
@@ -424,7 +451,11 @@ class SeatLayoutViewModel: ObservableObject {
                                         self.minGroupValue = bookedSeatData.first?.groupTicket?.minGroupValue ?? ""
                                         self.maxGroupValue = bookedSeatData.first?.groupTicket?.maxGroupValue ?? ""
                                         self.bookedSeats = bookedSeatData
-                                        self.getSeatMasterData()
+                                        self.isLoading = true
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
+                                            self.getSeatMasterData()
+                                        })
+                                        
                                     }
                                 }
                             }
