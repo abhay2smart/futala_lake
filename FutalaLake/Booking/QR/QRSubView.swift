@@ -14,9 +14,11 @@ struct QRSubView: View {
     private var startTime = ""
     private var endTime = ""
     private var isSeating = true
+    private var qRSeatData: QRSeatData?
     init(qrData: QRData, isSeating: Bool = true, qRSeatData:QRSeatData? = nil) {
         self.qrData = qrData
         self.isSeating = isSeating
+        self.qRSeatData = qRSeatData
         startTime = CommonUtil.convertTimeTwentyFourIntoTwelve(time: qrData.startTime ?? "") ?? ""
         endTime = CommonUtil.convertTimeTwentyFourIntoTwelve(time: qrData.endTime ?? "") ?? ""
         
@@ -68,6 +70,16 @@ struct QRSubView: View {
                                         Text("Seat No./Nos")
                                         Spacer()
                                         Text(seats)
+                                    }.multilineTextAlignment(.center)
+                                        .font(.system(size: 17, weight: .regular, design: .default))
+                                        .foregroundColor(.black)
+                                    
+                                    Divider()
+                                    
+                                    HStack(spacing: 20) {
+                                        Text("Gate No.")
+                                        Spacer()
+                                        Text(qRSeatData?.gateNo ?? "")
                                     }.multilineTextAlignment(.center)
                                         .font(.system(size: 17, weight: .regular, design: .default))
                                         .foregroundColor(.black)

@@ -9,7 +9,18 @@ import SwiftUI
 
 struct GroupInputDialogView: View {
     @Binding var groupStanding: String
-    @State var total: String = ""
+    @State var total: Int = 0
+    
+    private var grandTotal: Binding<String> { Binding (
+        get: {
+            String((Int(groupSeats) ?? 0) + (Int(groupStanding) ?? 0))
+        },
+        set: {
+            if ($0 == "0") {
+            print("Hello")
+        } }
+        )
+    }
     
     
     @FocusState var isInputActive: Bool
@@ -80,6 +91,17 @@ struct GroupInputDialogView: View {
                 
                 
                 
+                VStack(alignment: .leading) {
+                    Text("Total")
+                        .font(.system(size: 14, weight: .semibold))
+                    CustomTextField(placeHolder: "", text: grandTotal)
+                        .allowsHitTesting(false)
+                    
+                }
+                .padding(.horizontal)
+                
+                
+                
                 HStack {
                     Button {
                         ticketTypeButtonState = .seating
@@ -96,6 +118,7 @@ struct GroupInputDialogView: View {
                     
                     
                     Button {
+                        showToast = true
                         if isValidated() {
                             isGroupDialogPresented = false
                         }
@@ -111,7 +134,7 @@ struct GroupInputDialogView: View {
                 
 
                 Spacer()
-            }.frame(height: 260)
+            }.frame(height: 360)
                 .background(
                     Rectangle()
                     .fill(.white )
@@ -122,11 +145,12 @@ struct GroupInputDialogView: View {
                       x: 0, y: 0)
                      )
                 .padding()
+                .toast(message: message,
+                       isShowing: $showToast,
+                       duration: Toast.short)
         }
         
-        .toast(message: message,
-               isShowing: $showToast,
-               duration: Toast.short)
+        
         
     }
     

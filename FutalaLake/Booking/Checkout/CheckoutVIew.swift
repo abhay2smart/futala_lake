@@ -272,7 +272,7 @@ struct CheckoutVIew: View {
                 
                 
                 Spacer()
-            }
+            }.toast(message: checkoutViewModel.message, isShowing: $checkoutViewModel.shouldShowToast, duration: Toast.short)
             
 //            .navigationBarTitleDisplayMode(.inline)
 //            .toolbar {

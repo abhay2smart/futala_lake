@@ -8,6 +8,8 @@
 import Foundation
 
 struct Constants {
+    static let tokenExpired = "test.token.expired"
+    static let errorCode = "errorCode"
     static let tokenKey = "usertoken"
     static let colorKey = "colorKey"
     static let adminCharges = "10"

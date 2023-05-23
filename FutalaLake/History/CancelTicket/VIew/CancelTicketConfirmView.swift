@@ -129,7 +129,7 @@ struct CancelTicketConfirmView: View {
                         HStack {
                             Text("Show Date")
                             Spacer()
-                            Text("\(data?.showDate ?? "")")
+                            Text("\(CommonUtil.showDate(date:data?.showDate ?? ""))")
                         }
                         Divider()
                         

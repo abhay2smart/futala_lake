@@ -45,14 +45,7 @@ struct TabContainerView: View {
         .onAppear {
             masterConfigViewModel.fetchMasterConfigData()
         }
-        // top navbar
-//        .toolbar {
-//            ToolbarItem(placement: .automatic) {
-//                TopNavItemView()
-//            }
-//            
-//        }
-        // top nav bar
+        
         .navigationBarColor(backgroundColor: AppTheme.appThemeBlue, titleColor: .white)
         .navigationBarTitleDisplayMode(.inline)
         

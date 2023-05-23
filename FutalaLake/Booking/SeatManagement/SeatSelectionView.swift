@@ -38,6 +38,7 @@ struct SeatSelectionView: View {
     @State var ticketTypeButtonState:TicketTypeButtonState = .seating
     
     
+    private var seatMasterData:SeatData =  SeatData()
     
     
     private var showDate: String
@@ -47,7 +48,8 @@ struct SeatSelectionView: View {
     private var showEndTime: String
     
     private var seatInventoryData:[SeatInventoryData] = [SeatInventoryData]()
-    init(showDate: Date, showTimeID: String, showDayID: String, showStartTime: String, showEndTime: String, seatInventoryData: [SeatInventoryData]) {
+    init(showDate: Date, showTimeID: String, showDayID: String, showStartTime: String, showEndTime: String, seatInventoryData: [SeatInventoryData], seatMasterData: SeatData) {
+        self.seatMasterData = seatMasterData
         self.seatInventoryData = seatInventoryData
         let dateFormatter = DateFormatter()
         // Set Date Format
@@ -70,17 +72,18 @@ struct SeatSelectionView: View {
             
             VStack {
                 
-                VStack(spacing: 5) {
+                VStack(spacing: 0) {
                     Group {
                         HStack {
                             Text("Date")
                             Spacer()
                             Text("Time")
-                            .padding(.trailing)
+                                .padding(.trailing)
                             
                         }
                         .font(.system(size: 16, weight: .regular, design: .default))
                         .padding(.horizontal)
+                        .padding(.top, 12)
                         
                         HStack {
                             Text(CommonUtil.showDate(date: showDate))
@@ -89,6 +92,7 @@ struct SeatSelectionView: View {
                             
                             
                         }.padding(.horizontal)
+                            .padding(.top, 5)
                         
                     }.font(.system(size: 16, weight: .medium, design: .default))
                         .padding(.horizontal)
@@ -99,37 +103,42 @@ struct SeatSelectionView: View {
                 .foregroundColor(AppTheme.appThemeRed)
                 
                 
-                HStack {
-                    Text("GATE")
-                        .padding(.leading, 23)
-                        .font(.system(size: 18, weight: .medium, design: .default))
-                        .foregroundColor(AppTheme.appThemeOrange)
+                ScrollView {
                     
-                    Spacer()
-                    Picker("", selection: $gateSelection) {
-                        ForEach(gates, id: \.self) { item in
-                            //Text($0)
-                            Text(item)
+                    HStack {
+                        Text("GATE")
+                            .padding(.leading, 23)
+                            .font(.system(size: 18, weight: .medium, design: .default))
+                            .foregroundColor(AppTheme.appThemeOrange)
+                        
+                        Spacer()
+                        Picker("", selection: $gateSelection) {
+                            ForEach(gates, id: \.self) { item in
+                                //Text($0)
+                                Text(item)
                                 
+                            }
                         }
-                    }
-                    .onReceive([self.gateSelection].publisher.first()) { value in
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
-                            //self.seatLayoutViewModel.appllyFilterByGate(gameNo: gateSelection)
-                            self.seatLayoutViewModel.appllyFilterByGateForSectionList(gateNo: gateSelection)
+                        .onReceive([self.gateSelection].publisher.first()) { value in
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
+                                //self.seatLayoutViewModel.appllyFilterByGate(gameNo: gateSelection)
+                                self.seatLayoutViewModel.appllyFilterByGateForSectionList(gateNo: gateSelection)
+                            })
+                            
+                        }
+                        .onChange(of: gateSelection, perform: { newValue in
+                            if ticketTypeButtonState == .group {
+                                self.seatLayoutViewModel.unselectAllSeletedSeats()
+                            }
+                            
                         })
+                        .pickerStyle(.menu)
+                        .background(.white)
+                        .padding(.trailing)
                         
                     }
-                    .onChange(of: gateSelection, perform: { newValue in
-                        self.seatLayoutViewModel.unsetSeletedSeats()
-                    })
-                    .pickerStyle(.menu)
-                    .background(.white)
-                    .padding(.trailing)
                     
-                }
-                
-                .frame(width: UIScreen.main.bounds.width, height: 45)
+                    .frame(width: UIScreen.main.bounds.width, height: 45)
                     .background(
                         Rectangle()
                             .fill(Color.white)
@@ -142,223 +151,209 @@ struct SeatSelectionView: View {
                             )
                     )
                     .padding(.top, -10)
-                
-                // Seat type selection
-                
-                VStack {
-                    HStack(alignment: .center, spacing: -10) {
-                        Spacer()
-                        Button {
-                            //isSeating = true
-                            ticketTypeButtonState = .seating
-                            Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT = 0
-                            self.seatLayoutViewModel.unsetSeletedSeats()
-                        } label: {
-                            Text("Seating")
-                                .foregroundColor(.black)
-                        }
-                        .frame(width: 95)
-                        .padding(.vertical, 10)
-                        .padding(.horizontal, 10)
+                    
+                    // Seat type selection
+                    
+                    VStack {
+                        HStack(alignment: .center, spacing: -10) {
+                            Spacer()
+                            Button {
+                                //isSeating = true
+                                ticketTypeButtonState = .seating
+                                Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT = 0
+                                self.seatLayoutViewModel.unselectAllSeletedSeats()
+                            } label: {
+                                Text("Seating")
+                                    .foregroundColor(.black)
+                            }
+                            .frame(width: 95)
+                            .padding(.vertical, 10)
+                            .padding(.horizontal, 10)
                             .background(
                                 Rectangle()
                                     .fill(ticketTypeButtonState == .seating ? AppTheme.appThemeOrange: .white )
-                                .cornerRadius(5)
-                                 .shadow(
-                                  color: Color.gray.opacity(0.7),
-                                  radius: 8,
-                                  x: 0, y: 0)
-                                 )
+                                    .cornerRadius(5)
+                                    .shadow(
+                                        color: Color.gray.opacity(0.7),
+                                        radius: 8,
+                                        x: 0, y: 0)
+                            )
                             .padding(.horizontal, 10)
                             
-                        
-                        
-                        
-                        Button {
-                            //isSeating = false
-                            ticketTypeButtonState = .standing
-                            isPresented = true
                             
-                            if Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT > 0 {
-                                Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT = 0
-                                self.seatLayoutViewModel.unsetSeletedSeats()
+                            
+                            
+                            Button {
+                                //isSeating = false
+                                ticketTypeButtonState = .standing
+                                isPresented = true
+                                
+                                if Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT > 0 {
+                                    Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT = 0
+                                    self.seatLayoutViewModel.unselectAllSeletedSeats()
+                                }
+                                
+                                
+                            } label: {
+                                Text("Standing")
+                                    .foregroundColor(.black )
                             }
-                            
-                            
-                        } label: {
-                            Text("Standing")
-                                .foregroundColor(.black )
-                        }
-                        .frame(width: 100)
-                        .padding(.all, 10)
+                            .frame(width: 100)
+                            .padding(.all, 10)
                             .background(
                                 Rectangle()
                                     .fill(ticketTypeButtonState == .standing ? AppTheme.appThemeOrange : .white  )
-                                .cornerRadius(5)
-                                 .shadow(
-                                  color: Color.gray.opacity(0.7),
-                                  radius: 8,
-                                  x: 0, y: 0)
-                                 )
+                                    .cornerRadius(5)
+                                    .shadow(
+                                        color: Color.gray.opacity(0.7),
+                                        radius: 8,
+                                        x: 0, y: 0)
+                            )
                             .padding(.horizontal, 10)
-
-                        
-                        
-                        Button {
-                            ticketTypeButtonState = .group
-                            seatLayoutViewModel.isGroupPresented = true
-                            Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT = 0
-                            self.seatLayoutViewModel.unsetSeletedSeats()//getSeatMasterData()
-                        } label: {
-                            Text("Group")
-                                .foregroundColor(.black)
-                        }
-                        .frame(width: 100)
-                        .padding(.all, 10)
+                            
+                            
+                            
+                            Button {
+                                ticketTypeButtonState = .group
+                                seatLayoutViewModel.isGroupPresented = true
+                                Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT = 0
+                                self.seatLayoutViewModel.unselectAllSeletedSeats()//getSeatMasterData()
+                            } label: {
+                                Text("Group")
+                                    .foregroundColor(.black)
+                            }
+                            .frame(width: 100)
+                            .padding(.all, 10)
                             .background(
                                 Rectangle()
                                     .fill(ticketTypeButtonState == .group ? AppTheme.appThemeOrange  : .white )
-                                .cornerRadius(5)
-                                 .shadow(
-                                  color: Color.gray.opacity(0.7),
-                                  radius: 8,
-                                  x: 0, y: 0)
-                                 )
+                                    .cornerRadius(5)
+                                    .shadow(
+                                        color: Color.gray.opacity(0.7),
+                                        radius: 8,
+                                        x: 0, y: 0)
+                            )
                             .padding(.horizontal, 10)
+                            
+                            Spacer()
+                            
+                            
+                            
+                        }
                         
-                        Spacer()
-
+                        .padding(.all, 10)
+                        //.background(.red)
+                        HStack {
+                            if ticketTypeButtonState == .seating {
+                                HStack {
+                                    RadioButtonGroup(items: ["Adult", "Child"], selectedId: maturityType) { selected in
+                                        maturityType = selected
+                                        print("Selected is: \(selected)")
+                                        
+                                    }
+                                    .frame(width: 200, height: 10)
+                                    .padding(.leading, 20)
+                                    Spacer()
+                                }.padding(.bottom)
+                            }
+                            
+                            Spacer()
+                            
+                            if ticketTypeButtonState == .group {
+                                HStack {
+                                    Text(seatLayoutViewModel.groupSeats)
+                                    Text(" | ")
+                                    Text("\(Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT)")
+                                        .padding(.trailing, 40)
+                                }
+                                
+                            }
+                        }
                         
                         
                     }
                     
-                .padding(.all, 10)
-                //.background(.red)
-                    HStack {
-                        if ticketTypeButtonState == .seating {
-                            HStack {
-                                RadioButtonGroup(items: ["Adult", "Child"], selectedId: maturityType) { selected in
-                                    maturityType = selected
-                                    print("Selected is: \(selected)")
-                                    
-                                }
-                                .frame(width: 200, height: 10)
-                                .padding(.leading, 20)
+                    
+                    //                Image("wave")
+                    //                    .resizable()
+                    //                    .frame(width: (UIScreen.main.bounds.width - 40), height: 40)
+                    //                    .padding(.vertical)
+                    //
+                    
+                    
+                    Text(gateSelection)
+                        .font(.system(size: 20, weight: .medium, design: .default))
+                    
+                    
+                    // color indicator
+                    
+                    ScrollView(.horizontal) {
+                        HStack(alignment: .top, spacing: 7) {
+                            
+                            ForEach(0..<(seatInventoryData.count)) { index in
+                                Rectangle()
+                                    .fill(AppTheme.SeatColor.isColorMatched(colorName: seatInventoryData[index].colorName ?? ""))
+                                    .frame(width: 18, height: 18)
+                                
+                                Text(seatInventoryData[index].seatType ?? "")
+                                //Text(seatInventoryData[index].colorName ?? "")
+                                    .font(.system(size: 15, weight: .regular, design: .default))
+                                    .foregroundColor(.black)
+                                
                                 Spacer()
-                            }.padding(.bottom)
-                        }
-                        
-                        Spacer()
-                        
-                        if ticketTypeButtonState == .group {
-                            HStack {
-                                Text(seatLayoutViewModel.groupSeats)
-                                Text(" | ")
-                                Text("\(Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT)")
-                                    .padding(.trailing, 40)
                             }
                             
                         }
+                        .padding(.horizontal, 18)
+                        .padding(.vertical, 10)
                     }
                     
                     
-                }
-                
-                
-//                Image("wave")
-//                    .resizable()
-//                    .frame(width: (UIScreen.main.bounds.width - 40), height: 40)
-//                    .padding(.vertical)
-//
-                
-                
-                Text(gateSelection)
-                    .font(.system(size: 20, weight: .medium, design: .default))
-                
-                
-                // color indicator
-                
-                ScrollView(.horizontal) {
-                    HStack(alignment: .top, spacing: 7) {
-                        
-                        ForEach(0..<(seatInventoryData.count)) { index in
-                            Rectangle()
-                                .fill(AppTheme.SeatColor.isColorMatched(colorName: seatInventoryData[index].colorName ?? ""))
-                                .frame(width: 18, height: 18)
-                            
-                            Text(seatInventoryData[index].seatType ?? "")
-                            //Text(seatInventoryData[index].colorName ?? "")
-                                .font(.system(size: 15, weight: .regular, design: .default))
-                                .foregroundColor(.black)
-                            
-                            Spacer()
-                        }
-                        
-                    }
-                    .padding(.horizontal, 18)
-                    .padding(.vertical, 10)
-                }
-                
-                
-                
-                
-                
-                ScrollView {
                     
-                    ScrollView(.horizontal) {
-                        VStack(spacing: -5) {
-                            HStack(spacing: 0) {
-                                if let data = seatLayoutViewModel.gateWithSections {
-                                    ForEach(data.sections) { item in
-                                        if let safeData = item.seats {
-                                            if ticketTypeButtonState == .group {
-                                                GateSectionView(data: safeData, maturityStatus: $maturityType, rowCountInASection: item.rowCount, groupSeats: seatLayoutViewModel.groupSeats, groupStanding: seatLayoutViewModel.groupStanding, isGroupTicketing: true, gateWithSections: data)
-                                                Image("stair")
-                                                    .resizable()
-                                                    .frame(width: 80)
-                                            } else {
-                                                GateSectionView(data: safeData, maturityStatus: $maturityType, rowCountInASection: item.rowCount, groupSeats: "0", groupStanding: "0", isGroupTicketing: false)
-                                                Image("stair")
-                                                    .resizable()
-                                                    .frame(width: 80)
+                    
+                    
+                    ScrollView {
+                        
+                        ScrollView(.horizontal) {
+                            VStack(spacing: -5) {
+                                HStack(spacing: 0) {
+                                    if let data = seatLayoutViewModel.gateWithSections {
+                                        ForEach(data.sections) { item in
+                                            if let safeData = item.seats {
+                                                if ticketTypeButtonState == .group {
+                                                    GateSectionView(data: safeData, maturityStatus: $maturityType, rowCountInASection: item.rowCount, groupSeats: seatLayoutViewModel.groupSeats, groupStanding: seatLayoutViewModel.groupStanding, isGroupTicketing: true, gateWithSections: data)
+                                                    Image("stair")
+                                                        .resizable()
+                                                        .frame(width: 80)
+                                                } else {
+                                                    GateSectionView(data: safeData, maturityStatus: $maturityType, rowCountInASection: item.rowCount, groupSeats: "0", groupStanding: "0", isGroupTicketing: false)
+                                                    Image("stair")
+                                                        .resizable()
+                                                        .frame(width: 80)
+                                                }
+                                                
                                             }
-                                            
                                         }
                                     }
                                 }
+                                .padding(.top, 10)
+                                .padding(.horizontal, 5)
+                                
                             }
-                            .padding(.top, 10)
-                            .padding(.horizontal, 5)
+                            .padding(.horizontal, 8)
+                            .padding(.bottom)
                             
                         }
-                        .padding(.horizontal, 8)
-                        .padding(.bottom)
+                        .padding(.horizontal, 0)
+                        .padding(.vertical, -10)
+                        .padding(.top)
                         
-                    }
-                    .padding(.horizontal, 0)
-                    .padding(.vertical, -10)
-                    .padding(.top)
+                        Spacer()
+                        
+                    }.padding(.bottom, 80)
                     
-                    Spacer()
-                }
-            }
-            .toast(message: self.seatLayoutViewModel.errorMessage,
-                   isShowing: $showToast,
-                   duration: Toast.short)
-            .onChange(of: isPresented, perform: { value in
-                if value == false {
-                    ticketTypeButtonState = .seating
                 }
                 
-            })
-            .padding(.bottom, 40)
-            
-            if isPresented {
-                StandingInputDialog(noOfAdults: $noOfAdults, noOfChildren: $noOfChildren, total: $total, isPresented: $isPresented)
-            }
-            
-            if seatLayoutViewModel.isGroupPresented {
-                GroupInputDialogView(standing: $seatLayoutViewModel.standings, isGroupDialogPresented: $seatLayoutViewModel.isGroupPresented, groupSeats: $seatLayoutViewModel.groupSeats, groupStanding: $seatLayoutViewModel.groupStanding, minVal: seatLayoutViewModel.minGroupValue, maxVal: seatLayoutViewModel.maxGroupValue, ticketTypeButtonState: $ticketTypeButtonState)
             }
             
             
@@ -381,17 +376,48 @@ struct SeatSelectionView: View {
                     Text("Book Ticket")
                     .modifier(CustomButtonModifiers())
                 }
-                .padding(.bottom, 10)
+                .padding(.top, (UIScreen.main.bounds.height - 230))
                 
                 NavigationLink(isActive: $seatLayoutViewModel.shouldMoveToCheckoutView) {
                     CheckoutVIew(bookingData: seatLayoutViewModel.submitResponseData, dataDic: seatLayoutViewModel.bookedDataDic)
                 } label: {
                     
                 }.navigationTitle("Seat Layout")
+            }.padding(.top)
+            
+            
+            
+            
+            
+            
+            
+            .toast(message: self.seatLayoutViewModel.errorMessage,
+                   isShowing: $showToast,
+                   duration: Toast.short)
+            .padding(.bottom, -20)
+            
+            .onChange(of: isPresented, perform: { value in
+                if value == false {
+                    ticketTypeButtonState = .seating
+                }
+            })
+            .padding(.bottom, 40)
+            
+            if isPresented {
+                StandingInputDialog(noOfAdults: $noOfAdults, noOfChildren: $noOfChildren, total: $total, isPresented: $isPresented)
             }
+            
+            if seatLayoutViewModel.isGroupPresented {
+                GroupInputDialogView(standing: $seatLayoutViewModel.standings, isGroupDialogPresented: $seatLayoutViewModel.isGroupPresented, groupSeats: $seatLayoutViewModel.groupSeats, groupStanding: $seatLayoutViewModel.groupStanding, minVal: seatLayoutViewModel.minGroupValue, maxVal: seatLayoutViewModel.maxGroupValue, ticketTypeButtonState: $ticketTypeButtonState)
+            }
+            
+            
+            
+            
             
             if self.seatLayoutViewModel.isLoading {
                 Loader()
+                    .padding(.bottom, 300)
             }
             
             
@@ -399,8 +425,7 @@ struct SeatSelectionView: View {
             
         }.allowsHitTesting(seatLayoutViewModel.isLoading ? false : true)
         .onAppear {
-            seatLayoutViewModel.updateParameters(showDate: showDate, showTimeID: showTimeID, showDayID: showDayID)
-            Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT = 0
+            initilisation()
         }
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -411,23 +436,25 @@ struct SeatSelectionView: View {
             }
         }
         
-//        .toolbar { // <2>
-//            ToolbarItem(placement: .navigationBarTrailing) {
-//                TopNavItemView()
-//            }
-//        }
-        .onAppear {
-            //seatLayoutViewModel.getSeatMasterData()
-            self.seatLayoutViewModel.getReservedSeatData()
-            
-        }
-        
+                
         
     }
 }
 
-struct SeatSelectionView_Previews: PreviewProvider {
-    static var previews: some View {
-        SeatSelectionView(showDate: Date(), showTimeID: "", showDayID: "", showStartTime: "", showEndTime: "", seatInventoryData: [SeatInventoryData()])
+//struct SeatSelectionView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SeatSelectionView(showDate: Date(), showTimeID: "", showDayID: "", showStartTime: "", showEndTime: "", seatInventoryData: [SeatInventoryData()], masterSeatData: nil)
+//    }
+//}
+
+
+extension SeatSelectionView {
+    func initilisation() {
+        ticketTypeButtonState = .seating
+        seatLayoutViewModel.unselectAllSeletedSeats()
+        seatLayoutViewModel.updateParameters(showDate: showDate, showTimeID: showTimeID, showDayID: showDayID, seatMasterData: seatMasterData)
+        Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT = 0
+        
+        seatLayoutViewModel.getReservedSeatData()
     }
 }

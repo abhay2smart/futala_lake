@@ -9,6 +9,11 @@ import Foundation
 class CheckoutViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     
+    @Published var message = ""
+    
+    @Published var shouldShowToast = false
+    
+    
     @Published var shouldMoveToPaymentWebViewScreen: Bool = false
     
     @Published var checkOutModelData:CheckOutModelData?
@@ -27,6 +32,9 @@ class CheckoutViewModel: ObservableObject {
             
             if !resultStatus {
                 print("something went wrong:: PaymnetViewModel")
+                DispatchQueue.main.async {
+                    NotificationCenter.default.post(name: Notification.Name(Constants.errorCode), object: ["message": "Something went wrong!!"])
+                }
                 return
             }
             
@@ -52,12 +60,15 @@ class CheckoutViewModel: ObservableObject {
                             if let safeData = respData.data?.first {
                                 self.checkOutModelData = safeData
                                 self.shouldMoveToPaymentWebViewScreen = true
+                            } else {
+                                self.shouldShowToast = true
+                                self.message = "Something went wrong!!"
                             }
                             
                         }
                         
                     case .failure(let error):
-                            print("Something went wrong23432 \(error.localizedDescription)")
+                        self.message = "Something went wrong!!"
                         }
                     }
                     

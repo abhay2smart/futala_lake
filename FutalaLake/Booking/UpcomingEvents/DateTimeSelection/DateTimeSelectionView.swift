@@ -20,7 +20,9 @@ struct DateTimeSelectionView: View {
     
     @State var color = AppTheme.appThemeBlue
     
-    @State var shouldMoveToSeatLayout = false
+    @State var test: Bool = false
+    
+    //@State var shouldMoveToSeatLayout = false
     
     private let adaptiveColumns = [
         GridItem(.adaptive(minimum: 170))
@@ -107,7 +109,9 @@ struct DateTimeSelectionView: View {
                     
                     Button {
                         if dateTimeSelectionModel.isValidated() {
-                            shouldMoveToSeatLayout = true
+                            dateTimeSelectionModel.getSeatMasterData()
+                            //dateTimeSelectionModel.getSeatMasterDemo()
+                            
                         }
                     } label: {
                         Text("Proceed")
@@ -115,11 +119,12 @@ struct DateTimeSelectionView: View {
                     }.padding(.vertical)
 
                    
-                    NavigationLink(isActive: $shouldMoveToSeatLayout) {
-                        SeatSelectionView(showDate: selectedDate, showTimeID: showTimeId, showDayID: showDayId, showStartTime: selectedShow?.startTime ?? "", showEndTime: selectedShow?.endTime ?? "", seatInventoryData: dateTimeSelectionModel.seatInventoryData)
+                    NavigationLink(isActive: $dateTimeSelectionModel.shouldMoveToSeatLayout) {
+                        SeatSelectionView(showDate: selectedDate, showTimeID: showTimeId, showDayID: showDayId, showStartTime: selectedShow?.startTime ?? "", showEndTime: selectedShow?.endTime ?? "", seatInventoryData: dateTimeSelectionModel.seatInventoryData, seatMasterData: dateTimeSelectionModel.masterSeatData ?? SeatData() )
                     } label: {
                         
-                    }.navigationTitle("Date & Time")
+                    }
+                    .navigationTitle("Date & Time")
                 }
             }
             
@@ -173,8 +178,7 @@ extension DateTimeSelectionView {
         
         
         
-        if diff > 0 && selectedDate == currentDate {
-            print("Time of the day in the second date is greater")
+        if diff >= 0 && selectedDate == currentDate {
             return false
         }
         

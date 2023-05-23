@@ -11,6 +11,7 @@ class ProfileViewModel: ObservableObject {
     @Published var isPresented = false
     @Published var name = ""
     @Published var mobile = ""
+    @Published var email = ""
     @Published var gender: String = "Male"
     @Published var selectedBirthDate:Date = Date()
     @Published var selectedBirthDateStr = ""
@@ -20,6 +21,13 @@ class ProfileViewModel: ObservableObject {
     @Published var isLoading = false
     
     @Published var profileData = ProfileModel.ProfileData(from: nil)
+    
+    private func isValidEmail(_ email: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+
+        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailPred.evaluate(with: email)
+    }
     
     func validate()->Bool {
         if name == "" {
@@ -37,6 +45,12 @@ class ProfileViewModel: ObservableObject {
         
         if address == "" {
             message = "Please enter Address"
+            isPresented = true
+            return false
+        }
+        
+        if email != "" && !isValidEmail(email) {
+            message = "Please enter a valid eamil"
             isPresented = true
             return false
         }
@@ -93,6 +107,7 @@ class ProfileViewModel: ObservableObject {
     private func setVars(data: ProfileModel.ProfileData) {
         self.name = data.name ?? ""
         self.mobile = data.mobileNumber ?? ""
+        self.email = data.email ?? ""
         selectedBirthDateStr =  CommonUtil.showDate(date: data.dob ?? "") 
         self.name = data.name ?? ""
         
@@ -138,7 +153,7 @@ class ProfileViewModel: ObservableObject {
         params["otp"] = profileData.otp
         params["mobileUserId"] = profileData.mobileUserId
         params["address"] = address
-        
+        params["email"] = self.email
         
                 
         APIService.shared.makeApiTypeRequest2(url: url, param: params, methodType: .put, expecting: GlobResponseModel.self) { resultStatus, error, data  in

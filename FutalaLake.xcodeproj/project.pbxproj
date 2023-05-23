@@ -694,7 +694,6 @@
 				17545D372942FB10003E3724 /* Extensions */,
 				17545D302942EFF5003E3724 /* Utils */,
 				177B40BC2941FB4900EDF0F0 /* Auth */,
-				17A586102936007100365D71 /* GettingStarted */,
 				17A5860F2935FF9B00365D71 /* Services */,
 				17A5860E2935FF8E00365D71 /* Resources */,
 				17A5860D2935FF7D00365D71 /* Assets */,
@@ -761,13 +760,6 @@
 			children = (
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		17A586102936007100365D71 /* GettingStarted */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = GettingStarted;
 			sourceTree = "<group>";
 		};
 		17AE976E29BB375600F12E78 /* Model */ = {

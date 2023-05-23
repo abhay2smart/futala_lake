@@ -12,6 +12,7 @@ class DateTimeSelectionViewModel: ObservableObject {
     @Published private (set) var  shows:[Shows]?
     
     @Published var  seatInventoryData = [SeatInventoryData]()
+    @Published var shouldMoveToSeatLayout = false
     
     @Published var message = ""
     //@Published var isPresensted = false
@@ -19,11 +20,11 @@ class DateTimeSelectionViewModel: ObservableObject {
     
     @Published var isLoading = false
     
-    @Published var shouldMoveToSeatLayout = false
-    
     @Published var currentTimeSlotSelected = ""
     
     @Published  var showToast = false
+    
+    @Published var masterSeatData:SeatData?
     
     
     
@@ -35,7 +36,7 @@ class DateTimeSelectionViewModel: ObservableObject {
             return false
         }
         
-        shouldMoveToSeatLayout = true
+        //shouldMoveToSeatLayout = true
         
         
         return true
@@ -136,8 +137,8 @@ class DateTimeSelectionViewModel: ObservableObject {
                             selected.colorName = "Selected"
                             
                             var booked = SeatInventoryData()
-                            booked.seatType = "booked"
-                            booked.colorName = "booked"
+                            booked.seatType = "Booked"
+                            booked.colorName = "Booked"
                             
                             var maintenance = SeatInventoryData()
                             maintenance.seatType = "Maintenance"
@@ -161,6 +162,56 @@ class DateTimeSelectionViewModel: ObservableObject {
             
         }
     }
+    
+    func getSeatMasterDemo() {
+        self.shouldMoveToSeatLayout = true
+    }
+    
+    func getSeatMasterData() {
+        isLoading = true
+        //mobile/seatConfig/seatMaster
+        let url = Constants.baseUrl + Constants.API.seatMaster
+        
+        APIService.shared.makeApiTypeRequest2(url: url, param: nil, methodType: .get, expecting: GlobResponseModel.self) { resultStatus, error, data  in
+            
+            DispatchQueue.main.async {
+                self.isLoading = false
+            }
+            
+            if !resultStatus {
+                print("something went wrong::\(#line) SeatLayoutViewModel")
+                return
+            }
+            
+            if resultStatus {
+                guard let data = data else {
+                    return
+                }
+                
+                
+                APIService.shared.parseModel(data: data, expecting: SeatLayoutModel.self) { result, data in
+                    switch result {
+                        case .success(let respData):
+                            DispatchQueue.main.async {
+                                if respData.status ?? false {
+                                    if let seatData = respData.data?.first {
+                                        self.masterSeatData = seatData
+                                        self.shouldMoveToSeatLayout = true
+                                    }
+                                }
+                            }
+            
+                        case .failure(let error):
+                            print("Something went wrong::SeatLayoutViewModel@\(#line)")
+                        }
+                }
+            }
+        }
+    }
+    
+    
+    
+    
 }
 
 struct ValidationObj {

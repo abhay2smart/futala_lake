@@ -92,7 +92,7 @@ class APIService {
                         case 500:
                             // token expired
                             DispatchQueue.main.async {
-                                NotificationCenter.default.post(name: Notification.Name("test.token.expired"), object: nil)
+                                NotificationCenter.default.post(name: Notification.Name(Constants.tokenExpired), object: nil)
                             }
                             completion(.failure(CustomAPIError.tokenExpired), data)
                         default:
@@ -178,6 +178,9 @@ class APIService {
                         case 400:
                             completion(false, "statusCode 400",data)
                             print("Error APIService@\(#line)-> statusCode 400")
+                            DispatchQueue.main.async {
+                                NotificationCenter.default.post(name: Notification.Name(Constants.errorCode), object: ["message": "Something went wrong!!"])
+                            }
                         case 200:
                             let resp = String(decoding: data, as: UTF8.self)
                             print("JSON Response in \(self): \(resp)")
@@ -186,7 +189,11 @@ class APIService {
                         case 500:
                             // token expired
                             DispatchQueue.main.async {
-                                NotificationCenter.default.post(name: Notification.Name("test.token.expired"), object: nil)
+                                NotificationCenter.default.post(name: Notification.Name(Constants.errorCode), object: ["message": "Something went wrong!!"])
+                            }
+                            
+                            DispatchQueue.main.async {
+                                NotificationCenter.default.post(name: Notification.Name(Constants.tokenExpired), object: nil)
                             }
                             completion(false, "statusCode 500", data)
                             print("Error APIService@\(#line)-> statusCode 500")
@@ -195,6 +202,9 @@ class APIService {
                             print("Error APIService@\(#line)-> out of status statusCode:: \(httpStatus.statusCode)")
                             let resp = String(decoding: data, as: UTF8.self)
                             print("JSON Response3e423: \(resp)")
+                            DispatchQueue.main.async {
+                                NotificationCenter.default.post(name: Notification.Name(Constants.errorCode), object: ["message": "Something went wrong!!"])
+                            }
                         }
                     }
                     
@@ -230,6 +240,9 @@ class APIService {
             } catch {
                 completion(.failure(CustomAPIError.unknown), nil)
                 print("Error APIService@\(#line)-> \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    NotificationCenter.default.post(name: Notification.Name(Constants.errorCode), object: ["message": "Something went wrong!!"])
+                }
             }
             
         }

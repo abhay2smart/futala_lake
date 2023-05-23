@@ -32,8 +32,8 @@ class SeatLayoutModel : Codable, ObservableObject, Identifiable {
 }
 
 class SeatData : Codable, ObservableObject, Identifiable {
-    let seats : [Seats]?
-    let totalQuantity : String?
+    var seats : [Seats]?
+    var totalQuantity : String?
 
     enum CodingKeys: String, CodingKey {
 
@@ -41,10 +41,20 @@ class SeatData : Codable, ObservableObject, Identifiable {
         case totalQuantity = "totalQuantity"
     }
 
-    required init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        seats = try values.decodeIfPresent([Seats].self, forKey: .seats)
-        totalQuantity = try values.decodeIfPresent(String.self, forKey: .totalQuantity)
+    required init(Ffrom decoder: Decoder? = nil)  {
+        do {
+            if let decoder = decoder {
+                let values = try decoder.container(keyedBy: CodingKeys.self)
+                seats = try values.decodeIfPresent([Seats].self, forKey: .seats)
+                totalQuantity = try values.decodeIfPresent(String.self, forKey: .totalQuantity)
+            }
+            
+        } catch {
+         print("sdcds")
+//            self.seats = nil
+//            self.totalQuantity = nil
+        }
+        
     }
 
 }
