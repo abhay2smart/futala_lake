@@ -179,16 +179,19 @@ struct BookedTicketHistoryView: View {
                     HStack {
                         Text("Date")
                         Spacer()
-                        Text("Show Time")
+                        Text(CommonUtil.showDate(date: data.showDate ?? ""))
+                        
                     }
-                    .font(.system(size: 16, weight: .regular, design: .default))
+                    .font(.system(size: 15, weight: .regular, design: .default))
                     .padding(.horizontal)
                     
                     HStack {
-                        Text(CommonUtil.showDate(date: data.showDate ?? ""))
+                        Text("Show Time")
                         Spacer()
-                        Text(CommonUtil.convertTimeTwentyFourIntoTwelve(time: data.startTime ?? "") ?? "")
-                    }.padding(.horizontal)
+                        Text((CommonUtil.convertTimeTwentyFourIntoTwelve(time: data.startTime ?? "") ?? "") + " - " + (CommonUtil.convertTimeTwentyFourIntoTwelve(time: data.endTime ?? "") ?? ""))
+                    }
+                    .font(.system(size: 15, weight: .regular, design: .default))
+                    .padding(.horizontal)
                     
                     HStack {
                         Text("Ticket Id")
@@ -196,7 +199,7 @@ struct BookedTicketHistoryView: View {
                         Text(data.ticketID ?? "")
                     }.padding(.horizontal, 0)
                     
-                        .font(.system(size: 18, weight: .medium, design: .default))
+                        .font(.system(size: 15, weight: .regular, design: .default))
                         .padding(.horizontal)
                         .padding(.vertical, 3)
                 }.background(AppTheme.appThemeBlue)

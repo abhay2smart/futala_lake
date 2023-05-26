@@ -31,6 +31,7 @@
 		173BCE372A0E3C7200DF98FC /* PaymentSuccessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173BCE362A0E3C7100DF98FC /* PaymentSuccessModel.swift */; };
 		173E4CBD29C079140004EA52 /* BookedSeatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E4CBC29C079140004EA52 /* BookedSeatModel.swift */; };
 		1746D22929C3160C000385CA /* SubmitBookSeatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1746D22829C3160C000385CA /* SubmitBookSeatModel.swift */; };
+		174EBEAF2A20821D00ABDAEE /* UserDefaultHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174EBEAE2A20821D00ABDAEE /* UserDefaultHelper.swift */; };
 		174F1BCF295B432D00DAC0D2 /* CancelTicketConfirmAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F1BCE295B432D00DAC0D2 /* CancelTicketConfirmAlertView.swift */; };
 		174F1BD1295BFCF800DAC0D2 /* CancelTicketAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F1BD0295BFCF800DAC0D2 /* CancelTicketAlertView.swift */; };
 		174F1BD3295C0FDA00DAC0D2 /* TicketCancelSuccessAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F1BD2295C0FDA00DAC0D2 /* TicketCancelSuccessAlertView.swift */; };
@@ -139,6 +140,7 @@
 		173BCE362A0E3C7100DF98FC /* PaymentSuccessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSuccessModel.swift; sourceTree = "<group>"; };
 		173E4CBC29C079140004EA52 /* BookedSeatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookedSeatModel.swift; sourceTree = "<group>"; };
 		1746D22829C3160C000385CA /* SubmitBookSeatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitBookSeatModel.swift; sourceTree = "<group>"; };
+		174EBEAE2A20821D00ABDAEE /* UserDefaultHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultHelper.swift; sourceTree = "<group>"; };
 		174F1BCE295B432D00DAC0D2 /* CancelTicketConfirmAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelTicketConfirmAlertView.swift; sourceTree = "<group>"; };
 		174F1BD0295BFCF800DAC0D2 /* CancelTicketAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelTicketAlertView.swift; sourceTree = "<group>"; };
 		174F1BD2295C0FDA00DAC0D2 /* TicketCancelSuccessAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCancelSuccessAlertView.swift; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 			isa = PBXGroup;
 			children = (
 				173A59BC29B0ACDE0037AF51 /* KeychainHelper.swift */,
+				174EBEAE2A20821D00ABDAEE /* UserDefaultHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1087,6 +1090,7 @@
 				17E570A529D205310011DA87 /* CancelHistorySeat.swift in Sources */,
 				17A1E24329EE75BB0056117B /* BookedActionsView.swift in Sources */,
 				17DFCA3629ACB6C0005E5DE5 /* CustomError.swift in Sources */,
+				174EBEAF2A20821D00ABDAEE /* UserDefaultHelper.swift in Sources */,
 				1795302E2A0A10A200E37B96 /* Global.swift in Sources */,
 				173E4CBD29C079140004EA52 /* BookedSeatModel.swift in Sources */,
 				17A585E52935FF2B00365D71 /* ContentView.swift in Sources */,

@@ -24,6 +24,9 @@ class CheckoutViewModel: ObservableObject {
         isLoading = true
         let url = Constants.baseUrl + Constants.API.checkOut
         
+        print("Hekkko ")
+        print(param)
+        
         APIService.shared.makeApiTypeRequest2(url: url, param: param, methodType: .post, expecting: GlobResponseModel.self) { resultStatus, error, data  in
             
             DispatchQueue.main.async {

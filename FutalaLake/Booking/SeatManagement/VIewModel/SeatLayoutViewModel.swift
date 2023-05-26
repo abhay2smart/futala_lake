@@ -328,10 +328,15 @@ class SeatLayoutViewModel: ObservableObject {
         param["seats"] = seatArr
         
         if standingAdultCount == "0" &&  standingChildCount == "0" {
-            param["standing"] = [:]
+            param["standing"] = []
         } else {
             param["standing"] = [standing]
         }
+        
+//        let a = CommonUtil.getJsonStringFromDic(dic: param) ?? ""
+//        print("heeeee")
+//        print(a)
+//        print("heeeee")
         
         self.postData(params: param)
         

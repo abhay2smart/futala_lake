@@ -191,6 +191,9 @@ struct PaymentSuccessAlertView: View {
                     }.foregroundColor(.white)
                 }
             }
+            if paymentSuccessAlertViewModel.isLoading {
+                Loader()
+            }
             
 //            .toolbar { // <2>
 //                ToolbarItem(placement: .navigationBarTrailing) {

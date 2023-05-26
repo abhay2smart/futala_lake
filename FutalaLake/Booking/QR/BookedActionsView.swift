@@ -28,11 +28,11 @@ struct BookedActionsView: View {
     private func composeMessage()->String? {
         var seats = "N/A"
         var msg = ""
-        var showDate = CommonUtil.showDate(date: qrData.showDate ?? "")
-        var totalStanding = standing?.count ?? 0
-        var gateNo = seatData?.gateNo ?? ""
+        let showDate = CommonUtil.showDate(date: qrData.showDate ?? "")
+        let totalStanding = standing?.count ?? 0
+        let gateNo = seatData?.gateNo ?? ""
         
-        var showTime = (CommonUtil.convertTimeTwentyFourIntoTwelve(time: qrData.startTime ?? "") ?? "") + " - " + (CommonUtil.convertTimeTwentyFourIntoTwelve(time: qrData.endTime ?? "") ?? "")
+        let showTime = (CommonUtil.convertTimeTwentyFourIntoTwelve(time: qrData.startTime ?? "") ?? "") + " - " + (CommonUtil.convertTimeTwentyFourIntoTwelve(time: qrData.endTime ?? "") ?? "")
         
         
         if let safeSeat = seatData?.seats {

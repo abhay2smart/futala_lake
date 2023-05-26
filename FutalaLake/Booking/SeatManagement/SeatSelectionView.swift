@@ -387,11 +387,6 @@ struct SeatSelectionView: View {
             }.padding(.top)
             
             
-            
-            
-            
-            
-            
             .toast(message: self.seatLayoutViewModel.errorMessage,
                    isShowing: $showToast,
                    duration: Toast.short)

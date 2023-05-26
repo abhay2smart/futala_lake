@@ -23,7 +23,7 @@ class PaymentSuccessAlertViewModel: ObservableObject {
     
     
     func getPaymentDetails(bookingID: String) {
-        
+        isLoading = true
         let url = Constants.baseUrl + Constants.API.getPaymentDetails + "?bookingID=\(bookingID)"
         
         APIService.shared.makeApiTypeRequest2(url: url, param: nil, methodType: .get, expecting: GlobResponseModel.self) { resultStatus, error, data  in

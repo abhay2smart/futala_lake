@@ -41,7 +41,10 @@ struct PaymentWebView: View {
             }.navigationTitle("Payment")
             
             NavigationLink(isActive: $webViewModel.shouldGoToFailure) {
-                PaymentFailView()
+                if let checkOutData = checkOutData {
+                    PaymentFailView(data: checkOutData, bookingId: checkOutData.bookingID ?? "")
+                }
+                
                 
             } label: {
                 

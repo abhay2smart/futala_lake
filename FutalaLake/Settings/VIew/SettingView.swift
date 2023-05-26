@@ -15,7 +15,7 @@ struct SettingView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                AppTheme.appThemeSkyBlue
+                //AppTheme.appThemeSkyBlue
                     //.ignoresSafeArea()
                 VStack(spacing: 0) {
                     VStack(spacing: -10) {
@@ -82,17 +82,16 @@ struct SettingView: View {
                     
                     .cornerRadius(10)
                     .background(
-                        LinearGradient(
-                            gradient: Gradient(
-                                colors: [
-                                    Color(UIColor(hexString: "#CBD3FB")), .white
-                                ]
-                            ),
-                            startPoint: .top, endPoint: .bottom
-                        )
-                    )
-                    .cornerRadius(8)
+                     Rectangle()
+                     .fill(.white)
+                     .cornerRadius(12)
+                      .shadow(
+                       color: Color.gray.opacity(0.7),
+                       radius: 0,
+                       x: 0, y: 0)
+                      )
                     .padding()
+
                     Spacer()
                 }
                 
