@@ -182,6 +182,21 @@ class CommonUtil {
         return date
     }
     
+    static func getJsonStringFromDic(dic: [String: Any])->String? {
+        let encoder = JSONEncoder()
+        do {
+            let jsonData = try! JSONSerialization.data(withJSONObject: dic, options: JSONSerialization.WritingOptions.prettyPrinted)
+
+            let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+            print("jsonString>>>")
+            print(jsonString)
+            return jsonString
+            
+        } catch {
+            return nil
+        }
+    }
+    
 
 
 

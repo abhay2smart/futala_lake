@@ -31,10 +31,10 @@ class CheckoutViewModel: ObservableObject {
             }
             
             if !resultStatus {
+                self.shouldShowToast = true
+                self.message = "Something went wrong!!"
                 print("something went wrong:: PaymnetViewModel")
-                DispatchQueue.main.async {
-                    NotificationCenter.default.post(name: Notification.Name(Constants.errorCode), object: ["message": "Something went wrong!!"])
-                }
+                
                 return
             }
             
@@ -56,18 +56,20 @@ class CheckoutViewModel: ObservableObject {
                     switch result {
                     case .success(let respData):
                         DispatchQueue.main.async {
-                            
                             if let safeData = respData.data?.first {
+                                print("Server Validation pass")
                                 self.checkOutModelData = safeData
                                 self.shouldMoveToPaymentWebViewScreen = true
                             } else {
                                 self.shouldShowToast = true
                                 self.message = "Something went wrong!!"
+                                print("Server Validation Failed")
                             }
                             
                         }
                         
                     case .failure(let error):
+                        self.shouldShowToast = true
                         self.message = "Something went wrong!!"
                         }
                     }

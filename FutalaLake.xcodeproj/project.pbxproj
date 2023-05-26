@@ -69,6 +69,8 @@
 		17A585F42935FF2D00365D71 /* FutalaLakeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A585F32935FF2D00365D71 /* FutalaLakeTests.swift */; };
 		17A585FE2935FF2D00365D71 /* FutalaLakeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A585FD2935FF2D00365D71 /* FutalaLakeUITests.swift */; };
 		17A586002935FF2D00365D71 /* FutalaLakeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A585FF2935FF2D00365D71 /* FutalaLakeUITestsLaunchTests.swift */; };
+		17A8D5FB2A1CEA430062AE04 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A8D5FA2A1CEA430062AE04 /* MessageView.swift */; };
+		17A8D5FE2A1DE1A70062AE04 /* WhatsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A8D5FD2A1DE1A70062AE04 /* WhatsApp.swift */; };
 		17AE976729BB0BDE00F12E78 /* StandingInputDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE976629BB0BDD00F12E78 /* StandingInputDialog.swift */; };
 		17AE977029BB376A00F12E78 /* SeatLayoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE976F29BB376A00F12E78 /* SeatLayoutModel.swift */; };
 		17AE977329BB38E800F12E78 /* SeatLayoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE977229BB38E800F12E78 /* SeatLayoutViewModel.swift */; };
@@ -178,6 +180,9 @@
 		17A585F92935FF2D00365D71 /* FutalaLakeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FutalaLakeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		17A585FD2935FF2D00365D71 /* FutalaLakeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutalaLakeUITests.swift; sourceTree = "<group>"; };
 		17A585FF2935FF2D00365D71 /* FutalaLakeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutalaLakeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		17A8D5FA2A1CEA430062AE04 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		17A8D5FC2A1DDEF10062AE04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		17A8D5FD2A1DE1A70062AE04 /* WhatsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsApp.swift; sourceTree = "<group>"; };
 		17AE976629BB0BDD00F12E78 /* StandingInputDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingInputDialog.swift; sourceTree = "<group>"; };
 		17AE976F29BB376A00F12E78 /* SeatLayoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatLayoutModel.swift; sourceTree = "<group>"; };
 		17AE977229BB38E800F12E78 /* SeatLayoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatLayoutViewModel.swift; sourceTree = "<group>"; };
@@ -275,6 +280,7 @@
 		171B402C29CD730A00743095 /* Extras */ = {
 			isa = PBXGroup;
 			children = (
+				17A8D5F92A1CEA330062AE04 /* Communication */,
 				171B402D29CD731300743095 /* Model */,
 			);
 			path = Extras;
@@ -682,6 +688,7 @@
 		17A585E12935FF2B00365D71 /* FutalaLake */ = {
 			isa = PBXGroup;
 			children = (
+				17A8D5FC2A1DDEF10062AE04 /* Info.plist */,
 				173BCE2B2A0CB23E00DF98FC /* Representable */,
 				171B402C29CD730A00743095 /* Extras */,
 				173A59BB29B0ACD20037AF51 /* Helper */,
@@ -760,6 +767,15 @@
 			children = (
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		17A8D5F92A1CEA330062AE04 /* Communication */ = {
+			isa = PBXGroup;
+			children = (
+				17A8D5FA2A1CEA430062AE04 /* MessageView.swift */,
+				17A8D5FD2A1DE1A70062AE04 /* WhatsApp.swift */,
+			);
+			path = Communication;
 			sourceTree = "<group>";
 		};
 		17AE976E29BB375600F12E78 /* Model */ = {
@@ -1088,6 +1104,7 @@
 				17E570A329D157570011DA87 /* HistoryViewModel.swift in Sources */,
 				17BAE81229E15D0000333A0A /* HistoryDetailsModel.swift in Sources */,
 				173AB86E296589F100B591A4 /* QRView.swift in Sources */,
+				17A8D5FB2A1CEA430062AE04 /* MessageView.swift in Sources */,
 				17831DD62955C585005C36D0 /* TransanctionView.swift in Sources */,
 				17AE977329BB38E800F12E78 /* SeatLayoutViewModel.swift in Sources */,
 				17831DD32955C56B005C36D0 /* SettingView.swift in Sources */,
@@ -1097,6 +1114,7 @@
 				173AB869296542D400B591A4 /* PaymentSuccessAlertView.swift in Sources */,
 				1733F8E529CB1AD300D97F2E /* PaymentSuccessAlertViewModel.swift in Sources */,
 				171575072963FBE10004F2F8 /* CheckoutVIew.swift in Sources */,
+				17A8D5FE2A1DE1A70062AE04 /* WhatsApp.swift in Sources */,
 				17D80F61296296C300D861FF /* SeatSelectionView.swift in Sources */,
 				17831DD02955C551005C36D0 /* ProfileView.swift in Sources */,
 				17D80F28295EB3FC00D861FF /* DateTimeSelectionView.swift in Sources */,
@@ -1308,6 +1326,7 @@
 				DEVELOPMENT_TEAM = 8LTN4Q26AJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FutalaLake/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1337,6 +1356,7 @@
 				DEVELOPMENT_TEAM = 8LTN4Q26AJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FutalaLake/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

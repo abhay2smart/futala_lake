@@ -13,8 +13,11 @@ enum UserState {
 }
 class SessionManager: ObservableObject {
     @Published var currentUserState:UserState = .loggedout
-    @Published var isLoading:Bool = false
+    //@Published var isLoading:Bool = false
     @Published var moveToDashboard: Bool = false
+    
+    @Published var currentTab = 1
+    
     init() {
         let data = KeychainHelper.standard.read(service: Constants.tokenKey)
         if let data = data {
@@ -33,5 +36,6 @@ class SessionManager: ObservableObject {
     func signout() {
         KeychainHelper.standard.delete(service: Constants.tokenKey)
         self.currentUserState = .loggedout
+        currentTab = 1
     }
 }

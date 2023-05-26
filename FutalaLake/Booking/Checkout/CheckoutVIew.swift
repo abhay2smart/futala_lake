@@ -22,7 +22,7 @@ struct CheckoutVIew: View {
     
     var dataDic = [String: Any]()
     
-    @ObservedObject var checkoutViewModel = CheckoutViewModel()
+    @StateObject var checkoutViewModel = CheckoutViewModel()
     
     init(bookingData: SubmitBookSeatModelData, dataDic: [String: Any]) {
         

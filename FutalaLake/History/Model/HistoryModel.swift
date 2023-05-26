@@ -48,6 +48,57 @@ class HistoryData : Codable, ObservableObject {
     var encryptedStandingQRCode : String?
     
     
+    enum CodingKeys: String, CodingKey {
+
+        case bookingID = "bookingID"
+        case showDate = "showDate"
+        case bookingDate = "bookingDate"
+        case ticketID = "ticketID"
+        case showTimeID = "showTimeID"
+        case startTime = "startTime"
+        case endTime = "endTime"
+        case bookingStatus = "bookingStatus"
+        case seatingStatus = "seatingStatus"
+        case standingStatus = "standingStatus"
+        case isVerifiedSeats = "isVerifiedSeats"
+        case isVerifiedStanding = "isVerifiedStanding"
+        case seats = "seats"
+        case standing = "standing"
+        case encryptedSeatingQRCode = "encryptedSeatingQRCode"
+        case encryptedStandingQRCode = "encryptedStandingQRCode"
+    }
+
+    required init(from decoder: Decoder?)  {
+        if let decoder = decoder {
+            do {
+                let values = try decoder.container(keyedBy: CodingKeys.self)
+                bookingID = try values.decodeIfPresent(String.self, forKey: .bookingID)
+                showDate = try values.decodeIfPresent(String.self, forKey: .showDate)
+                bookingDate = try values.decodeIfPresent(String.self, forKey: .bookingDate)
+                ticketID = try values.decodeIfPresent(String.self, forKey: .ticketID)
+                showTimeID = try values.decodeIfPresent(String.self, forKey: .showTimeID)
+                startTime = try values.decodeIfPresent(String.self, forKey: .startTime)
+                endTime = try values.decodeIfPresent(String.self, forKey: .endTime)
+                bookingStatus = try values.decodeIfPresent(Int.self, forKey: .bookingStatus)
+                seatingStatus = try values.decodeIfPresent(Int.self, forKey: .seatingStatus)
+                standingStatus = try values.decodeIfPresent(Int.self, forKey: .standingStatus)
+                isVerifiedSeats = try values.decodeIfPresent(Int.self, forKey: .isVerifiedSeats)
+                isVerifiedStanding = try values.decodeIfPresent(Int.self, forKey: .isVerifiedStanding)
+                seats = try values.decodeIfPresent([HistorySeats].self, forKey: .seats)
+                standing = try values.decodeIfPresent([HistoryStanding].self, forKey: .standing)
+                encryptedSeatingQRCode = try values.decodeIfPresent(String.self, forKey: .encryptedSeatingQRCode)
+                encryptedStandingQRCode = try values.decodeIfPresent(String.self, forKey: .encryptedStandingQRCode)
+            } catch {
+                print("someting went wrong Historymode @\(#line)")
+            }
+        }
+        
+    }
+
+    
+    
+    
+    
     func getSeatsStr()->String {
         var seatsStr = ""
         var seatsArr = [String]()
@@ -62,7 +113,7 @@ class HistoryData : Codable, ObservableObject {
             i += 1
         }
         
-        return seatsStr
+        return seatsStr == "" ? "N/A" :  seatsStr
     }
     
     
@@ -222,7 +273,7 @@ class HistoryData : Codable, ObservableObject {
     }
     
     
-    func getAdultCount()->Int {
+    func getStandingAdultCount()->Int {
         var adultCount = 0
         for standingItem in standing ?? [] {
             if (standingItem.isAdult == 1) {
@@ -233,7 +284,7 @@ class HistoryData : Codable, ObservableObject {
         return adultCount
     }
     
-    func getChildCount()->Int {
+    func getStandingChildCount()->Int {
         var childCount = 0
         for standingItem in standing ?? [] {
             if (standingItem.isAdult == 0) {
@@ -288,53 +339,7 @@ class HistoryData : Codable, ObservableObject {
     
     
 
-    enum CodingKeys: String, CodingKey {
-
-        case bookingID = "bookingID"
-        case showDate = "showDate"
-        case bookingDate = "bookingDate"
-        case ticketID = "ticketID"
-        case showTimeID = "showTimeID"
-        case startTime = "startTime"
-        case endTime = "endTime"
-        case bookingStatus = "bookingStatus"
-        case seatingStatus = "seatingStatus"
-        case standingStatus = "standingStatus"
-        case isVerifiedSeats = "isVerifiedSeats"
-        case isVerifiedStanding = "isVerifiedStanding"
-        case seats = "seats"
-        case standing = "standing"
-        case encryptedSeatingQRCode = "encryptedSeatingQRCode"
-        case encryptedStandingQRCode = "encryptedStandingQRCode"
-    }
-
-    required init(from decoder: Decoder?)  {
-        if let decoder = decoder {
-            do {
-                let values = try decoder.container(keyedBy: CodingKeys.self)
-                bookingID = try values.decodeIfPresent(String.self, forKey: .bookingID)
-                showDate = try values.decodeIfPresent(String.self, forKey: .showDate)
-                bookingDate = try values.decodeIfPresent(String.self, forKey: .bookingDate)
-                ticketID = try values.decodeIfPresent(String.self, forKey: .ticketID)
-                showTimeID = try values.decodeIfPresent(String.self, forKey: .showTimeID)
-                startTime = try values.decodeIfPresent(String.self, forKey: .startTime)
-                endTime = try values.decodeIfPresent(String.self, forKey: .endTime)
-                bookingStatus = try values.decodeIfPresent(Int.self, forKey: .bookingStatus)
-                seatingStatus = try values.decodeIfPresent(Int.self, forKey: .seatingStatus)
-                standingStatus = try values.decodeIfPresent(Int.self, forKey: .standingStatus)
-                isVerifiedSeats = try values.decodeIfPresent(Int.self, forKey: .isVerifiedSeats)
-                isVerifiedStanding = try values.decodeIfPresent(Int.self, forKey: .isVerifiedStanding)
-                seats = try values.decodeIfPresent([HistorySeats].self, forKey: .seats)
-                standing = try values.decodeIfPresent([HistoryStanding].self, forKey: .standing)
-                encryptedSeatingQRCode = try values.decodeIfPresent(String.self, forKey: .encryptedSeatingQRCode)
-                encryptedStandingQRCode = try values.decodeIfPresent(String.self, forKey: .encryptedStandingQRCode)
-            } catch {
-                print("someting went wrong Historymode @\(#line)")
-            }
-        }
-        
-    }
-
+    
 }
 
 

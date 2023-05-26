@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct UpcomingEventsView: View {
-    @EnvironmentObject var session: SessionManager
     @State var isView1Active: Bool = false
+    @EnvironmentObject var session: SessionManager
     
-    @ObservedObject var historyViewModel = HistoryViewModel()
+    @StateObject var historyViewModel = HistoryViewModel() // ObservedObject is not working :(
     
     var body: some View {
         NavigationView {
             ZStack(alignment: .center) {
-                AppTheme.appThemeSkyBlue
+                //AppTheme.appThemeSkyBlue
                 ScrollView {
                     
                     VStack(spacing: 10){
@@ -51,6 +51,10 @@ struct UpcomingEventsView: View {
                                 .padding(.horizontal)
                                 .font(.system(size: 15, weight: .regular, design: .default))
                             }
+                            
+                            
+                            
+                            
                             .navigationTitle("Booking")
                             .onReceive(self.session.$moveToDashboard) { moveToDashboard in
                                 if moveToDashboard {
@@ -110,16 +114,18 @@ struct UpcomingEventsView: View {
                          */
                         
                         
-                        
-                        Text("Upcoming Booking")
-                            .font(.system(size: 18, weight: .medium, design: .default))
-                            .padding(.horizontal, 15)
-                            .padding(.top, 20)
-                            .padding(.bottom, 10)
-                        
-                        UpcomcommingbookingStatusCell()
-                            .padding(.horizontal, 10)
-                            .padding(.bottom, 30)
+                        if historyViewModel.historyData.count > 0 {
+                            
+                            Text("Recent Booking")
+                                .font(.system(size: 18, weight: .medium, design: .default))
+                                .padding(.horizontal, 15)
+                                .padding(.top, 20)
+                                .padding(.bottom, 10)
+                            
+                            UpcomcommingbookingStatusCell(data: historyViewModel.firstHistoryData)
+                                .padding(.horizontal, 10)
+                                .padding(.bottom, 30)
+                        }
                         
                     }
                     

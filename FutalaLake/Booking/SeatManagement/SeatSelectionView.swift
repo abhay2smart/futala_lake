@@ -31,7 +31,7 @@ struct SeatSelectionView: View {
     
     @State var isPresented: Bool = false
     
-    @ObservedObject var seatLayoutViewModel = SeatLayoutViewModel()
+    @StateObject var seatLayoutViewModel = SeatLayoutViewModel()
     
     @State var setas = [Seats]()
     
@@ -294,6 +294,7 @@ struct SeatSelectionView: View {
                                 Rectangle()
                                     .fill(AppTheme.SeatColor.isColorMatched(colorName: seatInventoryData[index].colorName ?? ""))
                                     .frame(width: 18, height: 18)
+                                    .cornerRadius(2)
                                 
                                 Text(seatInventoryData[index].seatType ?? "")
                                 //Text(seatInventoryData[index].colorName ?? "")

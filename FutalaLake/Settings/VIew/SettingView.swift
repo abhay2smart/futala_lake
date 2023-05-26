@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct SettingView: View {
-    @State private var isWhatsappNoticationOn: Bool = false
-    @State private var isLocationOn: Bool = false
-    @State private var isSavePaymentModeOn: Bool = false
+//    @State private var isWhatsappNoticationOn: Bool = false
+//    @State private var isLocationOn: Bool = false
+//    @State private var isSavePaymentModeOn: Bool = false
     @EnvironmentObject var session: SessionManager
     var body: some View {
         NavigationView {
@@ -20,35 +20,35 @@ struct SettingView: View {
                 VStack(spacing: 0) {
                     VStack(spacing: -10) {
                         Group {
-                            Toggle("WhatsApp Notification", isOn: $isWhatsappNoticationOn)
-                                .frame(height: 0)
-                            Divider()
-                            Toggle("Location", isOn: $isLocationOn)
-                                .frame(height: 0)
+//                            Toggle("WhatsApp Notification", isOn: $isWhatsappNoticationOn)
+//                                .frame(height: 0)
+//                            Divider()
+//                            Toggle("Location", isOn: $isLocationOn)
+//                                .frame(height: 0)
+//
+//                            Divider()
+//                            Toggle("Save Payment Modes", isOn: $isSavePaymentModeOn)
+//                                .frame(height: 0)
+//
+//                            Divider()
+//
+//                            Button {
+//                                //<#code#>
+//                            } label: {
+//                                HStack {
+//                                    Text("Delete Account")
+//                                        .foregroundColor(.black)
+//                                    Spacer()
+//                                    Image("trash")
+//                                        .resizable()
+//                                        .scaledToFit()
+//                                        .padding(.trailing)
+//
+//                                }
+//                            }.frame(height: 20)
+//                                .padding(.vertical, -10)
                             
-                            Divider()
-                            Toggle("Save Payment Modes", isOn: $isSavePaymentModeOn)
-                                .frame(height: 0)
-                            
-                            Divider()
-                            
-                            Button {
-                                //<#code#>
-                            } label: {
-                                HStack {
-                                    Text("Delete Account")
-                                        .foregroundColor(.black)
-                                    Spacer()
-                                    Image("trash")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .padding(.trailing)
-                                    
-                                }
-                            }.frame(height: 20)
-                                .padding(.vertical, -10)
-                            
-                            Divider()
+                            //Divider()
                             
                             
                             HStack {
@@ -69,6 +69,7 @@ struct SettingView: View {
                                 }
                                 
                             }.padding(.vertical, -10)
+                            .padding(.top, 30)
                             
                             Spacer()
                             //
@@ -76,7 +77,7 @@ struct SettingView: View {
                         }.padding(20)
                         Spacer()
                     }
-                    .frame(maxHeight: 450)
+                    .frame(maxHeight: 40)
                     .padding(.vertical)
                     
                     .cornerRadius(10)

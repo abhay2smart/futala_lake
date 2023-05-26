@@ -23,7 +23,7 @@ struct QRSubView: View {
         endTime = CommonUtil.convertTimeTwentyFourIntoTwelve(time: qrData.endTime ?? "") ?? ""
         
         
-        if let safeSeat = qrData.seatData?.first?.seats {
+        if let safeSeat = self.qRSeatData?.seats {
             seats = safeSeat.map{String($0)}.joined(separator: ",")
         }
         

@@ -65,7 +65,7 @@ class SeatLayoutViewModel: ObservableObject {
     }
     
     
-    func getSeatMasterData(masterSeatData: SeatData) {
+    func prepareData(masterSeatData: SeatData) {
         
         if let totalseat =  masterSeatData.seats {
             self.gatesWithSections = self.PrepareDataSectionWise(totalSeats: totalseat)
@@ -93,6 +93,10 @@ class SeatLayoutViewModel: ObservableObject {
             self.totalSeats = totalseat
             
             self.gateWithSections = self.appllyFilterByGateForSectionList(gateNo: "GATE NO. 1")
+            
+            DispatchQueue.main.async {
+                self.isLoading = false
+            }
             
             
             
@@ -203,6 +207,7 @@ class SeatLayoutViewModel: ObservableObject {
     }
     
     func PrepareDataSectionWise(totalSeats: [Seats])->[GateWithSections] {
+       
         var gateWithSections = [GateWithSections]()
         
         let gates = Constants.GATES
@@ -322,9 +327,13 @@ class SeatLayoutViewModel: ObservableObject {
         param["ticketType"] = ""
         param["seats"] = seatArr
         
-        param["standing"] = [standing]
-        self.postData(params: param)
+        if standingAdultCount == "0" &&  standingChildCount == "0" {
+            param["standing"] = [:]
+        } else {
+            param["standing"] = [standing]
+        }
         
+        self.postData(params: param)
         
     }
     
@@ -458,7 +467,7 @@ class SeatLayoutViewModel: ObservableObject {
         APIService.shared.makeApiTypeRequest2(url: url, param: nil, methodType: .get, expecting: GlobResponseModel.self) { resultStatus, error, data  in
             
             DispatchQueue.main.async {
-                self.isLoading = false
+                //self.isLoading = false
             }
             
             if !resultStatus {
@@ -487,7 +496,7 @@ class SeatLayoutViewModel: ObservableObject {
                                         self.bookedSeats = bookedSeatData
                                         //self.isLoading = true
                                         if let masterSeatData = self.masterSeatData  {
-                                            self.getSeatMasterData(masterSeatData: masterSeatData)
+                                            self.prepareData(masterSeatData: masterSeatData)
                                         }
                                     }
                                 }

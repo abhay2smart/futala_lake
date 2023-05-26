@@ -9,8 +9,8 @@ import SwiftUI
 import Combine
 
 struct LoginView: View {
-    @State var mobileNumber:String = "8173954048"
-    //@State var mobileNumber:String = ""
+    //@State var mobileNumber:String = "8173954048"
+    @State var mobileNumber:String = ""
     
     @State var shouldShowDetails:Bool = false
     @Binding var isLogggedIn : Bool
@@ -30,18 +30,6 @@ struct LoginView: View {
     
     var body: some View {
         ZStack(alignment: .top) {
-//            AppTheme.appThemeSkyBlue
-//                .edgesIgnoringSafeArea(.all)
-//
-//                .overlay(alignment: .topTrailing) {
-//                    Image("login_top_img")
-//
-//                        .resizable()
-//                        .padding([.leading, .trailing], -1)
-//                        .frame(height: 250)
-//
-//                }
-//                .edgesIgnoringSafeArea(.all)
             
             AppTheme.appThemeSkyBlue
             .edgesIgnoringSafeArea(.all)
@@ -84,7 +72,7 @@ struct LoginView: View {
                             Image("mobile")
                             //.resizable()
                             //.frame(width: 25, height: 25)
-                                .padding(.trailing, 25)
+                                .padding(.trailing, 20)
                         }
                         .frame(height: 45)
                         .padding(.leading, 20)
@@ -95,7 +83,7 @@ struct LoginView: View {
                         
                         
                         
-                        TextField("+91 - 123 456 7899", text: $mobileNumber)
+                        TextField("Mobile No.", text: $mobileNumber)
                             .onReceive(Just(mobileNumber)) { _ in limitText(10) }
                             .keyboardType(.numberPad)
                         
@@ -173,12 +161,6 @@ struct LoginView: View {
             
             
         }.allowsHitTesting(loginVM.isLoading ? false : true)
-//            .onAppear {
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-//                    self.isLoading = false
-//                }
-//
-//            }
         
     }
     

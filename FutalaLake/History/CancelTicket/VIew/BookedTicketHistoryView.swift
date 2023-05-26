@@ -114,6 +114,7 @@ struct BookedTicketHistoryView: View {
                                             Rectangle()
                                                 .fill(AppTheme.SeatColor.isColorMatched(colorName: retrievedCodableObject[index].colorName ?? ""))
                                                 .frame(width: 15, height: 15)
+                                                .cornerRadius(2)
                                             
                                             Text(retrievedCodableObject[index].seatType ?? "")
                                             //Text(seatInventoryData[index].colorName ?? "")
@@ -132,7 +133,7 @@ struct BookedTicketHistoryView: View {
                                 
                             }.padding(.bottom)
                             
-                            }
+                        }
                         
                     } else {
                         if let data = cancelTicketViewModel.historyDetailData.data?.first {

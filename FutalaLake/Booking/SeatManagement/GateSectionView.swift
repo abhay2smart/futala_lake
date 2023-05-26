@@ -60,10 +60,21 @@ struct GateSectionView: View {
                         }
                         
                     } label: {
+                        
+//                        ZStack {
+//                            Image("seat")
+//                                .resizable()
+//                                .frame(width: 50, height: 50)
+//                            Text(element.seatNumber ?? "")
+//                                .font(.system(size: 10, weight: .bold, design: .default))
+//                                .frame(width: 50, height: 50)
+//                                .foregroundColor(.black)
+//                        }
+                        
                         Text(element.seatNumber ?? "")
                             .font(.system(size: 10, weight: .bold, design: .default))
                             .frame(width: 40, height: 40)
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
                     }
                     .background(element.color)
                     //.background(AppTheme.appThemeOrange)

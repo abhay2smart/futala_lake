@@ -22,12 +22,17 @@ struct TransanctionView: View {
             ZStack {
                 ScrollView {
                     VStack {
-                        
-                        ForEach(Array(historyViewModel.historyData.enumerated()), id: \.offset) { index, element in
-                            BookingHistoryCellView(data: element, historyDataIndex: $historyDataIndex, isTicketInfoPreseneted: $isTicketInfoPreseneted, isViewButtonPressed: $isViewButtonPressed, index: index)
-                                .padding(.horizontal, 15)
-                                .padding(.vertical, 0)
+                        if historyViewModel.historyData.count == 0 {
+                            Text("No history found")
+                                .foregroundColor(.gray)
+                        } else {
+                            ForEach(Array(historyViewModel.historyData.enumerated()), id: \.offset) { index, element in
+                                BookingHistoryCellView(data: element, historyDataIndex: $historyDataIndex, isTicketInfoPreseneted: $isTicketInfoPreseneted, isViewButtonPressed: $isViewButtonPressed, index: index)
+                                    .padding(.horizontal, 15)
+                                    .padding(.vertical, 0)
+                            }
                         }
+                        
                         
                         
                     }.padding(.top, 20)

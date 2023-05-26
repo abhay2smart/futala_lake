@@ -24,7 +24,7 @@ struct QRView: View {
     }
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .bottomTrailing) {
             //AppTheme.appThemeSkyBlue
             VStack {
                 
@@ -92,7 +92,7 @@ struct QRView: View {
                                 ForEach(Array(safeSeats.enumerated()), id: \.offset) { index, element in
                                     VStack {
                                             QRSubView(qrData: qrData ?? QRData(), isSeating: isSeating, qRSeatData: element)
-                                            BookedActionsView()
+                                        BookedActionsView(qrData: qrData ?? QRData(), seatData: element, isSeating: isSeating)
                                         
                                     }.padding(.bottom, 30)
                                         .background(
@@ -111,7 +111,7 @@ struct QRView: View {
                         } else {
                             VStack {
                                 QRSubView(qrData: qrData ?? QRData(), isSeating: isSeating)
-                                BookedActionsView()
+                                BookedActionsView(qrData: qrData ?? QRData(), seatData: nil, isSeating: isSeating)
                             }
                             
                         }
@@ -123,6 +123,27 @@ struct QRView: View {
 
                 }.padding(.top, -20)
             }
+            
+            Button {
+                //
+                self.session.moveToDashboard = true
+            } label: {
+                VStack(spacing: 5) {
+                    ZStack {
+                        Rectangle()
+                            .fill(AppTheme.appThemeOrange)
+                            .frame(width: 50, height: 50)
+                            .clipShape(Circle())
+                        Text("Booking")
+                            .multilineTextAlignment(.center)
+                            .font(.system(size: 10, weight: .medium, design: .default))
+                            .foregroundColor(.white)
+                        
+                    }
+                    
+                    
+                }
+            }.padding()
             
             
             .navigationBarTitleDisplayMode(.inline)

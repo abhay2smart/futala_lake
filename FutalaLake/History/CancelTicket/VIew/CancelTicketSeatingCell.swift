@@ -58,9 +58,9 @@ struct CancelTicketSeatingCell: View {
                                 //seats.reversed()
                             } label: {
                                 Text(ticketData?.seatNo?[index].seatNumber ?? "")
-                                    .font(.system(size: 10, weight: .regular, design: .default))
+                                    .font(.system(size: 9, weight: .medium, design: .default))
                                     .frame(width: 25, height: 25)
-                                    .foregroundColor(.black)
+                                    .foregroundColor(.white)
                             }
                             .background(index < (ticketData?.seatNo?.count ?? 0) ? ticketData?.seatNo?[index].color : .blue  )
                             .cornerRadius(3)

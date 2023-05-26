@@ -9,33 +9,34 @@ import SwiftUI
 
 struct TabContainerView: View {
     @ObservedObject var masterConfigViewModel = MasterConfigViewModel()
+    @EnvironmentObject var session:SessionManager
     var body: some View {
         ZStack {
-            TabView {
+            TabView(selection: $session.currentTab) {
                 UpcomingEventsView()
                 //PayNowView()
                     .tabItem {
                         Text("Booking")
                         Image("booking")
-                    }
+                    }.tag(1)
                 
                 ProfileView()
                     .tabItem {
                         Text("Profile")
                         Image("user")
-                    }
+                    }.tag(2)
                 
                 TransanctionView()
                     .tabItem {
                         Text("History")
                         Image("trasanctions")
-                    }
+                    }.tag(3)
                 
                 SettingView()
                     .tabItem {
                         Text("Setting")
                         Image("settings")
-                    }
+                    }.tag(4)
                 
                 
                 

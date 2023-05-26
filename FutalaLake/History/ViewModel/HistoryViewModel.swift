@@ -9,10 +9,11 @@ import Foundation
 
 class HistoryViewModel: ObservableObject {
     @Published var historyData:[HistoryData] = [HistoryData]()
+    @Published var firstHistoryData:HistoryData = HistoryData(from: nil)
     @Published var isLoading:Bool = false
     
     func fetchHistory() {
-        isLoading = true
+        self.isLoading = true
         let url = Constants.baseUrl + Constants.API.userHistory
                 
                 APIService.shared.makeApiTypeRequest2(url: url, param: nil, methodType: .get, expecting: GlobResponseModel.self) { resultStatus, error, data  in
@@ -39,7 +40,8 @@ class HistoryViewModel: ObservableObject {
                             if let dataArr = respData.data {
                                 DispatchQueue.main.async {
                                     self.historyData = dataArr
-                                    print("parsed342\(dataArr.count)")
+                                    self.firstHistoryData = dataArr.first ?? HistoryData(from: nil)
+                                    print("parsed342\(self.firstHistoryData.startTime)")
                                 }
                                 
                             }

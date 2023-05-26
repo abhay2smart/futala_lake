@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import UIKit
 struct Global {
     struct GroupTiketing {
         static var TOTAL_GROUP_SELECTED_COUNT = 0
     }
 }
+

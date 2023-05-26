@@ -62,12 +62,13 @@ class LoginVM: ObservableObject {
                     if let otp = self.loginResponseModel.data?.first?.otp {
                         self.otp = "\(otp)"
                     }
-                    print("Hola \(self.loginResponseModel.data?.first?.otp)")
                     self.shouldMoveToOTPView = true
                 }
                 
             case .failure(let error):
                 DispatchQueue.main.async {
+                    self.errorMessage = "Something went wrong!"//error.localizedDescription
+                    self.showAlert = true
                     print("Something went wrong \(error.localizedDescription) LoginVM \(#line)")
                 }
             }

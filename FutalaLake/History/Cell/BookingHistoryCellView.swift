@@ -65,9 +65,9 @@ struct BookingHistoryCellView: View {
                     Text("Standing Count")
                         .foregroundColor(AppTheme.appThemeOrange)
                     Group {
-                        Text("Adult: \(self.historyData?.getAdultCount() ?? 0)")
+                        Text("Adult: \(self.historyData?.getStandingAdultCount() ?? 0)")
                         Text(" | ")
-                        Text("Child: \(self.historyData?.getChildCount() ?? 0)")
+                        Text("Child: \(self.historyData?.getStandingChildCount() ?? 0)")
                     }
                     
                     

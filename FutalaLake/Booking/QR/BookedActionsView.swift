@@ -9,12 +9,51 @@ import SwiftUI
 
 struct BookedActionsView: View {
     @EnvironmentObject var session: SessionManager
+    @State var isMessageViewPresented: Bool = false
+    private var qrData:QRData
+    private var seatData:QRSeatData?
+    private var standing: [QRStandingData]?
+    private var msg = ""
+    private var isSeating = false
+    
+    
+    
+    init(qrData: QRData, seatData: QRSeatData?, isSeating: Bool) {
+        self.qrData = qrData
+        self.seatData = seatData
+        self.standing = qrData.qrStandingData
+        self.isSeating = isSeating
+    }
+    
+    private func composeMessage()->String? {
+        var seats = "N/A"
+        var msg = ""
+        var showDate = CommonUtil.showDate(date: qrData.showDate ?? "")
+        var totalStanding = standing?.count ?? 0
+        var gateNo = seatData?.gateNo ?? ""
+        
+        var showTime = (CommonUtil.convertTimeTwentyFourIntoTwelve(time: qrData.startTime ?? "") ?? "") + " - " + (CommonUtil.convertTimeTwentyFourIntoTwelve(time: qrData.endTime ?? "") ?? "")
+        
+        
+        if let safeSeat = seatData?.seats {
+            seats = safeSeat.map{String($0)}.joined(separator: ",")
+        }
+        if isSeating {
+            msg = "Congratulations!! your booking is confirmed. \nSeats: [\(seats)] \nShow Date: \(showDate) \nShow time: \(showTime) \nGate No: \(gateNo) \n\n Thank you."
+        } else {
+            msg = "Congratulations!! your booking is confirmed.\nTotal Standing: \(totalStanding) \nShow Date: \(showDate) \nShow time: \(showTime) \nGate No: \(gateNo) \n\n Thank you."
+        }
+        return msg
+    }
+    
+    
     var body: some View {
         HStack {
             Spacer()
             
+            
             Button {
-                //
+                self.isMessageViewPresented = true
             } label: {
                 VStack(spacing: 5) {
                     ZStack {
@@ -25,18 +64,21 @@ struct BookedActionsView: View {
                         Image("sms")
                             .resizable()
                             .frame(width: 25, height: 25)
-                        
                     }
-                    
-                    
                 }
                 
+            }
+            .sheet(isPresented: self.$isMessageViewPresented) {
+                MessageComposeView(recipients: [""], body: composeMessage() ?? "") { messageSent in
+                    print("MessageComposeView with message sent? \(messageSent)")
+                }
             }
             
             Spacer()
             
             Button {
-                //
+                let msg = composeMessage() ?? ""
+                WhatsApp.sendMessage(msg: msg)
             } label: {
                 VStack(spacing: 5) {
                     ZStack {
@@ -56,39 +98,14 @@ struct BookedActionsView: View {
             }
             
             Spacer()
-//
-            Button {
-                //
-                self.session.moveToDashboard = true
-            } label: {
-                VStack(spacing: 5) {
-                    ZStack {
-                        Rectangle()
-                            .fill(AppTheme.appThemeOrange)
-                            .frame(width: 50, height: 50)
-                            .clipShape(Circle())
-                        Text("Booking")
-                            .multilineTextAlignment(.center)
-                            .font(.system(size: 10, weight: .medium, design: .default))
-                            .foregroundColor(.white)
-
-                    }
-
-                    
-                }
-
-
-
-            }
-//
-            Spacer()
+            
             
         }
     }
 }
 
-struct BookedActionsView_Previews: PreviewProvider {
-    static var previews: some View {
-        BookedActionsView()
-    }
-}
+//struct BookedActionsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        BookedActionsView(data: QRData())
+//    }
+//}

@@ -12,25 +12,29 @@ import SwiftUI
 
 struct AppTheme {
     static let appThemeBlue = Color(UIColor.init(hexString: "#0C0C40"))
-    static let appThemeOrange = Color(UIColor.init(hexString: "#F47F22"))
+    //static let appThemeOrange = Color(UIColor.init(hexString: "#F47F22"))
+    static let appThemeOrange = Color(UIColor.init(hexString: "#FFFD8E23"))
     static let appThemeRed = Color(UIColor.init(hexString: "#F42222"))
     static let appThemeSkyBlue = Color(UIColor.init(hexString: "#E1F0F7"))
     
     struct SeatColor {
         
-        static let selected = Color(UIColor.init(hexString: "#32ECA0"))
+        static let selected = Color(UIColor.init(hexString: "#FF1EA83C"))
         static let defaultColor = Color(UIColor.init(hexString: "#F47F22"))
         static let vip = Color(UIColor.init(hexString: "#7472D3"))
         static let classic = Color(UIColor.init(hexString: "#F4964C"))
-        static let maintenance = Color(UIColor.init(hexString: "#F890ED"))
+        //static let maintenance = Color(UIColor.init(hexString: "#F890ED"))
+        static let maintenance = Color(UIColor.init(hexString: "#FF3333"))
         static let booked = Color(UIColor.init(hexString: "#EAEAEA"))
         
         
         
         
         static var colorList = [
-            ColorCode(key: "blue", color: Color(UIColor.init(hexString: "#908EDC"))),
-            ColorCode(key: "orange", color: Color(UIColor.init(hexString: "#F6AB70"))),
+            //ColorCode(key: "blue", color: Color(UIColor.init(hexString: "#908EDC"))),
+            ColorCode(key: "blue", color: Color(UIColor.init(hexString: "#FF003CCE"))),
+            //ColorCode(key: "orange", color: Color(UIColor.init(hexString: "#F6AB70"))),
+            ColorCode(key: "orange", color: Color(UIColor.init(hexString: "#FFFD8E23"))),
             ColorCode(key: "Spring Field", color: Color(UIColor.init(hexString: "#4C7265"))),
             ColorCode(key: "Ultra Moss", color: Color(UIColor.init(hexString: "#D4F54D"))),
             ColorCode(key: "glided", color: Color(UIColor.init(hexString: "#F6E54E"))),

@@ -13,7 +13,7 @@ struct Constants {
     static let tokenKey = "usertoken"
     static let colorKey = "colorKey"
     static let adminCharges = "10"
-    static let baseUrl = "http://220.226.100.106:3001/"
+    static let baseUrl = "https://ffts.aurionpro.com:3001/" //"http://220.226.100.106:3001/"
     
     static let GATES = ["GATE NO. 1", "GATE NO. 2", "GATE NO. 3", "GATE NO. 4", "GATE NO. 5", "GATE NO. 6", "GATE NO. 7"]
     
