@@ -10,14 +10,23 @@ import Foundation
 class UserDefaultHelper {
     private let standard = UserDefaults.standard
     static let shared = UserDefaultHelper()
+    private var token = ""
     
-    func save(data: String) {
+    func saveToken(data: String)->String? {
         //standard.string(forKey: Constants.tokenKey)
-        standard.set(data, forKey: Constants.tokenKey)
+        //standard.set(data, forKey: Constants.tokenKey)
+        token = data
+        return self.getToken()
     }
     
     func getToken()-> String? {
-        let data = standard.string(forKey: Constants.tokenKey)
+        let data = token//standard.string(forKey: Constants.tokenKey)
         return data
+    }
+    
+    func deleteToken() {
+//        standard.set("", forKey: Constants.tokenKey)
+//        standard.removeObject(forKey: Constants.tokenKey)
+        token = ""
     }
 }

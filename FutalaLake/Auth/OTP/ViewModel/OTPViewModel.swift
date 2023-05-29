@@ -106,8 +106,10 @@ class OTPViewModel: ObservableObject {
                             DispatchQueue.main.async {
                                 if respData.status ?? false {
                                     if let token = respData.data?.first?.token  {
-                                        self.saveToken(token: token)
-                                        self.isLoggedIn = true
+                                        let isTokenSaved = UserDefaultHelper.shared.saveToken(data: token)
+                                        if (isTokenSaved != nil) {
+                                            self.isLoggedIn = true
+                                        }
                                     }
                                 }
                             }
@@ -127,10 +129,10 @@ class OTPViewModel: ObservableObject {
         
     }
     
-    private func saveToken(token: String) {
-        let data = Data(token.utf8)
-        KeychainHelper.standard.save(data, service: Constants.tokenKey)
-    }
+//    private func saveToken(token: String) {
+//        let data = Data(token.utf8)
+//        KeychainHelper.standard.save(data, service: Constants.tokenKey)
+//    }
     
     func getOTP(mobileNumber: String) {
         isLoading = true

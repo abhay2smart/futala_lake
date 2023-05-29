@@ -46,15 +46,17 @@ class APIService {
         
             
             if passToken {
-                let data = KeychainHelper.standard.read(service: Constants.tokenKey)
-                if let data = data {
-                    let accessToken = String(data: data, encoding: .utf8)
-                    if let accessToken, accessToken != "" {
-                        //let headers = ["Content-Type": "application/json", "token": "Bearer " + accessToken]
-                        let headers = ["Content-Type": "application/json", "token": accessToken]
-                        print("accessToken::: \(accessToken)")
-                        request.allHTTPHeaderFields = headers
-                    }
+//                let data = KeychainHelper.standard.read(service: Constants.tokenKey)
+//                if let data = data {
+//
+//                }
+                
+                let accessToken = UserDefaultHelper.shared.getToken()//String(data: data, encoding: .utf8)
+                if let accessToken, accessToken != "" {
+                    //let headers = ["Content-Type": "application/json", "token": "Bearer " + accessToken]
+                    let headers = ["Content-Type": "application/json", "token": accessToken]
+                    print("accessToken::: \(accessToken)")
+                    request.allHTTPHeaderFields = headers
                 }
             }
         
@@ -139,15 +141,24 @@ class APIService {
         
             
             if passToken {
-                let data = KeychainHelper.standard.read(service: Constants.tokenKey)
-                if let data = data {
-                    let accessToken = String(data: data, encoding: .utf8)
-                    if let accessToken, accessToken != "" {
-                        //let headers = ["Content-Type": "application/json", "token": "Bearer " + accessToken]
-                        let headers = ["Content-Type": "application/json", "token": accessToken]
-                        print("accessToken::: \(accessToken)")
-                        request.allHTTPHeaderFields = headers
-                    }
+//                let data = KeychainHelper.standard.read(service: Constants.tokenKey)
+//                if let data = data {
+//                    let accessToken = String(data: data, encoding: .utf8)
+//                    if let accessToken, accessToken != "" {
+//                        //let headers = ["Content-Type": "application/json", "token": "Bearer " + accessToken]
+//                        let headers = ["Content-Type": "application/json", "token": accessToken]
+//                        print("accessToken::: \(accessToken)")
+//                        request.allHTTPHeaderFields = headers
+//                    }
+//                }
+                
+                
+                let accessToken = UserDefaultHelper.shared.getToken()
+                if let accessToken, accessToken != "" {
+                    //let headers = ["Content-Type": "application/json", "token": "Bearer " + accessToken]
+                    let headers = ["Content-Type": "application/json", "token": accessToken]
+                    print("accessToken::: \(accessToken)")
+                    request.allHTTPHeaderFields = headers
                 }
             }
         

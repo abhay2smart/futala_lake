@@ -31,10 +31,10 @@ struct ContentView: View {
                 }
             }
         }
-        .onDisappear {
-            print("App killed signed out :(")
-            session.signout()
-        }
+//        .onDisappear {
+//            print("App killed signed out :(")
+//            session.signout()
+//        }
         
         
         
