@@ -16,7 +16,7 @@ struct CustomButtonModifiers: ViewModifier {
             .background(AppTheme.appThemeOrange)
             .clipShape(Capsule())
             .padding(.horizontal)
-            .font(.system(size: 23, weight: .regular, design: .default))
+            .font(.system(size: 20, weight: .regular, design: .default))
     }
 }
 

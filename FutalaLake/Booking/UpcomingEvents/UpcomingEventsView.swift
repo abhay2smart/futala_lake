@@ -17,32 +17,50 @@ struct UpcomingEventsView: View {
         NavigationView {
             ZStack(alignment: .center) {
                 //AppTheme.appThemeSkyBlue
-                ScrollView {
+                VStack {
+                    ScrollView {
+                        
+                        VStack(spacing: 0) {
+                            
+                            UpcomingEventCellView()
+                                .padding([.horizontal, .top])
+                            
+                            
+                            
+                            if historyViewModel.historyData.count > 0 {
+                                
+                                VStack(spacing: 0) {
+                                    HStack {
+                                        Text("Recent Booking")
+                                        Spacer()
+                                    }
+                                    
+                                    .font(.system(size: 18, weight: .medium, design: .default))
+                                    .padding(.horizontal, 15)
+                                    .padding(.top, 20)
+                                    .padding(.bottom, 10)
+                                    
+                                    UpcomcommingbookingStatusCell(data: historyViewModel.firstHistoryData)
+                                        .padding(.horizontal, 10)
+                                        .padding(.bottom, 30)
+                                }.padding(.horizontal)
+                                
+                            }
+                            Spacer()
+                            
+                        }
+                        
+                        
+                    }
                     
-                    VStack(spacing: 10){
-                        HStack {
-                            Spacer()
-                            Text("Futala Fountain Show")
-                                .font(.system(size: 18, weight: .medium, design: .default))
-                                .padding(10)
-                                
-                            Spacer()
-                        }.background(AppTheme.appThemeOrange)
+                    Spacer()
+                    
+                    HStack {
                         
-                        VStack(spacing: 4) {
-                            Text("Duniya ka Sabse bada")
-                                .font(.system(size: 14, weight: .regular, design: .default))
-                            Text("Musical Fountain")
-                                .font(.system(size: 16, weight: .medium, design: .default))
-                                
-                        }.padding(.bottom, 10)
+                        Spacer()
                         
-                        HStack {
-                            Spacer()
-                            
-                            
-                            NavigationLink(destination: DateTimeSelectionView(), isActive: $isView1Active) {
-                                Text("BOOK TICKET")
+                        NavigationLink(destination: DateTimeSelectionView(), isActive: $isView1Active) {
+                            Text("BOOK TICKET")
                                 .frame(width: 140)
                                 .frame(height: 34)
                                 .foregroundColor(.white)
@@ -50,11 +68,8 @@ struct UpcomingEventsView: View {
                                 .clipShape(Capsule())
                                 .padding(.horizontal)
                                 .font(.system(size: 15, weight: .regular, design: .default))
-                            }
-                            
-                            
-                            
-                            
+                        }.padding()
+                        
                             .navigationTitle("Booking")
                             .onReceive(self.session.$moveToDashboard) { moveToDashboard in
                                 if moveToDashboard {
@@ -63,73 +78,9 @@ struct UpcomingEventsView: View {
                                     //self.session.moveToDashboard = false
                                 }
                             }
-                            
-                            
-                            
-                            
-                            
-                            
-
-                        }.padding(.bottom, 10)
-                        
-                        Image("wave")
-                            .resizable()
-                            .aspectRatio( contentMode: .fit)
-                            .frame(width: UIScreen.main.bounds.width - 40)
-                            .padding(.bottom, 10)
-                        
-                        
                     }
-                    .border(.gray)
-                    .padding(10)
-                        
-                    
-                    
-                    
-                    
-                    VStack(alignment: .leading, spacing: 5) {
-                        
-                        /*
-                        Text("Upcoming Events")
-                            .font(.system(size: 18, weight: .medium, design: .default))
-                            .padding(.horizontal, 15)
-                            .padding(.top, 20)
-                        
-                        ForEach(1..<2) { index in
-                            
-                            NavigationLink(destination: DateTimeSelectionView(), isActive: $isView1Active) {
-                                UpcomingEventCellView()
-                            }
-                            .navigationTitle("Booking")
-                            .onReceive(self.session.$moveToDashboard) { moveToDashboard in
-                                if moveToDashboard {
-                                    print("Move to dashboard: \(moveToDashboard)")
-                                    self.isView1Active = false
-                                    //self.session.moveToDashboard = false
-                                }
-                            }
-                            
-                            
-                        }
-                         */
-                        
-                        
-                        if historyViewModel.historyData.count > 0 {
-                            
-                            Text("Recent Booking")
-                                .font(.system(size: 18, weight: .medium, design: .default))
-                                .padding(.horizontal, 15)
-                                .padding(.top, 20)
-                                .padding(.bottom, 10)
-                            
-                            UpcomcommingbookingStatusCell(data: historyViewModel.firstHistoryData)
-                                .padding(.horizontal, 10)
-                                .padding(.bottom, 30)
-                        }
-                        
-                    }
-                    
                 }
+            
                 if historyViewModel.isLoading {
                     Loader()
                 }

@@ -9,15 +9,14 @@ import SwiftUI
 import Combine
 
 struct LoginView: View {
-    //@State var mobileNumber:String = "8173954048"
-    @State var mobileNumber:String = ""
+    @EnvironmentObject var session: SessionManager
+    @State var mobileNumber:String = "8173954048"
+    //@State var mobileNumber:String = ""
     
     @State var shouldShowDetails:Bool = false
     @Binding var isLogggedIn : Bool
     @ObservedObject var loginVM = LoginVM()
     @FocusState var isInputActive: Bool
-    
-    
     
     
     
@@ -65,23 +64,9 @@ struct LoginView: View {
                 
                 VStack(alignment: .leading) {
                     Text("Mobile No.")
-                        .font(.system(size: 22, weight: .medium, design: .default))
+                        .font(.system(size: 20, weight: .medium, design: .default))
                     
                     HStack(spacing: 0) {
-                        HStack {
-                            Image("mobile")
-                            //.resizable()
-                            //.frame(width: 25, height: 25)
-                                .padding(.trailing, 20)
-                        }
-                        .frame(height: 45)
-                        .padding(.leading, 20)
-                        .padding(.trailing, 25)
-                        
-                        .background(AppTheme.appThemeBlue)
-                        .clipShape(Capsule())
-                        
-                        
                         
                         TextField("Mobile No.", text: $mobileNumber)
                             .onReceive(Just(mobileNumber)) { _ in limitText(10) }
@@ -115,24 +100,116 @@ struct LoginView: View {
                             .cornerRadius(25)
                             .overlay(RoundedRectangle(cornerRadius: 25).stroke(Color.white))
                         //.padding([.horizontal], 24)
-                            .padding(.leading, -40)
+                            .padding(.leading, 0)
+                            .padding(.trailing, -35)
+                        
+                        HStack {
+                            //Image("mobile")
+                            //.padding(.trailing, 20)
+                            if loginVM.isOTPRecieved {
+                                Image("check_green")
+                                    .resizable()
+                                    .frame(width: 30, height: 30)
+                            } else {
+                                Button {
+                                if loginVM.isValidatedMobile(mobileNumber: mobileNumber) {
+                                    loginVM.getOTP(mobileNumber: mobileNumber)
+                                }
+                                    
+                                } label: {
+                                    Text("GET OTP")
+                                    .font(.system(size: 12, weight: .regular, design: .default))
+                                    .foregroundColor(.white)
+                                    .padding(.leading, 0)
+                                }
+                            }
+                            
+
+                            
+                        }
+                        .frame(width: 60, height: 45)
+                        .padding(.leading, 20)
+                        .padding(.trailing, 25)
+                        
+                        .background(AppTheme.appThemeBlue)
+                        .clipShape(Capsule())
                     }
                     
-                    
+                    if loginVM.isOTPRecieved {
+                        TextField("OTP", text: $loginVM.otp)
+                            .keyboardType(.numberPad)
+                        
+                            .focused($isInputActive)
+//                            .toolbar {
+//                                ToolbarItemGroup(placement: .keyboard) {
+//                                    Spacer()
+//
+//                                    Button("Done") {
+//                                        isInputActive = false
+//                                    }
+//                                }
+//                            }
+                        
+                            .frame(height: 45)
+                            .textFieldStyle(PlainTextFieldStyle())
+                            .padding([.horizontal], 25)
+                        //.background(Color.white)
+                            .background(
+                                Rectangle()
+                                    .fill(Color.white)
+                                    .shadow(
+                                        color: Color.gray.opacity(0.7),
+                                        radius: 8,
+                                        x: 0,
+                                        y: 0
+                                    )
+                            )
+                            .cornerRadius(25)
+                            .overlay(RoundedRectangle(cornerRadius: 25).stroke(Color.white))
+                        //.padding([.horizontal], 24)
+                            .padding(.vertical)
+                        
+                        HStack {
+                            Spacer()
+                            
+                            if loginVM.isTimerFinished {
+                                Button {
+                                    if loginVM.isValidatedMobile(mobileNumber: mobileNumber) {
+                                        loginVM.getOTP(mobileNumber: mobileNumber)
+                                    }
+                                } label: {
+                                    Text("Resend OTP")
+                                        .underline()
+                                        .foregroundColor(AppTheme.appThemeBlue)
+                                }
+                                
+                            } else {
+                                Text("Resend OTP in: \(loginVM.displayCountDown)")
+                            }
+                            Spacer()
+                        }.padding(.top, 0)
+                    }
                     
                 }.padding(20)
                 
-                
-                
-                
                 Group {
-                    
                     Button {
-                        loginVM.validate(mobileNumber: mobileNumber)
+                        loginVM.startCountdown()
+                        if loginVM.isValidatedMobileAndOTP(otp: loginVM.otp, mobileNumber: self.mobileNumber) {
+                            loginVM.fetchToeken(mobileNumber: self.mobileNumber)
+                        }
+                        
                     } label: {
                         Text("Login")
-                        .modifier(CustomButtonModifiers())
-                    }
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 45)
+                            .foregroundColor(loginVM.isOTPRecieved ? .white: .gray)
+                            .background(AppTheme.appThemeOrange)
+                            .clipShape(Capsule())
+                            .padding(.horizontal)
+                            .font(.system(size: 20, weight: .regular, design: .default))
+                        
+                    }.disabled(loginVM.isOTPRecieved ? false : true)
                     
                     
                     NavigationLink(isActive: $loginVM.shouldMoveToOTPView) {
@@ -140,11 +217,18 @@ struct LoginView: View {
                     } label: {
                         
                     }
-                    
                 }
                 
                 Spacer()
                 
+            }
+            
+            .onChange(of: loginVM.isLoggedIn) { isLoggedIn in
+                if isLoggedIn {
+                    print("some action")
+                    self.session.signIn()
+                    
+                }
             }
             
             
@@ -165,11 +249,13 @@ struct LoginView: View {
     }
     
     //Function to keep text length in limits
-        func limitText(_ upper: Int) {
-            if mobileNumber.count > upper {
-                mobileNumber = String(mobileNumber.prefix(upper))
-            }
+    func limitText(_ upper: Int) {
+        if mobileNumber.count > upper {
+            mobileNumber = String(mobileNumber.prefix(upper))
         }
+    }
+    
+    
 }
 
 
@@ -178,3 +264,7 @@ struct LoginView_Previews: PreviewProvider {
         LoginView()
     }
 }
+
+
+
+

@@ -166,7 +166,7 @@ struct PaymentSuccessAlertView: View {
                 
                 
                 Group {
-                    Button("Done") {
+                    Button("View Ticket") {
                         paymentSuccessAlertViewModel.getQRData(bookingId: bookingId)
                     }.modifier(CustomButtonModifiers())
                     
