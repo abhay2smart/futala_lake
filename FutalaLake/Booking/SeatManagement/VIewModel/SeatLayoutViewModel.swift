@@ -13,7 +13,7 @@ class SeatLayoutViewModel: ObservableObject {
     @Published var isLoading = false
     //@Published var totalFilteredSeats:[Seats] = [Seats]()
     @Published var totalSeats:[Seats] = [Seats]()
-    @Published var bookedSeats:[BookedSeatData] = [BookedSeatData]()
+    @Published var bookedSeats:BookedSeatData?
     
     @Published var gatesWithSections = [GateWithSections]()
     @Published var gateWithSections:GateWithSections?
@@ -26,6 +26,8 @@ class SeatLayoutViewModel: ObservableObject {
     
     @Published var masterSeatData:SeatData?
     
+    @Published var isPresentPriceNotSetDilog = false
+    
     
     
     //group
@@ -35,13 +37,13 @@ class SeatLayoutViewModel: ObservableObject {
     @Published var minGroupValue:String = ""
     
     
-    @Published var groupSeats:String = "20"
-    @Published var groupStanding:String = "0"
-    @Published var maxGroupValue:String = "60"
+    @Published var groupSeats:String = ""
+    @Published var groupStanding:String = ""
+    @Published var maxGroupValue:String = ""
     
-    @Published var standings:String = "0"
+    @Published var standings:String = ""
     
-    @Published var total:String = "0"
+    @Published var total:String = ""
     
     
     private var showDate: String = ""
@@ -60,8 +62,6 @@ class SeatLayoutViewModel: ObservableObject {
         self.showTimeID = showTimeID
         self.showDayID  = showDayID
         self.masterSeatData = seatMasterData
-        
-        print("hyyytrrfffcc \(masterSeatData?.seats?.count ?? 0)")
     }
     
     
@@ -79,11 +79,11 @@ class SeatLayoutViewModel: ObservableObject {
             
             
             for seat in totalseat {
-                if let seatFare = self.bookedSeats.first?.seatFare {
+                if let seatFare = self.bookedSeats?.seatFare {
                     self.setFare(seat: seat, fares: seatFare)
                 }
 
-                if let arr = self.bookedSeats.first?.bookSeats {
+                if let arr = self.bookedSeats?.bookSeats {
                     if let itemExist = self.isItemExist(arr: arr, item: seat) {
                         seat.setIsBooked()
                     }
@@ -106,73 +106,73 @@ class SeatLayoutViewModel: ObservableObject {
     }
     
     
-    // NOT IN USE
-    func getSeatMasterData() {
-        isLoading = true
-        //mobile/seatConfig/seatMaster
-        let url = Constants.baseUrl + Constants.API.seatMaster
-        
-        APIService.shared.makeApiTypeRequest2(url: url, param: nil, methodType: .get, expecting: GlobResponseModel.self) { resultStatus, error, data  in
-            
-            DispatchQueue.main.async {
-                self.isLoading = false
-            }
-            
-            if !resultStatus {
-                print("something went wrong::\(#line) SeatLayoutViewModel")
-                return
-            }
-            
-            if resultStatus {
-                guard let data = data else {
-                    return
-                }
-                
-                
-                APIService.shared.parseModel(data: data, expecting: SeatLayoutModel.self) { result, data in
-                    switch result {
-                        case .success(let respData):
-                            DispatchQueue.main.async {
-                                if respData.status ?? false {
-                                    if let totalseat = respData.data?.first?.seats {
-                                        self.gatesWithSections = self.PrepareDataSectionWise(totalSeats: totalseat)
-                                        print("Let's go====")
-                                        for item in self.gatesWithSections {
-                                            print("gate \(item.gateNo)")
-                                            for section in item.sections {
-                                                print("Section: \(section.sectionName)")
-                                            }
-                                        }
-                                        
-                                        print("Let's end====")
-            
-                                        for seat in totalseat {
-                                            if let seatFare = self.bookedSeats.first?.seatFare {
-                                                self.setFare(seat: seat, fares: seatFare)
-                                            }
-            
-                                            if let arr = self.bookedSeats.first?.bookSeats {
-                                                if let itemExist = self.isItemExist(arr: arr, item: seat) {
-                                                    seat.setIsBooked()
-                                                }
-                                            }
-                                        }
-            
-                                        self.totalSeats = totalseat
-                                        
-                                        self.gateWithSections = self.appllyFilterByGateForSectionList(gateNo: "GATE NO. 1")
-            
-                                    }
-                                }
-                            }
-            
-                        case .failure(let error):
-                            print("Something went wrong::SeatLayoutViewModel@\(#line)")
-                        }
-                }
-            }
-        }
-    }
+//    // NOT IN USE
+//    func getSeatMasterData() {
+//        isLoading = true
+//        //mobile/seatConfig/seatMaster
+//        let url = Constants.baseUrl + Constants.API.seatMaster
+//
+//        APIService.shared.makeApiTypeRequest2(url: url, param: nil, methodType: .get, expecting: GlobResponseModel.self) { resultStatus, error, data  in
+//
+//            DispatchQueue.main.async {
+//                self.isLoading = false
+//            }
+//
+//            if !resultStatus {
+//                print("something went wrong::\(#line) SeatLayoutViewModel")
+//                return
+//            }
+//
+//            if resultStatus {
+//                guard let data = data else {
+//                    return
+//                }
+//
+//
+//                APIService.shared.parseModel(data: data, expecting: SeatLayoutModel.self) { result, data in
+//                    switch result {
+//                        case .success(let respData):
+//                            DispatchQueue.main.async {
+//                                if respData.status ?? false {
+//                                    if let totalseat = respData.data?.first?.seats {
+//                                        self.gatesWithSections = self.PrepareDataSectionWise(totalSeats: totalseat)
+//                                        print("Let's go====")
+//                                        for item in self.gatesWithSections {
+//                                            print("gate \(item.gateNo)")
+//                                            for section in item.sections {
+//                                                print("Section: \(section.sectionName)")
+//                                            }
+//                                        }
+//
+//                                        print("Let's end====")
+//
+//                                        for seat in totalseat {
+//                                            if let seatFare = self.bookedSeats?.seatFare {
+//                                                self.setFare(seat: seat, fares: seatFare)
+//                                            }
+//
+//                                            if let arr = self.bookedSeats?.bookSeats {
+//                                                if let itemExist = self.isItemExist(arr: arr, item: seat) {
+//                                                    seat.setIsBooked()
+//                                                }
+//                                            }
+//                                        }
+//
+//                                        self.totalSeats = totalseat
+//
+//                                        self.gateWithSections = self.appllyFilterByGateForSectionList(gateNo: "GATE NO. 1")
+//
+//                                    }
+//                                }
+//                            }
+//
+//                        case .failure(let error):
+//                            print("Something went wrong::SeatLayoutViewModel@\(#line)")
+//                        }
+//                }
+//            }
+//        }
+//    }
     
     
     func unselectAllSeletedSeats() {
@@ -285,19 +285,32 @@ class SeatLayoutViewModel: ObservableObject {
     
     
     
-    func submitAction() {
+    func submitAction(ticketTypeButtonState: TicketTypeButtonState) {
         var seatArr = [[String: Any]]()
         
         
         var standing = [String: Any]()
+        if standingChildCount == "" {
+            standingChildCount = "0"
+        }
+        
+        if standingAdultCount == "" {
+            standingAdultCount = "0"
+        }
+        
         standing["quantityAdult"] = standingAdultCount
         standing["quantityChild"] = standingChildCount
         
-        if groupStanding != "0" && groupStanding != "" {
-            standing["quantityAdult"] = groupStanding
+        if ticketTypeButtonState == .group {
+            if Int(groupStanding) != 0 {
+                standing["quantityAdult"] = groupStanding
+                standing["quantityChild"] = "0"
+            }
         }
         
-        let fare = self.bookedSeats.first?.standingFare?.fare ?? 0
+        print("asdsadsds \(standing)")
+        
+        let fare = self.bookedSeats?.standingFare?.fare ?? 0
         standing["fare"] = "\(fare)"
         
         
@@ -327,16 +340,26 @@ class SeatLayoutViewModel: ObservableObject {
         param["ticketType"] = ""
         param["seats"] = seatArr
         
-        if standingAdultCount == "0" &&  standingChildCount == "0" {
+        if (Int(standingAdultCount) == 0 || Int(standingAdultCount) == nil ) && (Int(standingChildCount) == 0 || Int(standingChildCount) == nil) {
             param["standing"] = []
         } else {
             param["standing"] = [standing]
         }
         
-//        let a = CommonUtil.getJsonStringFromDic(dic: param) ?? ""
-//        print("heeeee")
-//        print(a)
-//        print("heeeee")
+        if ticketTypeButtonState == .group {
+            if Int(groupStanding) == 0 || Int(groupStanding) == nil {
+                param["standing"] = []
+            } else {
+                param["standing"] = [standing]
+            }
+        }
+        
+        
+        
+        let a = CommonUtil.getJsonStringFromDic(dic: param) ?? ""
+        print("heeeee")
+        print(a)
+        print("heeeee")
         
         self.postData(params: param)
         
@@ -362,6 +385,7 @@ class SeatLayoutViewModel: ObservableObject {
                         if let respData = respData.data {
                             if let data = respData.first {
                                 self.submitResponseData = data
+                                print("jsdfdsjfjsgdf \(params)")
                                 self.bookedDataDic = params
                                 self.shouldMoveToCheckoutView = true
                             }
@@ -454,12 +478,14 @@ class SeatLayoutViewModel: ObservableObject {
                 return false
             }
         }
-        
-        
         return true
-        
-        
-        
+    }
+    
+    func isPriceSet(data: BookedSeatData)-> Bool {
+        if data.seatFare?.count == 0 && data.standingFare?.fare == 0 {
+            return false
+        }
+        return true
     }
     
     func getReservedSeatData() {
@@ -494,15 +520,23 @@ class SeatLayoutViewModel: ObservableObject {
                         case .success(let respData):
                             DispatchQueue.main.async {
                                 if respData.status ?? false {
-                                    if let bookedSeatData = respData.data {
+                                    if let bookedSeatData = respData.data?.first {
                                         //self.groupTicketValidationParam = bookedSeatData.first?.groupTicket
-                                        self.minGroupValue = bookedSeatData.first?.groupTicket?.minGroupValue ?? ""
-                                        self.maxGroupValue = bookedSeatData.first?.groupTicket?.maxGroupValue ?? ""
-                                        self.bookedSeats = bookedSeatData
-                                        //self.isLoading = true
-                                        if let masterSeatData = self.masterSeatData  {
-                                            self.prepareData(masterSeatData: masterSeatData)
+                                        if self.isPriceSet(data: bookedSeatData) {
+                                            self.minGroupValue = bookedSeatData.groupTicket?.minGroupValue ?? ""
+                                            self.maxGroupValue = bookedSeatData.groupTicket?.maxGroupValue ?? ""
+                                            self.bookedSeats = bookedSeatData
+                                            //self.isLoading = true
+                                            if let masterSeatData = self.masterSeatData  {
+                                                self.prepareData(masterSeatData: masterSeatData)
+                                            }
+                                        } else {
+                                            DispatchQueue.main.async {
+                                                self.isLoading = false
+                                            }
+                                            self.isPresentPriceNotSetDilog = true
                                         }
+                                        
                                     }
                                 }
                             }

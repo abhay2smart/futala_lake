@@ -38,4 +38,30 @@ struct Constants {
         
         
     }
+    
+    struct StringConstant {
+        static let instructions =
+        """
+        * The e-ticket is valid only the number of persons in total and other permissions specified herein.\n
+        * The e-ticket has to be carried but the visitors to get the entry in futala lake. Please take care of QR ticket.\n
+        * Without QR code, you can not enter the futala lake.\n
+        * Please keep the ticket at the time of checking.\n
+        * Please come in a queue before gatekeeper scan the QR.\n
+        * One ticket is valid for a \"single scan\". Therefore, you can not use the same QR ticket again.\n
+        * Consuming alcohol in futala lake premises is a \"punishable\" offence.\n
+        * Please take care of all your belongings.\n
+        * Polythenes, Tobacco products, Inflammable and Pets are not allowed inside the futala lake premises.\n
+        """
+        
+        static let cancellationPolicy =
+        """
+        * The cancellation charge mentioned below.\n\n
+        * Before show time from the visit day 50% of the booking amount refundable. Convenience fee is non refundable.\n
+        * Before booking tickets, carefully review your booking details.\n
+        * A ticket \"can not be modified\". Actual formatting\n
+        * Futala lake authorities all the right to change/cancel the ticket(s).\n
+        * If the ticket payment failed,a full refund except the service fee will be transferred in the same account from which the transaction was done within the 4-5 working days.\n
+        * If an amount got deducted from your bank account/wallet, and you haven`t received the QR ticket, please send us an email to fulatalake.com We would investigate the case within 2 working days and assure you a full resolution. However, online transaction charges/service charges/taxes if any, will not be refunded under any circumstances.\n
+        """
+    }
 }

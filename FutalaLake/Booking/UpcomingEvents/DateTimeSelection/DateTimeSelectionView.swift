@@ -28,6 +28,12 @@ struct DateTimeSelectionView: View {
         GridItem(.adaptive(minimum: 170))
     ]
     
+    init() {
+        dateTimeSelectionModel.getShowDays(date: selectedDate)
+        dateTimeSelectionModel.getAllSeatColor()
+        reset()
+    }
+    
     
     var body: some View {
         ZStack {
@@ -139,9 +145,9 @@ struct DateTimeSelectionView: View {
         }
         .allowsHitTesting(dateTimeSelectionModel.isLoading ? false : true)
         .onAppear{
-            dateTimeSelectionModel.getShowDays(date: selectedDate)
-            dateTimeSelectionModel.getAllSeatColor()
-            reset()
+//            dateTimeSelectionModel.getShowDays(date: selectedDate)
+//            dateTimeSelectionModel.getAllSeatColor()
+//            reset()
         }
         
     }

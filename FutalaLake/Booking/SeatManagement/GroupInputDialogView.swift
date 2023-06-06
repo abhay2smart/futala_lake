@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct GroupInputDialogView: View {
     @Binding var groupStanding: String
@@ -64,6 +65,7 @@ struct GroupInputDialogView: View {
                     CustomTextField(placeHolder: "", text: $groupSeats)
                     .keyboardType(.numberPad)
                     .focused($isInputActive)
+                    .onReceive(Just(groupSeats)) { _ in limitTextForSeat() }
                     .toolbar {
                         ToolbarItemGroup(placement: .keyboard) {
                             Spacer()
@@ -85,6 +87,7 @@ struct GroupInputDialogView: View {
                     CustomTextField(placeHolder: "", text: $groupStanding)
                         .keyboardType(.numberPad)
                         .focused($isInputActive)
+                        .onReceive(Just(groupStanding)) { _ in limitTextForStanding() }
                     
                 }
                 .padding(.horizontal)
@@ -96,6 +99,8 @@ struct GroupInputDialogView: View {
                         .font(.system(size: 14, weight: .semibold))
                     CustomTextField(placeHolder: "", text: grandTotal)
                         .allowsHitTesting(false)
+                    Text("Total value should in between \(minGroupVal) & \(maxGroupVal)")
+                        .font(.system(size: 14, weight: .semibold))
                     
                 }
                 .padding(.horizontal)
@@ -110,31 +115,34 @@ struct GroupInputDialogView: View {
                         Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT = 0
                     } label: {
                         Text("Cancel")
-                    }.frame(width: 150, height: 40)
-                        .background(AppTheme.appThemeOrange)
-                        .foregroundColor(.white)
-                        .cornerRadius(5)
-                        .padding(.top, 5)
+                            .frame(width: 150, height: 40)
+                                .background(AppTheme.appThemeOrange)
+                                .foregroundColor(.white)
+                                .cornerRadius(5)
+                                .padding(.top, 5)
+                    }
                     
                     
                     Button {
                         showToast = true
+                        isInputActive = false
                         if isValidated() {
                             isGroupDialogPresented = false
                         }
                     } label: {
                         Text("OK")
-                    }.frame(width: 150, height: 40)
-                        .background(AppTheme.appThemeOrange)
-                        .foregroundColor(.white)
-                        .cornerRadius(5)
-                        .padding(.top, 5)
+                            .frame(width: 150, height: 40)
+                                .background(AppTheme.appThemeOrange)
+                                .foregroundColor(.white)
+                                .cornerRadius(5)
+                                .padding(.top, 5)
+                    }
                 }
                 
                 
 
                 Spacer()
-            }.frame(height: 360)
+            }.frame(height: 370)
                 .background(
                     Rectangle()
                     .fill(.white )
@@ -150,25 +158,45 @@ struct GroupInputDialogView: View {
                        duration: Toast.short)
         }
         
-        
-        
+    }
+    
+    //Function to keep text length in limits
+    func limitTextForSeat(_ upper: Int = 2) {
+        if groupSeats.count > upper {
+            groupSeats = String(groupSeats.prefix(upper))
+        }
+    }
+    
+    func limitTextForStanding(_ upper: Int = 2) {
+        if groupStanding.count > upper {
+            groupStanding = String(groupStanding.prefix(upper))
+        }
     }
     
     func isValidated()->Bool {
         let groupSeats = Int(groupSeats) ?? 0
         let minGroupVal = Int(minGroupVal) ?? 0
         let maxGroupVal = Int(maxGroupVal) ?? 0
-        if groupSeats < minGroupVal {
-            message = "Please enter the value atleast \(minGroupVal)"
+        
+        let grandTotal = (Int(groupSeats) ) + (Int(groupStanding) ?? 0)
+        
+        if grandTotal < minGroupVal {
+            message = "Total value should be atleast \(minGroupVal)"
             showToast = true
             return false
         }
         
-        if groupSeats > maxGroupVal {
-            message = "Please enter the value below \(maxGroupVal)"
+        if grandTotal > maxGroupVal {
+            message = "Total value should be less than or equal to \(maxGroupVal)"
             showToast = true
             return false
         }
+        
+//        if groupSeats > maxGroupVal {
+//            message = "Please enter the value below \(maxGroupVal)"
+//            showToast = true
+//            return false
+//        }
         
         
         

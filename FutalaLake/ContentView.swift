@@ -16,14 +16,17 @@ struct ContentView: View {
             if isActive {
                 if session.currentUserState == .loggedIn {
                     TabContainerView()
+                        
                 } else {
                     NavigationView {
                         LoginView(isLogggedIn: $isBasicScreenPassed)
+                            
                     }.navigationViewStyle(StackNavigationViewStyle())
                 }
             } else {
                 LaunchView()
             }
+            
         }.onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 withAnimation {

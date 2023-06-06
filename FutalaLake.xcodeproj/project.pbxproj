@@ -48,6 +48,7 @@
 		17545D412943371A003E3724 /* UpcomingEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17545D402943371A003E3724 /* UpcomingEventsView.swift */; };
 		17545D4429433829003E3724 /* UpcomingEventCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17545D4329433829003E3724 /* UpcomingEventCellView.swift */; };
 		176CB8DF2966D275006C71D4 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176CB8DE2966D275006C71D4 /* RadioButton.swift */; };
+		176EFA9A2A275B110064D345 /* PolicyInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176EFA992A275B110064D345 /* PolicyInstruction.swift */; };
 		177B40BB2941EBAF00EDF0F0 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177B40BA2941EBAF00EDF0F0 /* LaunchView.swift */; };
 		177B40BF2941FB8E00EDF0F0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177B40BE2941FB8E00EDF0F0 /* LoginView.swift */; };
 		17831DC72955BCFA005C36D0 /* TopNavItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17831DC62955BCFA005C36D0 /* TopNavItemView.swift */; };
@@ -81,6 +82,8 @@
 		17BAE81229E15D0000333A0A /* HistoryDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BAE81129E15D0000333A0A /* HistoryDetailsModel.swift */; };
 		17BAE81629E3250100333A0A /* CancelTicketStandingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BAE81529E3250100333A0A /* CancelTicketStandingCell.swift */; };
 		17BD37892954134700DA2FE9 /* TabContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BD37882954134700DA2FE9 /* TabContainerView.swift */; };
+		17D26F512A29AB260076C23B /* AlertWithSingleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D26F502A29AB260076C23B /* AlertWithSingleButton.swift */; };
+		17D26F532A29E7750076C23B /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D26F522A29E7750076C23B /* Slider.swift */; };
 		17D80F23295EB20500D861FF /* CustomCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D80F22295EB20500D861FF /* CustomCalendarView.swift */; };
 		17D80F28295EB3FC00D861FF /* DateTimeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D80F27295EB3FC00D861FF /* DateTimeSelectionView.swift */; };
 		17D80F61296296C300D861FF /* SeatSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D80F60296296C300D861FF /* SeatSelectionView.swift */; };
@@ -94,6 +97,12 @@
 		17E570AA29D2C8C30011DA87 /* CancelTicketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E570A929D2C8C30011DA87 /* CancelTicketViewModel.swift */; };
 		17E570AC29D2DDE90011DA87 /* CancelTicketConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E570AB29D2DDE90011DA87 /* CancelTicketConfirmView.swift */; };
 		17E97DD2295DACC1007FC9C0 /* PayNowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E97DD1295DACC1007FC9C0 /* PayNowView.swift */; };
+		17EFE3E32A2606EA00342077 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 17EFE3E22A2606EA00342077 /* FirebaseAnalytics */; };
+		17EFE3E52A2606EA00342077 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 17EFE3E42A2606EA00342077 /* FirebaseAuth */; };
+		17EFE3E72A2606EA00342077 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 17EFE3E62A2606EA00342077 /* FirebaseCrashlytics */; };
+		17EFE3E92A2606EA00342077 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 17EFE3E82A2606EA00342077 /* FirebaseMessaging */; };
+		17EFE3EC2A2613B300342077 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17EFE3EB2A2613B300342077 /* GoogleService-Info.plist */; };
+		17EFE3F12A2749F900342077 /* AlertViewWithTwoButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EFE3F02A2749F900342077 /* AlertViewWithTwoButtons.swift */; };
 		17F5134D29B1C5A3004A7833 /* OTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F5134C29B1C5A3004A7833 /* OTPViewModel.swift */; };
 		17FC7F972959BF5F0066D67B /* BookingHistoryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC7F962959BF5F0066D67B /* BookingHistoryCellView.swift */; };
 /* End PBXBuildFile section */
@@ -157,6 +166,7 @@
 		17545D402943371A003E3724 /* UpcomingEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventsView.swift; sourceTree = "<group>"; };
 		17545D4329433829003E3724 /* UpcomingEventCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventCellView.swift; sourceTree = "<group>"; };
 		176CB8DE2966D275006C71D4 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
+		176EFA992A275B110064D345 /* PolicyInstruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyInstruction.swift; sourceTree = "<group>"; };
 		177B40BA2941EBAF00EDF0F0 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		177B40BE2941FB8E00EDF0F0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		17831DC62955BCFA005C36D0 /* TopNavItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopNavItemView.swift; sourceTree = "<group>"; };
@@ -194,6 +204,8 @@
 		17BAE81129E15D0000333A0A /* HistoryDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailsModel.swift; sourceTree = "<group>"; };
 		17BAE81529E3250100333A0A /* CancelTicketStandingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelTicketStandingCell.swift; sourceTree = "<group>"; };
 		17BD37882954134700DA2FE9 /* TabContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContainerView.swift; sourceTree = "<group>"; };
+		17D26F502A29AB260076C23B /* AlertWithSingleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertWithSingleButton.swift; sourceTree = "<group>"; };
+		17D26F522A29E7750076C23B /* Slider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slider.swift; sourceTree = "<group>"; };
 		17D80F22295EB20500D861FF /* CustomCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalendarView.swift; sourceTree = "<group>"; };
 		17D80F27295EB3FC00D861FF /* DateTimeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeSelectionView.swift; sourceTree = "<group>"; };
 		17D80F60296296C300D861FF /* SeatSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatSelectionView.swift; sourceTree = "<group>"; };
@@ -207,6 +219,9 @@
 		17E570A929D2C8C30011DA87 /* CancelTicketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelTicketViewModel.swift; sourceTree = "<group>"; };
 		17E570AB29D2DDE90011DA87 /* CancelTicketConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelTicketConfirmView.swift; sourceTree = "<group>"; };
 		17E97DD1295DACC1007FC9C0 /* PayNowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayNowView.swift; sourceTree = "<group>"; };
+		17EFE3EA2A260A2500342077 /* FutalaLake.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FutalaLake.entitlements; sourceTree = "<group>"; };
+		17EFE3EB2A2613B300342077 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		17EFE3F02A2749F900342077 /* AlertViewWithTwoButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewWithTwoButtons.swift; sourceTree = "<group>"; };
 		17F5134C29B1C5A3004A7833 /* OTPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewModel.swift; sourceTree = "<group>"; };
 		17FC7F962959BF5F0066D67B /* BookingHistoryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingHistoryCellView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -216,6 +231,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17EFE3E92A2606EA00342077 /* FirebaseMessaging in Frameworks */,
+				17EFE3E72A2606EA00342077 /* FirebaseCrashlytics in Frameworks */,
+				17EFE3E32A2606EA00342077 /* FirebaseAnalytics in Frameworks */,
+				17EFE3E52A2606EA00342077 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -691,7 +710,10 @@
 		17A585E12935FF2B00365D71 /* FutalaLake */ = {
 			isa = PBXGroup;
 			children = (
+				17EFE3EF2A2749D500342077 /* SharedView */,
+				17EFE3EA2A260A2500342077 /* FutalaLake.entitlements */,
 				17A8D5FC2A1DDEF10062AE04 /* Info.plist */,
+				17EFE3EB2A2613B300342077 /* GoogleService-Info.plist */,
 				173BCE2B2A0CB23E00DF98FC /* Representable */,
 				171B402C29CD730A00743095 /* Extras */,
 				173A59BB29B0ACD20037AF51 /* Helper */,
@@ -907,6 +929,17 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		17EFE3EF2A2749D500342077 /* SharedView */ = {
+			isa = PBXGroup;
+			children = (
+				17EFE3F02A2749F900342077 /* AlertViewWithTwoButtons.swift */,
+				176EFA992A275B110064D345 /* PolicyInstruction.swift */,
+				17D26F502A29AB260076C23B /* AlertWithSingleButton.swift */,
+				17D26F522A29E7750076C23B /* Slider.swift */,
+			);
+			path = SharedView;
+			sourceTree = "<group>";
+		};
 		17F5134829B1C46B004A7833 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -968,6 +1001,10 @@
 			);
 			name = FutalaLake;
 			packageProductDependencies = (
+				17EFE3E22A2606EA00342077 /* FirebaseAnalytics */,
+				17EFE3E42A2606EA00342077 /* FirebaseAuth */,
+				17EFE3E62A2606EA00342077 /* FirebaseCrashlytics */,
+				17EFE3E82A2606EA00342077 /* FirebaseMessaging */,
 			);
 			productName = FutalaLake;
 			productReference = 17A585DF2935FF2B00365D71 /* FutalaLake.app */;
@@ -1042,6 +1079,7 @@
 			);
 			mainGroup = 17A585D62935FF2B00365D71;
 			packageReferences = (
+				17EFE3E12A2606EA00342077 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 17A585E02935FF2B00365D71 /* Products */;
 			projectDirPath = "";
@@ -1060,6 +1098,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				17831DCA2955BDA5005C36D0 /* bottombar.xcassets in Resources */,
+				17EFE3EC2A2613B300342077 /* GoogleService-Info.plist in Resources */,
 				17A585EA2935FF2D00365D71 /* Preview Assets.xcassets in Resources */,
 				17A585E72935FF2D00365D71 /* Assets.xcassets in Resources */,
 			);
@@ -1106,6 +1145,7 @@
 				17545D3E294308CD003E3724 /* OtpView.swift in Sources */,
 				177B40BF2941FB8E00EDF0F0 /* LoginView.swift in Sources */,
 				17E570A329D157570011DA87 /* HistoryViewModel.swift in Sources */,
+				17EFE3F12A2749F900342077 /* AlertViewWithTwoButtons.swift in Sources */,
 				17BAE81229E15D0000333A0A /* HistoryDetailsModel.swift in Sources */,
 				173AB86E296589F100B591A4 /* QRView.swift in Sources */,
 				17A8D5FB2A1CEA430062AE04 /* MessageView.swift in Sources */,
@@ -1135,6 +1175,7 @@
 				1753DB9229C46BDA008E3078 /* CheckOutModel.swift in Sources */,
 				176CB8DF2966D275006C71D4 /* RadioButton.swift in Sources */,
 				174F1BD5295C172100DAC0D2 /* BookedTicketHistoryView.swift in Sources */,
+				17D26F512A29AB260076C23B /* AlertWithSingleButton.swift in Sources */,
 				173AB86B296551B800B591A4 /* RootManager.swift in Sources */,
 				174F1BD1295BFCF800DAC0D2 /* CancelTicketAlertView.swift in Sources */,
 				17B921E929E7D2E500277C0E /* ProfileModel.swift in Sources */,
@@ -1145,6 +1186,7 @@
 				17E570AA29D2C8C30011DA87 /* CancelTicketViewModel.swift in Sources */,
 				17FC7F972959BF5F0066D67B /* BookingHistoryCellView.swift in Sources */,
 				17A1E24C29F0046F0056117B /* GroupInputDialogView.swift in Sources */,
+				17D26F532A29E7750076C23B /* Slider.swift in Sources */,
 				1724EEA829CC6DDB00930830 /* UpdatePaymentStatusModel.swift in Sources */,
 				1753DB8E29C43755008E3078 /* CommonUtil.swift in Sources */,
 				1733F8E229CAFBBF00D97F2E /* SessionManager.swift in Sources */,
@@ -1159,6 +1201,7 @@
 				17BD37892954134700DA2FE9 /* TabContainerView.swift in Sources */,
 				17AE977029BB376A00F12E78 /* SeatLayoutModel.swift in Sources */,
 				17BAE80F29E14C3200333A0A /* CancelTicketSeatingCell.swift in Sources */,
+				176EFA9A2A275B110064D345 /* PolicyInstruction.swift in Sources */,
 				174F1BD3295C0FDA00DAC0D2 /* TicketCancelSuccessAlertView.swift in Sources */,
 				17BAE81629E3250100333A0A /* CancelTicketStandingCell.swift in Sources */,
 				173BCE352A0E337100DF98FC /* PaymentWebViewViewModel.swift in Sources */,
@@ -1324,6 +1367,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FutalaLake/FutalaLake.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FutalaLake/Preview Content\"";
@@ -1331,10 +1375,12 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FutalaLake/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Futala;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1354,6 +1400,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FutalaLake/FutalaLake.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FutalaLake/Preview Content\"";
@@ -1361,10 +1408,12 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FutalaLake/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Futala;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1491,6 +1540,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		17EFE3E12A2606EA00342077 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		17EFE3E22A2606EA00342077 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 17EFE3E12A2606EA00342077 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		17EFE3E42A2606EA00342077 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 17EFE3E12A2606EA00342077 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		17EFE3E62A2606EA00342077 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 17EFE3E12A2606EA00342077 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		17EFE3E82A2606EA00342077 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 17EFE3E12A2606EA00342077 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 17A585D72935FF2B00365D71 /* Project object */;
 }

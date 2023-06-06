@@ -24,7 +24,7 @@ class LoginVM: ObservableObject {
     
     @Published private var timer: Timer?
     
-    @Published var isTimerFinished = false
+    @Published var isTimerFinished = true
     
     
     func isValidatedMobile(mobileNumber: String)->Bool {
@@ -87,7 +87,6 @@ class LoginVM: ObservableObject {
                     self.loginResponseModel = respData
                     if let otp = self.loginResponseModel.data?.first?.otp {
                         self.isOTPRecieved = true
-                        self.startCountdown()
                         self.otp = "\(otp)"
                     }
                     //self.shouldMoveToOTPView = true

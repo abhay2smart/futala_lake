@@ -175,6 +175,7 @@ struct LoginView: View {
                             if loginVM.isTimerFinished {
                                 Button {
                                     if loginVM.isValidatedMobile(mobileNumber: mobileNumber) {
+                                        loginVM.startCountdown()
                                         loginVM.getOTP(mobileNumber: mobileNumber)
                                     }
                                 } label: {

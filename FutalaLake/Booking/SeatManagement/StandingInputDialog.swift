@@ -78,8 +78,8 @@ struct StandingInputDialog: View {
                 
                 HStack {
                     Button {
-                        self.noOfAdults = "0"
-                        self.noOfChildren = "0"
+                        self.noOfAdults = ""
+                        self.noOfChildren = ""
                         self.total = "0"
                        
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
@@ -89,21 +89,24 @@ struct StandingInputDialog: View {
                         
                     } label: {
                         Text("Cancel")
-                    }.frame(width: 150, height: 40)
-                        .background(AppTheme.appThemeOrange)
-                        .foregroundColor(.white)
-                        .cornerRadius(5)
-                        .padding(.top, 5)
+                            .frame(width: 150, height: 40)
+                                .background(AppTheme.appThemeOrange)
+                                .foregroundColor(.white)
+                                .cornerRadius(5)
+                                .padding(.top, 5)
+                    }
                     
                     Button {
+                        isInputActive = false
                         isPressented = !validate()
                     } label: {
                         Text("OK")
-                    }.frame(width: 150, height: 40)
-                        .background(AppTheme.appThemeOrange)
-                        .foregroundColor(.white)
-                        .cornerRadius(5)
-                        .padding(.top, 5)
+                            .frame(width: 150, height: 40)
+                                .background(AppTheme.appThemeOrange)
+                                .foregroundColor(.white)
+                                .cornerRadius(5)
+                                .padding(.top, 5)
+                    }
                 }
                 
                 

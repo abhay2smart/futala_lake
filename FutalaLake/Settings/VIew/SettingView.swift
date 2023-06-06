@@ -8,108 +8,115 @@
 import SwiftUI
 
 struct SettingView: View {
-//    @State private var isWhatsappNoticationOn: Bool = false
-//    @State private var isLocationOn: Bool = false
-//    @State private var isSavePaymentModeOn: Bool = false
+    //    @State private var isWhatsappNoticationOn: Bool = false
+    //    @State private var isLocationOn: Bool = false
+    //    @State private var isSavePaymentModeOn: Bool = false
+    @State var yesButtonPressed = false
+    @State var noButtonPressed = false
+    @State var isSignOutButtonPressed = false
+    @State var isInstructionBtnPresssed = false
+    @State var generalInstrcutionOkBtnPressed = false
+    @State var cancellationBtnPressed = false
     @EnvironmentObject var session: SessionManager
     var body: some View {
         NavigationView {
             ZStack {
-                //AppTheme.appThemeSkyBlue
-                    //.ignoresSafeArea()
-                VStack(spacing: 0) {
-                    VStack(spacing: -10) {
-                        Group {
-//                            Toggle("WhatsApp Notification", isOn: $isWhatsappNoticationOn)
-//                                .frame(height: 0)
-//                            Divider()
-//                            Toggle("Location", isOn: $isLocationOn)
-//                                .frame(height: 0)
-//
-//                            Divider()
-//                            Toggle("Save Payment Modes", isOn: $isSavePaymentModeOn)
-//                                .frame(height: 0)
-//
-//                            Divider()
-//
-//                            Button {
-//                                //<#code#>
-//                            } label: {
-//                                HStack {
-//                                    Text("Delete Account")
-//                                        .foregroundColor(.black)
-//                                    Spacer()
-//                                    Image("trash")
-//                                        .resizable()
-//                                        .scaledToFit()
-//                                        .padding(.trailing)
-//
-//                                }
-//                            }.frame(height: 20)
-//                                .padding(.vertical, -10)
-                            
-                            //Divider()
-                            
-                            
+                VStack {
+                    HStack {
+                        Button {
+                            isInstructionBtnPresssed = true
+                        } label: {
+                            HStack {
+                                Text("General Instruction")
+                                Spacer()
+                                Image("instructions")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                                .scaledToFit()
+                                .padding(.trailing)
+                            }
+                        }
+                        
+                    }
+                    
+                    Divider()
+                    
+                    HStack {
+                        Button {
+                            cancellationBtnPressed = true
+                        } label: {
+                            HStack {
+                                Text("Refund Cancellation Policy")
+                                Spacer()
+                                Image("refund_policy")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                                .scaledToFit()
+                                .padding(.trailing)
+                            }
+                        }
+                        
+                    }
+                    
+                    Divider()
+                    
+                    HStack {
+                        Button {
+                            isSignOutButtonPressed = true
+                            //session.signout()
+                        } label: {
                             HStack {
                                 Text("Sign out")
-                                    .foregroundColor(.black)
                                 Spacer()
-                                
-                                Button {
-                                    print("Sign out button pressed")
-                                    session.signout()
-                                    
-                                } label: {
-                                    Image("power")
-                                        .resizable()
-                                        .frame(width: 30, height: 30)
-                                        .scaledToFit()
-                                        .padding(.trailing)
-                                }
-                                
-                            }.padding(.vertical, -10)
-                            .padding(.top, 30)
-                            
-                            Spacer()
-                            //
-                            
-                        }.padding(20)
-                        Spacer()
+                                Image("power")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                                .scaledToFit()
+                                .padding(.trailing)
+                            }
+                        }
+                        
                     }
-                    .frame(maxHeight: 40)
-                    .padding(.vertical)
-                    
-                    .cornerRadius(10)
-                    .background(
-                     Rectangle()
-                     .fill(.white)
-                     .cornerRadius(12)
-                      .shadow(
-                       color: Color.gray.opacity(0.7),
-                       radius: 0,
-                       x: 0, y: 0)
-                      )
-                    .padding()
-
+                    Divider()
                     Spacer()
+                    
+                }.padding()
+                    .foregroundColor(.black)
+                if isSignOutButtonPressed {
+                    AlertViewWithTwoButtons(description: "Do you really want to sign out?",  yesButtonPressed: $yesButtonPressed, noButtonPressed: $noButtonPressed)
+                        .onChange(of: yesButtonPressed) { value in
+                        if value {
+                            session.signout()
+                        }
+                    }
+                    .onChange(of: noButtonPressed) { value in
+                        isSignOutButtonPressed = false
+                        noButtonPressed = false
+                    }
                 }
+                
+                if isInstructionBtnPresssed {
+                    PolicyInstruction(title: "General Instructions", description: Constants.StringConstant.instructions, buttonAction: $generalInstrcutionOkBtnPressed)
+                        .onChange(of: generalInstrcutionOkBtnPressed) { newValue in
+                            isInstructionBtnPresssed = false
+                            generalInstrcutionOkBtnPressed = false
+                        }
+                }
+                
+                if cancellationBtnPressed {
+                    PolicyInstruction(title: "Cancellation Policy", description: Constants.StringConstant.cancellationPolicy, buttonAction: $generalInstrcutionOkBtnPressed)
+                        .onChange(of: generalInstrcutionOkBtnPressed) { newValue in
+                            cancellationBtnPressed = false
+                            generalInstrcutionOkBtnPressed = false
+                        }
+                }
+                
+                
                 
             }
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    VStack {
-                        Text("Setting").font(.subheadline)
-                    }.foregroundColor(.white)
-                }
-            }
+            .navigationTitle("Setting")
             
-//            .toolbar { // <2>
-//                ToolbarItem(placement: .navigationBarTrailing) {
-//                    TopNavItemView()
-//                }
-//            }
         }.navigationViewStyle(StackNavigationViewStyle())
     }
 }

@@ -20,10 +20,15 @@ class CancelTicketViewModel: ObservableObject {
     
     @Published var ticketData = [TicketData]()
     
+    @Published var msg = ""
+    
+    @Published var isTostPresented = false
+    
     
     @Published var isSeating = true
     
     var standingParams = StandingParams()
+    
     
     
     
@@ -122,6 +127,16 @@ class CancelTicketViewModel: ObservableObject {
         
     }
     
+    
+    func isCancellationValidated(total: Int, adminCharges: Int)->Bool {
+        let refundAmt = total - adminCharges
+        if refundAmt > 0 {
+            return true
+        }
+        msg = "Can't proceed because refund amount is \(refundAmt)"
+        isTostPresented = true
+        return false
+    }
     
     func updateCancelTicketStatus(data: HistoryData?, ticketData: [TicketData], standingAdultCount: Int, standingChildCount: Int, refundAmt: Int) {
         self.refundAmt = refundAmt
@@ -224,16 +239,23 @@ class CancelTicketViewModel: ObservableObject {
                 APIService.shared.makeApiTypeRequest2(url: url, param: params, methodType: .put, expecting: GlobResponseModel.self) { resultStatus, error, data  in
                     
                     DispatchQueue.main.async {
-                        self.isPresented = false
-                        print("isPresentedeiiii \(self.isPresented)")
-                    }
-                    
-                    DispatchQueue.main.async {
                         self.isLoading = false
                     }
                     
+                    DispatchQueue.main.async {
+                        self.msg = "Ticket cancelled successfully"
+                        self.isTostPresented = true
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                            self.isPresented = false
+                        })
+                        
+                    }
+                    
+                    
                     if !resultStatus {
                         print("something went wrong:: SeatLayoutViewModel09999 \(#line)")
+                        self.msg = "something went wrong"
+                        self.isTostPresented = true
                         return
                     }
                     

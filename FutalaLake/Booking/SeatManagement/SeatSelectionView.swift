@@ -23,8 +23,8 @@ struct SeatSelectionView: View {
     
     @State private var isSeating = true
     
-    @State var noOfAdults = "0"
-    @State var noOfChildren = "0"
+    @State var noOfAdults = ""
+    @State var noOfChildren = ""
     @State var total = "0"
     
     @State var isStandingCancelBtnPressed = false
@@ -39,6 +39,8 @@ struct SeatSelectionView: View {
     
     
     private var seatMasterData:SeatData =  SeatData()
+    
+    @EnvironmentObject var session: SessionManager
     
     
     private var showDate: String
@@ -65,6 +67,8 @@ struct SeatSelectionView: View {
         
         
     }
+    
+    
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -259,7 +263,7 @@ struct SeatSelectionView: View {
                             
                             Spacer()
                             
-                            if ticketTypeButtonState == .group {
+                            if ticketTypeButtonState == .group && ((Int(seatLayoutViewModel.groupSeats) != 0) && seatLayoutViewModel.groupSeats != "") {
                                 HStack {
                                     Text(seatLayoutViewModel.groupSeats)
                                     Text(" | ")
@@ -367,7 +371,7 @@ struct SeatSelectionView: View {
                     seatLayoutViewModel.showStartTime = self.showStartTime
                     seatLayoutViewModel.showEndTime = self.showEndTime
                     if seatLayoutViewModel.validate(ticketTypeButtonState: ticketTypeButtonState) {
-                        seatLayoutViewModel.submitAction()
+                        seatLayoutViewModel.submitAction(ticketTypeButtonState: ticketTypeButtonState)
                     }
                     
                     self.showToast = seatLayoutViewModel.showAlert
@@ -408,12 +412,22 @@ struct SeatSelectionView: View {
             }
             
             
-            
+            if seatLayoutViewModel.isPresentPriceNotSetDilog {
+                AlertWithSingleButton(isPresented: $seatLayoutViewModel.isPresentPriceNotSetDilog)
+            }
             
             
             if self.seatLayoutViewModel.isLoading {
                 Loader()
                     .padding(.bottom, 300)
+            }
+            
+            Text("")
+            .onChange(of: seatLayoutViewModel.isPresentPriceNotSetDilog) { v in
+                if !v {
+                    session.currentTab = 1
+                }
+                
             }
             
             

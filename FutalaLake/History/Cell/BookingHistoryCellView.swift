@@ -81,30 +81,31 @@ struct BookingHistoryCellView: View {
             
             HStack {
                 Spacer()
-                Button {
-                    self.historyDataIndex = index
-                    isViewButtonPressed = true
-                } label: {
-                    Text("View")
+                if historyData?.bookingStatus == 3 {
+                    HStack(spacing: 5) {
+                        Image("failled").resizable()
+                            .frame(width: 20, height: 20)
+                        Text("Payment Failed")
+                            .foregroundColor(.red)
+                            .font(.system(size: 16, weight: .medium, design: .default))
+                            
+                    }.padding(.bottom, 10)
+                    
+                } else {
+                    Button {
+                        self.historyDataIndex = index
+                        isViewButtonPressed = true
+                    } label: {
+                        Text("View")
+                    }
+                    .padding(5)
+                    .padding(.horizontal)
+                    .background(AppTheme.appThemeBlue)
+                    .foregroundColor(.white)
+                    .clipShape(Capsule())
                 }
-                .padding(5)
-                .padding(.horizontal)
-                .background(AppTheme.appThemeBlue)
-                .foregroundColor(.white)
-                .clipShape(Capsule())
                 
-//                Button {
-//                    //
-//                    isCancelConfirmPreseneted = true
-//                    //isTicketInfoPreseneted = true
-//                } label: {
-//                    Text("Cancel")
-//                }
-//                .padding(5)
-//                .padding(.horizontal)
-//                .background(AppTheme.appThemeRed)
-//                .foregroundColor(.white)
-//                .clipShape(Capsule())
+                
 
             }
         }.padding(10)

@@ -11,7 +11,7 @@ struct CancelTicketSeatingCell: View {
     private var ticketData:TicketData?
     private var historyDetailData:HistoryDetailData?
     private let adaptiveColumns = [
-        GridItem(.adaptive(minimum: 35))
+        GridItem(.adaptive(minimum: 25))
     ]
     
     @State var seats:[Bool] = [Bool]()
@@ -38,8 +38,8 @@ struct CancelTicketSeatingCell: View {
                     .resizable()
                     .frame(width: 200, height: 200)
                 HStack {
-                    Text("Seats:")
-                        .font(.system(size: 18, weight: .medium, design: .default))
+                    Text("Adult Seats:")
+                        .font(.system(size: 16, weight: .medium, design: .default))
                         .foregroundColor(AppTheme.appThemeOrange)
                         .padding(.top, 10)
                     Spacer()
@@ -50,7 +50,7 @@ struct CancelTicketSeatingCell: View {
                 
                 LazyVGrid(columns: adaptiveColumns) {
                     ForEach(Array((seats.enumerated())), id: \.offset) { index, element in
-                        if (index < seats.count)  && (index < ticketData?.seatNo?.count ?? 0) {
+                        if (index < seats.count)  && (index < ticketData?.seatNo?.count ?? 0) && (ticketData?.seatNo?[index].isAdult == 1) {
                             Button {
                                 //seats.reversed()
                                 seats[index].toggle()
@@ -66,19 +66,41 @@ struct CancelTicketSeatingCell: View {
                             .cornerRadius(3)
                         }
                         
-                    }.onChange(of: seats, perform: { value in
-                        //seatingParams?.seats.removeAll()
-//                        for item in data?.seatNo ?? [] {
-//                            if item.isSelected {
-//                                var seat = SeatingParams.Seat()
-//                                seat.seatNumber = item.seatNumber ?? ""
-//                                seat.seatBookingID = item.seatBookingID ?? ""
-//                                seat.seatLayoutID = item.seatLayoutID ?? ""
-//                                seatingParams?.seats.append(seat)
-//                            }
-//                        }
+                    }
+                    
+                }.padding()
+                
+                
+                HStack {
+                    Text("Child Seats:")
+                        .font(.system(size: 16, weight: .medium, design: .default))
+                        .foregroundColor(AppTheme.appThemeOrange)
+                        .padding(.top, 10)
+                    Spacer()
+                }
+                .padding(.horizontal, 20)
+                .padding(.top, 0)
+                
+                
+                LazyVGrid(columns: adaptiveColumns) {
+                    ForEach(Array((seats.enumerated())), id: \.offset) { index, element in
+                        if (index < seats.count)  && (index < ticketData?.seatNo?.count ?? 0) && (ticketData?.seatNo?[index].isAdult == 0) {
+                            Button {
+                                //seats.reversed()
+                                seats[index].toggle()
+                                ticketData?.seatNo?[index].toggleSelectedStatus()
+                                //seats.reversed()
+                            } label: {
+                                Text(ticketData?.seatNo?[index].seatNumber ?? "")
+                                    .font(.system(size: 9, weight: .medium, design: .default))
+                                    .frame(width: 25, height: 25)
+                                    .foregroundColor(.white)
+                            }
+                            .background(index < (ticketData?.seatNo?.count ?? 0) ? ticketData?.seatNo?[index].color : .blue  )
+                            .cornerRadius(3)
+                        }
                         
-                    })
+                    }
                     
                 }.padding()
                 

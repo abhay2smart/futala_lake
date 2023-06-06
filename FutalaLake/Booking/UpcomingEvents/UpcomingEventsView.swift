@@ -22,8 +22,17 @@ struct UpcomingEventsView: View {
                         
                         VStack(spacing: 0) {
                             
-                            UpcomingEventCellView()
-                                .padding([.horizontal, .top])
+                            Slider()
+                                .frame(width: UIScreen.main.bounds.width - 20,  height: 200)
+                                .padding(.top)
+                            
+//                            Image("offers")
+//                                .resizable()
+//                                .frame(width: UIScreen.main.bounds.width - 20)
+//                                .padding(.top)
+//
+//                            UpcomingEventCellView()
+//                                .padding([.horizontal, .top])
                             
                             
                             
@@ -36,14 +45,14 @@ struct UpcomingEventsView: View {
                                     }
                                     
                                     .font(.system(size: 18, weight: .medium, design: .default))
-                                    .padding(.horizontal, 15)
+                                    //.padding(.horizontal, 15)
                                     .padding(.top, 20)
                                     .padding(.bottom, 10)
                                     
                                     UpcomcommingbookingStatusCell(data: historyViewModel.firstHistoryData)
-                                        .padding(.horizontal, 10)
+                                        //.padding(.horizontal, 10)
                                         .padding(.bottom, 30)
-                                }.padding(.horizontal)
+                                }.padding(.horizontal, 13)
                                 
                             }
                             Spacer()
@@ -78,7 +87,9 @@ struct UpcomingEventsView: View {
                                     //self.session.moveToDashboard = false
                                 }
                             }
-                    }
+                    }.frame(height: 20)
+                    .padding(.bottom, 20)
+                    
                 }
             
                 if historyViewModel.isLoading {

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import UIKit
+//import UIKit
 
 struct CancelTicketConfirmView: View {
     @Binding var isYesButtonPressed: Bool
@@ -206,10 +206,14 @@ struct CancelTicketConfirmView: View {
                 
                 HStack {
                     Button {
-                        //isYesButtonPressed = true
-                        self.cancelTicketViewModel.updateCancelTicketStatus(data: data, ticketData: ticketData, standingAdultCount: standingAdultCount, standingChildCount: standingChildCount, refundAmt: (abs(calculateTotal() - (Int(Constants.adminCharges) ?? 0))))
-                        //isPresented = cancelTicketViewModel.isPresented //false
                         
+                        
+                        
+                        if cancelTicketViewModel.isCancellationValidated(total: abs(calculateTotal()), adminCharges: (Int(Constants.adminCharges) ?? 0)) {
+                        
+                            self.cancelTicketViewModel.updateCancelTicketStatus(data: data, ticketData: ticketData, standingAdultCount: standingAdultCount, standingChildCount: standingChildCount, refundAmt: (abs(calculateTotal() - (Int(Constants.adminCharges) ?? 0))))
+                            
+                        }
                         
                     } label: {
                         Text("Yes")
@@ -230,6 +234,9 @@ struct CancelTicketConfirmView: View {
                 
                 Spacer()
             }.padding()
+                .toast(message: cancelTicketViewModel.msg, isShowing: $cancelTicketViewModel.isTostPresented, duration: Toast.short)
+                
+                
             
             if cancelTicketViewModel.isLoading {
                 Loader()
