@@ -29,7 +29,7 @@ struct BookedActionsView: View {
         var seats = "N/A"
         var msg = ""
         let showDate = CommonUtil.showDate(date: qrData.showDate ?? "")
-        let totalStanding = standing?.count ?? 0
+        let totalStanding = standing?.first?.standingCount
         let gateNo = seatData?.gateNo ?? ""
         
         let showTime = (CommonUtil.convertTimeTwentyFourIntoTwelve(time: qrData.startTime ?? "") ?? "") + " - " + (CommonUtil.convertTimeTwentyFourIntoTwelve(time: qrData.endTime ?? "") ?? "")
@@ -39,12 +39,43 @@ struct BookedActionsView: View {
             seats = safeSeat.map{String($0)}.joined(separator: ",")
         }
         if isSeating {
-            msg = "Congratulations!! your booking is confirmed. \nSeats: [\(seats)] \nShow Date: \(showDate) \nShow time: \(showTime) \nGate No: \(gateNo) \n\n Thank you."
+            msg =
+            """
+        Welcome to Futala Lake.\n
+        Seat Information\n
+        [\(seats)] \n
+        Show Date: \(showDate) \n
+        Show time: \(showTime) \n
+        Gate No: \(gateNo) \n
+        QR Code: \(Constants.baseUrl + "dpdf.html?id=" + (qrData.bookingID ?? ""))
+            
+        Thank you!
+        """
         } else {
-            msg = "Congratulations!! your booking is confirmed.\nTotal Standing: \(totalStanding) \nShow Date: \(showDate) \nShow time: \(showTime) \nGate No: \(gateNo) \n\n Thank you."
+            msg =
+        """
+        Welcome to Futala Lake.\n
+        Standing count: \(totalStanding ?? 0) \n
+        Show Date: \(showDate) \n
+        Show time: \(showTime) \n
+        QR Code: \(Constants.baseUrl + "dpdf.html?id=" + (qrData.bookingID ?? "")) \n
+        Thank you.
+        """
         }
         return msg
     }
+    
+    
+//    Welcome to Futala Lake
+//     Seat Information
+//     Seat: ['B80', 'B59']
+//     Show Time: 07:00 pm - 08:00 pm
+//     Show Date: 06-06-2023
+//     Seat Type: VIP
+//     Standing Count:
+//     Gate No.: GATE NO. 1,
+//     Thank you!
+//     QR Code: https://ffts.aurionpro.com:3001/dpdf.html?id=2de1778d-d4f0-4616-b1be-eb51a0b7633a
     
     
     var body: some View {

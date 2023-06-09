@@ -385,7 +385,6 @@ class SeatLayoutViewModel: ObservableObject {
                         if let respData = respData.data {
                             if let data = respData.first {
                                 self.submitResponseData = data
-                                print("jsdfdsjfjsgdf \(params)")
                                 self.bookedDataDic = params
                                 self.shouldMoveToCheckoutView = true
                             }

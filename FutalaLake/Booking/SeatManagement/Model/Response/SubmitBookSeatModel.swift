@@ -49,6 +49,9 @@ struct SubmitBookSeatModelData : Codable {
     var bookingFees : Int?
     var tax : Int?
     var total : Int?
+    
+    var seatDetails : [SeatDetails]?
+    
 
     enum CodingKeys: String, CodingKey {
 
@@ -63,6 +66,7 @@ struct SubmitBookSeatModelData : Codable {
         case bookingFees = "bookingFees"
         case tax = "tax"
         case total = "total"
+        case seatDetails = "seatDetails"
     }
 
 
@@ -81,12 +85,57 @@ struct SubmitBookSeatModelData : Codable {
                 bookingFees = try values.decodeIfPresent(Int.self, forKey: .bookingFees)
                 tax = try values.decodeIfPresent(Int.self, forKey: .tax)
                 total = try values.decodeIfPresent(Int.self, forKey: .total)
+                seatDetails = try values.decodeIfPresent([SeatDetails].self, forKey: .seatDetails)
             } catch {
                 print(error.localizedDescription)
             }
             
             
         }
+    }
+
+}
+
+
+struct SeatDetails : Codable {
+    let seatType : String?
+    let seatInfo : SeatInfo?
+
+    enum CodingKeys: String, CodingKey {
+
+        case seatType = "seatType"
+        case seatInfo = "SeatInfo"
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        seatType = try values.decodeIfPresent(String.self, forKey: .seatType)
+        seatInfo = try values.decodeIfPresent(SeatInfo.self, forKey: .seatInfo)
+    }
+
+}
+
+
+struct SeatInfo : Codable {
+    let adultFare : Int?
+    let childFare : Int?
+    let adultQuantity : Int?
+    let childQuantity : Int?
+
+    enum CodingKeys: String, CodingKey {
+
+        case adultFare = "adultFare"
+        case childFare = "childFare"
+        case adultQuantity = "adultQuantity"
+        case childQuantity = "childQuantity"
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        adultFare = try values.decodeIfPresent(Int.self, forKey: .adultFare)
+        childFare = try values.decodeIfPresent(Int.self, forKey: .childFare)
+        adultQuantity = try values.decodeIfPresent(Int.self, forKey: .adultQuantity)
+        childQuantity = try values.decodeIfPresent(Int.self, forKey: .childQuantity)
     }
 
 }

@@ -19,7 +19,7 @@ struct ProfileView: View {
     
     //@State var address: String = ""
     
-    @ObservedObject var profileViewModel = ProfileViewModel()
+    @StateObject var profileViewModel = ProfileViewModel()
     var body: some View {
         NavigationView {
             ZStack {

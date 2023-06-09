@@ -16,6 +16,11 @@ struct TransanctionView: View {
     @State private var historyDataIndex:Int = 0
     
     @ObservedObject var historyViewModel = HistoryViewModel()
+    //@StateObject var historyViewModel = HistoryViewModel()
+    
+    init() {
+        historyViewModel.fetchHistory()
+    }
     
     var body: some View {
         NavigationView {
@@ -23,8 +28,16 @@ struct TransanctionView: View {
                 ScrollView {
                     VStack {
                         if historyViewModel.historyData.count == 0 {
-                            Text("No history found")
-                                .foregroundColor(.gray)
+                            HStack {
+                                Text("No history found")
+                                    .foregroundColor(.gray)
+                                Button {
+                                    historyViewModel.fetchHistory()
+                                } label: {
+                                    Text("Refresh")
+                                }
+                            }
+                            
                         } else {
                             ForEach(Array(historyViewModel.historyData.enumerated()), id: \.offset) { index, element in
                                 BookingHistoryCellView(data: element, historyDataIndex: $historyDataIndex, isTicketInfoPreseneted: $isTicketInfoPreseneted, isViewButtonPressed: $isViewButtonPressed, index: index)
@@ -66,7 +79,7 @@ struct TransanctionView: View {
 //                }
 //            }
             .onAppear {
-                historyViewModel.fetchHistory()
+                //historyViewModel.fetchHistory()
             }
         }.navigationViewStyle(StackNavigationViewStyle())
         

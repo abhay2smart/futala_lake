@@ -23,8 +23,10 @@ struct CheckoutVIew: View {
     var dataDic = [String: Any]()
     
     @StateObject var checkoutViewModel = CheckoutViewModel()
+    let bookingData:SubmitBookSeatModelData
     
     init(bookingData: SubmitBookSeatModelData, dataDic: [String: Any]) {
+        self.bookingData = bookingData
         
         self.dataDic = dataDic
         self.dataDic["total"] = String(bookingData.total ?? 0)
@@ -45,8 +47,8 @@ struct CheckoutVIew: View {
         self.standing = String(bookingData.quantityStading ?? 0)
     }
     var body: some View {
-        ZStack {
-            AppTheme.appThemeSkyBlue
+        ZStack(alignment: .bottom) {
+            //AppTheme.appThemeSkyBlue
             VStack {
                 VStack(spacing: 5) {
                     HStack {
@@ -66,21 +68,14 @@ struct CheckoutVIew: View {
                     .padding(.horizontal)
                     .padding(.vertical, 3)
                 }.background(AppTheme.appThemeBlue)
-                .foregroundColor(AppTheme.appThemeRed)
+                    .foregroundColor(AppTheme.appThemeRed)
+                
+                ScrollView {
+                
                 VStack(alignment: .leading, spacing: 5) {
                     
                     
                     Group {
-//                        HStack {
-//                            Text("Show Date")
-//                            Spacer()
-//                            Text(showDate)
-//                        }
-//                        .font(.system(size: 15, weight: .regular, design: .default))
-//                        .foregroundColor(.black)
-//                        .padding(.bottom, 5)
-//
-//                        Divider()
                         
                         HStack {
                             Text("Start Time")
@@ -88,10 +83,10 @@ struct CheckoutVIew: View {
                             Text(showStartTime)
                             
                         }
-                            
+                        
                         .font(.system(size: 15, weight: .regular, design: .default))
-                            .foregroundColor(.black)
-                            .padding(.vertical, 5)
+                        .foregroundColor(.black)
+                        .padding(.vertical, 5)
                         
                         Divider()
                         
@@ -101,10 +96,10 @@ struct CheckoutVIew: View {
                             Text(showEndTime)
                             
                         }
-                            
+                        
                         .font(.system(size: 15, weight: .regular, design: .default))
-                            .foregroundColor(.black)
-                            .padding(.vertical, 5)
+                        .foregroundColor(.black)
+                        .padding(.vertical, 5)
                         
                         Divider()
                         
@@ -116,8 +111,8 @@ struct CheckoutVIew: View {
                             
                         }
                         .font(.system(size: 15, weight: .regular, design: .default))
-                            .foregroundColor(.black)
-                            .padding(.vertical, 5)
+                        .foregroundColor(.black)
+                        .padding(.vertical, 5)
                         
                         Divider()
                         
@@ -129,8 +124,8 @@ struct CheckoutVIew: View {
                             
                         }
                         .font(.system(size: 15, weight: .regular, design: .default))
-                            .foregroundColor(.black)
-                            .padding(.vertical, 5)
+                        .foregroundColor(.black)
+                        .padding(.vertical, 5)
                         
                         Divider()
                         
@@ -143,16 +138,16 @@ struct CheckoutVIew: View {
                             
                         }
                         .font(.system(size: 15, weight: .regular, design: .default))
-                            .foregroundColor(.black)
-                            .padding(.vertical, 5)
+                        .foregroundColor(.black)
+                        .padding(.vertical, 5)
                         
                         
                     }
-
+                    
                     Divider()
                     
                     Group {
-                       
+                        
                         HStack {
                             Text("Standing")
                             Spacer()
@@ -161,25 +156,10 @@ struct CheckoutVIew: View {
                             
                         }
                         .font(.system(size: 15, weight: .regular, design: .default))
-                            .foregroundColor(.black)
-                            .padding(.vertical, 5)
+                        .foregroundColor(.black)
+                        .padding(.vertical, 5)
                         
                         Divider()
-                        
-                        
-                        
-                        
-//                        HStack {
-//                            Text("Ticket Fee")
-//                            Spacer()
-//
-//                            Text(ticketFee)
-//
-//                        }
-//                        .font(.system(size: 15, weight: .regular, design: .default))
-//                            .foregroundColor(.black)
-//                            .padding(.vertical, 5)
-                        
                         
                     }
                     
@@ -194,8 +174,8 @@ struct CheckoutVIew: View {
                             
                         }
                         .font(.system(size: 15, weight: .regular, design: .default))
-                            .foregroundColor(.black)
-                            .padding(.vertical, 5)
+                        .foregroundColor(.black)
+                        .padding(.vertical, 5)
                         
                         Divider()
                         
@@ -207,8 +187,8 @@ struct CheckoutVIew: View {
                             
                         }
                         .font(.system(size: 15, weight: .regular, design: .default))
-                            .foregroundColor(.black)
-                            .padding(.vertical, 5)
+                        .foregroundColor(.black)
+                        .padding(.vertical, 5)
                         
                         Divider()
                         
@@ -221,45 +201,118 @@ struct CheckoutVIew: View {
                             
                         }
                         .font(.system(size: 15, weight: .regular, design: .default))
-                            .foregroundColor(.black)
-                            .padding(.vertical, 5)
+                        .foregroundColor(.black)
+                        .padding(.vertical, 5)
                         
                         Divider()
                         
+                        Group {
+                            
+                            
+                            ForEach(0..<(self.bookingData.seatDetails?.count ?? 0)) { index in
+                                
+                                VStack {
+                                    
+                                    if bookingData.seatDetails?[index].seatInfo?.adultQuantity ?? 0 > 0 {
+                                        HStack {
+                                            Text("\(bookingData.seatDetails?[index].seatType ?? "") (A):")
+                                                    Spacer()
+                
+                                            Text("\(bookingData.seatDetails?[index].seatInfo?.adultQuantity ?? 0) X \(bookingData.seatDetails?[index].seatInfo?.adultFare ?? 0)")
+                
+                                                }
+                                                .font(.system(size: 15, weight: .regular, design: .default))
+                                                .foregroundColor(.black)
+                                                .padding(.vertical, 5)
+                                        
+                                        Divider()
+                                    }
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    if bookingData.seatDetails?[index].seatInfo?.childQuantity ?? 0 > 0 {
+                                        HStack {
+                                            Text("\(bookingData.seatDetails?[index].seatType ?? "") (C):")
+                                                    Spacer()
+                
+                                            Text("\(bookingData.seatDetails?[index].seatInfo?.childQuantity ?? 0) X \(bookingData.seatDetails?[index].seatInfo?.childFare ?? 0)")
+                
+                                                
+                                                .font(.system(size: 15, weight: .regular, design: .default))
+                                                .foregroundColor(.black)
+                                                .padding(.vertical, 5)
+                                            }
+                                        Divider()
+                                            
+                                        }
+                                    
+                                    }
+
+                                    
+                                    
+                                        
+                                }
+                                
+                            }
+                            
+                            
+                            
+                        }
+                        
+                        
+                       // Divider()
+                        
                         HStack {
                             Text("Total Amount")
+                                .font(.system(size: 15, weight: .regular, design: .default))
+                                .foregroundColor(.black)
+                                .padding(.vertical, 5)
+                            
                             Spacer()
                             
                             Text("₹\(totalAmt)")
+                                .font(.system(size: 15, weight: .bold, design: .default))
+                                .foregroundColor(.black)
+                                .padding(.vertical, 5)
                             
                         }
-                        .font(.system(size: 15, weight: .regular, design: .default))
-                            .foregroundColor(.black)
-                            .padding(.vertical, 5)
+                        
                     }
                 }
                 .padding()
                 //.background(Color(UIColor(hexString: "#C0C5F7")))
                 .background(
-                 Rectangle()
-                 .fill(.white)
-                 .cornerRadius(12)
-                  .shadow(
-                   color: Color.gray.opacity(0.7),
-                   radius: 8,
-                   x: 0, y: 0)
-                  )
-
+                    Rectangle()
+                        .fill(.white)
+                        .cornerRadius(12)
+                        .shadow(
+                            color: Color.gray.opacity(0.7),
+                            radius: 8,
+                            x: 0, y: 0)
+                )
+                
                 .cornerRadius(10)
                 .padding()
+                .padding(.bottom, 100)
+            }
+            //.frame(height: UIScreen.main.bounds.height - 180)
                 
+            if checkoutViewModel.isLoading {
+               Loader()
+                    .padding(.bottom, 300)
+            }
+            
+            
                 
                 Button {
                     checkoutViewModel.makeCheckout(params: dataDic)
                 } label: {
                     Text("Checkout")
                     .modifier(CustomButtonModifiers())
-                }
+                }.padding(.bottom)
 
                 
                 
@@ -269,27 +322,17 @@ struct CheckoutVIew: View {
                     
                 }.navigationTitle("Checkout")
                 
+            
                 
                 
-                Spacer()
             }.toast(message: checkoutViewModel.message, isShowing: $checkoutViewModel.shouldShowToast, duration: Toast.short)
             
-//            .navigationBarTitleDisplayMode(.inline)
-//            .toolbar {
-//                ToolbarItem(placement: .principal) {
-//                    VStack {
-//                        Text("Checkout").font(.subheadline)
-//                    }.foregroundColor(.white)
-//                }
-//            }
             
-            if checkoutViewModel.isLoading {
-                Loader()
-            }
+            
             
         }
         
-    }
+    
 }
 
 struct CheckoutVIew_Previews: PreviewProvider {
