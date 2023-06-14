@@ -10,6 +10,9 @@ import SwiftUI
 struct GateSectionView: View {
     var data:[Seats]
     
+    var actionPerformed: ((TicketTypeButtonState) -> () )?
+    var ticketTypeButtonState:TicketTypeButtonState?
+    
     private let adaptiveColumns = [
         GridItem(.adaptive(minimum: 40))
     ]
@@ -26,7 +29,9 @@ struct GateSectionView: View {
     
     var seatsInAGate: GateWithSections?
     
-    init(data: [Seats], maturityStatus: Binding<String>, rowCountInASection: Int, groupSeats: String, groupStanding: String, isGroupTicketing: Bool, gateWithSections: GateWithSections? = nil) {
+    init(data: [Seats], maturityStatus: Binding<String>, rowCountInASection: Int, groupSeats: String, groupStanding: String, isGroupTicketing: Bool, gateWithSections: GateWithSections? = nil, actionPerformed: ((TicketTypeButtonState) -> () )?, ticketTypeButtonState: TicketTypeButtonState) {
+        self.actionPerformed = actionPerformed
+        self.ticketTypeButtonState = ticketTypeButtonState
         self.data = data
         self._maturityStatus = maturityStatus
         self.rowCount = rowCountInASection
@@ -58,6 +63,8 @@ struct GateSectionView: View {
                         } else {
                             element.toggleIsSelectedStatus(maturityStatus: maturityStatus)
                         }
+                        
+                        actionPerformed?(ticketTypeButtonState ?? .seating)
                         
                     } label: {
                         

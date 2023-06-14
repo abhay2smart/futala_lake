@@ -10,7 +10,6 @@ import Combine
 
 struct GroupInputDialogView: View {
     @Binding var groupStanding: String
-    @State var total: Int = 0
     
     private var grandTotal: Binding<String> { Binding (
         get: {

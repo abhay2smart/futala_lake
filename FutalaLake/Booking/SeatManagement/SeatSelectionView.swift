@@ -25,7 +25,7 @@ struct SeatSelectionView: View {
     
     @State var noOfAdults = ""
     @State var noOfChildren = ""
-    @State var total = "0"
+    //@State var total = "0"
     
     @State var isStandingCancelBtnPressed = false
     
@@ -50,6 +50,10 @@ struct SeatSelectionView: View {
     private var showEndTime: String
     
     private var seatInventoryData:[SeatInventoryData] = [SeatInventoryData]()
+    
+    
+    
+    
     init(showDate: Date, showTimeID: String, showDayID: String, showStartTime: String, showEndTime: String, seatInventoryData: [SeatInventoryData], seatMasterData: SeatData) {
         self.seatMasterData = seatMasterData
         self.seatInventoryData = seatInventoryData
@@ -326,12 +330,12 @@ struct SeatSelectionView: View {
                                         ForEach(data.sections) { item in
                                             if let safeData = item.seats {
                                                 if ticketTypeButtonState == .group {
-                                                    GateSectionView(data: safeData, maturityStatus: $maturityType, rowCountInASection: item.rowCount, groupSeats: seatLayoutViewModel.groupSeats, groupStanding: seatLayoutViewModel.groupStanding, isGroupTicketing: true, gateWithSections: data)
+                                                    GateSectionView(data: safeData, maturityStatus: $maturityType, rowCountInASection: item.rowCount, groupSeats: seatLayoutViewModel.groupSeats, groupStanding: seatLayoutViewModel.groupStanding, isGroupTicketing: true, gateWithSections: data, actionPerformed: seatLayoutViewModel.actionPerformed, ticketTypeButtonState: ticketTypeButtonState)
                                                     Image("stair")
                                                         .resizable()
                                                         .frame(width: 80)
                                                 } else {
-                                                    GateSectionView(data: safeData, maturityStatus: $maturityType, rowCountInASection: item.rowCount, groupSeats: "0", groupStanding: "0", isGroupTicketing: false)
+                                                    GateSectionView(data: safeData, maturityStatus: $maturityType, rowCountInASection: item.rowCount, groupSeats: "0", groupStanding: "0", isGroupTicketing: false, actionPerformed: seatLayoutViewModel.actionPerformed, ticketTypeButtonState: ticketTypeButtonState)
                                                     Image("stair")
                                                         .resizable()
                                                         .frame(width: 80)
@@ -362,6 +366,20 @@ struct SeatSelectionView: View {
             }
             
             
+            Text("")
+                .frame(height: 0)
+                .onChange(of: ticketTypeButtonState) { newValue in
+                    seatLayoutViewModel.actionPerformed(actionType: ticketTypeButtonState)
+                }
+            
+            Text("")
+                .frame(height: 0)
+                .onChange(of: seatLayoutViewModel.isGroupPresented) { newValue in
+                    seatLayoutViewModel.actionPerformed(actionType: ticketTypeButtonState)
+                }
+            
+            
+            
             
             Group {
                 Button {
@@ -378,7 +396,21 @@ struct SeatSelectionView: View {
                     
                     
                 } label: {
-                    Text("Book Ticket")
+                    
+                    ZStack {
+                        HStack {
+                            Text("\(seatLayoutViewModel.selectedCountForBookBtn)")
+                                .font(.system(size: 13, weight: .regular, design: .default))
+                            Spacer()
+                        }.padding(.leading)
+                        
+                        HStack{
+                            Text("Book Ticket")
+                        }
+                        
+                    }
+                    
+                    
                     .modifier(CustomButtonModifiers())
                 }
                 .padding(.top, (UIScreen.main.bounds.height - 230))
@@ -404,7 +436,7 @@ struct SeatSelectionView: View {
             .padding(.bottom, 40)
             
             if isPresented {
-                StandingInputDialog(noOfAdults: $noOfAdults, noOfChildren: $noOfChildren, total: $total, isPresented: $isPresented)
+                StandingInputDialog(noOfAdults: $noOfAdults, noOfChildren: $noOfChildren, total: $seatLayoutViewModel.standingTotalForDialog, isPresented: $isPresented)
             }
             
             if seatLayoutViewModel.isGroupPresented {

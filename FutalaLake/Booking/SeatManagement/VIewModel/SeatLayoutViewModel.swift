@@ -46,6 +46,8 @@ class SeatLayoutViewModel: ObservableObject {
     @Published var total:String = ""
     
     
+    
+    
     private var showDate: String = ""
     private var showTimeID: String = ""
     private var showDayID: String = ""
@@ -55,6 +57,53 @@ class SeatLayoutViewModel: ObservableObject {
     var standingAdultCount = "0"
     var standingChildCount = "0"
     
+    //Standing
+    @Published var standingTotalForDialog = "0"
+    
+    
+    @Published var selectedCountForBookBtn = ""
+    @Published var standingCountForBookBtn = ""
+    
+    func actionPerformed(actionType: TicketTypeButtonState) {
+        var selectedSeatCount = 0
+        var finalText = ""
+        var standingText = ""
+        for item in self.gatesWithSections {
+            for section in item.sections {
+                for seat in section.seats ?? [] {
+                    if seat.isSelected {
+                        selectedSeatCount += 1
+                    }
+                }
+            }
+        }
+        
+        if actionType == .seating &&  standingTotalForDialog != "" && standingTotalForDialog != "0" {
+            finalText = "Seat: \(selectedSeatCount) \nStanding: \(standingTotalForDialog)"
+            standingText = standingTotalForDialog
+        } else if actionType == .group && groupStanding != "" && groupStanding != "0" {
+            standingText = groupStanding
+            finalText = "Seat: \(selectedSeatCount) \nStanding: \(groupStanding)"
+        } else {
+            finalText = "Seat: \(selectedSeatCount)"
+        }
+        
+        if selectedSeatCount == 0 && standingText == "" {
+            finalText = ""
+        }
+        
+        if selectedSeatCount == 0 && standingText != "" {
+            finalText = "Standing: \(standingText)"
+        }
+        
+        
+        selectedCountForBookBtn = "\(finalText)"
+        
+    }
+    
+    func resetSelectedCountForBookBtn() {
+        selectedCountForBookBtn = ""
+    }
     
     
     func updateParameters(showDate: String, showTimeID: String, showDayID: String, seatMasterData: SeatData?) {
