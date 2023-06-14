@@ -48,14 +48,29 @@ struct BookingHistoryCellView: View {
                 }
             }.font(.system(size: 15, weight: .regular, design: .default))
             
-            Divider()
-                .padding(.horizontal, 2)
             
-            HStack {
-                Text("Seat No:")
-                    .foregroundColor(AppTheme.appThemeOrange)
-                Text("\(self.historyData?.getSeatsStr() ?? "")")
-            }.font(.system(size: 15, weight: .regular, design: .default))
+            
+            if (historyData?.seats?.count ?? 0) > 0 {
+                Divider()
+                    .padding(.horizontal, 2)
+                
+                VStack {
+                    HStack {
+                        Text("Adult seat:")
+                            .foregroundColor(AppTheme.appThemeOrange)
+                        Text("\(self.historyData?.getAdultSeatStr() ?? "")")
+                    }.font(.system(size: 15, weight: .regular, design: .default))
+                }
+                .padding(.bottom, 2)
+                
+                HStack {
+                    Text("Child seat:")
+                        .foregroundColor(AppTheme.appThemeOrange)
+                    Text("\(self.historyData?.getChildSeatStr() ?? "")")
+                }.font(.system(size: 15, weight: .regular, design: .default))
+                    
+            }
+            
             
             if (historyData?.standing?.count ?? 0) > 0 {
                 Divider()

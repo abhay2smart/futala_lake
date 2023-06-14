@@ -98,6 +98,48 @@ class HistoryData : Codable, ObservableObject {
     
     
     
+    func getAdultSeatStr()->String {
+        var seatsStr = ""
+        var seatsArr = [String]()
+        var i = 0
+        for seat in seats ?? [] {
+            if seat.isAdult == 1 {
+                seatsArr.append(seat.seatNumber ?? "")
+                if i == ((seats?.count ?? 0) - 1) {
+                    seatsStr += seat.seatNumber ?? ""
+                } else {
+                    seatsStr += (seat.seatNumber ?? "") + ", "
+                }
+                i += 1
+            }
+            
+        }
+        
+        return seatsStr == "" ? "N/A" :  seatsStr
+    }
+    
+    
+    func getChildSeatStr()->String {
+        var seatsStr = ""
+        var seatsArr = [String]()
+        var i = 0
+        for seat in seats ?? [] {
+            if seat.isAdult == 0 {
+                seatsArr.append(seat.seatNumber ?? "")
+                if i == ((seats?.count ?? 0) - 1) {
+                    seatsStr += seat.seatNumber ?? ""
+                } else {
+                    seatsStr += (seat.seatNumber ?? "") + ", "
+                }
+                i += 1
+            }
+            
+        }
+        
+        return seatsStr == "" ? "N/A" :  seatsStr
+    }
+    
+    
     
     func getSeatsStr()->String {
         var seatsStr = ""
