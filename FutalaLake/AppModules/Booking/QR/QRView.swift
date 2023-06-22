@@ -92,9 +92,9 @@ struct QRView: View {
                                 ForEach(Array(safeSeats.enumerated()), id: \.offset) { index, element in
                                     VStack {
                                             QRSubView(qrData: qrData ?? QRData(), isSeating: isSeating, qRSeatData: element)
-                                        BookedActionsView(qrData: qrData ?? QRData(), seatData: element, isSeating: isSeating)
+                                        //BookedActionsView(msg: composeMessage(qrData: qrData ?? QRData(), seatData: element, isSeating: isSeating) ?? "")
                                         
-                                    }.padding(.bottom, 30)
+                                    }
                                         .background(
                                          Rectangle()
                                          .fill(.white)
@@ -111,8 +111,16 @@ struct QRView: View {
                         } else {
                             VStack {
                                 QRSubView(qrData: qrData ?? QRData(), isSeating: isSeating)
-                                BookedActionsView(qrData: qrData ?? QRData(), seatData: nil, isSeating: isSeating)
-                            }
+                                //BookedActionsView(msg: composeMessage(qrData: qrData ?? QRData(), seatData: nil, isSeating: isSeating) ?? "")
+                            }.background(
+                                Rectangle()
+                                .fill(.white)
+                                .cornerRadius(12)
+                                 .shadow(
+                                  color: Color.gray.opacity(0.7),
+                                  radius: 8,
+                                  x: 0, y: 0)
+                                 )
                             
                         }
                         
@@ -122,29 +130,10 @@ struct QRView: View {
                     .padding()
 
                 }.padding(.top, -20)
+                
+                BookedActionsView(msg: composeMessage(qrData: qrData ?? QRData(), seatData: nil, isSeating: isSeating) ?? "", isBookingBtnHidden: false)
+                .padding()
             }
-            
-            Button {
-                //
-                self.session.moveToDashboard = true
-            } label: {
-                VStack(spacing: 5) {
-                    ZStack {
-                        Rectangle()
-                            .fill(AppTheme.appThemeOrange)
-                            .frame(width: 50, height: 50)
-                            .clipShape(Circle())
-                        Text("Booking")
-                            .multilineTextAlignment(.center)
-                            .font(.system(size: 10, weight: .medium, design: .default))
-                            .foregroundColor(.white)
-                        
-                    }
-                    
-                    
-                }
-            }.padding()
-            
             
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -174,6 +163,60 @@ struct QRView: View {
 struct QRView_Previews: PreviewProvider {
     static var previews: some View {
         QRView(data: QRData())
+    }
+}
+
+extension QRView {
+    private func composeMessage(qrData: QRData, seatData: QRSeatData?, isSeating: Bool)->String? {
+//        var seats = "N/A"
+//        var msg = ""
+//        let showDate = CommonUtil.showDate(date: qrData.showDate ?? "")
+//        let totalStanding = qrData.qrStandingData?.first?.standingCount
+//        let gateNo = seatData?.gateNo ?? ""
+//
+//        let showTime = (CommonUtil.convertTimeTwentyFourIntoTwelve(time: qrData.startTime ?? "") ?? "") + " - " + (CommonUtil.convertTimeTwentyFourIntoTwelve(time: qrData.endTime ?? "") ?? "")
+//
+//
+//        if let safeSeat = seatData?.seats {
+//            seats = safeSeat.map{String($0)}.joined(separator: ",")
+//        }
+//        if isSeating {
+//            msg =
+//            """
+//        Welcome to Futala Lake.\n
+//        Seat Information\n
+//        [\(seats)] \n
+//        Show Date: \(showDate) \n
+//        Show time: \(showTime) \n
+//        Gate No: \(gateNo) \n
+//        QR Code: \(Constants.baseUrl + "dpdf.html?id=" + (qrData.bookingID ?? ""))
+//
+//        Thank you!
+//        """
+//        } else {
+//            msg =
+//        """
+//        Welcome to Futala Lake.\n
+//        Standing count: \(totalStanding ?? 0) \n
+//        Show Date: \(showDate) \n
+//        Show time: \(showTime) \n
+//        QR Code: \(Constants.baseUrl + "dpdf.html?id=" + (qrData.bookingID ?? "")) \n
+//        Thank you.
+//        """
+//        }
+        
+        let showDate = CommonUtil.showDate(date: qrData.showDate ?? "")
+        let showTime = (CommonUtil.convertTimeTwentyFourIntoTwelve(time: qrData.startTime ?? "") ?? "") + " - " + (CommonUtil.convertTimeTwentyFourIntoTwelve(time: qrData.endTime ?? "") ?? "")
+        
+    let  msg =
+    """
+    Welcome to Futala Lake.\n
+    Show Date: \(showDate) \n
+    Show time: \(showTime) \n
+    QR Code: \(Constants.baseUrl + "dpdf.html?id=" + (qrData.bookingID ?? "")) \n
+    Thank you.
+    """
+        return msg
     }
 }
 

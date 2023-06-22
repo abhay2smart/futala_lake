@@ -41,7 +41,7 @@ struct BookedTicketHistoryView: View {
         ZStack {
             //AppTheme.appThemeSkyBlue
             
-            VStack {
+            VStack(spacing: 0) {
                 HStack(alignment: .center) {
                     //Spacer()
                     if (cancelTicketViewModel.historyDetailData.data?.first?.ticketData?.count ?? 0) > 0 {
@@ -88,7 +88,38 @@ struct BookedTicketHistoryView: View {
                         .padding(.horizontal, 10)
                     }
                     
-                }
+                }.padding(.top, -10)
+                
+                // Seat Indicators
+                ScrollView(.horizontal) {
+                    HStack(alignment: .top, spacing: 5) {
+                        
+                        let key = Constants.colorKey
+                        if let retrievedCodableObject = UserDefaults.standard.codableObject(dataType: [SeatInventoryData].self, key: key) {
+                            
+                            ForEach(0..<(retrievedCodableObject.count)) { index in
+                                Rectangle()
+                                    .fill(AppTheme.SeatColor.isColorMatched(colorName: retrievedCodableObject[index].colorName ?? ""))
+                                    .frame(width: 15, height: 15)
+                                    .cornerRadius(2)
+                                
+                                Text(retrievedCodableObject[index].seatType ?? "")
+                                //Text(seatInventoryData[index].colorName ?? "")
+                                    .font(.system(size: 14, weight: .regular, design: .default))
+                                    .foregroundColor(.black)
+                                
+                                Spacer()
+                            }
+                            
+                        }
+                        
+                        
+                    }.padding(.horizontal, 18)
+                        .padding(.vertical, 10)
+                    
+                    
+                }.padding(.bottom, 0)
+                
                 
                 ScrollView {
                     
@@ -102,36 +133,6 @@ struct BookedTicketHistoryView: View {
                                     }
                                     
                                 }
-                            
-                            // Seat Indicators
-                            ScrollView(.horizontal) {
-                                HStack(alignment: .top, spacing: 5) {
-                                    
-                                    let key = Constants.colorKey
-                                    if let retrievedCodableObject = UserDefaults.standard.codableObject(dataType: [SeatInventoryData].self, key: key) {
-                                        
-                                        ForEach(0..<(retrievedCodableObject.count)) { index in
-                                            Rectangle()
-                                                .fill(AppTheme.SeatColor.isColorMatched(colorName: retrievedCodableObject[index].colorName ?? ""))
-                                                .frame(width: 15, height: 15)
-                                                .cornerRadius(2)
-                                            
-                                            Text(retrievedCodableObject[index].seatType ?? "")
-                                            //Text(seatInventoryData[index].colorName ?? "")
-                                                .font(.system(size: 14, weight: .regular, design: .default))
-                                                .foregroundColor(.black)
-                                            
-                                            Spacer()
-                                        }
-                                        
-                                    }
-                                    
-                                    
-                                }.padding(.horizontal, 18)
-                                    .padding(.vertical, 10)
-                                
-                                
-                            }.padding(.bottom)
                             
                         }
                         
@@ -202,6 +203,7 @@ struct BookedTicketHistoryView: View {
                         .font(.system(size: 15, weight: .regular, design: .default))
                         .padding(.horizontal)
                         .padding(.vertical, 3)
+                        .padding(.bottom, 10)
                 }.background(AppTheme.appThemeBlue)
                     .foregroundColor(AppTheme.appThemeRed)
                 Spacer()

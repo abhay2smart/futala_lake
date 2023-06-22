@@ -53,21 +53,34 @@ struct BookingHistoryCellView: View {
             if (historyData?.seats?.count ?? 0) > 0 {
                 Divider()
                     .padding(.horizontal, 2)
+                if self.historyData?.getAdultSeatStr() ?? "" != "N/A" {
+                    VStack {
+                        HStack {
+                            Text("Adult seat:")
+                                .foregroundColor(AppTheme.appThemeOrange)
+                            Text("\(self.historyData?.getAdultSeatStr() ?? "")")
+                        }.font(.system(size: 15, weight: .regular, design: .default))
+                    }
+                    .padding(.bottom, 2)
+                    
+                }
                 
-                VStack {
+                if self.historyData?.getAdultSeatStr() ?? "" != "N/A" && self.historyData?.getChildSeatStr() ?? "" != "N/A" {
+                    Divider()
+                }
+                
+                
+                
+                if self.historyData?.getChildSeatStr() ?? "" != "N/A" {
                     HStack {
-                        Text("Adult seat:")
+                        Text("Child seat:")
                             .foregroundColor(AppTheme.appThemeOrange)
-                        Text("\(self.historyData?.getAdultSeatStr() ?? "")")
+                        Text("\(self.historyData?.getChildSeatStr() ?? "")")
                     }.font(.system(size: 15, weight: .regular, design: .default))
                 }
-                .padding(.bottom, 2)
                 
-                HStack {
-                    Text("Child seat:")
-                        .foregroundColor(AppTheme.appThemeOrange)
-                    Text("\(self.historyData?.getChildSeatStr() ?? "")")
-                }.font(.system(size: 15, weight: .regular, design: .default))
+                
+                
                     
             }
             
@@ -91,11 +104,16 @@ struct BookingHistoryCellView: View {
             
             
             
-            
+            Divider()
             
             
             HStack {
                 Spacer()
+                
+                BookedActionsView(msg: composeMessage())
+                
+                Spacer()
+                
                 if historyData?.bookingStatus == 3 {
                     HStack(spacing: 5) {
                         Image("failled").resizable()
@@ -104,7 +122,7 @@ struct BookingHistoryCellView: View {
                             .foregroundColor(.red)
                             .font(.system(size: 16, weight: .medium, design: .default))
                             
-                    }.padding(.bottom, 10)
+                    }.padding(5)
                     
                 } else {
                     Button {
@@ -119,8 +137,6 @@ struct BookingHistoryCellView: View {
                     .foregroundColor(.white)
                     .clipShape(Capsule())
                 }
-                
-                
 
             }
         }.padding(10)
@@ -143,5 +159,24 @@ struct BookingHistoryCellView: View {
 struct BookingHistoryCellView_Previews: PreviewProvider {
     static var previews: some View {
         BookingHistoryCellView(data: HistoryData(from: nil), historyDataIndex: .constant(0), isTicketInfoPreseneted: .constant(false), isViewButtonPressed: .constant(false), index: 0)
+    }
+}
+
+extension BookingHistoryCellView {
+    private func composeMessage()->String {
+        let showDate = CommonUtil.showDate(date: historyData?.showDate ?? "")
+        let showTime = (CommonUtil.convertTimeTwentyFourIntoTwelve(time: historyData?.startTime ?? "") ?? "") + " - " + (CommonUtil.convertTimeTwentyFourIntoTwelve(time: historyData?.endTime ?? "") ?? "")
+        let bookingId = historyData?.bookingID ?? ""
+        
+    let    msg =
+        """
+        Welcome to Futala Lake.\n
+        Show Date: \(showDate) \n
+        Show time: \(showTime) \n
+        QR Code: \(Constants.baseUrl + "dpdf.html?id=" + (bookingId)) \n
+        Thank you.
+        """
+        
+        return msg
     }
 }

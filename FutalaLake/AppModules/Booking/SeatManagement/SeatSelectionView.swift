@@ -281,14 +281,6 @@ struct SeatSelectionView: View {
                         
                     }
                     
-                    
-                    //                Image("wave")
-                    //                    .resizable()
-                    //                    .frame(width: (UIScreen.main.bounds.width - 40), height: 40)
-                    //                    .padding(.vertical)
-                    //
-                    
-                    
                     Text(gateSelection)
                         .font(.system(size: 20, weight: .medium, design: .default))
                     
@@ -379,8 +371,6 @@ struct SeatSelectionView: View {
                 }
             
             
-            
-            
             Group {
                 Button {
                     
@@ -423,17 +413,17 @@ struct SeatSelectionView: View {
             }.padding(.top)
             
             
-            .toast(message: self.seatLayoutViewModel.errorMessage,
-                   isShowing: $showToast,
-                   duration: Toast.short)
-            .padding(.bottom, -20)
+                .toast(message: self.seatLayoutViewModel.errorMessage,
+                       isShowing: $showToast,
+                       duration: Toast.short)
+                .padding(.bottom, -20)
             
-            .onChange(of: isPresented, perform: { value in
-                if value == false {
-                    ticketTypeButtonState = .seating
-                }
-            })
-            .padding(.bottom, 40)
+                .onChange(of: isPresented, perform: { value in
+                    if value == false {
+                        ticketTypeButtonState = .seating
+                    }
+                })
+                .padding(.bottom, 40)
             
             if isPresented {
                 StandingInputDialog(noOfAdults: $noOfAdults, noOfChildren: $noOfChildren, total: $seatLayoutViewModel.standingTotalForDialog, isPresented: $isPresented)
@@ -455,30 +445,30 @@ struct SeatSelectionView: View {
             }
             
             Text("")
-            .onChange(of: seatLayoutViewModel.isPresentPriceNotSetDilog) { v in
-                if !v {
-                    session.currentTab = 1
+                .onChange(of: seatLayoutViewModel.isPresentPriceNotSetDilog) { v in
+                    if !v {
+                        session.currentTab = 1
+                    }
+                    
                 }
-                
-            }
             
             
             
             
         }.allowsHitTesting(seatLayoutViewModel.isLoading ? false : true)
-        .onAppear {
-            initilisation()
-        }
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .principal) {
-                VStack {
-                    Text("Seat layout").font(.subheadline)
-                }.foregroundColor(.white)
+            .onAppear {
+                initilisation()
             }
-        }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    VStack {
+                        Text("Seat layout").font(.subheadline)
+                    }.foregroundColor(.white)
+                }
+            }
         
-                
+        
         
     }
 }

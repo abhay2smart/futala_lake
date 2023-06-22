@@ -10,60 +10,15 @@ import SwiftUI
 struct BookedActionsView: View {
     @EnvironmentObject var session: SessionManager
     @State var isMessageViewPresented: Bool = false
-    private var qrData:QRData
-    private var seatData:QRSeatData?
-    private var standing: [QRStandingData]?
     private var msg = ""
-    private var isSeating = false
+    private var isBookingBtnHidden: Bool = true
     
-    
-    
-    init(qrData: QRData, seatData: QRSeatData?, isSeating: Bool) {
-        self.qrData = qrData
-        self.seatData = seatData
-        self.standing = qrData.qrStandingData
-        self.isSeating = isSeating
+    init(msg: String, isBookingBtnHidden: Bool = true) {
+        self.msg = msg
+        self.isBookingBtnHidden = isBookingBtnHidden
     }
     
-    private func composeMessage()->String? {
-        var seats = "N/A"
-        var msg = ""
-        let showDate = CommonUtil.showDate(date: qrData.showDate ?? "")
-        let totalStanding = standing?.first?.standingCount
-        let gateNo = seatData?.gateNo ?? ""
-        
-        let showTime = (CommonUtil.convertTimeTwentyFourIntoTwelve(time: qrData.startTime ?? "") ?? "") + " - " + (CommonUtil.convertTimeTwentyFourIntoTwelve(time: qrData.endTime ?? "") ?? "")
-        
-        
-        if let safeSeat = seatData?.seats {
-            seats = safeSeat.map{String($0)}.joined(separator: ",")
-        }
-        if isSeating {
-            msg =
-            """
-        Welcome to Futala Lake.\n
-        Seat Information\n
-        [\(seats)] \n
-        Show Date: \(showDate) \n
-        Show time: \(showTime) \n
-        Gate No: \(gateNo) \n
-        QR Code: \(Constants.baseUrl + "dpdf.html?id=" + (qrData.bookingID ?? ""))
-            
-        Thank you!
-        """
-        } else {
-            msg =
-        """
-        Welcome to Futala Lake.\n
-        Standing count: \(totalStanding ?? 0) \n
-        Show Date: \(showDate) \n
-        Show time: \(showTime) \n
-        QR Code: \(Constants.baseUrl + "dpdf.html?id=" + (qrData.bookingID ?? "")) \n
-        Thank you.
-        """
-        }
-        return msg
-    }
+    
     
     
 //    Welcome to Futala Lake
@@ -100,7 +55,7 @@ struct BookedActionsView: View {
                 
             }
             .sheet(isPresented: self.$isMessageViewPresented) {
-                MessageComposeView(recipients: [""], body: composeMessage() ?? "") { messageSent in
+                MessageComposeView(recipients: [""], body: msg ) { messageSent in
                     print("MessageComposeView with message sent? \(messageSent)")
                 }
             }
@@ -108,7 +63,6 @@ struct BookedActionsView: View {
             Spacer()
             
             Button {
-                let msg = composeMessage() ?? ""
                 WhatsApp.sendMessage(msg: msg)
             } label: {
                 VStack(spacing: 5) {
@@ -129,6 +83,33 @@ struct BookedActionsView: View {
             }
             
             Spacer()
+            
+            if !isBookingBtnHidden {
+                Button {
+                    //
+                    self.session.moveToDashboard = true
+                } label: {
+                    VStack(spacing: 5) {
+                        ZStack {
+                            Rectangle()
+                                .fill(AppTheme.appThemeOrange)
+                                .frame(width: 50, height: 50)
+                                .clipShape(Circle())
+                            Text("Booking")
+                                .multilineTextAlignment(.center)
+                                .font(.system(size: 10, weight: .medium, design: .default))
+                                .foregroundColor(.white)
+                            
+                        }
+                        
+                        
+                    }
+                }
+                
+                Spacer()
+            }
+            
+           
             
             
         }

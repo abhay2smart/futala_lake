@@ -11,62 +11,44 @@ struct ContentView: View {
     @State var isActive:Bool = false
     @State var isBasicScreenPassed = false
     @EnvironmentObject var session: SessionManager
+    @State var isUpdateNeeded = false
     var body: some View {
         ZStack {
-            if isActive {
-                if session.currentUserState == .loggedIn {
-                    TabContainerView()
-                        
-                } else {
-                    NavigationView {
-                        LoginView(isLogggedIn: $isBasicScreenPassed)
+            Color.clear.ignoresSafeArea()
+            ZStack {
+                if isActive {
+                    if session.currentUserState == .loggedIn {
+                        TabContainerView()
                             
-                    }.navigationViewStyle(StackNavigationViewStyle())
+                    } else {
+                        NavigationView {
+                            LoginView(isLogggedIn: $isBasicScreenPassed)
+                                
+                        }.navigationViewStyle(StackNavigationViewStyle())
+                    }
+                } else {
+                    LaunchView()
                 }
-            } else {
-                LaunchView()
+                
+            }.onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    withAnimation {
+                        self.isActive = true
+                    }
+                }
             }
-            
+            if isUpdateNeeded {
+                //VersionUpdateAlertView()
+            }
         }.onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                withAnimation {
-                    self.isActive = true
+            AppVersionUpdateManager.shared.checkForUpdate{ (isUpdateNeeded) in
+                if isUpdateNeeded {
+                    self.isUpdateNeeded = true
                 }
             }
         }
-//        .onDisappear {
-//            print("App killed signed out :(")
-//            session.signout()
-//        }
         
         
-        
-        
-        
-        
-//        return NavigationView {
-//            ZStack {
-//                if self.isActive {
-//                    LoginView()
-//                    //TabContainerView()
-//                } else {
-//                    LaunchView()
-//                }
-//            }
-//            .navigationBarTitleDisplayMode(.inline)
-//
-//            .navigationBar(backgroundColor: AppTheme.appThemeBlue, titleColor: .white)
-//
-//
-//            .onAppear {
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//                    withAnimation {
-//                        self.isActive = true
-//                    }
-//                }
-//            }
-//
-//        }.accentColor(.white) // back button color
         
     }
 }

@@ -147,6 +147,8 @@ struct QRSubView: View {
                                     Text("Total")
                                     Spacer()
                                     Text("₹\(qrData.totalFare ?? 0)")
+                                        .font(.system(size: 15, weight: .bold, design: .default))
+                                        .foregroundColor(.black)
                                     
                                 }.multilineTextAlignment(.center)
                                     .font(.system(size: 17, weight: .regular, design: .default))
