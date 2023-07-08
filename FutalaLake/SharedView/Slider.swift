@@ -10,7 +10,7 @@ import SwiftUI
 struct Slider: View {
     let timer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
     @State private var selection = 0
-    @State var images = ["upcoming_event1", "offers", "upcoming_event1", "offers"]
+    @State var images = ["slider1", "offers", "upcoming_event1", "offers"]
     
     var body: some View {
         ZStack {

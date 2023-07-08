@@ -131,7 +131,7 @@ struct QRView: View {
 
                 }.padding(.top, -20)
                 
-                BookedActionsView(msg: composeMessage(qrData: qrData ?? QRData(), seatData: nil, isSeating: isSeating) ?? "", isBookingBtnHidden: false)
+                BookedActionsView(msg: composeMessage(qrData: qrData ?? QRData(), seatData: nil, isSeating: isSeating) ?? "", isBookingBtnHidden: false, bookingId: qrData?.bookingID ?? "")
                 .padding()
             }
             

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct StandingInputDialog: View {
     @Binding var noOfAdults: String
@@ -16,6 +17,9 @@ struct StandingInputDialog: View {
     
     @State private var message = ""
     @State private var shouldShowToast = false
+    
+    
+    let textLimit = 2 //Your
     
     
         
@@ -38,6 +42,7 @@ struct StandingInputDialog: View {
                         total = "\(totalIntVal)"
                     }
                     .keyboardType(.numberPad)
+                    .onReceive(Just(noOfAdults)) { _ in limitTextForAdult(textLimit) }
                     .focused($isInputActive)
                     .toolbar {
                         ToolbarItemGroup(placement: .keyboard) {
@@ -62,7 +67,9 @@ struct StandingInputDialog: View {
                             let totalIntVal = (Int(noOfAdults) ?? 0) + (Int(noOfChildren) ?? 0)
                             total = "\(totalIntVal)"
                         }
+                        
                         .keyboardType(.numberPad)
+                        .onReceive(Just(noOfChildren)) { _ in limitTextForChild(textLimit) }
                         .focused($isInputActive)
                     
                 }
@@ -73,6 +80,8 @@ struct StandingInputDialog: View {
                         .font(.system(size: 14, weight: .semibold))
                     CustomTextField(placeHolder: "", text: $total)
                         .allowsHitTesting(false)
+                    Text("Total value should in be between 20 & 60")
+                        .font(.system(size: 14, weight: .semibold))
                 }
                 .padding(.horizontal)
                 
@@ -128,6 +137,18 @@ struct StandingInputDialog: View {
         }
         
     }
+    //Function to keep text length in limits
+    func limitTextForAdult(_ upper: Int = 2) {
+        if noOfAdults.count > upper {
+            noOfAdults = String(noOfAdults.prefix(upper))
+        }
+    }
+    
+    func limitTextForChild(_ upper: Int = 2) {
+        if noOfChildren.count > upper {
+            noOfChildren = String(noOfChildren.prefix(upper))
+        }
+    }
 }
 
 struct StandingInputDialog_Previews: PreviewProvider {
@@ -143,6 +164,12 @@ extension StandingInputDialog {
         
         if (trimmedStandingAdultCount == "0" || trimmedStandingAdultCount == "") && (trimmedStandingChildCount == "0" || trimmedStandingChildCount == "") {
             self.message = "Please enter atleast one standing"
+            self.shouldShowToast = true
+            return false
+        }
+        
+        if (Int(total) ?? 0) > 60 {
+            self.message = "Total value should be less than or eqaul to 60"
             self.shouldShowToast = true
             return false
         }

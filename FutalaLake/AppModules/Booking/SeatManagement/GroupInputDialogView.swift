@@ -98,7 +98,7 @@ struct GroupInputDialogView: View {
                         .font(.system(size: 14, weight: .semibold))
                     CustomTextField(placeHolder: "", text: grandTotal)
                         .allowsHitTesting(false)
-                    Text("Total value should in between \(minGroupVal) & \(maxGroupVal)")
+                    Text("Total value should in be between \(minGroupVal) & \(maxGroupVal)")
                         .font(.system(size: 14, weight: .semibold))
                     
                 }

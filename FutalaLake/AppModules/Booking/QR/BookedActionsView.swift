@@ -10,11 +10,14 @@ import SwiftUI
 struct BookedActionsView: View {
     @EnvironmentObject var session: SessionManager
     @State var isMessageViewPresented: Bool = false
+    @State var isWaiting = false
     private var msg = ""
     private var isBookingBtnHidden: Bool = true
+    private var bookingId = ""
     
-    init(msg: String, isBookingBtnHidden: Bool = true) {
+    init(msg: String, isBookingBtnHidden: Bool = true, bookingId: String) {
         self.msg = msg
+        self.bookingId = bookingId
         self.isBookingBtnHidden = isBookingBtnHidden
     }
     
@@ -61,26 +64,49 @@ struct BookedActionsView: View {
             }
             
             Spacer()
-            
-            Button {
-                WhatsApp.sendMessage(msg: msg)
-            } label: {
-                VStack(spacing: 5) {
-                    ZStack {
-                        Rectangle()
-                            .fill(.green)
-                            .frame(width: 50, height: 50)
-                            .clipShape(Circle())
-                        Image("whatsapp")
-                            .resizable()
-                            .frame(width: 25, height: 25)
+            ZStack(alignment: .center) {
+                Button {
+                    //WhatsApp.sendMessage(msg: msg)
+                    isWaiting = true
+                    FileDownloadManager.downloadPDF(bookingId: bookingId) { url in
+                        //self.isWaiting = false
+//                        if let url = url {
+//                            FileDownloadManager.sharePDF(pdfURL: url)
+//                        }
+                    }
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: {
+                        FileDownloadManager.downloadPDF(bookingId: bookingId) { url in
+                            self.isWaiting = false
+                            if let url = url {
+                                FileDownloadManager.sharePDF(pdfURL: url)
+                            }
+                        }
+                    })
+                    
+                } label: {
+                    VStack(spacing: 5) {
+                        ZStack {
+                            Rectangle()
+                                .fill(.green)
+                                .frame(width: 50, height: 50)
+                                .clipShape(Circle())
+                            Image("whatsapp")
+                                .resizable()
+                                .frame(width: 25, height: 25)
+                            
+                        }
+                        
                         
                     }
                     
-                    
                 }
                 
+                Text("Pleasae wait")
+                    .font(.system(size: 10, weight: .medium, design: .default))
+                    .padding(.top, 67).foregroundColor(isWaiting ? .black : .clear)
             }
+            
             
             Spacer()
             

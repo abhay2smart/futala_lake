@@ -15,8 +15,8 @@ struct TransanctionView: View {
     
     @State private var historyDataIndex:Int = 0
     
-    @ObservedObject var historyViewModel = HistoryViewModel()
-    //@StateObject var historyViewModel = HistoryViewModel()
+    //@ObservedObject var historyViewModel = HistoryViewModel()
+    @StateObject var historyViewModel = HistoryViewModel()
     
     init() {
         historyViewModel.fetchHistory()
@@ -79,7 +79,7 @@ struct TransanctionView: View {
 //                }
 //            }
             .onAppear {
-                //historyViewModel.fetchHistory()
+                historyViewModel.fetchHistory()
             }
         }.navigationViewStyle(StackNavigationViewStyle())
         

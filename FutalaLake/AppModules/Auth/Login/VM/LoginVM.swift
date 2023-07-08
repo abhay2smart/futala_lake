@@ -88,6 +88,7 @@ class LoginVM: ObservableObject {
                     if let otp = self.loginResponseModel.data?.first?.otp {
                         self.isOTPRecieved = true
                         self.otp = "\(otp)"
+                        self.startCountdown()
                     }
                     //self.shouldMoveToOTPView = true
                 }

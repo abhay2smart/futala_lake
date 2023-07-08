@@ -131,7 +131,7 @@ struct CheckoutVIew: View {
                             Divider()
                             
                             HStack {
-                                Text("Seat no/NOS")
+                                Text("Seat no")
                                 Spacer()
                                 
                                 Text(seatNo)

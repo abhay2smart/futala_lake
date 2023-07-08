@@ -92,6 +92,7 @@
 		17AE976729BB0BDE00F12E78 /* StandingInputDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE976629BB0BDD00F12E78 /* StandingInputDialog.swift */; };
 		17AE977029BB376A00F12E78 /* SeatLayoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE976F29BB376A00F12E78 /* SeatLayoutModel.swift */; };
 		17AE977329BB38E800F12E78 /* SeatLayoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE977229BB38E800F12E78 /* SeatLayoutViewModel.swift */; };
+		17B6A9582A456B39005A5632 /* FileDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B6A9572A456B39005A5632 /* FileDownloadManager.swift */; };
 		17B921E629E7C6D700277C0E /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B921E529E7C6D700277C0E /* ProfileViewModel.swift */; };
 		17B921E929E7D2E500277C0E /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B921E829E7D2E500277C0E /* ProfileModel.swift */; };
 		17BAE80F29E14C3200333A0A /* CancelTicketSeatingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BAE80E29E14C3200333A0A /* CancelTicketSeatingCell.swift */; };
@@ -214,6 +215,7 @@
 		17AE976629BB0BDD00F12E78 /* StandingInputDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingInputDialog.swift; sourceTree = "<group>"; };
 		17AE976F29BB376A00F12E78 /* SeatLayoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatLayoutModel.swift; sourceTree = "<group>"; };
 		17AE977229BB38E800F12E78 /* SeatLayoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatLayoutViewModel.swift; sourceTree = "<group>"; };
+		17B6A9572A456B39005A5632 /* FileDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDownloadManager.swift; sourceTree = "<group>"; };
 		17B921E529E7C6D700277C0E /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		17B921E829E7D2E500277C0E /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		17BAE80E29E14C3200333A0A /* CancelTicketSeatingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelTicketSeatingCell.swift; sourceTree = "<group>"; };
@@ -808,6 +810,7 @@
 			children = (
 				1733F8E129CAFBBF00D97F2E /* SessionManager.swift */,
 				17335D762A39DB32007A72B7 /* AppVersionUpdateManager.swift */,
+				17B6A9572A456B39005A5632 /* FileDownloadManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1274,6 +1277,7 @@
 				17F5134D29B1C5A3004A7833 /* OTPViewModel.swift in Sources */,
 				179E088929B5E0B500AA4541 /* DateTimeSelectionModel.swift in Sources */,
 				17D80F642962A8D200D861FF /* GateSectionView.swift in Sources */,
+				17B6A9582A456B39005A5632 /* FileDownloadManager.swift in Sources */,
 				17BD37892954134700DA2FE9 /* TabContainerView.swift in Sources */,
 				17AE977029BB376A00F12E78 /* SeatLayoutModel.swift in Sources */,
 				17BAE80F29E14C3200333A0A /* CancelTicketSeatingCell.swift in Sources */,

@@ -10,8 +10,8 @@ import Combine
 
 struct LoginView: View {
     @EnvironmentObject var session: SessionManager
-    //@State var mobileNumber:String = "8173954048"
-    @State var mobileNumber:String = ""
+    @State var mobileNumber:String = "8173954048"
+    //@State var mobileNumber:String = ""
     
     @State var shouldShowDetails:Bool = false
     @Binding var isLogggedIn : Bool
@@ -195,7 +195,6 @@ struct LoginView: View {
                 
                 Group {
                     Button {
-                        loginVM.startCountdown()
                         if loginVM.isValidatedMobileAndOTP(otp: loginVM.otp, mobileNumber: self.mobileNumber) {
                             loginVM.fetchToeken(mobileNumber: self.mobileNumber)
                         }

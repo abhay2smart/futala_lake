@@ -50,6 +50,26 @@ struct BookingHistoryCellView: View {
             
             
             
+            if (historyData?.standing?.count ?? 0) > 0 {
+                Divider()
+                    .padding(.horizontal, 2)
+                
+                HStack {
+                    Text("Standing Count")
+                        .foregroundColor(AppTheme.appThemeOrange)
+                    Group {
+                        Text("Adult: \(self.historyData?.getStandingAdultCount() ?? 0)")
+                        Text(" | ")
+                        Text("Child: \(self.historyData?.getStandingChildCount() ?? 0)")
+                    }
+                    
+                    
+                }.font(.system(size: 15, weight: .regular, design: .default))
+            }
+            
+            
+            
+            
             if (historyData?.seats?.count ?? 0) > 0 {
                 Divider()
                     .padding(.horizontal, 2)
@@ -85,22 +105,6 @@ struct BookingHistoryCellView: View {
             }
             
             
-            if (historyData?.standing?.count ?? 0) > 0 {
-                Divider()
-                    .padding(.horizontal, 2)
-                
-                HStack {
-                    Text("Standing Count")
-                        .foregroundColor(AppTheme.appThemeOrange)
-                    Group {
-                        Text("Adult: \(self.historyData?.getStandingAdultCount() ?? 0)")
-                        Text(" | ")
-                        Text("Child: \(self.historyData?.getStandingChildCount() ?? 0)")
-                    }
-                    
-                    
-                }.font(.system(size: 15, weight: .regular, design: .default))
-            }
             
             
             
@@ -110,10 +114,14 @@ struct BookingHistoryCellView: View {
             HStack {
                 Spacer()
                 
-                BookedActionsView(msg: composeMessage())
+                if historyData?.bookingStatus != 3 && historyData?.bookingStatus != 4 {
+                    BookedActionsView(msg: composeMessage(), bookingId: "\(historyData?.bookingID ?? "")")
+                        .padding(.top, -10)
+                }
                 
                 Spacer()
                 
+                //Payment Failed
                 if historyData?.bookingStatus == 3 {
                     HStack(spacing: 5) {
                         Image("failled").resizable()
@@ -122,7 +130,25 @@ struct BookingHistoryCellView: View {
                             .foregroundColor(.red)
                             .font(.system(size: 16, weight: .medium, design: .default))
                             
-                    }.padding(5)
+                    }
+                    .padding(.top, 3)
+                    .padding(.bottom, 10)
+                    .padding(.trailing, 10)
+                    
+                    //Ticket Cancelled
+                } else if historyData?.bookingStatus == 4 {
+                    HStack(spacing: 5) {
+                        Image("failled").resizable()
+                            .frame(width: 20, height: 20)
+                        Text("Ticket Cancelled")
+                            .foregroundColor(.red)
+                            .font(.system(size: 16, weight: .medium, design: .default))
+                            
+                    }
+                    .padding(.top, 3)
+                    .padding(.bottom, 10)
+                    .padding(.trailing, 10)
+                    
                     
                 } else {
                     Button {
@@ -139,7 +165,9 @@ struct BookingHistoryCellView: View {
                 }
 
             }
-        }.padding(10)
+        }
+        .padding(.horizontal, 10)
+        .padding(.top, 10)
             
         
         .background(

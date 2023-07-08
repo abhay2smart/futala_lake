@@ -281,8 +281,16 @@ struct SeatSelectionView: View {
                         
                     }
                     
-                    Text(gateSelection)
-                        .font(.system(size: 20, weight: .medium, design: .default))
+                    HStack {
+                        Image("alleyethisway")
+                            .resizable()
+                            .frame(width: 130, height: 35)
+                        
+                        Text(gateSelection)
+                            .font(.system(size: 20, weight: .medium, design: .default))
+                    }
+                    
+                    
                     
                     
                     // color indicator
