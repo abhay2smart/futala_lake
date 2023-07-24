@@ -39,13 +39,15 @@ struct CancelTicketStandingCell: View {
             }
         }
         
-        
-        
-        
     }
     
     var body: some View {
         VStack {
+            Text(data.standing?.first?.gateNumber ?? "")
+                .font(.system(size: 18, weight: .medium, design: .default))
+                .foregroundColor(AppTheme.appThemeOrange)
+                .padding(.top)
+            
             data.getQRImageForStanding()
                 .resizable()
                 .frame(width: 200, height: 200)

@@ -211,7 +211,7 @@ struct CancelTicketConfirmView: View {
                         
                         if cancelTicketViewModel.isCancellationValidated(total: abs(calculateTotal()), adminCharges: (Int(Constants.adminCharges) ?? 0)) {
                         
-                            self.cancelTicketViewModel.updateCancelTicketStatus(data: data, ticketData: ticketData, standingAdultCount: standingAdultCount, standingChildCount: standingChildCount, refundAmt: (abs(calculateTotal() - (Int(Constants.adminCharges) ?? 0))))
+                            self.cancelTicketViewModel.updateCancelTicketStatus(data: data, ticketData: ticketData, standingAdultCount: standingAdultCount, standingChildCount: standingChildCount, refundAmt: calculateTotal() - (Int(Constants.adminCharges) ?? 0))
                             
                         }
                         

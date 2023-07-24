@@ -119,13 +119,6 @@ class SeatLayoutViewModel: ObservableObject {
         if let totalseat =  masterSeatData.seats {
             self.gatesWithSections = self.PrepareDataSectionWise(totalSeats: totalseat)
             print("Let's go====")
-            for item in self.gatesWithSections {
-                print("gate \(item.gateNo)")
-                for section in item.sections {
-                    print("Section: \(section.sectionName)")
-                }
-            }
-            
             
             for seat in totalseat {
                 if let seatFare = self.bookedSeats?.seatFare {
@@ -146,8 +139,6 @@ class SeatLayoutViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self.isLoading = false
             }
-            
-            
             
         }
         
@@ -334,11 +325,14 @@ class SeatLayoutViewModel: ObservableObject {
     
     
     
-    func submitAction(ticketTypeButtonState: TicketTypeButtonState) {
+    func submitAction(ticketTypeButtonState: TicketTypeButtonState, gateNumber: Int) {
         var seatArr = [[String: Any]]()
         
         
         var standing = [String: Any]()
+        
+        standing["gateNumberID"] = gateNumber
+        
         if standingChildCount == "" {
             standingChildCount = "0"
         }

@@ -29,11 +29,14 @@ struct GateSectionView: View {
     
     var seatsInAGate: GateWithSections?
     
-    init(data: [Seats], maturityStatus: Binding<String>, rowCountInASection: Int, groupSeats: String, groupStanding: String, isGroupTicketing: Bool, gateWithSections: GateWithSections? = nil, actionPerformed: ((TicketTypeButtonState) -> () )?, ticketTypeButtonState: TicketTypeButtonState) {
+    @Binding var isPresentedSeatFareNotSet: Bool
+    
+    init(data: [Seats], maturityStatus: Binding<String>, rowCountInASection: Int, groupSeats: String, groupStanding: String, isGroupTicketing: Bool, gateWithSections: GateWithSections? = nil, actionPerformed: ((TicketTypeButtonState) -> () )?, ticketTypeButtonState: TicketTypeButtonState, isPresentedSeatFareNotSet: Binding<Bool>) {
         self.actionPerformed = actionPerformed
         self.ticketTypeButtonState = ticketTypeButtonState
         self.data = data
         self._maturityStatus = maturityStatus
+        self._isPresentedSeatFareNotSet = isPresentedSeatFareNotSet
         self.rowCount = rowCountInASection
         
         
@@ -56,28 +59,20 @@ struct GateSectionView: View {
                     Button {
                         //data[index].toggleIsSelectedStatus()
                         //data.reverse()
-                        if isGroupTicketing {
-                            //element.selectGroupSeats(seats: data, startIndex: index)
-                            //element.toggleIsSelectedStatus(maturityStatus: maturityStatus)
-                            element.selectGroupSeats(seats: data, startIndex: index, maxGroupSeat: groupSeating, seatsInAGate: seatsInAGate)
+                        if element.isFareSetForSeat(seat: element) {
+                            if isGroupTicketing {
+                                element.selectGroupSeats(seats: data, startIndex: index, maxGroupSeat: groupSeating, seatsInAGate: seatsInAGate)
+                            } else {
+                                element.toggleIsSelectedStatus(maturityStatus: maturityStatus)
+                            }
                         } else {
-                            element.toggleIsSelectedStatus(maturityStatus: maturityStatus)
+                            isPresentedSeatFareNotSet = true
                         }
+                        
                         
                         actionPerformed?(ticketTypeButtonState ?? .seating)
                         
                     } label: {
-                        
-//                        ZStack {
-//                            Image("seat")
-//                                .resizable()
-//                                .frame(width: 50, height: 50)
-//                            Text(element.seatNumber ?? "")
-//                                .font(.system(size: 10, weight: .bold, design: .default))
-//                                .frame(width: 50, height: 50)
-//                                .foregroundColor(.black)
-//                        }
-                        
                         Text(element.seatNumber ?? "")
                             .font(.system(size: 10, weight: .bold, design: .default))
                             .frame(width: 40, height: 40)

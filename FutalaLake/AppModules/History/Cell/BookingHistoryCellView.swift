@@ -50,6 +50,50 @@ struct BookingHistoryCellView: View {
             
             
             
+            if ((historyData?.discountAmtSeat ?? 0) > 0)  && ((historyData?.discountAmtStanding ?? 0) == 0)  {
+                Divider()
+                HStack {
+                    Text("Seat Discount")
+                        .foregroundColor(AppTheme.appThemeOrange)
+                    Spacer()
+                    Text("₹\((historyData?.discountAmtSeat ?? 0))")
+                }.font(.system(size: 15, weight: .regular, design: .default))
+                
+            }
+            
+            if ((historyData?.discountAmtStanding ?? 0) > 0) && ((historyData?.discountAmtSeat ?? 0) == 0)  {
+                Divider()
+                HStack {
+                    Text("Standing Discount")
+                        .foregroundColor(AppTheme.appThemeOrange)
+                    Spacer()
+                    Text("₹\((historyData?.discountAmtStanding ?? 0))")
+                }.font(.system(size: 15, weight: .regular, design: .default))
+                
+            }
+            
+            
+            if ((historyData?.discountAmtStanding ?? 0) > 0) && ((historyData?.discountAmtSeat ?? 0) > 0)  {
+                Divider()
+                HStack {
+                    Text("Seat Discount")
+                        .foregroundColor(AppTheme.appThemeOrange)
+                    Spacer()
+                    Text("₹\((historyData?.discountAmtSeat ?? 0))")
+                }.font(.system(size: 15, weight: .regular, design: .default))
+                
+                Divider()
+                
+                HStack {
+                    Text("Standing Discount")
+                        .foregroundColor(AppTheme.appThemeOrange)
+                    Spacer()
+                    Text("₹\((historyData?.discountAmtStanding ?? 0))")
+                }.font(.system(size: 15, weight: .regular, design: .default))
+                
+            }
+            
+            
             if (historyData?.standing?.count ?? 0) > 0 {
                 Divider()
                     .padding(.horizontal, 2)
@@ -57,6 +101,7 @@ struct BookingHistoryCellView: View {
                 HStack {
                     Text("Standing Count")
                         .foregroundColor(AppTheme.appThemeOrange)
+                    Spacer()
                     Group {
                         Text("Adult: \(self.historyData?.getStandingAdultCount() ?? 0)")
                         Text(" | ")
@@ -78,6 +123,7 @@ struct BookingHistoryCellView: View {
                         HStack {
                             Text("Adult seat:")
                                 .foregroundColor(AppTheme.appThemeOrange)
+                            Spacer()
                             Text("\(self.historyData?.getAdultSeatStr() ?? "")")
                         }.font(.system(size: 15, weight: .regular, design: .default))
                     }
@@ -95,6 +141,7 @@ struct BookingHistoryCellView: View {
                     HStack {
                         Text("Child seat:")
                             .foregroundColor(AppTheme.appThemeOrange)
+                        Spacer()
                         Text("\(self.historyData?.getChildSeatStr() ?? "")")
                     }.font(.system(size: 15, weight: .regular, design: .default))
                 }

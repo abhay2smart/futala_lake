@@ -46,6 +46,8 @@ class HistoryData : Codable, ObservableObject {
     var standing : [HistoryStanding]?
     var encryptedSeatingQRCode : String?
     var encryptedStandingQRCode : String?
+    var discountAmtSeat: Int?
+    var discountAmtStanding: Int?
     
     
     enum CodingKeys: String, CodingKey {
@@ -66,6 +68,8 @@ class HistoryData : Codable, ObservableObject {
         case standing = "standing"
         case encryptedSeatingQRCode = "encryptedSeatingQRCode"
         case encryptedStandingQRCode = "encryptedStandingQRCode"
+        case discountAmtSeat = "discountAmtSeat"
+        case discountAmtStanding = "discountAmtStanding"
     }
 
     required init(from decoder: Decoder?)  {
@@ -88,6 +92,11 @@ class HistoryData : Codable, ObservableObject {
                 standing = try values.decodeIfPresent([HistoryStanding].self, forKey: .standing)
                 encryptedSeatingQRCode = try values.decodeIfPresent(String.self, forKey: .encryptedSeatingQRCode)
                 encryptedStandingQRCode = try values.decodeIfPresent(String.self, forKey: .encryptedStandingQRCode)
+                discountAmtSeat = try values.decodeIfPresent(Int.self, forKey: .discountAmtSeat)
+                discountAmtStanding = try values.decodeIfPresent(Int.self, forKey: .discountAmtStanding)
+                
+                
+                
             } catch {
                 print("someting went wrong Historymode @\(#line)")
             }
@@ -114,6 +123,42 @@ class HistoryData : Codable, ObservableObject {
             }
             
         }
+        
+        return seatsStr == "" ? "N/A" :  seatsStr
+    }
+    
+    func getAdultAndChildSeatStr()->String {
+        var seatsStr = ""
+        var seatsArr = [String]()
+        var i = 0
+        for seat in seats ?? [] {
+            if seat.isAdult == 1 {
+                seatsArr.append(seat.seatNumber ?? "")
+                if i == ((seats?.count ?? 0) - 1) {
+                    seatsStr += seat.seatNumber ?? ""
+                } else {
+                    seatsStr += (seat.seatNumber ?? "") + ", "
+                }
+                i += 1
+            }
+            
+        }
+        
+        
+        var i2 = 0
+        for seat in seats ?? [] {
+            if seat.isAdult == 0 {
+                seatsArr.append(seat.seatNumber ?? "")
+                if i2 == ((seats?.count ?? 0) - 1) {
+                    seatsStr += seat.seatNumber ?? ""
+                } else {
+                    seatsStr += (seat.seatNumber ?? "") + ", "
+                }
+                i2 += 1
+            }
+            
+        }
+        
         
         return seatsStr == "" ? "N/A" :  seatsStr
     }

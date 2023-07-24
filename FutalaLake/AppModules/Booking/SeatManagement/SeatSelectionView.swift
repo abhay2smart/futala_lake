@@ -31,9 +31,17 @@ struct SeatSelectionView: View {
     
     @State var isPresented: Bool = false
     
+    @State var isPresentedGroupConfirmDialog = false
+    
+    
+    @State var yesConfirmGroupDialog = false
+    @State var noConfirmGroupDialog = false
+    
     @StateObject var seatLayoutViewModel = SeatLayoutViewModel()
     
     @State var setas = [Seats]()
+    
+    @State var isPresentedSeatFareNotSet = false
     
     @State var ticketTypeButtonState:TicketTypeButtonState = .seating
     
@@ -222,10 +230,9 @@ struct SeatSelectionView: View {
                             
                             
                             Button {
-                                ticketTypeButtonState = .group
-                                seatLayoutViewModel.isGroupPresented = true
-                                Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT = 0
-                                self.seatLayoutViewModel.unselectAllSeletedSeats()//getSeatMasterData()
+                                isPresentedGroupConfirmDialog = true
+                                yesConfirmGroupDialog = false
+                                noConfirmGroupDialog = false
                             } label: {
                                 Text("Group")
                                     .foregroundColor(.black)
@@ -242,6 +249,24 @@ struct SeatSelectionView: View {
                                         x: 0, y: 0)
                             )
                             .padding(.horizontal, 10)
+                            .onChange(of: yesConfirmGroupDialog) { newValue in
+                                if newValue {
+                                        ticketTypeButtonState = .group
+                                        seatLayoutViewModel.isGroupPresented = true
+                                        Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT = 0
+                                        self.seatLayoutViewModel.unselectAllSeletedSeats()//getSeatMasterData()
+                                        isPresentedGroupConfirmDialog = false
+                                    
+
+                                }
+                            }
+                            
+                            
+                            .onChange(of: noConfirmGroupDialog) { newValue in
+                                if newValue {
+                                    isPresentedGroupConfirmDialog = false
+                                }
+                            }
                             
                             Spacer()
                             
@@ -330,12 +355,12 @@ struct SeatSelectionView: View {
                                         ForEach(data.sections) { item in
                                             if let safeData = item.seats {
                                                 if ticketTypeButtonState == .group {
-                                                    GateSectionView(data: safeData, maturityStatus: $maturityType, rowCountInASection: item.rowCount, groupSeats: seatLayoutViewModel.groupSeats, groupStanding: seatLayoutViewModel.groupStanding, isGroupTicketing: true, gateWithSections: data, actionPerformed: seatLayoutViewModel.actionPerformed, ticketTypeButtonState: ticketTypeButtonState)
+                                                    GateSectionView(data: safeData, maturityStatus: $maturityType, rowCountInASection: item.rowCount, groupSeats: seatLayoutViewModel.groupSeats, groupStanding: seatLayoutViewModel.groupStanding, isGroupTicketing: true, gateWithSections: data, actionPerformed: seatLayoutViewModel.actionPerformed, ticketTypeButtonState: ticketTypeButtonState, isPresentedSeatFareNotSet: $isPresentedSeatFareNotSet)
                                                     Image("stair")
                                                         .resizable()
                                                         .frame(width: 80)
                                                 } else {
-                                                    GateSectionView(data: safeData, maturityStatus: $maturityType, rowCountInASection: item.rowCount, groupSeats: "0", groupStanding: "0", isGroupTicketing: false, actionPerformed: seatLayoutViewModel.actionPerformed, ticketTypeButtonState: ticketTypeButtonState)
+                                                    GateSectionView(data: safeData, maturityStatus: $maturityType, rowCountInASection: item.rowCount, groupSeats: "0", groupStanding: "0", isGroupTicketing: false, actionPerformed: seatLayoutViewModel.actionPerformed, ticketTypeButtonState: ticketTypeButtonState, isPresentedSeatFareNotSet: $isPresentedSeatFareNotSet)
                                                     Image("stair")
                                                         .resizable()
                                                         .frame(width: 80)
@@ -387,7 +412,7 @@ struct SeatSelectionView: View {
                     seatLayoutViewModel.showStartTime = self.showStartTime
                     seatLayoutViewModel.showEndTime = self.showEndTime
                     if seatLayoutViewModel.validate(ticketTypeButtonState: ticketTypeButtonState) {
-                        seatLayoutViewModel.submitAction(ticketTypeButtonState: ticketTypeButtonState)
+                        seatLayoutViewModel.submitAction(ticketTypeButtonState: ticketTypeButtonState, gateNumber: Int("\(gateSelection.last!)") ?? 1)
                     }
                     
                     self.showToast = seatLayoutViewModel.showAlert
@@ -433,32 +458,49 @@ struct SeatSelectionView: View {
                 })
                 .padding(.bottom, 40)
             
-            if isPresented {
-                StandingInputDialog(noOfAdults: $noOfAdults, noOfChildren: $noOfChildren, total: $seatLayoutViewModel.standingTotalForDialog, isPresented: $isPresented)
-            }
             
-            if seatLayoutViewModel.isGroupPresented {
-                GroupInputDialogView(standing: $seatLayoutViewModel.standings, isGroupDialogPresented: $seatLayoutViewModel.isGroupPresented, groupSeats: $seatLayoutViewModel.groupSeats, groupStanding: $seatLayoutViewModel.groupStanding, minVal: seatLayoutViewModel.minGroupValue, maxVal: seatLayoutViewModel.maxGroupValue, ticketTypeButtonState: $ticketTypeButtonState)
-            }
-            
-            
-            if seatLayoutViewModel.isPresentPriceNotSetDilog {
-                AlertWithSingleButton(isPresented: $seatLayoutViewModel.isPresentPriceNotSetDilog)
-            }
-            
-            
-            if self.seatLayoutViewModel.isLoading {
-                Loader()
-                    .padding(.bottom, 300)
-            }
-            
-            Text("")
-                .onChange(of: seatLayoutViewModel.isPresentPriceNotSetDilog) { v in
-                    if !v {
-                        session.currentTab = 1
-                    }
-                    
+            Group {
+                
+                if isPresented {
+                    StandingInputDialog(noOfAdults: $noOfAdults, noOfChildren: $noOfChildren, total: $seatLayoutViewModel.standingTotalForDialog, isPresented: $isPresented)
                 }
+                
+                if seatLayoutViewModel.isGroupPresented {
+                    GroupInputDialogView(standing: $seatLayoutViewModel.standings, isGroupDialogPresented: $seatLayoutViewModel.isGroupPresented, groupSeats: $seatLayoutViewModel.groupSeats, groupStanding: $seatLayoutViewModel.groupStanding, minVal: seatLayoutViewModel.minGroupValue, maxVal: seatLayoutViewModel.maxGroupValue, ticketTypeButtonState: $ticketTypeButtonState)
+                }
+                
+                
+                if seatLayoutViewModel.isPresentPriceNotSetDilog {
+                    AlertWithSingleButton(isPresented: $seatLayoutViewModel.isPresentPriceNotSetDilog)
+                }
+                
+                
+                if self.seatLayoutViewModel.isLoading {
+                    Loader()
+                        .padding(.bottom, 300)
+                }
+                
+                Text("")
+                    .onChange(of: seatLayoutViewModel.isPresentPriceNotSetDilog) { v in
+                        if !v {
+                            session.currentTab = 1
+                        }
+                        
+                    }
+                
+                if isPresentedGroupConfirmDialog {
+                    ConfirmGroupAlertDialog(yesButtonPressed: $yesConfirmGroupDialog, noButtonPressed: $noConfirmGroupDialog)
+                }
+                
+                if isPresentedSeatFareNotSet {
+                    CustomAlert(isPresented: $isPresentedSeatFareNotSet)
+                }
+                
+                
+            }
+            
+            
+            
             
             
             
@@ -475,8 +517,6 @@ struct SeatSelectionView: View {
                     }.foregroundColor(.white)
                 }
             }
-        
-        
         
     }
 }

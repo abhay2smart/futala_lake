@@ -163,9 +163,9 @@ class DateTimeSelectionViewModel: ObservableObject {
         }
     }
     
-    func getSeatMasterDemo() {
-        self.shouldMoveToSeatLayout = true
-    }
+//    func getSeatMasterDemo() {
+//        self.shouldMoveToSeatLayout = true
+//    }
     
     func getSeatMasterData() {
         isLoading = true

@@ -87,6 +87,10 @@ class Seats : ObservableObject, Codable, Identifiable {
     var fare:Float = 0.0
     var isAdult: Int = 1
     
+    func isFareSetForSeat(seat: Seats)->Bool {
+        return seat.fare == 0 ? false : true
+    }
+    
     func toggleIsSelectedStatus(maturityStatus: String) {
         if !isSelectable {
             return
@@ -159,7 +163,7 @@ class Seats : ObservableObject, Codable, Identifiable {
                     guard seats[safe: i] != nil else {
                       return
                     }
-                    if !seats[i].isSelectable || seats[i].isSelected{
+                    if !seats[i].isSelectable || seats[i].isSelected || seats[i].fare == 0 {
                         break
                     }
                     

@@ -37,6 +37,8 @@ struct StandingInputDialog: View {
                 VStack(alignment: .leading) {
                     Text("No. of Adults")
                         .font(.system(size: 14, weight: .semibold))
+                        .padding(.top, 15)
+                    
                     CustomTextField(placeHolder: "", text: $noOfAdults).onChange(of: noOfAdults) { newValue in
                         let totalIntVal = (Int(noOfAdults) ?? 0) + (Int(noOfChildren) ?? 0)
                         total = "\(totalIntVal)"
@@ -121,7 +123,7 @@ struct StandingInputDialog: View {
                 
 
                 Spacer()
-            }.frame(height: 350)
+            }.frame(height: 360)
                 .background(
                     Rectangle()
                     .fill(.white )

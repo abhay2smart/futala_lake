@@ -114,7 +114,7 @@ class CancelTicketViewModel: ObservableObject {
         
         params["totalCancelSeatsFare"] = "\(totalSeatsFare)"
         
-        params["adminCharges"] = "50"
+        params["adminCharges"] = Constants.adminCharges
         
         params["totalRefundAmount"] = "\(refundAmt)"
         
@@ -242,18 +242,11 @@ class CancelTicketViewModel: ObservableObject {
                         self.isLoading = false
                     }
                     
-                    DispatchQueue.main.async {
-                        self.msg = "Ticket cancelled successfully"
-                        self.isTostPresented = true
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                            self.isPresented = false
-                        })
-                        
+                    guard let data = data else {
+                        return
                     }
                     
-                    
                     if !resultStatus {
-                        print("something went wrong:: SeatLayoutViewModel09999 \(#line)")
                         self.msg = "something went wrong"
                         self.isTostPresented = true
                         return
@@ -261,10 +254,24 @@ class CancelTicketViewModel: ObservableObject {
                     
                     print("Cancellation params55 \(params)")
                     
+                    let parsedObj = processGloabalModel(data: data)
                     
-                    
-                    guard let data = data else {
-                        return
+                    if parsedObj.status == false {
+                        DispatchQueue.main.async {
+                            self.msg = parsedObj.error
+                            self.isTostPresented = true
+                            return
+                            
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            self.msg = "Ticket cancelled successfully"
+                            self.isTostPresented = true
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                                self.isPresented = false
+                            })
+                            
+                        }
                     }
                     
                 }

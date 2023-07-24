@@ -11,6 +11,9 @@
 		1709B7612A3C52B200D7B3F1 /* gift.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1709B7602A3C52B200D7B3F1 /* gift.gif */; };
 		171575072963FBE10004F2F8 /* CheckoutVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171575062963FBE10004F2F8 /* CheckoutVIew.swift */; };
 		1715750D296428990004F2F8 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1715750C296428990004F2F8 /* ToastView.swift */; };
+		171790B22A61199C001D38F4 /* ConfirmGroupAlertDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171790B12A61199C001D38F4 /* ConfirmGroupAlertDialog.swift */; };
+		171791822A66C1DC001D38F4 /* wildcard_aurionpro_com.crt in Resources */ = {isa = PBXBuildFile; fileRef = 171791812A66C1DC001D38F4 /* wildcard_aurionpro_com.crt */; };
+		171791842A66C1EB001D38F4 /* wildcard_aurionpro_com.key in Resources */ = {isa = PBXBuildFile; fileRef = 171791832A66C1EB001D38F4 /* wildcard_aurionpro_com.key */; };
 		171B402F29CD732400743095 /* SeatInventoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171B402E29CD732400743095 /* SeatInventoryModel.swift */; };
 		171B403129CDCA0D00743095 /* QRSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171B403029CDCA0D00743095 /* QRSubView.swift */; };
 		1724EEA829CC6DDB00930830 /* UpdatePaymentStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1724EEA729CC6DDB00930830 /* UpdatePaymentStatusModel.swift */; };
@@ -76,6 +79,7 @@
 		179E088929B5E0B500AA4541 /* DateTimeSelectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179E088829B5E0B500AA4541 /* DateTimeSelectionModel.swift */; };
 		179E088C29B5E51D00AA4541 /* DateTimeSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179E088B29B5E51D00AA4541 /* DateTimeSelectionViewModel.swift */; };
 		179E088F29B5F26300AA4541 /* GetTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179E088E29B5F26300AA4541 /* GetTokenModel.swift */; };
+		179EE67E2A59384A0091D36C /* TabManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179EE67D2A59384A0091D36C /* TabManager.swift */; };
 		17A1E24329EE75BB0056117B /* BookedActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E24229EE75BB0056117B /* BookedActionsView.swift */; };
 		17A1E24729EFC2DD0056117B /* MasterConfigModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E24629EFC2DD0056117B /* MasterConfigModel.swift */; };
 		17A1E24A29EFC3B70056117B /* MasterConfigViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E24929EFC3B70056117B /* MasterConfigViewModel.swift */; };
@@ -117,6 +121,7 @@
 		17EFE3F12A2749F900342077 /* AlertViewWithTwoButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EFE3F02A2749F900342077 /* AlertViewWithTwoButtons.swift */; };
 		17F5134D29B1C5A3004A7833 /* OTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F5134C29B1C5A3004A7833 /* OTPViewModel.swift */; };
 		17FC7F972959BF5F0066D67B /* BookingHistoryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC7F962959BF5F0066D67B /* BookingHistoryCellView.swift */; };
+		17FCA3562A68FE6A00AC5B60 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FCA3552A68FE6A00AC5B60 /* CustomAlert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,6 +146,9 @@
 		1709B7602A3C52B200D7B3F1 /* gift.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gift.gif; sourceTree = "<group>"; };
 		171575062963FBE10004F2F8 /* CheckoutVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutVIew.swift; sourceTree = "<group>"; };
 		1715750C296428990004F2F8 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		171790B12A61199C001D38F4 /* ConfirmGroupAlertDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmGroupAlertDialog.swift; sourceTree = "<group>"; };
+		171791812A66C1DC001D38F4 /* wildcard_aurionpro_com.crt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wildcard_aurionpro_com.crt; sourceTree = "<group>"; };
+		171791832A66C1EB001D38F4 /* wildcard_aurionpro_com.key */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wildcard_aurionpro_com.key; sourceTree = "<group>"; };
 		171B402E29CD732400743095 /* SeatInventoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatInventoryModel.swift; sourceTree = "<group>"; };
 		171B403029CDCA0D00743095 /* QRSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRSubView.swift; sourceTree = "<group>"; };
 		1724EEA729CC6DDB00930830 /* UpdatePaymentStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePaymentStatusModel.swift; sourceTree = "<group>"; };
@@ -195,6 +203,7 @@
 		179E088829B5E0B500AA4541 /* DateTimeSelectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeSelectionModel.swift; sourceTree = "<group>"; };
 		179E088B29B5E51D00AA4541 /* DateTimeSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeSelectionViewModel.swift; sourceTree = "<group>"; };
 		179E088E29B5F26300AA4541 /* GetTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTokenModel.swift; sourceTree = "<group>"; };
+		179EE67D2A59384A0091D36C /* TabManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabManager.swift; sourceTree = "<group>"; };
 		17A1E24229EE75BB0056117B /* BookedActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookedActionsView.swift; sourceTree = "<group>"; };
 		17A1E24629EFC2DD0056117B /* MasterConfigModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterConfigModel.swift; sourceTree = "<group>"; };
 		17A1E24929EFC3B70056117B /* MasterConfigViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterConfigViewModel.swift; sourceTree = "<group>"; };
@@ -241,6 +250,7 @@
 		17EFE3F02A2749F900342077 /* AlertViewWithTwoButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewWithTwoButtons.swift; sourceTree = "<group>"; };
 		17F5134C29B1C5A3004A7833 /* OTPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewModel.swift; sourceTree = "<group>"; };
 		17FC7F962959BF5F0066D67B /* BookingHistoryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingHistoryCellView.swift; sourceTree = "<group>"; };
+		17FCA3552A68FE6A00AC5B60 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -322,6 +332,15 @@
 			path = Alert;
 			sourceTree = "<group>";
 		};
+		171791802A66C1C6001D38F4 /* SSL */ = {
+			isa = PBXGroup;
+			children = (
+				171791812A66C1DC001D38F4 /* wildcard_aurionpro_com.crt */,
+				171791832A66C1EB001D38F4 /* wildcard_aurionpro_com.key */,
+			);
+			path = SSL;
+			sourceTree = "<group>";
+		};
 		171B402C29CD730A00743095 /* Extras */ = {
 			isa = PBXGroup;
 			children = (
@@ -342,6 +361,7 @@
 		17335D782A39E5AA007A72B7 /* AppModules */ = {
 			isa = PBXGroup;
 			children = (
+				171791802A66C1C6001D38F4 /* SSL */,
 				17335D792A39E62C007A72B7 /* AppUpdate */,
 				177B40BC2941FB4900EDF0F0 /* Auth */,
 				17BD37872954132F00DA2FE9 /* Home */,
@@ -609,6 +629,7 @@
 			isa = PBXGroup;
 			children = (
 				17831DC62955BCFA005C36D0 /* TopNavItemView.swift */,
+				17FCA3552A68FE6A00AC5B60 /* CustomAlert.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -893,6 +914,7 @@
 			isa = PBXGroup;
 			children = (
 				17BD37882954134700DA2FE9 /* TabContainerView.swift */,
+				179EE67D2A59384A0091D36C /* TabManager.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -916,6 +938,7 @@
 				17D80F632962A8D200D861FF /* GateSectionView.swift */,
 				17AE976629BB0BDD00F12E78 /* StandingInputDialog.swift */,
 				17A1E24B29F0046F0056117B /* GroupInputDialogView.swift */,
+				171790B12A61199C001D38F4 /* ConfirmGroupAlertDialog.swift */,
 			);
 			path = SeatManagement;
 			sourceTree = "<group>";
@@ -1151,8 +1174,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				17831DCA2955BDA5005C36D0 /* bottombar.xcassets in Resources */,
+				171791842A66C1EB001D38F4 /* wildcard_aurionpro_com.key in Resources */,
 				17335D5D2A39C726007A72B7 /* GoogleService-Info.plist in Resources */,
 				1709B7612A3C52B200D7B3F1 /* gift.gif in Resources */,
+				171791822A66C1DC001D38F4 /* wildcard_aurionpro_com.crt in Resources */,
 				17A585EA2935FF2D00365D71 /* Preview Assets.xcassets in Resources */,
 				17A585E72935FF2D00365D71 /* Assets.xcassets in Resources */,
 			);
@@ -1212,6 +1237,7 @@
 				173BCE302A0CBD9500DF98FC /* CheckoutViewModel.swift in Sources */,
 				179E088F29B5F26300AA4541 /* GetTokenModel.swift in Sources */,
 				17DDFC1129530F1500D7A5C9 /* UpcomcommingbookingStatusCell.swift in Sources */,
+				17FCA3562A68FE6A00AC5B60 /* CustomAlert.swift in Sources */,
 				17335D7B2A39E663007A72B7 /* VersionUpdateAlertView.swift in Sources */,
 				171B402F29CD732400743095 /* SeatInventoryModel.swift in Sources */,
 				173A59BD29B0ACDE0037AF51 /* KeychainHelper.swift in Sources */,
@@ -1222,6 +1248,7 @@
 				17335D772A39DB32007A72B7 /* AppVersionUpdateManager.swift in Sources */,
 				17545D3E294308CD003E3724 /* OtpView.swift in Sources */,
 				177B40BF2941FB8E00EDF0F0 /* LoginView.swift in Sources */,
+				179EE67E2A59384A0091D36C /* TabManager.swift in Sources */,
 				17E570A329D157570011DA87 /* HistoryViewModel.swift in Sources */,
 				17EFE3F12A2749F900342077 /* AlertViewWithTwoButtons.swift in Sources */,
 				17BAE81229E15D0000333A0A /* HistoryDetailsModel.swift in Sources */,
@@ -1276,6 +1303,7 @@
 				174F1BCF295B432D00DAC0D2 /* CancelTicketConfirmAlertView.swift in Sources */,
 				17F5134D29B1C5A3004A7833 /* OTPViewModel.swift in Sources */,
 				179E088929B5E0B500AA4541 /* DateTimeSelectionModel.swift in Sources */,
+				171790B22A61199C001D38F4 /* ConfirmGroupAlertDialog.swift in Sources */,
 				17D80F642962A8D200D861FF /* GateSectionView.swift in Sources */,
 				17B6A9582A456B39005A5632 /* FileDownloadManager.swift in Sources */,
 				17BD37892954134700DA2FE9 /* TabContainerView.swift in Sources */,

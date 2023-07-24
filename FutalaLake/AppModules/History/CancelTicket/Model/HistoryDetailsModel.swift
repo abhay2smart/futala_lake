@@ -242,6 +242,7 @@ struct Standing: Codable {
     var isAdult = 1
     var seatFare = 0
     var seatBookingID = ""
+    var gateNumber = ""
     
     init(from decoder: Decoder? = nil)  {
         if let decoder = decoder {
@@ -251,6 +252,7 @@ struct Standing: Codable {
                 isAdult = try values.decodeIfPresent(Int.self, forKey: .isAdult) ?? 0
                 seatFare = try values.decodeIfPresent(Int.self, forKey: .seatFare) ?? 0
                 seatBookingID = try values.decodeIfPresent(String.self, forKey: .seatBookingID) ?? ""
+                gateNumber = try values.decodeIfPresent(String.self, forKey: .gateNumber) ?? ""
                 
             } catch {
                 

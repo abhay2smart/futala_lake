@@ -21,6 +21,7 @@ class CheckoutViewModel: ObservableObject {
     func makeCheckout(params: [String: Any]) {
         var param = params
         param["paymentTypeID"] = "1"
+        param["bookingSource"] = 4
         isLoading = true
         let url = Constants.baseUrl + Constants.API.checkOut
         

@@ -20,7 +20,7 @@ struct AppTheme {
     struct SeatColor {
         
         static let selected = Color(UIColor.init(hexString: "#FF1EA83C"))
-        static let defaultColor = Color(UIColor.init(hexString: "#F47F22"))
+        static let defaultColor = Color(UIColor.init(hexString: "#E1EFF6"))
         static let vip = Color(UIColor.init(hexString: "#7472D3"))
         static let classic = Color(UIColor.init(hexString: "#F4964C"))
         //static let maintenance = Color(UIColor.init(hexString: "#F890ED"))
