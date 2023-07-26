@@ -104,8 +104,11 @@ struct BookingHistoryCellView: View {
                     Spacer()
                     Group {
                         Text("Adult: \(self.historyData?.getStandingAdultCount() ?? 0)")
-                        Text(" | ")
-                        Text("Child: \(self.historyData?.getStandingChildCount() ?? 0)")
+                        if ((historyData?.discountAmtStanding ?? 0) == 0) && ((historyData?.discountAmtSeat ?? 0) == 0)  {
+                            Text(" | ")
+                            Text("Child: \(self.historyData?.getStandingChildCount() ?? 0)")
+                        }
+                        
                     }
                     
                     
@@ -145,15 +148,7 @@ struct BookingHistoryCellView: View {
                         Text("\(self.historyData?.getChildSeatStr() ?? "")")
                     }.font(.system(size: 15, weight: .regular, design: .default))
                 }
-                
-                
-                
-                    
             }
-            
-            
-            
-            
             
             Divider()
             

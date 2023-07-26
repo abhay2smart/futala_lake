@@ -10,8 +10,23 @@ import SwiftUI
 struct PaymentWebView: View {
     @ObservedObject var webViewModel = WebViewModel(url: "")
     @ObservedObject var paymentWebViewViewModel = PaymentWebViewViewModel()
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State private var showAlert = false
     
     var checkOutData:CheckOutModelData?
+    
+    var backButton: some View {
+            Button(action: {
+                // Show the confirmation alert when the back button is tapped
+                showAlert = true
+            }) {
+                HStack {
+                    Image(systemName: "chevron.backward")
+                    Text("Checkout")
+                }
+                
+            }
+        }
     
     init(data: CheckOutModelData?) {
         self.checkOutData = data
@@ -38,7 +53,21 @@ struct PaymentWebView: View {
                 
             } label: {
                 
-            }.navigationTitle("Payment")
+            }
+            .navigationTitle("Payment")
+            .navigationBarBackButtonHidden(true)
+            .navigationBarItems(leading: backButton)
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text("ALert"),
+                    message: Text("Are you sure you want to go back?"),
+                    primaryButton: .default(Text("Yes")) {
+                        // Perform the action to go back here
+                        self.presentationMode.wrappedValue.dismiss()
+                    },
+                    secondaryButton: .cancel(Text("No"))
+                )
+            }
             
             NavigationLink(isActive: $webViewModel.shouldGoToFailure) {
                 if let checkOutData = checkOutData {
@@ -49,6 +78,7 @@ struct PaymentWebView: View {
             } label: {
                 
             }.navigationTitle("Payment Failed")
+            
             
             
             
