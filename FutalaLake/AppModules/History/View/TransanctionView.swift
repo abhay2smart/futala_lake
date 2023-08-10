@@ -18,38 +18,47 @@ struct TransanctionView: View {
     //@ObservedObject var historyViewModel = HistoryViewModel()
     @StateObject var historyViewModel = HistoryViewModel()
     
-    init() {
-        historyViewModel.fetchHistory()
-    }
+//    init() {
+//        historyViewModel.fetchHistory()
+//    }
     
     var body: some View {
         NavigationView {
             ZStack {
-                ScrollView {
-                    VStack {
-                        if historyViewModel.historyData.count == 0 {
-                            HStack {
-                                Text("No history found")
-                                    .foregroundColor(.gray)
-                                Button {
-                                    historyViewModel.fetchHistory()
-                                } label: {
-                                    Text("Refresh")
+                ScrollViewReader { value in
+                    ScrollView {
+                        VStack {
+                            if historyViewModel.historyData.count == 0 {
+                                HStack {
+                                    Text("No history found")
+                                        .foregroundColor(.gray)
+                                    Button {
+                                        historyViewModel.fetchHistory()
+                                    } label: {
+                                        Text("Refresh")
+                                    }
+                                }
+                                
+                            } else {
+                                ForEach(Array(historyViewModel.historyData.enumerated()), id: \.offset) { index, element in
+                                    BookingHistoryCellView(data: element, historyDataIndex: $historyDataIndex, isTicketInfoPreseneted: $isTicketInfoPreseneted, isViewButtonPressed: $isViewButtonPressed, index: index)
+                                        .padding(.horizontal, 15)
+                                        .padding(.vertical, 0)
+                                        .id(index)
                                 }
                             }
                             
-                        } else {
-                            ForEach(Array(historyViewModel.historyData.enumerated()), id: \.offset) { index, element in
-                                BookingHistoryCellView(data: element, historyDataIndex: $historyDataIndex, isTicketInfoPreseneted: $isTicketInfoPreseneted, isViewButtonPressed: $isViewButtonPressed, index: index)
-                                    .padding(.horizontal, 15)
-                                    .padding(.vertical, 0)
-                            }
-                        }
+                            
+                            
+                        }.padding(.top, 20)
                         
-                        
-                        
-                    }.padding(.top, 20)
-                    
+                    }
+                    .onAppear {
+                       // Scroll to the top of the ScrollView when the view appears
+                       withAnimation {
+                           value.scrollTo(0)
+                       }
+                   }
                 }
                 
                 if historyDataIndex < historyViewModel.historyData.count {

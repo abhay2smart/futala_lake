@@ -15,7 +15,9 @@ enum TicketTypeButtonState:  CaseIterable, Codable {
 
 struct SeatSelectionView: View {
     @State private var gateSelection = "GATE NO. 1"
-    @State private var showToast = false
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     private let gates = Constants.GATES
     
     @State var maturityType: String = "Adult"
@@ -201,13 +203,16 @@ struct SeatSelectionView: View {
                             
                             Button {
                                 //isSeating = false
-                                ticketTypeButtonState = .standing
-                                isPresented = true
-                                
-                                if Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT > 0 {
-                                    Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT = 0
-                                    self.seatLayoutViewModel.unselectAllSeletedSeats()
+                                if seatLayoutViewModel.isStandingFareSet() {
+                                    ticketTypeButtonState = .standing
+                                    isPresented = true
+                                    
+                                    if Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT > 0 {
+                                        Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT = 0
+                                        self.seatLayoutViewModel.unselectAllSeletedSeats()
+                                    }
                                 }
+                                
                                 
                                 
                             } label: {
@@ -415,7 +420,7 @@ struct SeatSelectionView: View {
                         seatLayoutViewModel.submitAction(ticketTypeButtonState: ticketTypeButtonState, gateNumber: Int("\(gateSelection.last!)") ?? 1)
                     }
                     
-                    self.showToast = seatLayoutViewModel.showAlert
+                    //self.showToast = seatLayoutViewModel.showAlert
                     
                     
                 } label: {
@@ -447,7 +452,7 @@ struct SeatSelectionView: View {
             
             
                 .toast(message: self.seatLayoutViewModel.errorMessage,
-                       isShowing: $showToast,
+                       isShowing: $seatLayoutViewModel.showToast,
                        duration: Toast.short)
                 .padding(.bottom, -20)
             
@@ -484,6 +489,7 @@ struct SeatSelectionView: View {
                     .onChange(of: seatLayoutViewModel.isPresentPriceNotSetDilog) { v in
                         if !v {
                             session.currentTab = 1
+                            presentationMode.wrappedValue.dismiss()
                         }
                         
                     }

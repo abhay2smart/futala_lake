@@ -1,0 +1,145 @@
+2023-07-27 06:39:37 +0000  Initial pipeline context: <IDEDistributionProcessingPipelineContext: 0x2ff750e20; archive(resolved)="<IDEArchive: 0x60022b8cd3e0>", distributionTask(resolved)="2", distributionDestination(resolved)="1", distributionMethod(resolved)="<IDEDistributionMethodDevelopmentSigned: 0x6000690a2d90>", team(resolved)="<IDEProvisioningDisambiguatableBasicTeam: 0x600000cbc940; teamID='8LTN4Q26AJ', teamName='Maharashtra Metro Rail Corp Ltd', teamType='Company', username='pankaj.yadav@mahametro.org', isFreeProvisioningTeam='0'>">
+	Chain (14, self inclusive):
+	<IDEDistributionProcessingPipelineContext: 0x2ff750e20; archive = "<IDEArchive: 0x60022b8cd3e0>", distributionMethod="<IDEDistributionMethodDevelopmentSigned: 0x6000690a2d90>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x600000cbc940; teamID='8LTN4Q26AJ', teamName='Maharashtra Metro Rail Corp Ltd', teamType='Company', username='pankaj.yadav@mahametro.org', isFreeProvisioningTeam='0'>">
+	<IDEDistributionProcessingPipelineContext: 0x2fdf59520; archive = "<IDEArchive: 0x60022b8cd3e0>", distributionMethod="<IDEDistributionMethodDevelopmentSigned: 0x6000690a2d90>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x600000cbc940; teamID='8LTN4Q26AJ', teamName='Maharashtra Metro Rail Corp Ltd', teamType='Company', username='pankaj.yadav@mahametro.org', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x2ff74d600; archive = "<IDEArchive: 0x60022b8cd3e0>", distributionMethod="<IDEDistributionMethodDevelopmentSigned: 0x6000690a2d90>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x600000cbc940; teamID='8LTN4Q26AJ', teamName='Maharashtra Metro Rail Corp Ltd', teamType='Company', username='pankaj.yadav@mahametro.org', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x445991a30; archive = "<IDEArchive: 0x60022b8cd3e0>", distributionMethod="<IDEDistributionMethodDevelopmentSigned: 0x6000690a2d90>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x600000cbc940; teamID='8LTN4Q26AJ', teamName='Maharashtra Metro Rail Corp Ltd', teamType='Company', username='pankaj.yadav@mahametro.org', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x2ff73da70; archive = "<IDEArchive: 0x60022b8cd3e0>", distributionMethod="<IDEDistributionMethodDevelopmentSigned: 0x6000690a2d90>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x600000cbc940; teamID='8LTN4Q26AJ', teamName='Maharashtra Metro Rail Corp Ltd', teamType='Company', username='pankaj.yadav@mahametro.org', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x2fefbfd00; archive = "<IDEArchive: 0x60022b8cd3e0>", distributionMethod="<IDEDistributionMethodDevelopmentSigned: 0x6000690a2d90>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x600000cbc940; teamID='8LTN4Q26AJ', teamName='Maharashtra Metro Rail Corp Ltd', teamType='Company', username='pankaj.yadav@mahametro.org', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x2ff46e660; archive = "<IDEArchive: 0x60022b8cd3e0>", distributionMethod="<IDEDistributionMethodDevelopmentSigned: 0x6000690a2d90>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x600000cbc940; teamID='8LTN4Q26AJ', teamName='Maharashtra Metro Rail Corp Ltd', teamType='Company', username='pankaj.yadav@mahametro.org', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x2ff46e440; archive = "<IDEArchive: 0x60022b8cd3e0>", distributionMethod="<IDEDistributionMethodDevelopmentSigned: 0x6000690a2d90>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x600000cbc940; teamID='8LTN4Q26AJ', teamName='Maharashtra Metro Rail Corp Ltd', teamType='Company', username='pankaj.yadav@mahametro.org', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x2e7cecea0; archive = "<IDEArchive: 0x60022b8cd3e0>", distributionMethod="<IDEDistributionMethodDevelopmentSigned: 0x6000690a2d90>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x600000cbc940; teamID='8LTN4Q26AJ', teamName='Maharashtra Metro Rail Corp Ltd', teamType='Company', username='pankaj.yadav@mahametro.org', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x2e3043cc0; archive = "<IDEArchive: 0x60022b8cd3e0>", distributionMethod="<IDEDistributionMethodDevelopmentSigned: 0x6000690a2d90>", team="(null)">
+	<IDEDistributionContext: 0x44070b9a0; archive = "<IDEArchive: 0x60022b8cd3e0>", distributionMethod="<IDEDistributionMethodDevelopmentSigned: 0x6000690a2d90>", team="(null)">
+	<IDEDistributionContext: 0x2feff4e40; archive = "<IDEArchive: 0x60022b8cd3e0>", distributionMethod="<IDEDistributionMethodDevelopmentSigned: 0x6000690a2d90>", team="(null)">
+	<IDEDistributionContext: 0x2fdcde830; archive = "<IDEArchive: 0x60022b8cd3e0>", distributionMethod="<IDEDistributionMethodDevelopmentSigned: 0x6000690a2d90>", team="(null)">
+	<IDEDistributionContext: 0x2fe239ee0; archive = "<IDEArchive: 0x60022b8cd3e0>", distributionMethod="(null)", team="(null)">
+</IDEDistributionProcessingPipelineContext: 0x2ff750e20>
+2023-07-27 06:39:37 +0000  Processing step: IDEDistributionCreateDestRootStep
+2023-07-27 06:39:37 +0000  Processing step: IDEDistributionCopyItemStep
+2023-07-27 06:39:37 +0000  Running /usr/bin/ditto '-V' '/Users/abhayjeetsingh/Library/Developer/Xcode/Archives/2023-07-27/FutalaLake 27-07-23, 12.09 PM.xcarchive/Products/Applications/FutalaLake.app' '/var/folders/y8/psk8b24x2x508wz2mwszt4bc0000gp/T/XcodeDistPipeline.~~~jax3rn/Root/Payload/FutalaLake.app'
+2023-07-27 06:39:37 +0000  >>> Copying /Users/abhayjeetsingh/Library/Developer/Xcode/Archives/2023-07-27/FutalaLake 27-07-23, 12.09 PM.xcarchive/Products/Applications/FutalaLake.app 
+2023-07-27 06:39:37 +0000  copying file ./_CodeSignature/CodeResources ... 
+2023-07-27 06:39:37 +0000  3687 bytes for ./_CodeSignature/CodeResources
+2023-07-27 06:39:37 +0000  copying file ./wildcard_aurionpro_com.crt ... 
+2023-07-27 06:39:37 +0000  2212 bytes for ./wildcard_aurionpro_com.crt
+2023-07-27 06:39:37 +0000  copying file ./FutalaLake ... 
+2023-07-27 06:39:37 +0000  12835264 bytes for ./FutalaLake
+2023-07-27 06:39:37 +0000  copying file ./gift.gif ... 
+45645 bytes for ./gift.gif
+copying file ./AppIcon60x60@2x.png ... 
+2023-07-27 06:39:37 +0000  19838 bytes for ./AppIcon60x60@2x.png
+2023-07-27 06:39:37 +0000  copying file ./GoogleService-Info.plist ... 
+2023-07-27 06:39:37 +0000  647 bytes for ./GoogleService-Info.plist
+2023-07-27 06:39:37 +0000  copying file ./Assets.car ... 
+2023-07-27 06:39:37 +0000  5977343 bytes for ./Assets.car
+2023-07-27 06:39:37 +0000  /usr/bin/ditto exited with 0
+2023-07-27 06:39:37 +0000  copying file ./AppIcon76x76@2x~ipad.png ... 
+29857 bytes for ./AppIcon76x76@2x~ipad.png
+copying file ./wildcard_aurionpro_com.key ... 
+1675 bytes for ./wildcard_aurionpro_com.key
+copying file ./embedded.mobileprovision ... 
+22335 bytes for ./embedded.mobileprovision
+copying file ./Info.plist ... 
+1532 bytes for ./Info.plist
+copying file ./PkgInfo ... 
+8 bytes for ./PkgInfo
+2023-07-27 06:39:37 +0000  Processing step: IDEDistributionEmbedProfileStep
+2023-07-27 06:39:37 +0000  Processing step: IDEDistributionInfoPlistStep
+2023-07-27 06:39:37 +0000  Skipping step: IDEDistributionInfoPlistStep because it said so
+2023-07-27 06:39:37 +0000  Processing step: IDEDistributionAppThinningPlistStep
+2023-07-27 06:39:37 +0000  Skipping step: IDEDistributionAppThinningPlistStep because it said so
+2023-07-27 06:39:37 +0000  Processing step: IDEDistributionCompileBitcodeStep
+2023-07-27 06:39:37 +0000  Skipping step: IDEDistributionCompileBitcodeStep because it said so
+2023-07-27 06:39:37 +0000  Processing step: IDEDistributionCodeSlimmingStep
+2023-07-27 06:39:37 +0000  Processing step: IDEDistributionCopyBCSymbolMapsStep
+2023-07-27 06:39:37 +0000  Skipping step: IDEDistributionCopyBCSymbolMapsStep because it said so
+2023-07-27 06:39:37 +0000  Processing step: IDEDistributionSymbolsStep
+2023-07-27 06:39:37 +0000  Skipping step: IDEDistributionSymbolsStep because it said so
+2023-07-27 06:39:37 +0000  Processing step: IDEDistributionAppThinningStep
+2023-07-27 06:39:37 +0000  Skipping step: IDEDistributionAppThinningStep because it said so
+2023-07-27 06:39:37 +0000  Processing step: IDEDistributionArchThinningStep
+2023-07-27 06:39:37 +0000  Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/y8/psk8b24x2x508wz2mwszt4bc0000gp/T/XcodeDistPipeline.~~~jax3rn/Root/Payload/FutalaLake.app/FutalaLake' '-verify_arch' 'arm64e'
+2023-07-27 06:39:37 +0000  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 1
+2023-07-27 06:39:37 +0000  Skipping architecture thinning for item "FutalaLake" because arch "arm64e" wasn't found
+2023-07-27 06:39:37 +0000  Processing step: IDEDistributionODRStep
+2023-07-27 06:39:37 +0000  Processing step: IDEDistributionStripXattrsStep
+2023-07-27 06:39:37 +0000  Running /usr/bin/xattr '-crs' '/var/folders/y8/psk8b24x2x508wz2mwszt4bc0000gp/T/XcodeDistPipeline.~~~jax3rn/Root/Payload/FutalaLake.app'
+2023-07-27 06:39:37 +0000  /usr/bin/xattr exited with 0
+2023-07-27 06:39:37 +0000  Processing step: IDEDistributionCodesignStep
+2023-07-27 06:39:37 +0000  Entitlements for <IDEDistributionItem: 0x60022b8c7c60; bundleID='com.FutalaLake', path='<DVTFilePath:0x60003f935340:'/Users/abhayjeetsingh/Library/Developer/Xcode/Archives/2023-07-27/FutalaLake 27-07-23, 12.09 PM.xcarchive/Products/Applications/FutalaLake.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000ab3427b0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x60003259e680; name='Apple Development: Pankaj Yadav (SS3W45D93C)', hash='C39FC4EC71CDE1D5DA1D7F77AC35695ECB4F8F7D', serialNumber='76782B41A8F4DA69123A664E0676F35B', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2022-12-01 05:24:52 +0000''>', entitlements='{
+    "application-identifier" = "8LTN4Q26AJ.com.FutalaLake";
+    "aps-environment" = development;
+    "com.apple.developer.team-identifier" = 8LTN4Q26AJ;
+    "get-task-allow" = 1;
+}', teamID='8LTN4Q26AJ', identifier='com.FutalaLake', executablePath='<DVTFilePath:0x60003f9f5030:'/Users/abhayjeetsingh/Library/Developer/Xcode/Archives/2023-07-27/FutalaLake 27-07-23, 12.09 PM.xcarchive/Products/Applications/FutalaLake.app/FutalaLake'>', hardenedRuntime='0'>'>: {
+    "application-identifier" = "8LTN4Q26AJ.com.FutalaLake";
+    "aps-environment" = development;
+    "com.apple.developer.team-identifier" = 8LTN4Q26AJ;
+    "get-task-allow" = 1;
+}
+2023-07-27 06:39:37 +0000  Entitlements for <IDEDistributionItem: 0x60022b8c7c60; bundleID='com.FutalaLake', path='<DVTFilePath:0x60003f935340:'/Users/abhayjeetsingh/Library/Developer/Xcode/Archives/2023-07-27/FutalaLake 27-07-23, 12.09 PM.xcarchive/Products/Applications/FutalaLake.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000ab3427b0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000325b9fa0; name='Apple Development: Pankaj Yadav (SS3W45D93C)', hash='C39FC4EC71CDE1D5DA1D7F77AC35695ECB4F8F7D', serialNumber='76782B41A8F4DA69123A664E0676F35B', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2022-12-01 05:24:52 +0000''>', entitlements='{
+    "application-identifier" = "8LTN4Q26AJ.com.FutalaLake";
+    "aps-environment" = development;
+    "com.apple.developer.team-identifier" = 8LTN4Q26AJ;
+    "get-task-allow" = 1;
+}', teamID='8LTN4Q26AJ', identifier='com.FutalaLake', executablePath='<DVTFilePath:0x60003f9f5030:'/Users/abhayjeetsingh/Library/Developer/Xcode/Archives/2023-07-27/FutalaLake 27-07-23, 12.09 PM.xcarchive/Products/Applications/FutalaLake.app/FutalaLake'>', hardenedRuntime='0'>'> are: {
+    "application-identifier" = "8LTN4Q26AJ.com.FutalaLake";
+    "aps-environment" = development;
+    "com.apple.developer.team-identifier" = 8LTN4Q26AJ;
+    "get-task-allow" = 1;
+}
+2023-07-27 06:39:37 +0000  Writing entitlements for <IDEDistributionItem: 0x60022b8c7c60; bundleID='com.FutalaLake', path='<DVTFilePath:0x60003f935340:'/Users/abhayjeetsingh/Library/Developer/Xcode/Archives/2023-07-27/FutalaLake 27-07-23, 12.09 PM.xcarchive/Products/Applications/FutalaLake.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000ab3427b0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000325ddce0; name='Apple Development: Pankaj Yadav (SS3W45D93C)', hash='C39FC4EC71CDE1D5DA1D7F77AC35695ECB4F8F7D', serialNumber='76782B41A8F4DA69123A664E0676F35B', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2022-12-01 05:24:52 +0000''>', entitlements='{
+    "application-identifier" = "8LTN4Q26AJ.com.FutalaLake";
+    "aps-environment" = development;
+    "com.apple.developer.team-identifier" = 8LTN4Q26AJ;
+    "get-task-allow" = 1;
+}', teamID='8LTN4Q26AJ', identifier='com.FutalaLake', executablePath='<DVTFilePath:0x60003f9f5030:'/Users/abhayjeetsingh/Library/Developer/Xcode/Archives/2023-07-27/FutalaLake 27-07-23, 12.09 PM.xcarchive/Products/Applications/FutalaLake.app/FutalaLake'>', hardenedRuntime='0'>'> to: /var/folders/y8/psk8b24x2x508wz2mwszt4bc0000gp/T/XcodeDistPipeline.~~~jax3rn/entitlements~~~tdIG46
+2023-07-27 06:39:37 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' 'C39FC4EC71CDE1D5DA1D7F77AC35695ECB4F8F7D' '--entitlements' '/var/folders/y8/psk8b24x2x508wz2mwszt4bc0000gp/T/XcodeDistPipeline.~~~jax3rn/entitlements~~~tdIG46' '--generate-entitlement-der' '--preserve-metadata=identifier,flags,runtime' '/var/folders/y8/psk8b24x2x508wz2mwszt4bc0000gp/T/XcodeDistPipeline.~~~jax3rn/Root/Payload/FutalaLake.app'
+2023-07-27 06:39:37 +0000  /var/folders/y8/psk8b24x2x508wz2mwszt4bc0000gp/T/XcodeDistPipeline.~~~jax3rn/Root/Payload/FutalaLake.app: replacing existing signature
+2023-07-27 06:39:37 +0000  /var/folders/y8/psk8b24x2x508wz2mwszt4bc0000gp/T/XcodeDistPipeline.~~~jax3rn/Root/Payload/FutalaLake.app: signed app bundle with Mach-O thin (arm64) [com.FutalaLake]
+2023-07-27 06:39:37 +0000  /usr/bin/codesign exited with 0
+2023-07-27 06:39:37 +0000  Processing step: IDEDistributionZipODRItemStep
+2023-07-27 06:39:37 +0000  Skipping step: IDEDistributionZipODRItemStep because it said so
+2023-07-27 06:39:37 +0000  Processing step: IDEDistributionCreateIPAStep
+2023-07-27 06:39:37 +0000  Running /usr/bin/ditto '-V' '-c' '-k' '--norsrc' '/var/folders/y8/psk8b24x2x508wz2mwszt4bc0000gp/T/XcodeDistPipeline.~~~jax3rn/Root' '/var/folders/y8/psk8b24x2x508wz2mwszt4bc0000gp/T/XcodeDistPipeline.~~~jax3rn/Packages/FutalaLake.ipa'
+2023-07-27 06:39:37 +0000  >>> Copying /var/folders/y8/psk8b24x2x508wz2mwszt4bc0000gp/T/XcodeDistPipeline.~~~jax3rn/Root 
+2023-07-27 06:39:37 +0000  copying file ./Payload/FutalaLake.app/_CodeSignature/CodeResources ... 
+2023-07-27 06:39:37 +0000  3687 bytes for ./Payload/FutalaLake.app/_CodeSignature/CodeResources
+2023-07-27 06:39:37 +0000  copying file ./Payload/FutalaLake.app/wildcard_aurionpro_com.crt ... 
+2023-07-27 06:39:37 +0000  2212 bytes for ./Payload/FutalaLake.app/wildcard_aurionpro_com.crt
+copying file ./Payload/FutalaLake.app/FutalaLake ... 
+2023-07-27 06:39:37 +0000  12835264 bytes for ./Payload/FutalaLake.app/FutalaLake
+2023-07-27 06:39:37 +0000  copying file ./Payload/FutalaLake.app/gift.gif ... 
+2023-07-27 06:39:37 +0000  45645 bytes for ./Payload/FutalaLake.app/gift.gif
+2023-07-27 06:39:37 +0000  copying file ./Payload/FutalaLake.app/AppIcon60x60@2x.png ... 
+2023-07-27 06:39:37 +0000  19838 bytes for ./Payload/FutalaLake.app/AppIcon60x60@2x.png
+2023-07-27 06:39:37 +0000  copying file ./Payload/FutalaLake.app/GoogleService-Info.plist ... 
+2023-07-27 06:39:37 +0000  647 bytes for ./Payload/FutalaLake.app/GoogleService-Info.plist
+2023-07-27 06:39:37 +0000  copying file ./Payload/FutalaLake.app/Assets.car ... 
+2023-07-27 06:39:38 +0000  5977343 bytes for ./Payload/FutalaLake.app/Assets.car
+2023-07-27 06:39:38 +0000  copying file ./Payload/FutalaLake.app/AppIcon76x76@2x~ipad.png ... 
+2023-07-27 06:39:38 +0000  29857 bytes for ./Payload/FutalaLake.app/AppIcon76x76@2x~ipad.png
+2023-07-27 06:39:38 +0000  copying file ./Payload/FutalaLake.app/wildcard_aurionpro_com.key ... 
+2023-07-27 06:39:38 +0000  1675 bytes for ./Payload/FutalaLake.app/wildcard_aurionpro_com.key
+2023-07-27 06:39:38 +0000  copying file ./Payload/FutalaLake.app/embedded.mobileprovision ... 
+2023-07-27 06:39:38 +0000  22448 bytes for ./Payload/FutalaLake.app/embedded.mobileprovision
+2023-07-27 06:39:38 +0000  copying file ./Payload/FutalaLake.app/Info.plist ... 
+2023-07-27 06:39:38 +0000  /usr/bin/ditto exited with 0
+2023-07-27 06:39:38 +0000  1532 bytes for ./Payload/FutalaLake.app/Info.plist
+copying file ./Payload/FutalaLake.app/PkgInfo ... 
+8 bytes for ./Payload/FutalaLake.app/PkgInfo
+2023-07-27 06:39:38 +0000  Processing step: IDEDistributionAppStoreInformationStep
+2023-07-27 06:39:38 +0000  Skipping step: IDEDistributionAppStoreInformationStep because it said so
+2023-07-27 06:39:38 +0000  Processing step: IDEDistributionGenerateProcessedDistributionItems
+2023-07-27 06:39:38 +0000  IDEDistributionItem init <DVTFilePath:0x60003f96ea70:'/var/folders/y8/psk8b24x2x508wz2mwszt4bc0000gp/T/XcodeDistPipeline.~~~jax3rn/Root/Payload/FutalaLake.app'>
+2023-07-27 06:39:38 +0000  Processing step: IDEDistributionCreateManifestStep

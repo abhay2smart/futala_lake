@@ -435,6 +435,24 @@ class TicketData : Codable, Hashable {
         return Image(uiImage: qrImg)
     }
 
+    
+    var isAdultSeats: Bool  {
+        for item in seatNo ?? [] {
+            if item.isAdult == 1 {
+                return true
+            }
+        }
+        return false
+    }
+    
+    var isChildSeats: Bool  {
+        for item in seatNo ?? [] {
+            if item.isAdult == 0 {
+                return true
+            }
+        }
+        return false
+    }
 
 }
 

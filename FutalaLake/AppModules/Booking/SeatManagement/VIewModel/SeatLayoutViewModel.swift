@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 class SeatLayoutViewModel: ObservableObject {
-    @Published var showAlert = false
     @Published var errorMessage = ""
     @Published var isLoading = false
     //@Published var totalFilteredSeats:[Seats] = [Seats]()
@@ -27,6 +26,10 @@ class SeatLayoutViewModel: ObservableObject {
     @Published var masterSeatData:SeatData?
     
     @Published var isPresentPriceNotSetDilog = false
+    
+    @Published var bookedSeatData:BookedSeatData?
+    
+    @Published var showToast = false
     
     
     
@@ -63,6 +66,16 @@ class SeatLayoutViewModel: ObservableObject {
     
     @Published var selectedCountForBookBtn = ""
     @Published var standingCountForBookBtn = ""
+    
+    func isStandingFareSet()->Bool {
+        if (bookedSeatData?.standingFare?.fare ?? 0) > 0 {
+            return true
+        }
+        errorMessage = "Unable to proceed"
+        showToast = true
+        
+        return false
+    }
     
     func actionPerformed(actionType: TicketTypeButtonState) {
         var selectedSeatCount = 0
@@ -434,7 +447,7 @@ class SeatLayoutViewModel: ObservableObject {
                         }
                     } else {
                         self.errorMessage = respData.error ?? ""
-                        self.showAlert = true
+                        self.showToast = true
                         print("Status false \(self.errorMessage)")
                     }
                 }
@@ -495,7 +508,7 @@ class SeatLayoutViewModel: ObservableObject {
             if !isValidForSeat && ((trimmedStandingAdultCount == "0" || trimmedStandingAdultCount == "") && (trimmedStandingChildCount == "0" || trimmedStandingChildCount == "")) {
                 
                 self.errorMessage = "Please select atleast one seat"
-                self.showAlert = true
+                self.showToast = true
                 return isValidForSeat
             }
             
@@ -507,7 +520,7 @@ class SeatLayoutViewModel: ObservableObject {
             
             if (trimmedStandingAdultCount == "0" || trimmedStandingAdultCount == "") && (trimmedStandingChildCount == "0" || trimmedStandingChildCount == "") {
                 self.errorMessage = "Please enter atleast one standing"
-                self.showAlert = true
+                self.showToast = true
                 return false
             }
         }
@@ -516,7 +529,7 @@ class SeatLayoutViewModel: ObservableObject {
             if Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT < (Int(self.groupSeats) ?? 0)  {
                 let remainingSeats = (Int(self.groupSeats) ?? 0) - Global.GroupTiketing.TOTAL_GROUP_SELECTED_COUNT
                 self.errorMessage = "Please select \(remainingSeats) remaining seats"
-                self.showAlert = true
+                self.showToast = true
                 return false
             }
         }
@@ -563,6 +576,7 @@ class SeatLayoutViewModel: ObservableObject {
                             DispatchQueue.main.async {
                                 if respData.status ?? false {
                                     if let bookedSeatData = respData.data?.first {
+                                        self.bookedSeatData = bookedSeatData
                                         //self.groupTicketValidationParam = bookedSeatData.first?.groupTicket
                                         if self.isPriceSet(data: bookedSeatData) {
                                             self.minGroupValue = bookedSeatData.groupTicket?.minGroupValue ?? ""

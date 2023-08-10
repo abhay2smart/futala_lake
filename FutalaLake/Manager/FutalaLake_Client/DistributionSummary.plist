@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>FutalaLake.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>arm64</string>
+			</array>
+			<key>buildNumber</key>
+			<string>1</string>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>C39FC4EC71CDE1D5DA1D7F77AC35695ECB4F8F7D</string>
+				<key>dateExpires</key>
+				<string>01/12/23</string>
+				<key>type</key>
+				<string>Apple Development</string>
+			</dict>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>8LTN4Q26AJ.com.FutalaLake</string>
+				<key>aps-environment</key>
+				<string>development</string>
+				<key>com.apple.developer.team-identifier</key>
+				<string>8LTN4Q26AJ</string>
+				<key>get-task-allow</key>
+				<true/>
+			</dict>
+			<key>name</key>
+			<string>FutalaLake.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>644b1bad-5d95-4534-b772-2b8f0d62a246</string>
+				<key>dateExpires</key>
+				<string>26/07/24</string>
+				<key>name</key>
+				<string>iOS Team Provisioning Profile: com.FutalaLake</string>
+			</dict>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>8LTN4Q26AJ</string>
+				<key>name</key>
+				<string>Maharashtra Metro Rail Corp Ltd</string>
+			</dict>
+			<key>versionNumber</key>
+			<string>1.0</string>
+		</dict>
+	</array>
+</dict>
+</plist>

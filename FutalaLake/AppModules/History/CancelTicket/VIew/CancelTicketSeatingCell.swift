@@ -37,74 +37,77 @@ struct CancelTicketSeatingCell: View {
                 
                     .resizable()
                     .frame(width: 200, height: 200)
-                HStack {
-                    Text("Adult Seats:")
-                        .font(.system(size: 16, weight: .medium, design: .default))
-                        .foregroundColor(AppTheme.appThemeOrange)
-                        .padding(.top, 10)
-                    Spacer()
-                }
-                .padding(.horizontal, 20)
-                .padding(.top, 10)
-                
-                
-                LazyVGrid(columns: adaptiveColumns) {
-                    ForEach(Array((seats.enumerated())), id: \.offset) { index, element in
-                        if (index < seats.count)  && (index < ticketData?.seatNo?.count ?? 0) && (ticketData?.seatNo?[index].isAdult == 1) {
-                            Button {
-                                //seats.reversed()
-                                seats[index].toggle()
-                                ticketData?.seatNo?[index].toggleSelectedStatus()
-                                //seats.reversed()
-                            } label: {
-                                Text(ticketData?.seatNo?[index].seatNumber ?? "")
-                                    .font(.system(size: 9, weight: .medium, design: .default))
-                                    .frame(width: 25, height: 25)
-                                    .foregroundColor(.white)
+                if ticketData?.isAdultSeats ?? false {
+                    HStack {
+                        Text("Adult Seats:")
+                            .font(.system(size: 16, weight: .medium, design: .default))
+                            .foregroundColor(AppTheme.appThemeOrange)
+                            .padding(.top, 10)
+                        Spacer()
+                    }
+                    .padding(.horizontal, 20)
+                    .padding(.top, 10)
+                    
+                    
+                    LazyVGrid(columns: adaptiveColumns) {
+                        ForEach(Array((seats.enumerated())), id: \.offset) { index, element in
+                            if (index < seats.count)  && (index < ticketData?.seatNo?.count ?? 0) && (ticketData?.seatNo?[index].isAdult == 1) {
+                                Button {
+                                    //seats.reversed()
+                                    seats[index].toggle()
+                                    ticketData?.seatNo?[index].toggleSelectedStatus()
+                                    //seats.reversed()
+                                } label: {
+                                    Text(ticketData?.seatNo?[index].seatNumber ?? "")
+                                        .font(.system(size: 9, weight: .medium, design: .default))
+                                        .frame(width: 25, height: 25)
+                                        .foregroundColor(.white)
+                                }
+                                .background(index < (ticketData?.seatNo?.count ?? 0) ? ticketData?.seatNo?[index].color : .blue  )
+                                .cornerRadius(3)
                             }
-                            .background(index < (ticketData?.seatNo?.count ?? 0) ? ticketData?.seatNo?[index].color : .blue  )
-                            .cornerRadius(3)
+                            
                         }
                         
                     }
-                    
-                }.padding()
-                
-                
-                HStack {
-                    Text("Child Seats:")
-                        .font(.system(size: 16, weight: .medium, design: .default))
-                        .foregroundColor(AppTheme.appThemeOrange)
-                        .padding(.top, 10)
-                    Spacer()
+                    .padding()
+                    .padding(.top, -10)
                 }
-                .padding(.horizontal, 20)
-                .padding(.top, 0)
-                
-                
-                LazyVGrid(columns: adaptiveColumns) {
-                    ForEach(Array((seats.enumerated())), id: \.offset) { index, element in
-                        if (index < seats.count)  && (index < ticketData?.seatNo?.count ?? 0) && (ticketData?.seatNo?[index].isAdult == 0) {
-                            Button {
-                                //seats.reversed()
-                                seats[index].toggle()
-                                ticketData?.seatNo?[index].toggleSelectedStatus()
-                                //seats.reversed()
-                            } label: {
-                                Text(ticketData?.seatNo?[index].seatNumber ?? "")
-                                    .font(.system(size: 9, weight: .medium, design: .default))
-                                    .frame(width: 25, height: 25)
-                                    .foregroundColor(.white)
-                            }
-                            .background(index < (ticketData?.seatNo?.count ?? 0) ? ticketData?.seatNo?[index].color : .blue  )
-                            .cornerRadius(3)
-                        }
-                        
+               
+                if ticketData?.isChildSeats ?? false {
+                    HStack {
+                        Text("Child Seats:")
+                            .font(.system(size: 16, weight: .medium, design: .default))
+                            .foregroundColor(AppTheme.appThemeOrange)
+                            .padding(.top, 0)
+                        Spacer()
                     }
+                    .padding(.horizontal, 20)
+                    .padding(.top, 0)
                     
-                }.padding()
-                
-                
+                    
+                    LazyVGrid(columns: adaptiveColumns) {
+                        ForEach(Array((seats.enumerated())), id: \.offset) { index, element in
+                            if (index < seats.count)  && (index < ticketData?.seatNo?.count ?? 0) && (ticketData?.seatNo?[index].isAdult == 0) {
+                                Button {
+                                    //seats.reversed()
+                                    seats[index].toggle()
+                                    ticketData?.seatNo?[index].toggleSelectedStatus()
+                                    //seats.reversed()
+                                } label: {
+                                    Text(ticketData?.seatNo?[index].seatNumber ?? "")
+                                        .font(.system(size: 9, weight: .medium, design: .default))
+                                        .frame(width: 25, height: 25)
+                                        .foregroundColor(.white)
+                                }
+                                .background(index < (ticketData?.seatNo?.count ?? 0) ? ticketData?.seatNo?[index].color : .blue  )
+                                .cornerRadius(3)
+                            }
+                        }
+                    }
+                    .padding()
+                    .padding(.top, -10)
+                }
                 
             }//.allowsTightening(data.isSeatingContainerClickable())
             //.allowsHitTesting(false)

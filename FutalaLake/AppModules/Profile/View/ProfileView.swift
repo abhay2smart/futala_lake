@@ -16,6 +16,7 @@ struct ProfileView: View {
     //@State var selectedBirthDate = Date()
     //@State var selectedBirthDateStr = ""
     @State var isPickerVisible = false
+    @FocusState var isInputActive: Bool
     
     //@State var address: String = ""
     
@@ -138,6 +139,16 @@ struct ProfileView: View {
                                 
                                 TextEditor(text: $profileViewModel.address)
                                     .foregroundColor(.black)
+                                    .focused($isInputActive)
+                                    .toolbar {
+                                        ToolbarItemGroup(placement: .keyboard) {
+                                            Spacer()
+                                            
+                                            Button("Done") {
+                                                isInputActive = false
+                                            }
+                                        }
+                                    }
                                     .frame(height: 100)
                                     .cornerRadius(10)
                                     .background(

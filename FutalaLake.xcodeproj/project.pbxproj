@@ -68,6 +68,7 @@
 		17545D4429433829003E3724 /* UpcomingEventCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17545D4329433829003E3724 /* UpcomingEventCellView.swift */; };
 		176CB8DF2966D275006C71D4 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176CB8DE2966D275006C71D4 /* RadioButton.swift */; };
 		176EFA9A2A275B110064D345 /* PolicyInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176EFA992A275B110064D345 /* PolicyInstruction.swift */; };
+		17721C772A73F25100C2E84A /* GetTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179E088E29B5F26300AA4541 /* GetTokenModel.swift */; };
 		177B40BB2941EBAF00EDF0F0 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177B40BA2941EBAF00EDF0F0 /* LaunchView.swift */; };
 		177B40BF2941FB8E00EDF0F0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177B40BE2941FB8E00EDF0F0 /* LoginView.swift */; };
 		17831DC72955BCFA005C36D0 /* TopNavItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17831DC62955BCFA005C36D0 /* TopNavItemView.swift */; };
@@ -1327,6 +1328,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17721C772A73F25100C2E84A /* GetTokenModel.swift in Sources */,
 				17A585F42935FF2D00365D71 /* FutalaLakeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -59,8 +59,8 @@ struct PaymentWebView: View {
             .navigationBarItems(leading: backButton)
             .alert(isPresented: $showAlert) {
                 Alert(
-                    title: Text("ALert"),
-                    message: Text("Are you sure you want to go back?"),
+                    title: Text("Alert"),
+                    message: Text("Are you sure you want to cancel the Payment?"),
                     primaryButton: .default(Text("Yes")) {
                         // Perform the action to go back here
                         self.presentationMode.wrappedValue.dismiss()
@@ -82,7 +82,7 @@ struct PaymentWebView: View {
             
             
             
-        }
+        }.allowsHitTesting(!webViewModel.isLoading)
         
         
         

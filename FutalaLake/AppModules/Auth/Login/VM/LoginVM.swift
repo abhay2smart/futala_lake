@@ -143,7 +143,7 @@ class LoginVM: ObservableObject {
     
     func fetchToeken(mobileNumber: String) {
         isLoading = true
-        let param: [String: Any] = ["mobile": mobileNumber, "otp": Int(otp)]
+        let param: [String: Any] = ["mobile": mobileNumber, "otp": otp]
         let url = Constants.baseUrl + Constants.API.sendOTP
         
         

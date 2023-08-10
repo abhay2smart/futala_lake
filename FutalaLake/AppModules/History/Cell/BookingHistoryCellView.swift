@@ -151,7 +151,7 @@ struct BookingHistoryCellView: View {
             }
             
             Divider()
-            
+        
             
             HStack {
                 Spacer()

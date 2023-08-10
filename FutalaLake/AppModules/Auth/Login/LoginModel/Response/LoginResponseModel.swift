@@ -38,7 +38,7 @@ struct LoginResponseModel : Codable {
 
 struct ResponseData : Codable {
     let mobile : String?
-    let otp : Int?
+    let otp : String?
 
     enum CodingKeys: String, CodingKey {
 
@@ -49,7 +49,7 @@ struct ResponseData : Codable {
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         mobile = try values.decodeIfPresent(String.self, forKey: .mobile)
-        otp = try values.decodeIfPresent(Int.self, forKey: .otp)
+        otp = try values.decodeIfPresent(String.self, forKey: .otp)
     }
 
 }

@@ -10,7 +10,7 @@ import SwiftUI
 
 
 struct DateTimeSelectionView: View {
-    @ObservedObject private var dateTimeSelectionModel = DateTimeSelectionViewModel()
+    @StateObject private var dateTimeSelectionModel = DateTimeSelectionViewModel()
     @State var selectedDate: Date = Date()
     //@State private var currentTimeSlotSelected = ""
     @State private var showTimeId = ""
@@ -29,9 +29,9 @@ struct DateTimeSelectionView: View {
     ]
     
     init() {
-        dateTimeSelectionModel.getShowDays(date: selectedDate)
-        dateTimeSelectionModel.getAllSeatColor()
-        reset()
+//        dateTimeSelectionModel.getShowDays(date: selectedDate)
+//        dateTimeSelectionModel.getAllSeatColor()
+//        reset()
     }
     
     
@@ -145,9 +145,9 @@ struct DateTimeSelectionView: View {
         }
         .allowsHitTesting(dateTimeSelectionModel.isLoading ? false : true)
         .onAppear{
-//            dateTimeSelectionModel.getShowDays(date: selectedDate)
-//            dateTimeSelectionModel.getAllSeatColor()
-//            reset()
+            dateTimeSelectionModel.getShowDays(date: selectedDate)
+            dateTimeSelectionModel.getAllSeatColor()
+            reset()
         }
         
     }
